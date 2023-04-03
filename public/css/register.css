@@ -173,3 +173,8 @@ body {
 .message i:hover {
     transform: rotate(90deg);
 }
+
+.error {
+    color: aqua;
+    margin-top: .5rem;
+}

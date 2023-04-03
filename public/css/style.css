@@ -917,6 +917,252 @@ section {
   color: #29d9d5;
 }
 
+/* Begin Detail Book Style */
+.detailBook {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: fgrlex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 15rem;
+  margin-top: 10rem;
+}
+
+.detailBook .book-img .box {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #222;
+  height: 500px;
+  width: 400px;
+}
+
+
+.detailBook .book-img .box .image {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.detailBook .book-img .box .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+
+
+.detailBook .information-detail h3 {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.detailBook .information-detail p {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.view-post .row{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5rem;
+  padding: 2rem;
+  border-radius: .5rem;
+}
+
+.view-post .row .col{
+  flex: 1 1 40rem;
+}
+
+.view-post .row .col .image{
+  width: 100%;
+  height: 30rem;
+  border-radius: .5rem;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.view-post .row .col .title{
+  font-size: 2rem;
+  color: var(--black);
+}
+
+.view-post .row .col .flex{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.view-post .row .col .flex .total-reviews{
+  text-align: center;
+}
+
+.view-post .row .col .flex .total-reviews h3{
+  font-size: 7rem;
+  color: aqua;
+}
+
+.view-post .row .col .flex .total-reviews i{
+  font-size: 3rem;
+}
+
+.view-post .row .col .flex .total-reviews p{
+  font-size: 1.8rem;
+  color: white;
+  padding-top: 1rem;
+}
+
+
+.view-post .row .col .flex .total-ratings{
+  font-size: 2rem;
+}
+
+.view-post .row .col .flex .total-ratings p{
+  padding: .3rem 0;
+}
+
+.view-post .row .col .flex .total-ratings p i{
+  color: orange;
+}
+
+.view-post .row .col .flex .total-ratings p span{
+  color: var(--light-color);
+}
+
+.reviews-container .heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviews-container .heading .add-btn {
+  border-radius: 2rem;
+  border: 1px solid aqua;
+  padding: 1rem 3rem;
+  font-size: 1.8rem;
+  color: #fff;
+  background: #222;
+}
+.reviews-container .box-container{
+  display: grid;
+  row-gap: 3rem;
+  background-color: white;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  border: .1rem solid aqua;
+  border-radius: .5rem;
+  padding: 2rem;
+}
+
+.reviews-container .box-container .box{
+  border-bottom: .1rem solid aqua;
+  overflow-x: hidden;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.reviews-container .box-container .box .user{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.reviews-container .box-container .box .user img{
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviews-container .box-container .box .user h3{
+  font-size: 2.5rem;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  background-color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 6.5rem;   
+}
+
+.reviews-container .box-container .box .user p{
+  font-size: 1.8rem;
+  color:black;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  padding-bottom: .3rem;
+}
+
+.reviews-container .box-container .box .user span{
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.reviews-container .box-container .box .ratings{
+  position: absolute;
+  top: 0; right: 0;
+  z-index: 10;
+}
+
+.reviews-container .box-container .box .ratings p{
+  border-radius: .5rem;
+  color: white;
+  padding: .5rem 1rem;
+}
+
+.reviews-container .box-container .box .ratings p span{
+  font-size: 2rem;
+}
+
+.reviews-container .box-container .box .ratings p i{
+  font-size: 1.5rem;
+}
+
+.reviews-container .box-container .box .title{
+  font-size: 2rem;
+  color: black;
+  padding: .5rem 0;
+}
+
+.reviews-container .box-container .box .description{
+  font-size: 1.6rem;
+  white-space: pre-line;
+  color: white;
+  line-height: 1.5;
+}
+
+.inline-delete-btn,
+.inline-option-btn{
+   margin-top: 1rem;
+   text-align: center;
+   padding: 1rem 3rem;
+   font-size: 1.8rem;
+   border-radius: .5rem;
+   border: 1px solid aqua;
+   color: white;
+   cursor: pointer;
+   text-transform: capitalize;
+}
+.empty{
+  background-color: white;
+  border-radius: 1rem;
+  border: 1px solid aqua;
+  padding: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--red);
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);;
+}
+
+
+/* End Detail Book Style */
+
 @media (max-width: 991px) {
   html {
     font-size: 55%;

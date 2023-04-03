@@ -1,35 +1,3 @@
-<?php
-
-include 'config.php';
-
-if(isset($_POST['submit'])){
-
-   $name = mysqli_real_escape_string($conn, $_POST['fullName']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
-   $cpass = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
-   $user_type = $_POST['user_type'];
-
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
-
-   if(mysqli_num_rows($select_users) > 0){
-      $message[] = 'Người dùng đã tồn tại!';
-   }else{
-      if($pass != $cpass){
-         $message[] = 'Mật khẩu xác nhận không khớp';
-      }else{
-         mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
-         $message[] = 'Đăng ký thành công!';
-         header('location:loginForm.php');
-      }
-   }
-
-}
-
-?>
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,25 +8,25 @@ if(isset($_POST['submit'])){
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
-    <link rel="stylesheet" href="../css/register.css" />
+    <link rel="stylesheet" href="../../public/css/register.css" />
+    
   </head>
   <body>
-    <?php
-      if(isset($message)){
+  <?php
+        if(isset($message)){
         foreach($message as $message){
             echo '
             <div class="message">
-              <span>'.$message.'</span>
-              <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+                <span>'.$message.'</span>
+                <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
             </div>
             ';
         }
-      }
+        }
     ?>
-
     <div class="container">
       <h1 class="form-title">Đăng ký tài khoản</h1>
-      <form action="" method="post">
+      <form method="POST" onsubmit="return validateForm()" action="../Controllers/registerController.php" >
         <div class="main-user-info">
           <div class="user-input-box">
             <label for="fullName">Họ và tên</label>
@@ -73,6 +41,7 @@ if(isset($_POST['submit'])){
                     id="username"
                     name="username"
                     placeholder="Enter Username" required/>
+            <span class="error" id="usernameError"></span>
           </div>
           <div class="user-input-box">
             <label for="email">Email</label>
@@ -80,6 +49,7 @@ if(isset($_POST['submit'])){
                     id="email"
                     name="email"
                     placeholder="Nhập Email" required/>
+            <span class="error" id="emailError"></span>
           </div>
           <div class="user-input-box">
             <label for="phoneNumber">Số điện thoại</label>
@@ -87,6 +57,7 @@ if(isset($_POST['submit'])){
                     id="phoneNumber"
                     name="phoneNumber"
                     placeholder="Nhập số điện thoại"/>
+            <span class="error" id="numberError"></span>
           </div>
           <div class="user-input-box">
             <label for="password">Mật khẩu</label>
@@ -94,6 +65,7 @@ if(isset($_POST['submit'])){
                     id="password"
                     name="password"
                     placeholder="Nhập mật khẩu" required/>
+            <span class="error" id="passwordError"></span>
           </div>
           <div class="user-input-box">
             <label for="confirmPassword">Nhập lại mật khẩu</label>
@@ -109,10 +81,55 @@ if(isset($_POST['submit'])){
               <option value="admin">Quản trị viên</option>
             </select>
         </div>
+        <span id="confirm_password-error" style="color: red;"></span>
         <div class="form-submit-btn">
           <input type="submit" name="submit" value="Đăng ký">
         </div>
       </form>
+    <script>
+        // Client-side validation using JavaScript
+      function validateForm() {
+        let username = document.getElementById("username").value;
+        let phoneNumber = document.getElementById("phoneNumber").value;
+        let password = document.getElementById("password").value;
+        let email = document.getElementById("email").value;
+
+        let usernameError = document.getElementById("usernameError");
+        let numberError = document.getElementById("numberError");
+        let passwordError = document.getElementById("passwordError");
+        let emailError = document.getElementById("emailError");
+
+        let isValid = true;
+
+        if (username.length < 6) {
+          usernameError.innerHTML = "Tên người dùng phải có ít nhất 6 ký tự";
+          isValid = false;
+        } else {
+          usernameError.innerHTML = "";
+        }
+        if (phoneNumber.length <10) {
+          numberError.innerHTML = "Số điện thoại phải có ít nhất 10 chữ số";
+          isValid = false;
+        }
+        else {
+          numberError.innerHTML = "";
+        }
+        if (password.length < 8) {
+          passwordError.innerHTML = "Mật khẩu phải có ít nhất 8 ký tự";
+          isValid = false;
+        } else {
+          passwordError.innerHTML = "";
+        }
+        let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!emailRegex.test(email)) {
+          emailError.innerHTML = "Email không hợp lệ. Vui lòng nhập lại";
+          isValid = false;
+        } else {
+          emailError.innerHTML = "";
+        }
+        return isValid;
+      }
+    </script>
     </div>
   </body>
 </html>

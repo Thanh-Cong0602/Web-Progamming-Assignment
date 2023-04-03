@@ -19,41 +19,8 @@
 
 </head>
 <body>
-    
-<!-- header section starts  -->
+    <?php include './includes/header.php'; ?>
 
-<header class="header">
-
-    <div id="menu-btn" class="fas fa-bars"></div>
-
-    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> 
-        <i class="fas fa-book-open"></i>Book Store </a>
-
-    <nav class="navbar">
-        <a data-aos="zoom-in-left" data-aos-delay="300" href="#home">Trang chủ</a>
-        <a data-aos="zoom-in-left" data-aos-delay="450" href="#about">Giới thiệu</a>
-        <a data-aos="zoom-in-left" data-aos-delay="600" href="#product">Sản phẩm</a>
-        <a data-aos="zoom-in-left" data-aos-delay="750" href="#authors">Tác giả</a>
-        <a data-aos="zoom-in-left" data-aos-delay="900" href="#blogs">Bài viết</a>
-    </nav>
-    <div class = "icons btn">
-    <a data-aos="zoom-in-left" data-aos-delay="1100" href="#book-form">
-             <i class="fas fa-search"></i>
-    </a>
-    <a data-aos="zoom-in-left" data-aos-delay="1250" class ="tcn">
-        <i class="fas fa-user users"></i>
-            <div class="dropdown-content">
-                <a href="loginForm.php">Đăng nhập</a>
-                <a href="registerForm.php">Đăng ký</a>
-            </div>
-    </a>
-    <a data-aos="zoom-in-left" data-aos-delay="1400" href="#book-form">
-             <i class="fas fa-shopping-bag"></i>
-    </a>
-    </div>
-</header>
-
-<!-- header section ends -->
 
 <!-- home section starts  -->
 
@@ -88,7 +55,7 @@
         <span>Tại sao bạn phải đọc sách?</span>
         <h3>Đố bạn biết đấy</h3>
         <p>TCN</p>
-        <a href="#" class="btn">Xem thêm</a>
+        <a href="about.php" class="btn">Xem thêm</a>
     </div>
 
 </section>
@@ -452,84 +419,10 @@ Có thể nói, những điều được viết trong cuốn sách “Khéo ăn 
 </section>
 
 <!-- blogs section ends -->
+<?php include './includes/banner.php'; ?>
+<?php include './includes/footer.php'; ?>
 
-<!-- banner section starts  -->
-
-<div class="banner">
-
-    <div class="content" data-aos="zoom-in-up" data-aos-delay="300">
-        <span>start your adventures</span>
-        <h3>Let's Explore This World</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum voluptatum praesentium amet quibusdam quam officia suscipit odio.</p>
-        <a href="#book-form" class="btn">book now</a>
-    </div>
-
-</div>
-
-<!-- banner section ends -->
-
-<!-- footer section starts  -->
-
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box" data-aos="fade-up" data-aos-delay="150">
-            <a href="#" class="logo"> <i class="fas fa-paper-plane"></i>Book Store </a>
-            <p>Đọc sách có thể không giàu, nhưng không đọc, chắc chắn nghèo?</p>
-            <div class="share">
-                <a href="https://www.facebook.com/profile.php?id=100058371174074" class="fab fa-facebook-f"></a>
-                <a href="https://twitter.com/?lang=vi" class="fab fa-twitter"></a>
-                <a href="https://www.instagram.com/th_cong_ng/" class="fab fa-instagram"></a>
-                <a href="#" class="fab fa-linkedin"></a>
-            </div>
-        </div>
-
-        <div class="box" data-aos="fade-up" data-aos-delay="300">
-            <h3>Truy cập</h3>
-            <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-            <a href="#about" class="links"> <i class="fas fa-arrow-right"></i> Giới thiệu </a>
-            <a href="#destination" class="links"> <i class="fas fa-arrow-right"></i> Sản phẩm </a>
-            <a href="#services" class="links"> <i class="fas fa-arrow-right"></i> services </a>
-            <a href="#gallery" class="links"> <i class="fas fa-arrow-right"></i> gallery </a>
-            <a href="#blogs" class="links"> <i class="fas fa-arrow-right"></i> Bài viết </a>
-        </div>
-
-        <div class="box" data-aos="fade-up" data-aos-delay="450">
-            <h3>Thông tin liên hệ</h3>
-            <p> <i class="fas fa-map"></i> Hồ Chí Minh, Việt Nam </p>
-            <p> <i class="fas fa-phone"></i> 0847476547 </p>
-            <p> <i class="fas fa-envelope"></i> bookstoreclone@gmail.com </p>
-            <p> <i class="fas fa-clock"></i> 7:00am - 10:00pm </p>
-        </div>
-
-        <div class="box" data-aos="fade-up" data-aos-delay="600">
-            <h3>newsletter</h3>
-            <p>subscribe for latest updates</p>
-            <form action="">
-                <input type="email" name="" placeholder="enter your email" class="email" id="">
-                <input type="submit" value="subscribe" class="btn">
-            </form>
-        </div>
-
-    </div>
-
-</section>
-
-<div class="credit"><span>Web Progamming Assignment </span> </div>
-
-<!-- footer section ends -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-<script>
-
-    AOS.init({
-        duration: 800,
-        offset:150,
-    });
-
-</script>
+<link rel="stylesheet" href="../assets/js/aos.js">
 
 </body>
 </html>
