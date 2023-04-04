@@ -8,6 +8,21 @@ if(isset($_GET['get_id'])){
    $get_id = '';
    header('location:home.php');
 }
+if(isset($_POST['delete_review'])){
+
+    $delete_id = $_POST['delete_id'];
+    $delete_id = filter_var($delete_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $verify_delete = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = $delete_id") or die('query failed');
+    if(mysqli_num_rows($verify_delete) > 0){
+        $delete_review = mysqli_query($conn, "DELETE FROM  `reviews` WHERE id = $delete_id") or die('query failed');
+        $success_msg[] = 'Review deleted!';
+    }
+    else{  
+        $warning_msg[] = 'Review already deleted!';
+    }
+ 
+ }
+ 
 
 ?>
 
@@ -39,7 +54,7 @@ if(isset($_GET['get_id'])){
         <?php
             $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id=$get_id") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
-            $product = mysqli_fetch_assoc($result);
+            $product = mysqli_fetch_assoc($select_products);
         ?>
         <div class="box" >
             <div class="image">
@@ -53,8 +68,9 @@ if(isset($_GET['get_id'])){
       ?>
     </div>
     <div class="information-detail" data-aos="fade-left" data-aos-delay="600">
-        <h3>Tuổi trẻ đáng giá bao nhiêu</h3>
+        <h3><?php echo $product['name']?></h3>
         <p>by <a href="http://">Rosie Nguyen</a></p>
+
         <div class="view-post">
         <?php
             $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = $get_id") or die('query failed');
@@ -66,7 +82,7 @@ if(isset($_GET['get_id'])){
                     $rating_3 = 0;
                     $rating_4 = 0;
                     $rating_5 = 0;
-                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = $get_id") or die('query failed');
+                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
                 $total_reivews = mysqli_num_rows($select_ratings);
                 while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
                     $total_ratings += $fetch_rating['rating'];
@@ -165,12 +181,13 @@ if(isset($_GET['get_id'])){
         if(mysqli_num_rows($select_reviews) > 0){
         while($fetch_review = mysqli_fetch_assoc($select_reviews)){
         ?>
-   <div class="box" <?php if($fetch_review['user_id'] == $user_id){echo 'style="order: -1;"';}; ?>>
+    <div class="box" <?php if($fetch_review['user_id'] == $user_id){echo 'style="order: -1;"';}; ?>>
       <?php
-        $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE id = $get_id") or die('query failed');
+        $user_id = $fetch_review['user_id'];
+        $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'") or die('query failed');
         while($fetch_user = mysqli_fetch_assoc($select_user)){
       ?>
-      <div class="user">
+      <!-- <div class="user">
          <?php if($fetch_user['image'] != ''){ ?>
             <img src="uploaded_files/<?= $fetch_user['image']; ?>" alt="">
          <?php }else{ ?>   
@@ -180,7 +197,7 @@ if(isset($_GET['get_id'])){
             <p><?= $fetch_user['name']; ?></p>
             <span><?= $fetch_review['date']; ?></span>
          </div>
-      </div>
+      </div> -->
       <?php }; ?>
       <div class="ratings">
          <?php if($fetch_review['rating'] == 1){ ?>

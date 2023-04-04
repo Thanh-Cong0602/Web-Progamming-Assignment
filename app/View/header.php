@@ -1,5 +1,5 @@
 <?php
-
+$user_id = $_COOKIE['user_id'];
 ?>
 
 <!-- header section starts  -->
@@ -22,8 +22,8 @@
              <i class="fas fa-search"></i>
     </a>
     <a data-aos="zoom-in-left" data-aos-delay="1250" class ="tcn">
-        <i class="fas fa-user users"></i>
-            <div class="dropdown-content">
+        <i id="fa-user" class="fas fa-user users"></i>
+            <div id="dropdown-box" class="dropdown-content hidden">
                 <a href="loginForm.php">Đăng nhập</a>
                 <a href="registerForm.php">Đăng ký</a>
             </div>
@@ -35,3 +35,26 @@
     </div>
 </header>
 <!-- header section ends -->
+<!-- <script>
+    // get the fa-user icon and profile/dropdown content boxes
+    const faUser = document.getElementById("fa-user");
+    const profileBox = document.getElementById("profile-box");
+    const dropdownBox = document.getElementById("dropdown-box");
+
+    // show/hide the profile/dropdown content boxes on hover
+    faUser.addEventListener("mouseover", () => {
+        if (<?= $user_id ?> != '') {
+            profileBox.classList.remove("hidden");
+        } else {
+            dropdownBox.classList.remove("hidden");
+        }
+    });
+
+    faUser.addEventListener("mouseout", () => {
+        if (<?= $user_id ?> != '') {
+            profileBox.classList.add("hidden");
+        } else {
+            dropdownBox.classList.add("hidden");
+        }
+    });
+</script> -->

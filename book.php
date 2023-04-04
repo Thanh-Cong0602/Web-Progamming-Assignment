@@ -1,4 +1,27 @@
-
+<?php
+         if($user_id != ''){
+      ?>
+        <div id="profile-box" class="profile hidden">
+            <?php
+                $select_profile = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'");
+                if(mysqli_num_rows($select_profile) > 0){
+                $fetch_profile = mysqli_fetch_assoc($select_profile);
+            ?>
+            <?php if($fetch_profile['image'] != ''){ ?>
+                <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="" class="image">
+            <?php }; ?>   
+            <p><?= $fetch_profile['fullname']; ?></p>
+            <a href="update.php" class="btn">update profile</a>
+            <a href="components/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">logout</a>
+            <?php }
+        else{ ?>
+            <div id="dropdown-box" class="dropdown-content hidden">
+                <a href="loginForm.php">Đăng nhập</a>
+                <a href="registerForm.php">Đăng ký</a>
+            </div>
+            <?php }; ?>
+        </div>
+        <?php }; ?>
 <form method="POST" onsubmit="return validateForm()" action="../Controllers/registerController.php" >
         <div class="main-user-info">
           <div class="user-input-box">

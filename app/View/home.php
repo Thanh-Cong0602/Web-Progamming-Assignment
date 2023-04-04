@@ -80,7 +80,7 @@ include '../../config/config.php';
       ?>
                 <form method="post" action=""> 
                     <div class="box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="image">
+                        <div class="image"> 
                             <img src=<?php echo $fetch_products['image']; ?> alt="">
                         </div>
                         <div class="content">

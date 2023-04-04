@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
    $user_type = $_POST['user_type'];
    $result = $user->registerUser($fullname,  $username, $email, $phonenumber, $password, $confirmpassword);
    if ($result == 'Successfully!') {
-      header("Location: ../View/loginForm.php?status=success");
+      header("Location: ../View/loginForm.php");
       exit;
    }
    else {

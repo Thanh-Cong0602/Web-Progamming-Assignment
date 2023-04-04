@@ -15,18 +15,6 @@ document.querySelectorAll('.about .video-container .controls .control-btn').forE
     }
 })
 
-const formLogin = document.querySelector('.dropdown-content');
-const userIcons = document.querySelector('.tcn');
-const formUser = document.querySelector('.user-box');
-userIcons.addEventListener('mouseover', () => {
-        formLogin.style.display = 'block';
-})
- 
-formLogin.addEventListener('mouseleave', () => {
-    formLogin.style.display = 'none';
-})
-
-
 function myFunction() {
     var dots = document.getElementById("dots");
     var moreText = document.getElementById("more");
@@ -42,4 +30,15 @@ function myFunction() {
       moreText.style.display = "inline";
     }
   }
+
+const formLogin = document.querySelector('.dropdown-content');
+const userIcons = document.querySelector('.tcn');
+const formUser = document.querySelector('.user-box');
+userIcons.addEventListener('mouseover', () => {
+        formLogin.style.display = 'block';
+})
+ 
+formLogin.addEventListener('mouseleave', () => {
+    formLogin.style.display = 'none';
+})
 

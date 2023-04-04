@@ -1,4 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+:root{
+  --main-color:#16a085;
+  --red:#eb4d4b;
+  --orange:#f39c12;
+  --black:#130f40;
+  --light-color:#999;
+  --light-bg:#eee;
+  --white:#fff;
+  --border:.1rem solid rgba(0,0,0,.2);
+  --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
 * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -121,6 +133,45 @@ section {
 
 .header .icons .users:hover {
   color: aqua;
+}
+
+.header .profile{
+  position: absolute;
+  top: 120%; right: 2rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  text-align: center;
+  width: 30rem;
+  border-radius: .5rem;
+  border: var(--border);
+  overflow-x: hidden;
+  transform: scale(0);
+  transform-origin: top right;
+}
+
+.header .profile.active{
+  transform: scale(1);
+  transition: .2s linear;
+}
+
+.header .profile p{
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  color: var(--light-color);
+  font-size: 1.8rem;
+  padding-bottom: .5rem;
+}
+.profile,
+.dropdown-content {
+    display: none;
+}
+.header .profile .image{
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
 }
 
 .dropdown {
@@ -1132,7 +1183,7 @@ section {
 .reviews-container .box-container .box .description{
   font-size: 1.6rem;
   white-space: pre-line;
-  color: white;
+  color: #222;
   line-height: 1.5;
 }
 
@@ -1161,6 +1212,92 @@ section {
 }
 
 
+.account-form form{
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  border: 1px solid red;
+  border-radius: 2rem;
+  max-width: 50rem;
+  margin: 10rem auto;
+}
+
+.account-form form h3{
+  padding-bottom: 1rem;
+  font-size: 2.5rem;
+  color: var(--black);
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.account-form form p{
+  padding-top: 1rem;
+  font-size: 1.6rem;
+  color: black;
+}
+
+.account-form form p span{
+  color: var(--red);
+}
+
+.account-form form .box{
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1.4rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  background-color: var(--light-bg);
+  margin: 1rem 0;
+}
+
+.account-form form textarea{
+  height: 15rem;
+  resize: none;
+}
+
+.account-form form .image{
+  height: 20rem;
+  width: 100%;
+  object-fit: contain;
+  margin-top: .5rem;
+}
+
+.account-form form .link{
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--light-color);
+}
+
+.account-form form .link a{
+  color: var(--red);
+}
+
+.account-form form .link a:hover{
+  text-decoration: underline;
+}
+
+.account-form form .submit-btn {
+  width: 100%;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  border: 1px solid aqua;
+  background: #222;
+  color: aqua;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.account-form form .submit-btn:hover,
+.account-form form a:hover {
+  background-color: #16a085;
+  color: white;
+}
+.account-form form a {
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+}
 /* End Detail Book Style */
 
 @media (max-width: 991px) {
