@@ -7,8 +7,8 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $result = $user->loginUser($email, $password);
-    if ($result == 'error') {
-        $message[] = 'Email hoặc mật khẩu không chính xác!';
+    if ($result == 'Incorrect password!' || $result == 'Incorrect email!') {
+        $_SESSION['warning_msg'] = $result;
         include '../View/loginForm.php';
     }
     else {

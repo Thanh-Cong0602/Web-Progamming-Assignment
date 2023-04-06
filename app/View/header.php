@@ -1,7 +1,6 @@
 <?php
-$user_id = $_COOKIE['user_id'];
+  $user_id = $_COOKIE['user_id'];
 ?>
-
 <!-- header section starts  -->
 <header class="header">
 
@@ -15,7 +14,7 @@ $user_id = $_COOKIE['user_id'];
         <a data-aos="zoom-in-left" data-aos-delay="450" href="about.php">Giới thiệu</a>
         <a data-aos="zoom-in-left" data-aos-delay="600" href="product.php">Sản phẩm</a>
         <a data-aos="zoom-in-left" data-aos-delay="750" href="#authors">Tác giả</a>
-        <a data-aos="zoom-in-left" data-aos-delay="900" href="order.php">Bài viết</a>
+        <a data-aos="zoom-in-left" data-aos-delay="900" href="order.php"><?php echo $user_id?></a>
     </nav>
     <div class = "icons btn">
     <a data-aos="zoom-in-left" data-aos-delay="1100" href="#book-form">
@@ -23,38 +22,77 @@ $user_id = $_COOKIE['user_id'];
     </a>
     <a data-aos="zoom-in-left" data-aos-delay="1250" class ="tcn">
         <i id="fa-user" class="fas fa-user users"></i>
-            <div id="dropdown-box" class="dropdown-content hidden">
+          <div id="profile-box" class="profile">
+              <?php
+                  $select_profile = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'");
+                  if(mysqli_num_rows($select_profile) > 0){
+                  $fetch_profile = mysqli_fetch_assoc($select_profile);
+              ?>
+             <?php if($fetch_profile['image'] != ''){ ?>
+            <img src="../../public/images/<?= $fetch_profile['image']; ?>" alt="" class="image">
+            <?php $margin_top = '35rem';  ?>
+            <?php } else { ?>
+                <?php $margin_top = '25rem';?>
+            <?php } ?>
+              <p><?= $fetch_profile['username']; ?></p>
+              <a href="update_profile.php" class="btn">Update Profile</a>
+              <a href="../View/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">Logout</a>
+            <?php } ?>
+          </div>
+        <div id="dropdown-box" class="dropdown-content">
                 <a href="loginForm.php">Đăng nhập</a>
                 <a href="registerForm.php">Đăng ký</a>
-            </div>
+        </div>
     </a>
     <a data-aos="zoom-in-left" data-aos-delay="1400" href="card.php">
             <i class="fas fa-shopping-bag"></i>
             <!-- <span>(<?php echo $cart_rows_number; ?>)</span> -->
     </a>
     </div>
+<script>
+const dropdownBox = document.getElementById("dropdown-box");
+const profileBox = document.getElementById("profile-box");
+const faUser = document.getElementById("fa-user");
+
+let isBoxVisible = false;
+
+faUser.addEventListener("click", () => {
+  if ('<?= $user_id ?>' !== '') {
+    if (isBoxVisible) {
+      profileBox.style.display = 'none';
+      isBoxVisible = false;
+    } else {
+      profileBox.style.display = 'block';
+      isBoxVisible = true;
+    }
+  }
+  else {
+    if (isBoxVisible) {
+      dropdownBox.style.display = 'none';
+      isBoxVisible = false;
+    } else {
+      dropdownBox.style.display = 'block';
+      isBoxVisible = true;
+    }
+  }
+});
+
+let isScrolling = false;
+window.addEventListener("scroll", () => {
+  if (!isScrolling) {
+    window.requestAnimationFrame(() => {
+      profileBox.style.display = 'none';
+      isScrolling = false;
+    });
+    isScrolling = true;
+  }
+});
+
+</script>
 </header>
 <!-- header section ends -->
-<!-- <script>
-    // get the fa-user icon and profile/dropdown content boxes
-    const faUser = document.getElementById("fa-user");
-    const profileBox = document.getElementById("profile-box");
-    const dropdownBox = document.getElementById("dropdown-box");
-
-    // show/hide the profile/dropdown content boxes on hover
-    faUser.addEventListener("mouseover", () => {
-        if (<?= $user_id ?> != '') {
-            profileBox.classList.remove("hidden");
-        } else {
-            dropdownBox.classList.remove("hidden");
-        }
-    });
-
-    faUser.addEventListener("mouseout", () => {
-        if (<?= $user_id ?> != '') {
-            profileBox.classList.add("hidden");
-        } else {
-            dropdownBox.classList.add("hidden");
-        }
-    });
-</script> -->
+<style>
+  .header .profile {
+    margin-top: <?php echo $margin_top; ?>;
+  }
+</style>

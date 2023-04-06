@@ -104,3 +104,30 @@ body{
     color:rgb(18, 245, 245);
     text-decoration: none;
 }
+
+.message {
+    position: absolute;
+    top: 0;
+    margin: 0 auto;
+    max-width: 80%;
+    border-radius: 1rem;
+    background-color: aqua;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10000;
+    gap: 1.5rem;
+}
+
+.message span {
+    font-size: 1rem;
+    color: var(--black);
+    text-align: center;
+}
+
+.message i {
+    cursor: pointer;
+    color: var(--red);
+    font-size: 1.5rem;
+}

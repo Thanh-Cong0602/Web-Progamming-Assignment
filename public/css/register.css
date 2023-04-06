@@ -69,7 +69,18 @@ body {
     border: 1px solid grey;
     padding: 0 10px;
 }
-
+.info-img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.info-img input {
+    width: 17.5rem;
+}
+.user-input-box .pic {
+    background: white;
+    padding-top: 10px;
+}
 .box {
     border: 1px solid white;
     width: 30%;
@@ -113,6 +124,22 @@ body {
     color: rgb(255, 255, 255);
 }
 
+.account {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.account p {
+    color: aliceblue;
+}
+.account a {
+    padding-left: 1rem;
+    text-decoration: none;
+    color: red;
+}
+.account a:hover {
+    color: aqua;
+}
 @media(max-width: 600px) {
     .container {
         min-width: 280px;

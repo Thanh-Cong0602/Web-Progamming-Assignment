@@ -8,13 +8,15 @@ if(isset($_GET['get_id'])){
    $get_id = '';
    header('location:home.php');
 }
+
 if(isset($_POST['delete_review'])){
 
     $delete_id = $_POST['delete_id'];
     $delete_id = filter_var($delete_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $verify_delete = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = $delete_id") or die('query failed');
+    echo strlen($delete_id);
+    $verify_delete = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = '$delete_id'") or die('query failed');
     if(mysqli_num_rows($verify_delete) > 0){
-        $delete_review = mysqli_query($conn, "DELETE FROM  `reviews` WHERE id = $delete_id") or die('query failed');
+        $delete_review = mysqli_query($conn, "DELETE FROM  `reviews` WHERE id = '$delete_id'") or die('query failed');
         $success_msg[] = 'Review deleted!';
     }
     else{  
@@ -183,37 +185,56 @@ if(isset($_POST['delete_review'])){
         ?>
     <div class="box" <?php if($fetch_review['user_id'] == $user_id){echo 'style="order: -1;"';}; ?>>
       <?php
-        $user_id = $fetch_review['user_id'];
-        $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'") or die('query failed');
+        $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '".$fetch_review['user_id']."'") or die('query failed');
         while($fetch_user = mysqli_fetch_assoc($select_user)){
       ?>
-      <!-- <div class="user">
+      <div class="user">
          <?php if($fetch_user['image'] != ''){ ?>
-            <img src="uploaded_files/<?= $fetch_user['image']; ?>" alt="">
+            <img src="../../public/images/<?=$fetch_user['image']; ?>" alt="">
          <?php }else{ ?>   
-            <h3><?= substr($fetch_user['name'], 0, 1); ?></h3>
+            <h3><?= substr($fetch_user['username'], 0, 1); ?></h3>
          <?php }; ?>   
          <div>
-            <p><?= $fetch_user['name']; ?></p>
+            <p><?= $fetch_user['username']; ?></p>
             <span><?= $fetch_review['date']; ?></span>
          </div>
-      </div> -->
+      </div>
       <?php }; ?>
       <div class="ratings">
          <?php if($fetch_review['rating'] == 1){ ?>
-            <p style="background:var(--red);"><i class="fas fa-star"></i> <span><?= $fetch_review['rating']; ?></span></p>
+            <p>
+                <i class="fas fa-star"></i> 
+            </p>
          <?php }; ?> 
          <?php if($fetch_review['rating'] == 2){ ?>
-            <p style="background:var(--orange);"><i class="fas fa-star"></i> <span><?= $fetch_review['rating']; ?></span></p>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+            </p>
          <?php }; ?>
          <?php if($fetch_review['rating'] == 3){ ?>
-            <p style="background:var(--orange);"><i class="fas fa-star"></i> <span><?= $fetch_review['rating']; ?></span></p>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+            </p>
          <?php }; ?>   
          <?php if($fetch_review['rating'] == 4){ ?>
-            <p style="background:var(--main-color);"><i class="fas fa-star"></i> <span><?= $fetch_review['rating']; ?></span></p>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </p>
          <?php }; ?>
          <?php if($fetch_review['rating'] == 5){ ?>
-            <p style="background:var(--main-color);"><i class="fas fa-star"></i> <span><?= $fetch_review['rating']; ?></span></p>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </p>
          <?php }; ?>
       </div>
       <h3 class="title"><?= $fetch_review['title']; ?></h3>
@@ -240,22 +261,7 @@ if(isset($_POST['delete_review'])){
 </section>
 
 <!-- reviews section ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
         duration: 800,

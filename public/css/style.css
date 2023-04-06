@@ -69,17 +69,7 @@ section {
   color: #fff;
 }
 
-.btn {
-  margin-top: 1rem;
-  display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 1.7rem;
-  color: #29d9d5;
-  border: 0.2rem solid #29d9d5;
-  border-radius: 5rem;
-  cursor: pointer;
-  background: none;
-}
+
 
 /* .btn:hover {
   background: #29d9d5;
@@ -137,41 +127,63 @@ section {
 
 .header .profile{
   position: absolute;
-  top: 120%; right: 2rem;
-  background-color: var(--white);
-  box-shadow: var(--box-shadow);
-  padding: 2rem;
+  min-width: 160px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: .3rem solid red;
+  border-radius: 1.5rem ;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  right: 7%;
   text-align: center;
-  width: 30rem;
-  border-radius: .5rem;
-  border: var(--border);
-  overflow-x: hidden;
-  transform: scale(0);
-  transform-origin: top right;
+  display: none;
 }
 
-.header .profile.active{
-  transform: scale(1);
-  transition: .2s linear;
-}
-
-.header .profile p{
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  color: var(--light-color);
-  font-size: 1.8rem;
-  padding-bottom: .5rem;
-}
-.profile,
-.dropdown-content {
-    display: none;
-}
 .header .profile .image{
   height: 7rem;
   width: 7rem;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
+}
+.header .profile p{
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  font-size: 1.8rem;
+  padding-bottom: .5rem;
+}
+
+.header .profile .image{
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  margin-top: 1rem;
+  display: block;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  color: #29d9d5;
+  border: 0.2rem solid #29d9d5;
+  border-radius: 5rem;
+  cursor: pointer;
+  background: #222;
+}
+
+.delete-btn {
+  margin-top: 1rem;
+  display: block;
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  color: white;
+  border: 0.2rem solid black;
+  border-radius: 5rem;
+  cursor: pointer;
+  background: red;
+  text-transform: capitalize;
 }
 
 .dropdown {
@@ -190,7 +202,7 @@ section {
 
 
 
-.dropdown-content {
+.header .dropdown-content {
   position: absolute;
   min-width: 160px;
   padding: 10px;
@@ -201,6 +213,10 @@ section {
   font-family: Arial, sans-serif;
   margin-top: 17.5rem;
   right: 8%;
+  display: none;
+}
+
+.hidden {
   display: none;
 }
 
@@ -223,17 +239,7 @@ section {
   background-color: red;
 }
 
- .delete-btn {
-  display: inline-block;
-   margin-top: 1rem;
-   padding:.5rem 2rem;
-   cursor: pointer;
-   color:white;
-   font-size: 1.5rem;
-   border-radius: .5rem;
-   text-transform: capitalize;
-   background-color: red;
-}
+
 .logo {
   font-size: 2.5rem;
   color: #fff;
@@ -1150,7 +1156,7 @@ section {
 }
 
 .reviews-container .box-container .box .user span{
-  color: #fff;
+  color: #999;
   font-size: 1.5rem;
 }
 
@@ -1162,7 +1168,7 @@ section {
 
 .reviews-container .box-container .box .ratings p{
   border-radius: .5rem;
-  color: white;
+  color: orange;
   padding: .5rem 1rem;
 }
 
@@ -1193,11 +1199,24 @@ section {
    text-align: center;
    padding: 1rem 3rem;
    font-size: 1.8rem;
-   border-radius: .5rem;
-   border: 1px solid aqua;
+   border-radius: 2rem;
+   border: .1rem solid #222;
    color: white;
    cursor: pointer;
    text-transform: capitalize;
+}
+.inline-option-btn {
+  background: orange;
+}
+.inline-delete-btn {
+  background: red;
+}
+.flex-btn{
+  display: flex;
+  align-items: center;
+  column-gap: 1.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .empty{
   background-color: white;
@@ -1211,13 +1230,13 @@ section {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);;
 }
 
-
+/* Begin User Review Form */
 .account-form form{
   background: var(--white);
   box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
   padding: 2rem;
-  border: 1px solid red;
+  border: 3px solid aqua;
   border-radius: 2rem;
   max-width: 50rem;
   margin: 10rem auto;
@@ -1293,11 +1312,108 @@ section {
   background-color: #16a085;
   color: white;
 }
-.account-form form a {
+.account-form a {
   margin-top: 1rem;
   display: block;
   text-align: center;
 }
+
+/* End User Review Form */
+
+/*Begin CSS Update User Information */
+.updateInfo-form form{
+  background: #2f2b2b;
+  box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  border: 3px solid aqua;
+  border-radius: 2rem;
+  max-width: 50rem;
+  margin: 10rem auto;
+}
+
+.updateInfo-form form h3{
+  padding-bottom: 1rem;
+  font-size: 2.5rem;
+  color: aqua;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.updateInfo-form form p{
+  padding-top: 1rem;
+  font-size: 1.6rem;
+  color: aqua;
+  text-transform: capitalize;
+}
+
+.updateInfo-form form p span{
+  color: var(--red);
+}
+
+.updateInfo-form form .box{
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  background-color: white;
+  margin: 1rem 0;
+}
+
+.updateInfo-form form textarea{
+  height: 15rem;
+  resize: none;
+}
+
+.updateInfo-form form .image{
+  height: 20rem;
+  width: 100%;
+  object-fit: contain;
+  margin-top: .5rem;
+}
+.updateInfo-form form .delete-btn,
+.updateInfo-form form .btn {
+  text-transform: capitalize;
+  width: 100%;
+}
+.updateInfo-form form .link{
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--light-color);
+}
+
+.updateInfo-form form .link a{
+  color: var(--red);
+}
+
+.updateInfo-form form .link a:hover{
+  text-decoration: underline;
+}
+
+.updateInfo-form form .submit-btn {
+  width: 100%;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  border: 1px solid aqua;
+  background: #222;
+  color: aqua;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.updateInfo-form form .submit-btn:hover,
+.updateInfo-form form a:hover {
+  background-color: #16a085;
+  color: white;
+}
+.updateInfo-form form a {
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+}
+/*End CSS Update User Information */
+
 /* End Detail Book Style */
 
 @media (max-width: 991px) {
