@@ -99,6 +99,7 @@
           <input type="submit" name="submit" value="Đăng ký">
         </div>
       </form>
+    </div>
     <script>
         // Client-side validation using JavaScript
       function validateForm() {
@@ -143,7 +144,6 @@
         return isValid;
       }
     </script>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <?php include '../View/alert.php'; ?>
   </body>

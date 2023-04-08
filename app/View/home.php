@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -74,14 +75,14 @@ include '../../config/config.php';
     </div>
     <div class="box-container">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY product_id DESC LIMIT 8") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
-                <form method="post" action=""> 
+                <form method="post" action="../Controllers/cartController.php"> 
                     <div class="box" data-aos="fade-up" data-aos-delay="300">
                         <div class="image"> 
-                            <img src=<?php echo $fetch_products['image']; ?> alt="">
+                            <img src="<?php echo $fetch_products['image']; ?>" alt="">
                         </div>
                         <div class="content">
                             <h3><?php echo $fetch_products['name']; ?></h3>
@@ -89,38 +90,17 @@ include '../../config/config.php';
                         </div>
                         <div class="purchase">
                             <h3>$<?php echo $fetch_products['price'];?></h3>
-                            <a href="#" name="add_to_cart">
+                            <input type="hidden" name="product_quantity" value="1">
+                            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                            <button type="submit" name="add_to_cart">
                                 <i class="fas fa-shopping-cart"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </form>
-      <?php
-            }
-        }else{
-            echo '<p class="empty">no products added yet!</p>';
-        }
-      ?>
-       <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
-      ?>
-                <form method="post" action=""> 
-                    <div class="box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="image">
-                            <img src=<?php echo $fetch_products['image']; ?> alt="">
-                        </div>
-                        <div class="content">
-                            <h3><?php echo $fetch_products['name']; ?></h3>
-                            <a href="#">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div class="purchase">
-                            <h3>$<?php echo $fetch_products['price'];?></h3>
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
-                </form>
+
       <?php
             }
         }else{
@@ -253,6 +233,9 @@ include '../../config/config.php';
 
 <?php include 'banner.php'; ?>
 <?php include 'footer.php'; ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<?php include '../View/alert.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
