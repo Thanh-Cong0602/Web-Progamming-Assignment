@@ -395,6 +395,30 @@ section {
   width: 100%;
 }
 
+.info-book {
+  background-color: #d9d4d4;
+  width: 60%;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  /* border: var(--border); */
+  border-radius: 0.5rem;
+
+}
+.info-book-img {
+  width: 30%;
+  border-radius: 30px;
+  height: 50rem;
+}
+.info-book-detail {
+  width: 70%;
+  text-align: center;
+}
+
+.info-book-detail-name {
+  font-size: 2rem;
+}
+
 .orders .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 30rem);
