@@ -454,7 +454,10 @@ section {
   color: #aaa;
   line-height: 2;
 }
-
+.about .content .btn {
+  width: 20rem;
+  text-align: center;
+}
 .product .box-container {
   display: -ms-grid;
   display: grid;
@@ -471,7 +474,9 @@ section {
   background: #222;
   height: 500px;
 }
-
+.product .box-container .box {
+  height: 525px;
+}
 .product .box-container .box:hover img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
@@ -1009,6 +1014,13 @@ section {
   padding: 1.2rem 1.4rem;
 }
 
+information-detail.credit {
+  background: #222;
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem 1rem;
+  color: #aaa;
+}
 .credit {
   background: #222;
   text-align: center;
@@ -1022,17 +1034,11 @@ section {
 }
 
 /* Begin Detail Book Style */
+
 .detailBook {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: fgrlex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 15rem;
+  display: flex;
   margin-top: 10rem;
+  /* gap: 15rem; */
 }
 
 .detailBook .book-img .box {
@@ -1056,26 +1062,207 @@ section {
   -o-object-fit: cover;
      object-fit: cover;
 }
-
+.detailBook .information-detail {
+  margin-left: 5rem;
+  /* width: calc(100% - 484px); */
+}
 
 
 .detailBook .information-detail h3 {
   font-size: 2rem;
   color: #fff;
+  text-transform: uppercase;
 }
 
 .detailBook .information-detail p {
   font-size: 1.5rem;
   color: #fff;
+  font-weight: bold;
+}
+.detailBook .information-detail span {
+  color: #2489F4;
+}
+.detailBook .information-detail .evaluate-average h3 {
+  color: orange;
+  margin-top: 2rem;
+}
+.detailBook .provider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 20rem;
+  margin-top: 2rem;
+}
+.detailBook .provider p {
+  color: white;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+}.detailBook .provider span {
+  color: #2489F4;
+  
+}
+.detailBook .price-box {
+  display: flex;
+}
+.detailBook .price-box .box {
+  margin-top: 2rem;
+  border: 1px solid white;
+  background: red;
+  border-radius: 1rem;
+  width: 13rem;
+  height: 3rem;
+  display: flex;
+  padding: .5rem;
+  font-family:'Times New Roman', Times, serif;
+  text-align: center;
+
 }
 
+.detailBook .price-box .box .fa {
+ margin-left: 2rem;
+ color: white;
+ font-size: 2rem;
+} 
+.detailBook .price-box .price {
+  color: red;
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0 4rem;
+}
+
+.detailBook .quantity-input{
+  display: flex;
+  margin-top: 2rem;
+}
+.detailBook .quantity-input p {
+  font-size: 2rem;
+  color: #999;
+  margin-right: 2rem;
+}
+.detailBook .quantity-input button {
+  border-radius: .5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 20px;
+  height: 30px;
+  width: 30px;
+}
+.detailBook .quantity-input input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  height: 30px;
+  padding-left: 13px;
+}
+.detailBook .option-cart {
+  cursor: pointer;
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15rem;
+}
+
+.detailBook .option-cart .add_to_cart {
+  background: white;
+  border: 1px solid red;
+  border-radius: 1rem;
+  width: 22rem;
+  font-size: 2rem;
+  text-align: center;
+  padding: .5rem 1rem;
+}
+.detailBook .option-cart .combo {
+  width: 27rem;
+}
+.detailBook .option-cart .btnAddCart {
+  cursor: pointer;
+  background: white;
+  font-size: 1.5rem;
+}
+.detailBook .option-cart .add_to_cart .fas {
+  color: red;
+}
+.detailBook .option-cart .buy_now_btn {
+  background: red;
+  border: 1px solid red;
+  border-radius: 1rem;
+  width: 22rem;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: .8rem 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.descriptionBook .heading{
+  background-color: white;
+  box-shadow: 0.5rem 1rem 2rem red;
+  border: .1rem solid aqua;
+  border-radius: 1rem;
+}
+.descriptionBook .heading h1 {
+  color: #111;
+  text-align: left;
+  font-size: 2.5rem;
+  border-bottom: 1px solid #222;
+  padding-left: 1rem;
+}
+.descriptionBook .heading p {
+  color: red;
+  font-weight: bold;
+  padding: 3rem 0 1rem 0;
+  font-size: 2rem ;
+}
+.descriptionBook .heading .description {
+  text-align: justify;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  max-height: 19.5rem; 
+  overflow: hidden; 
+  transition: max-height 0.5s ease-in-out;
+}
+.descriptionBook .heading .book p {
+  color: #111;
+  text-align: left;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+.descriptionBook .heading .book img {
+  width: 50%;
+  height: 50%;
+}
+.descriptionBook .heading .book .description {
+max-height: none;
+}
+.descriptionBook .heading .description.active {
+  max-height: none;
+  transition: max-height 1s ease-in-out;
+}
+.btn-toggle {
+  margin: 2rem auto;
+  cursor: pointer;
+  border: .2rem solid red;
+  border-radius: 1rem;
+  padding: .5rem 4rem;
+  background: white;
+  color: red;
+  font-size: 1.5rem;
+}
 .view-post .row{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 5rem;
-  padding: 2rem;
-  border-radius: .5rem;
+  padding: 1rem;
+  border-bottom: 1px solid black;
 }
 
 .view-post .row .col{
@@ -1099,8 +1286,8 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 5rem;
-  align-items: center;
-  justify-content: space-evenly;
+  /* align-items: center;
+  justify-content: space-evenly; */
 }
 
 .view-post .row .col .flex .total-reviews{
@@ -1109,7 +1296,7 @@ section {
 
 .view-post .row .col .flex .total-reviews h3{
   font-size: 7rem;
-  color: aqua;
+  color: black;
 }
 
 .view-post .row .col .flex .total-reviews i{
@@ -1118,7 +1305,7 @@ section {
 
 .view-post .row .col .flex .total-reviews p{
   font-size: 1.8rem;
-  color: white;
+  color:red;
   padding-top: 1rem;
 }
 
@@ -1144,6 +1331,9 @@ section {
   justify-content: space-between;
   align-items: center;
 }
+.reviews-container .heading h1 {
+  font-size: 3rem;
+}
 .reviews-container .heading .add-btn {
   border-radius: 2rem;
   border: 1px solid aqua;
@@ -1152,18 +1342,24 @@ section {
   color: #fff;
   background: #222;
 }
+.reviews-container .heading .add-btn:hover {
+  color: black;
+  background: aqua;
+}
+.reviews-container .box-review {
+  background-color: white;
+  box-shadow: 0.5rem 1rem 2rem red;
+  border: .1rem solid aqua;
+  border-radius: 1rem;
+}
 .reviews-container .box-container{
   display: grid;
   row-gap: 3rem;
-  background-color: white;
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
-  border: .1rem solid aqua;
-  border-radius: .5rem;
   padding: 2rem;
 }
 
 .reviews-container .box-container .box{
-  border-bottom: .1rem solid aqua;
+  border-bottom: .1rem solid #999;
   overflow-x: hidden;
   padding-bottom: 1.5rem;
   position: relative;
@@ -1234,10 +1430,12 @@ section {
 }
 
 .reviews-container .box-container .box .description{
-  font-size: 1.6rem;
+  font-size: 2rem;
   white-space: pre-line;
   color: #222;
   line-height: 1.5;
+  text-align: justify;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .inline-delete-btn,
@@ -1259,11 +1457,36 @@ section {
   background: red;
 }
 .flex-btn{
-  display: flex;
-  align-items: center;
-  column-gap: 1.5rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  float: right;
+}
+.flex-btn .update {
+    font-size: 1.5rem;
+    color: purple;
+    text-decoration: underline;
+    /* padding-left: 90rem; */
+}
+.flex-btn .update:hover {
+  color: red;
+}
+.flex-btn .update:active {
+  color: blue;
+}
+.flex-btn .delete-review {
+  border: none;
+  background: white;
+  text-decoration: underline;
+  color: red;
+  margin-left: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-transform: capitalize;
+
+}
+.flex-btn .delete-review:hover {
+  color: purple;
+}
+.flex-btn .delete-review:active {
+  color: blue;
 }
 .empty{
   background-color: white;
@@ -1293,7 +1516,7 @@ section {
   padding-bottom: 1rem;
   font-size: 2.5rem;
   color: var(--black);
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   text-align: center;
 }
 
@@ -1383,7 +1606,6 @@ section {
   padding-bottom: 1rem;
   font-size: 2.5rem;
   color: aqua;
-  text-transform: capitalize;
   text-align: center;
 }
 
@@ -1391,7 +1613,6 @@ section {
   padding-top: 1rem;
   font-size: 1.6rem;
   color: aqua;
-  text-transform: capitalize;
 }
 
 .updateInfo-form form p span{
@@ -1559,6 +1780,7 @@ section {
 ,.shopping-cart .box-container .option-cart .inline-delete-btn {
   padding: .5rem 2rem;
   color: white;
+  width: 45%;
 }
 
 .shopping-cart .box-container .box .sub-total{
@@ -1573,10 +1795,25 @@ section {
   color:aqua;
 }
 .shopping-cart .delete-all {
-  width: 30%;
+  width: 40%;
   margin-top: 2rem; 
   text-align: center;
-  margin-left: 35%;
+  margin-left: 30%;
+  font-weight: bold;
+  margin-top: 3rem;
+  display: block;
+  padding: 1rem 2rem;
+  border: 0.2rem solid white;
+  border-radius: 5rem;
+  cursor: pointer;
+  background: red;
+}
+.shopping-cart .delete-all input {
+  background: red;
+  cursor: pointer;
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
 }
 .shopping-cart .cart-total{
   max-width: 1200px;
@@ -1653,7 +1890,14 @@ section {
 .listcart table td {
     padding: 1rem 2rem;
   }
-
+.listcart .grand-total{
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: white;
+ }
+ .listcart .grand-total span {
+  color: red;
+ }
 .checkout {
     background: 111;
 } 
@@ -1703,8 +1947,10 @@ section {
 
 .checkout form .btn {
   width: 20%;
-  margin-left: 40rem;
-  font-size: 2rem;
+  display: block;
+  margin: 0 auto;
+  font-size: 2em; /* sử dụng đơn vị đo em thay vì rem hay px */
+  text-align: center;
 }
 
 @media (max-width: 991px) {
@@ -1750,6 +1996,31 @@ section {
   .home .content h3 {
     font-size: 9vw;
   }
+  .product .box-container .box {
+    height: 50rem;
+  }
+  .checkout form .btn {
+    width: 40%;
+    font-size: 1.5em;
+  }
+  .detailBook {
+    display: block;
+    margin-top: 10rem;
+    /* gap: 15rem; */
+  }
+  .detailBook .book-img .box {
+    height: 50%;
+    width: 100%;
+  }
+  .detailBook .information-detail {
+    margin-left: 0;
+  }
+  .authors .box-containers {
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
 }
 
 @media (max-width: 450px) {
@@ -1762,6 +2033,26 @@ section {
   .banner .content h3 {
     font-size: 2.7rem;
   }
+  .product .box-container .box {
+    height: 50rem;
+  }
+  .checkout form .btn {
+    width: 70%;
+    font-size: 1.5em;
+  }
+  .detailBook .provider {
+    display: block;
+    gap: 0;
+    margin-top: 2rem;
+  }
+  .detailBook .option-cart .add_to_cart i {
+    display: none;
+  }
+  .authors .box-containers {
+    display: block;
+    gap: 0;
+}
+
 }
 /*# sourceMappingURL=style.css.map */
 

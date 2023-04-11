@@ -31,10 +31,10 @@ session_start();
     <div class="banner">
 
     <div class="content" data-aos="zoom-in-up" data-aos-delay="500">
-        <h3>SẢN PHẨM</h3>
+        <h3>COMBO SÁCH HAY</h3>
         <p><a href="./home.php">Trang chủ</a>
         <i class="fas fa-arrow-right"></i>
-            Sản phẩm</p>
+            Combo sách hay</p>
     </div>
 
     </div>
@@ -44,27 +44,27 @@ session_start();
 <!-- products section starts  -->
 
 <section class="product" id="product" data-aos="fade-up" data-aos-delay="500">
-    <div class="box-container shop">
+    <div class="box-container ">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
+         $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products`") or die('query failed');
+         if(mysqli_num_rows($select_combo_products) > 0){
+            while($fetch_combo_products = mysqli_fetch_assoc($select_combo_products)){
       ?>
                 <form method="post" action="../Controllers/cartController.php"> 
-                    <div class="box" data-aos="fade-up" data-aos-delay="300">
+                    <div class="box combo_box" data-aos="fade-up" data-aos-delay="300">
                         <div class="image"> 
-                            <img src="<?php echo $fetch_products['image']; ?>" alt="">
+                            <img src="<?php echo $fetch_combo_products['image_combo']; ?>" alt="">
                         </div>
                         <div class="content">
-                            <h3><?php echo $fetch_products['name']; ?></h3>
-                            <a href="detail_book.php?get_id=<?php echo $fetch_products['product_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
+                            <h3><?php echo $fetch_combo_products['combo_name']; ?></h3>
+                            <a href="detail_combo_book.php?get_id=<?php echo $fetch_combo_products['combo_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                         </div>
                         <div class="purchase">
-                            <h3>$<?php echo $fetch_products['price'];?></h3>
+                            <h3>$<?php echo $fetch_combo_products['price'];?></h3>
                             <input type="hidden" name="product_quantity" value="1">
-                            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-                            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-                            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                            <input type="hidden" name="product_name" value="<?php echo $fetch_combo_products ['combo_name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $fetch_combo_products['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $fetch_combo_products['image_combo']; ?>">
                             <button type="submit" name="add_to_cart">
                                 <i class="fas fa-shopping-cart"></i>
                             </button>

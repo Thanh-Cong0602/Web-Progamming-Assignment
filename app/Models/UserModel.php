@@ -102,16 +102,16 @@ class User {
         $review_id = create_unique_id();
         if($user_id != ''){
             $title = $_POST['title'];
-            $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $description = $_POST['description'];
-            $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = $_POST['rating'];
             $rating = filter_var($rating, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             mysqli_query($this->conn, "INSERT INTO `reviews`(id, post_id, user_id, rating, title, description) VALUES('$review_id','$post_id', '$user_id', '$rating', '$title', '$description')") or die('query failed');
-            return 'Review added!';
+            return 'Đã thêm đánh giá của bạn!';
         }
         else{
-            return 'Please login first!';
+            return 'Vui lòng đăng nhập trước tiên!';
         }
     }
 
@@ -137,12 +137,18 @@ class User {
             mysqli_query($this->conn, "UPDATE `users` SET fullname = '$fullname' WHERE user_id = '$user_id'");
         }
         if(!empty($username)){
-            mysqli_query($this->conn, "UPDATE `users` SET username = '$username' WHERE user_id = '$user_id'");
+            $verify_username = mysqli_query($this->conn, "SELECT * FROM `users` WHERE username = '$username'");
+            if(mysqli_num_rows($verify_username) > 0){
+                return 'Username đã tồn tại!';
+            }
+            else{
+                mysqli_query($this->conn, "UPDATE `users` SET username = '$username' WHERE user_id = '$user_id'");
+            }
         }
         if(!empty($email)){
             $verify_email = mysqli_query($this->conn, "SELECT * FROM `users` WHERE email = '$email'");
             if(mysqli_num_rows($verify_email) > 0){
-                return 'Email already taken!';
+                return 'Email đã tồn tại!';
             }
             else{
                 mysqli_query($this->conn,  "UPDATE `users` SET email = '$email' WHERE user_id = '$user_id'");
@@ -161,7 +167,7 @@ class User {
         $image_folder = '../../public/images/'.$rename;
         if(!empty($image)){
             if($image_size > 2000000){
-               return 'Image size is too large';
+               return 'Kích thước hình ảnh quá lớn!';
             }
             else{
                 mysqli_query($this->conn,  "UPDATE `users` SET image = '$rename' WHERE user_id = '$user_id'");
@@ -184,19 +190,19 @@ class User {
                     if($empty_new != 1){
                         mysqli_query($this->conn, "UPDATE `users` SET password = '$newpass' WHERE user_id = '$user_id'");
                     }else{
-                        return 'Please enter new password!';
+                        return 'Vui lòng nhập mật khẩu mới!';
                     }
                 }else{
-                    return 'Confirm password not matched!';
+                    return 'Xác nhận mật khẩu không khớp!';
                 }
             }else{
                 if($_POST['oldpass'] == ''){
                     return 'Successfull Updated';
                 }
-                else  return 'Old password not matched!';
+                else  return 'Không đúng mật khẩu cũ!';
             }
         }
-        return 'Successfull Updated';
+        return 'Cập nhật thông tin thành công!';
     }
 
     public function userDetelePic(){

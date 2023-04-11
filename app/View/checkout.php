@@ -33,10 +33,10 @@ session_start();
     <div class="banner">
 
     <div class="content" data-aos="zoom-in-up" data-aos-delay="300">
-        <h3>CHECKOUT</h3>
-        <p><a href="./home.php">Home </a>
+        <h3>THANH TOÁN</h3>
+        <p><a href="./home.php">Trang chủ </a>
         <i class="fas fa-arrow-right"></i>
-            Checkout</p>
+            Thanh toán</p>
     </div>
 
     </div>
@@ -45,21 +45,24 @@ session_start();
 
 <!-- List product section starts  -->
 <section class="listcart" id="listcart" data-aos="zoom-in-up" data-aos-delay="600">
-<h1>List of product</h1>
+<h1>Danh sách sản phẩm</h1>
 <table>
     <thead>
       <tr>
-        <th style= "padding-left:2rem;">Name</th>
-        <th style= "padding-left:2rem;">Price</th>
-        <th style="width: 12rem;">Quantity</th>
+        <th style= "padding-left:2rem;">Tên sản phẩm</th>
+        <th style= "padding-left:2rem;">Đơn giá</th>
+        <th style="width: 12rem;">Số lượng</th>
       </tr>
     </thead>
     <tbody>
         <?php
+            $grand_total = 0;
             $user_id = $_COOKIE['user_id'];
             $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
             if(mysqli_num_rows($select_cart) > 0){
                 while($fetch_cart = mysqli_fetch_assoc($select_cart)){
+                    $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
+                    $grand_total += $total_price;
                     echo "
                     <tr>
                         <td>$fetch_cart[product_name]</td>
@@ -73,40 +76,41 @@ session_start();
         ?>
     </tbody>
   </table>
+  <div class="grand-total"> Tổng số tiền cần thanh toán : <span><?php echo $grand_total; ?>₫</span> </div>
 </section>
 <!-- List product section ends  -->
 
 <section class="checkout" data-aos="zoom-in-up" data-aos-delay="300">
    <form action="../Controllers/orderController.php" method="post">
-      <h3>place your order</h3>
+      <h3>Đặt đơn hàng của bạn</h3>
       <div class="flex">
          <div class="inputBox">
-            <span>Fullname :</span>
-            <input type="text" name="name" required placeholder="Enter your name">
+            <span>Họ và tên :</span>
+            <input type="text" name="name" required placeholder="Nhập họ và tên">
          </div>
          <div class="inputBox">
-            <span>Your number :</span>
-            <input type="number" name="number" required placeholder="Enter your number">
+            <span>Số điện thoại :</span>
+            <input type="number" name="number" required placeholder="Nhập số điện thoại">
          </div>
          <div class="inputBox">
-            <span>Your email :</span>
-            <input type="email" name="email" required placeholder="Enter your email">
+            <span>Email:</span>
+            <input type="email" name="email" required placeholder="Nhập địa chỉ email">
          </div>
          <div class="inputBox">
-            <span>Payment method :</span>
+            <span>Phương thức thanh toán:</span>
             <select name="method">
-               <option value="cash on delivery">Cash on delivery</option>
-               <option value="credit card">Credit card</option>
-               <option value="e-wallet">E-wallet</option>
+               <option value="cash on delivery">Thanh toán khi nhận hàng</option>
+               <option value="credit card">Thẻ tín dụng</option>
+               <option value="e-wallet">Ví điện tử</option>
                <option value="paytm">Paytm</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>Address:</span>
-            <input type="text" name="address" required placeholder="Enter your address">
+            <span>Địa chỉ:</span>
+            <input type="text" name="address" required placeholder="Nhập địa chỉ giao hàng">
          </div>
       </div>
-      <input type="submit" value="Order now" class="btn" name="order_btn">
+      <input type="submit" value="Đặt hàng ngay" class="btn" name="order_btn">
    </form>
 </section>
 

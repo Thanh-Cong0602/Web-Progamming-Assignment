@@ -12,11 +12,12 @@
         $confirmpass = $_POST['confirmpass'];
         $user = new User($conn);
         $message = $user->userUpdateProfile($fullname, $username, $email, $phonenumber, $oldpass, $newpass, $confirmpass);
-        if( $message == 'Email already taken!' || 
-            $message == 'Image size is too large' || 
-            $message == 'Please enter new password!' || 
-            $message == 'Confirm password not matched!' || 
-            $message == 'Old password not matched!'){
+        if( $message == 'Email đã tồn tại!' || 
+            $message == 'Username đã tồn tại!' || 
+            $message == 'Kích thước hình ảnh quá lớn!' || 
+            $message == 'Vui lòng nhập mật khẩu mới!' || 
+            $message == 'Xác nhận mật khẩu không khớp!' || 
+            $message == 'Không đúng mật khẩu cũ!'){
             $_SESSION['warning_msg'] = $message;  
         }
         else {

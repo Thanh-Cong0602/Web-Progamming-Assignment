@@ -10,7 +10,7 @@ if(isset($_GET['get_id'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,13 +39,13 @@ if(isset($_GET['get_id'])){
 <!-- add review section starts  -->
 <section class="account-form">
 
-   <form action="../Controllers/userReviewControler.php?get_id=<?= $get_id; ?>" method="post">
-       <h3><?php echo $user_id?></h3>
-      <p class="placeholder">Review Title <span>*</span></p>
-      <input type="text" name="title" required maxlength="50" placeholder="Enter review title" class="box">
-      <p class="placeholder">Review Description</p>
-      <textarea name="description" class="box" placeholder="Enter review description" maxlength="1000" cols="30" rows="10"></textarea>
-      <p class="placeholder">Review Rating <span>*</span></p>
+   <form action="../Controllers/userReviewControler.php?get_id=<?= $get_id; ?>" method="post" >
+       <h3>Thêm đánh giá của bạn</h3>
+      <p class="placeholder">Tiêu đề đánh giá<span>*</span></p>
+      <input type="text" name="title" required maxlength="100" placeholder="Nhập tiêu đề đánh giá" class="box">
+      <p class="placeholder">Mô tả đánh giá</p>
+      <textarea name="description" class="box" placeholder="Nhập mô tả đánh giá" maxlength="2500"></textarea>
+      <p class="placeholder">Điểm đánh giá <span>*</span></p>
       <select name="rating" class="box" required>
          <option value="1">1</option>
          <option value="2">2</option>
@@ -53,8 +53,8 @@ if(isset($_GET['get_id'])){
          <option value="4">4</option>
          <option value="5">5</option>
       </select>
-      <input type="submit" value="Submit Review" name="submit_review" class="submit-btn">
-      <a href="detail_book.php?get_id=<?= $get_id; ?>" class="submit-btn">Go Back</a>
+      <input type="submit" value="Gửi đánh giá" name="submit_review" class="submit-btn">
+      <a href="detail_book.php?get_id=<?= $get_id; ?>" class="submit-btn">Quay lại</a>
    </form>
 
 </section>

@@ -17,5 +17,4 @@
         $_SESSION['success_msg'] = 'Review updated!';  
         header('Location: ../View/update_review.php?get_id=' . $get_id);
     }
-
 ?>

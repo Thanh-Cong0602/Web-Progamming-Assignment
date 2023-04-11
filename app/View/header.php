@@ -10,11 +10,11 @@
         <i class="fas fa-book-open"></i>Book Store </a>
 
     <nav class="navbar">
-        <a data-aos="zoom-in-left" data-aos-delay="300" href="home.php">Home</a>
-        <a data-aos="zoom-in-left" data-aos-delay="450" href="about.php">About</a>
-        <a data-aos="zoom-in-left" data-aos-delay="600" href="shop.php">Shop</a>
-        <a data-aos="zoom-in-left" data-aos-delay="750" href="#authors">Tác giả</a>
-        <a data-aos="zoom-in-left" data-aos-delay="900" href="order.php">Order</a>
+        <a data-aos="zoom-in-left" data-aos-delay="300" href="home.php">Trang chủ</a>
+        <a data-aos="zoom-in-left" data-aos-delay="450" href="about.php">Giới thiệu</a>
+        <a data-aos="zoom-in-left" data-aos-delay="600" href="shop.php">Sản phẩm</a>
+        <a data-aos="zoom-in-left" data-aos-delay="750" href="products_combo.php">Combo sách hay</a>
+        <a data-aos="zoom-in-left" data-aos-delay="900" href="#authors">Liên hệ</a>
     </nav>
     <div class = "icons btn">
     <a data-aos="zoom-in-left" data-aos-delay="1100" href="#book-form">
@@ -35,8 +35,8 @@
                 <?php $margin_top = '25rem';?>
             <?php } ?>
               <p><?= $fetch_profile['username']; ?></p>
-              <a href="update_profile.php" class="btn">Update Profile</a>
-              <a href="../View/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">Logout</a>
+              <a href="update_profile.php" class="btn">Cập nhập thông tin</a>
+              <a href="../View/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">Đăng xuất</a>
             <?php } ?>
           </div>
         <div id="dropdown-box" class="dropdown-content">

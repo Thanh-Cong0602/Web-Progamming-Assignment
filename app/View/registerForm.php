@@ -44,7 +44,7 @@
             <input type="text"
                     id="username"
                     name="username"
-                    placeholder="Enter Username" required/>
+                    placeholder="Nhập username" required/>
             <span class="error" id="usernameError"></span>
           </div>
           <div class="user-input-box">
@@ -87,7 +87,7 @@
             </select>
         </div>
         <div class = "user-input-box">
-        <label for="image">Profile pic</label>
+        <label for="image">Hình đại diện</label>
         <input type="file" name="image" id="image" class="pic" accept="image/*">
         </div>
         </div>

@@ -52,13 +52,13 @@ if(isset($_POST['delete_review'])){
 
     <div class="book-img" data-aos="fade-right" data-aos-delay="300">
         <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id=$get_id") or die('query failed');
-            if(mysqli_num_rows($select_products) > 0){
-            $product = mysqli_fetch_assoc($select_products);
+            $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id=$get_id") or die('query failed');
+            if(mysqli_num_rows($select_combo_products) > 0){
+            $product = mysqli_fetch_assoc($select_combo_products);
         ?>
         <div class="box" >
             <div class="image">
-            <img src="<?php echo $product['image']; ?>" alt="">
+            <img src="<?php echo $product['image_combo']; ?>" alt="">
         </div>
         </div>
         <?php
@@ -68,8 +68,7 @@ if(isset($_POST['delete_review'])){
       ?>
     </div>
     <div class="information-detail" data-aos="fade-left" data-aos-delay="600">
-        <h3><?php echo $product['name']?></h3>
-        <p>Tác giả: <span><?php echo $product['author']?></span> </p>
+        <h3><?php echo $product['combo_name']?></h3>
     <div class="evaluate-average">
     <?php
         $average = 0;
@@ -102,18 +101,11 @@ if(isset($_POST['delete_review'])){
         <p><?= $total_reviews; ?> đánh giá</p>
     </div>
     
-    <div class="provider">
-            <p>Nhà cung cấp:
-            <span><?php echo $product['supplier']?></span>
-            </p>
-            <p>Nhà xuất bản: 
-            <span><?php echo $product['publiser']?></span>
-            </p>
-    </div>
+
     
     <div class="price-box">
         <div class="box">
-        <p>Sách hot</p>
+        <p>Combo</p>
         <i aria-hidden="true" class="fa fa-book"></i>
         </div>
         <div class="price">
@@ -128,15 +120,15 @@ if(isset($_POST['delete_review'])){
         <button type="button" class="plus-btn cart-btn" onClick="increase()">+</button>
     </div>
         <div>
-            <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
+            <input type="hidden" name="product_name" value="<?php echo $product['combo_name']; ?>">
             <input type="hidden" name="product_price" value="<?php echo $product['price']?>">
-            <input type="hidden" name="product_image" value="<?php echo $product['image']; ?>">
+            <input type="hidden" name="product_image" value="<?php echo $product['image_combo']; ?>">
         </div>
         <div class="option-cart">
-            <div class="add_to_cart">
+            <div class="add_to_cart combo">
                 <i class="fas fa-shopping-cart "></i>
-                <input type="submit" name="add_to_cart" value="Thêm vào giỏ hàng" class="btnAddCart">
-            <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                <input type="submit" name="add_to_cart" value="Thêm combo vào giỏ hàng" class="btnAddCart">
+            <input type="hidden" name="product_id" value="<?php echo $product['combo_id']; ?>">
             </div>
             <input type="submit" name="add_to_cart" value="Mua ngay" class="buy_now_btn">
         </div>
@@ -144,12 +136,44 @@ if(isset($_POST['delete_review'])){
 </section>
 
 <section class="descriptionBook" data-aos="zoom-in-up" data-aos-delay="300">
-    <div class="heading">
+    <div class="heading combo">
         <h1>Mô tả sản phẩm</h1>
-        <p><?php echo $product['name']?></p>
-        <div class="description"><?php echo nl2br($product['description'])?></div>
-        <button class="btn-toggle">Xem thêm</button>
-    </div>
+        <p><?php echo $product['combo_name']?></p>
+        <div class="description"><?php echo nl2br($product['description_detail'])?></div>
+        <div class="book">
+        <p>1. <?php echo $product['name_1']?></p>
+        <div class="description"><?php echo nl2br($product['description_1'])?></div>
+        <?php 
+            if ($product['image_1'] != null) {
+            echo '<img src="'.$product['image_1'].'" alt="">';
+            }
+        ?>
+        </div>
+        <div class="book">
+        <p>2. <?php echo $product['name_2']?></p>
+        <div class="description"><?php echo nl2br($product['description_2'])?></div>
+        <?php 
+            if ($product['image_2'] != null) {
+            echo '<img src="'.$product['image_2'].'" alt="">';
+            }
+        ?>
+        </div>
+        <div class="book">
+        <?php 
+            if ($product['name_3'] != null) {
+                echo '<p>3. '.$product['name_3'].'</p>';
+            } else {
+                echo '<p></p>';
+            }
+        ?>
+        <div class="description"><?php echo nl2br($product['description_3'])?></div>
+        <?php 
+            if ($product['image_3'] != null) {
+            echo '<img src="'.$product['image_3'].'" alt="">';
+            }
+        ?>
+        </div>
+        <!-- <button class="btn-toggle">Xem thêm</button> --> 
 </section>
 
 
@@ -164,7 +188,7 @@ if(isset($_POST['delete_review'])){
     <div class="box-review">
     <div class="view-post">
         <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = $get_id") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id = $get_id") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
                 while($fetch_products = mysqli_fetch_assoc($select_products)){
                     $total_ratings = 0;
