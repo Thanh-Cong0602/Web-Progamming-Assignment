@@ -4,23 +4,31 @@ include '../Models/UserModel.php';
 include '../../config/config.php';
 session_start();
 if(isset($_POST['submit'])){
-   $user = new User($conn);
-   $fullname = mysqli_real_escape_string($conn, $_POST['fullName']);
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $phonenumber = mysqli_real_escape_string($conn, $_POST['phoneNumber']);
-   $password = mysqli_real_escape_string($conn, md5($_POST['password']));
-   $confirmpassword = mysqli_real_escape_string($conn, md5($_POST['cpassword']));
+   $fullname = $_POST['fullName'];
+   $email = $_POST['email'];
+   $username = $_POST['username'];
+   $phonenumber = $_POST['phoneNumber'];
+   $password = $_POST['password'];
+   $confirmpassword = $_POST['cpassword'];
    $user_type = $_POST['user_type'];
-   $result = $user->registerUser($fullname,  $username, $email, $phonenumber, $password, $confirmpassword);
-   if ($result == 'Successfully!') {
-      header("Location: ../View/loginForm.php");
-      exit;
+   $user = new User($conn);
+   $result = $user->registerUser($fullname, $username, $email, $phonenumber, $confirmpassword, $user_type);
+   if ($result == 'Kích thước ảnh quá lớn!'){
+      $_SESSION['warning_msg'] = $result;
+   }
+   elseif ($result == 'Error uploading file'){ 
+      $_SESSION['error_msg'] = $result;
+   }
+   elseif ($result == 'Người dùng đã tồn tại!') {
+      $_SESSION['warning_msg'] = 'Người dùng đã tồn tại!';
+   }
+   elseif ($result == 'Mật khẩu xác nhận không khớp!'){
+      $_SESSION['warning_msg'] = 'Mật khẩu xác nhận không khớp';
    }
    else {
-      $message[] = $result;
-   }
-   include '../View/registerForm.php';
+         $_SESSION['success_msg'] = 'Đăng ký thành công';
+      }
+   header("Location: ../View/registerForm.php");
 }
 
 ?>

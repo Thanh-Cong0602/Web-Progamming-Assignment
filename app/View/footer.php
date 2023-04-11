@@ -25,13 +25,12 @@
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="300">
-        <h3>Truy cập</h3>
+        <h3>Liên kết</h3>
         <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-        <a href="#about" class="links"> <i class="fas fa-arrow-right"></i> Giới thiệu </a>
-        <a href="#destination" class="links"> <i class="fas fa-arrow-right"></i> Sản phẩm </a>
-        <a href="#services" class="links"> <i class="fas fa-arrow-right"></i> services </a>
-        <a href="#gallery" class="links"> <i class="fas fa-arrow-right"></i> gallery </a>
-        <a href="#blogs" class="links"> <i class="fas fa-arrow-right"></i> Bài viết </a>
+        <a href="../View/about.php" class="links"> <i class="fas fa-arrow-right"></i> Giới thiệu </a>
+        <a href="../View/shop.php" class="links"> <i class="fas fa-arrow-right"></i> Sản phẩm </a>
+        <a href="../View/products_combo.php" class="links"> <i class="fas fa-arrow-right"></i> Combo sách hay </a>
+        <a href="../View/support.php" class="links"> <i class="fas fa-arrow-right"></i> Hỗ trợ</a>
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="450">
@@ -43,12 +42,9 @@
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="600">
-        <h3>newsletter</h3>
-        <p>subscribe for latest updates</p>
-        <form action="">
-            <input type="email" name="" placeholder="enter your email" class="email" id="">
-            <input type="submit" value="subscribe" class="btn">
-        </form>
+        <h3>Hỗ trợ</h3>
+        <p style="text-align: center;">Mọi thắc mắc xin vui lòng bấm nút bên dưới.</p>
+        <a href="support.php"><input type="submit" value="Hỗ trợ" class="btn"></a>
     </div>
 
 </div>

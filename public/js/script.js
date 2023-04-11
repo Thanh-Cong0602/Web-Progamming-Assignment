@@ -31,14 +31,14 @@ function myFunction() {
     }
   }
 
-const formLogin = document.querySelector('.dropdown-content');
-const userIcons = document.querySelector('.tcn');
-const formUser = document.querySelector('.user-box');
-userIcons.addEventListener('mouseover', () => {
-        formLogin.style.display = 'block';
-})
+// const formLogin = document.querySelector('.dropdown-content');
+// const userIcons = document.querySelector('.tcn');
+// const formUser = document.querySelector('.user-box');
+// userIcons.addEventListener('mouseover', () => {
+//         formLogin.style.display = 'block';
+// })
  
-formLogin.addEventListener('mouseleave', () => {
-    formLogin.style.display = 'none';
-})
+// formLogin.addEventListener('mouseleave', () => {
+//     formLogin.style.display = 'none';
+// })
 

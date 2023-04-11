@@ -1,3 +1,6 @@
+<?php
+    // session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,18 +9,6 @@
     <link rel="stylesheet" href="../../public/css/login.css">
 </head>
 <body>
-    <?php
-        if(isset($message)){
-        foreach($message as $message){
-            echo '
-            <div class="message">
-                <span>'.$message.'</span>
-                <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-            </div>
-            ';
-        }
-        }
-    ?>
     <div class="login-box">
         <h2>Đăng nhập</h2>
         <form action="../Controllers/loginController.php" method="post">
@@ -34,10 +25,12 @@
             <input type="submit" name="submit" value="Đăng nhập" id="submit">
                 <div id="register">
                     Bạn chưa có tài khoản ?
-                    <a href="registerForm.php">Đăng ký ngay</a>
+                    <a href="../View/registerForm.php">Đăng ký ngay</a>
                 </div>
             </div>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
 </body>
 </html>
