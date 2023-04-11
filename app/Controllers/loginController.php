@@ -2,7 +2,7 @@
 include '../Models/UserModel.php';
 include '../../config/config.php';
 session_start();
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $user = new User($conn);
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -10,13 +10,10 @@ if(isset($_POST['submit'])){
     if ($result == 'error') {
         $message[] = 'Email hoặc mật khẩu không chính xác!';
         include '../View/loginForm.php';
-    }
-    else {
+    } else {
         header("Location: $result");
         exit;
     }
-}
-else {
+} else {
     include '../View/loginForm.php';
 }
-

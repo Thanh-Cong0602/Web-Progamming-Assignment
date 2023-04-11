@@ -52,8 +52,9 @@ section {
   background-color: var(--white);
   color: var(--red);
   font-size: 2rem;
+  max-width: 500px;
 }
-
+/* 
 .message {
   position: sticky;
   top: 0;
@@ -66,21 +67,41 @@ section {
   justify-content: space-between;
   z-index: 10000;
   gap: 1.5rem;
+} */
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  min-height: 150px;
+  transform: translate(-50%, -50%);
+  background-color: var(--orange);
+  display: block;
+  z-index: 10000;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 0 20px rgb(5, 21, 1);
 }
 
 .message span {
-  font-size: 2rem;
-  color: var(--black);
+  /* padding-top: 50px; */
+  font-size: 3.5rem;
+  color: var(--white);
+  line-height: 200%;
 }
 
-.message i {
+.message .Ok {
   cursor: pointer;
   color: var(--red);
-  font-size: 2.5rem;
+  font-size: 3rem;
+  margin-top: 10px;
+  border-radius: 30%;
 }
 
-.message i:hover {
-  transform: rotate(90deg);
+.message .Ok:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgb(4, 90, 239);
 }
 
 .btn,
@@ -266,7 +287,7 @@ section {
 /* product */
 /* ========================= */
 .add-products form {
-  background-color: var(--white); 
+  background-color: var(--white);
   border-radius: 1rem;
   padding: 3rem;
   text-align: center;
@@ -321,7 +342,6 @@ section {
   height: 30rem;
   width: 100%;
   border-radius: 0.5rem;
-
 }
 .show-products .box-container .box img:hover {
   opacity: 0.7;
@@ -351,7 +371,6 @@ section {
   font-size: 2rem;
   color: var(--black);
   font-style: italic;
-
 }
 .show-products .box-container .box .detail_book:hover {
   opacity: 0.5;
@@ -403,7 +422,6 @@ section {
   justify-content: space-between;
   /* border: var(--border); */
   border-radius: 0.5rem;
-
 }
 .info-book-img {
   width: 30%;

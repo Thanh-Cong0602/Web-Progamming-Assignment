@@ -3,8 +3,8 @@ if (isset($message)) {
     foreach ($message as $message) {
         echo '
     <div class="message">
-        <span>' . $message . '</span>
-        <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+        <span>' . $message . '</span><br>
+        <button type="button" class="Ok" onclick="this.parentElement.remove();">OK!</button>
     </div>
     ';
     }
@@ -18,11 +18,11 @@ if (isset($message)) {
         <a href="admin_page.php" class="logo">Trang<span> Admin</span></a>
 
         <nav class="navbar">
-            <a href="admin_page.php">Trang chủ</a>
-            <a href="admin_product.php">Sách</a>
+            <a href="./admin_page.php">Trang chủ</a>
+            <a href="./admin_product.php">Sách</a>
             <a href="./admin_order.php">Đơn đặt hàng</a>
-            <a href="admin_user.php">Người dùng</a>
-            <a href="admin_request.php">Yêu cầu</a>
+            <a href="./admin_user.php">Người dùng</a>
+            <a href="./admin_request.php">Yêu cầu</a>
         </nav>
 
         <div class="icons">
@@ -37,8 +37,8 @@ if (isset($message)) {
             <p>email : <span>
                     <?php echo $_SESSION['admin_email']; ?>
                 </span></p>
-            <a href="logout.php" class="delete-btn">logout</a>
-            <div>new <a href="login.php">login</a> | <a href="register.php">register</a></div>
+            <a href="../../app/View/logout.php" class="delete-btn">logout</a>
+            <div>new <a href="../../app/View/loginForm.php">login</a> | <a href="../../app/View/registerForm.php">register</a></div>
         </div>
 
     </div>
