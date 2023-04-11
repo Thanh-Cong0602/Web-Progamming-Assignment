@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,7 +29,8 @@
     ?>
     <div class="container">
       <h1 class="form-title">Đăng ký tài khoản</h1>
-      <form method="POST" onsubmit="return validateForm()" action="../Controllers/registerController.php" >
+      <form method="POST" onsubmit="return validateForm()" action="../Controllers/registerController.php" 
+      enctype="multipart/form-data">
         <div class="main-user-info">
           <div class="user-input-box">
             <label for="fullName">Họ và tên</label>
@@ -40,7 +44,7 @@
             <input type="text"
                     id="username"
                     name="username"
-                    placeholder="Enter Username" required/>
+                    placeholder="Nhập username" required/>
             <span class="error" id="usernameError"></span>
           </div>
           <div class="user-input-box">
@@ -75,17 +79,27 @@
                     placeholder="Nhập lại mật khẩu" required/>
           </div>
         </div>
+        <div class="info-img">
         <div class="box">
             <select name="user_type" class="select">
               <option value="user">Người dùng</option>
               <option value="admin">Quản trị viên</option>
             </select>
         </div>
+        <div class = "user-input-box">
+        <label for="image">Hình đại diện</label>
+        <input type="file" name="image" id="image" class="pic" accept="image/*">
+        </div>
+        </div>
+        <div class="account">
+          <p>Bạn đã có tài khoản? <a href="./loginForm.php">Đăng nhập ngay</a></p>
+        </div>
         <span id="confirm_password-error" style="color: red;"></span>
         <div class="form-submit-btn">
           <input type="submit" name="submit" value="Đăng ký">
         </div>
       </form>
+    </div>
     <script>
         // Client-side validation using JavaScript
       function validateForm() {
@@ -130,6 +144,7 @@
         return isValid;
       }
     </script>
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
   </body>
 </html>

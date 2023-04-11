@@ -1,18 +1,18 @@
 <?php
          if($user_id != ''){
       ?>
-        <div id="profile-box" class="profile hidden">
+        <div id="profile-box" class="profile">
             <?php
                 $select_profile = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'");
                 if(mysqli_num_rows($select_profile) > 0){
                 $fetch_profile = mysqli_fetch_assoc($select_profile);
             ?>
-            <?php if($fetch_profile['image'] != ''){ ?>
+            <!-- <?php if($fetch_profile['image'] != ''){ ?>
                 <img src="uploaded_files/<?= $fetch_profile['image']; ?>" alt="" class="image">
-            <?php }; ?>   
-            <p><?= $fetch_profile['fullname']; ?></p>
-            <a href="update.php" class="btn">update profile</a>
-            <a href="components/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">logout</a>
+            <?php }; ?> -->
+            <p><?= $fetch_profile['username']; ?></p>
+            <a href="update.php" class="btn">Update Profile</a>
+            <a href="../View/logout.php" class="delete-btn" onclick="return confirm('logout from this website?');">Logout</a>
             <?php }
         else{ ?>
             <div id="dropdown-box" class="dropdown-content hidden">

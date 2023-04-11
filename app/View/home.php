@@ -1,9 +1,10 @@
 <?php
 include '../../config/config.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +24,7 @@ include '../../config/config.php';
 
 </head>
 <body>
-    <?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
 <!-- home section starts  -->
 
 <section class="home" id="home">
@@ -40,7 +41,7 @@ include '../../config/config.php';
 
 <!-- home section ends -->
 
-<!-- about section starts  -->
+<!-- About section starts  -->
 
 <section class="about" id="about">
 
@@ -62,9 +63,9 @@ include '../../config/config.php';
 
 </section>
 
-<!-- about section ends -->
+<!-- About section ends -->
 
-<!-- products section starts  -->
+<!-- Latest release Products section starts  -->
 
 <section class="product" id="product">
 
@@ -74,53 +75,32 @@ include '../../config/config.php';
     </div>
     <div class="box-container">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY id DESC LIMIT 8") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
-                <form method="post" action=""> 
+                <form method="post" action="../Controllers/cartController.php"> 
                     <div class="box" data-aos="fade-up" data-aos-delay="300">
                         <div class="image"> 
-                            <img src=<?php echo $fetch_products['image']; ?> alt="">
+                            <img src="<?php echo $fetch_products['image']; ?>" alt="">
                         </div>
                         <div class="content">
                             <h3><?php echo $fetch_products['name']; ?></h3>
-                            <a href="detail_book.php?get_id=<?php echo $fetch_products['product_id']; ?>">read more <i class="fas fa-angle-right"></i></a>
+                            <a href="detail_book.php?get_id=<?php echo $fetch_products['product_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                         </div>
                         <div class="purchase">
                             <h3>$<?php echo $fetch_products['price'];?></h3>
-                            <a href="#" name="add_to_cart">
+                            <input type="hidden" name="product_quantity" value="1">
+                            <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                            <button type="submit" name="add_to_cart">
                                 <i class="fas fa-shopping-cart"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </form>
-      <?php
-            }
-        }else{
-            echo '<p class="empty">no products added yet!</p>';
-        }
-      ?>
-       <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 6") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
-      ?>
-                <form method="post" action=""> 
-                    <div class="box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="image">
-                            <img src=<?php echo $fetch_products['image']; ?> alt="">
-                        </div>
-                        <div class="content">
-                            <h3><?php echo $fetch_products['name']; ?></h3>
-                            <a href="#">read more <i class="fas fa-angle-right"></i></a>
-                        </div>
-                        <div class="purchase">
-                            <h3>$<?php echo $fetch_products['price'];?></h3>
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-                        </div>
-                    </div>
-                </form>
+
       <?php
             }
         }else{
@@ -132,10 +112,53 @@ include '../../config/config.php';
    
 </section>
 
-<!-- products section ends -->
+<section class="product" id="product">
 
+    <div class="heading">
+        <h1>Combo sách hay mới nhất</h1>
+    </div>
+    <div class="box-container ">
+    <?php  
+         $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products` ORDER BY combo_id DESC LIMIT 4") or die('query failed');
+         if(mysqli_num_rows($select_combo_products) > 0){
+            while($fetch_combo_products = mysqli_fetch_assoc($select_combo_products)){
+      ?>
+                <form method="post" action="../Controllers/cartController.php"> 
+                    <div class="box combo_box" data-aos="fade-up" data-aos-delay="300">
+                        <div class="image"> 
+                            <img src="<?php echo $fetch_combo_products['image_combo']; ?>" alt="">
+                        </div>
+                        <div class="content">
+                            <h3><?php echo $fetch_combo_products['combo_name']; ?></h3>
+                            <a href="detail_combo_book.php?get_id=<?php echo $fetch_combo_products['combo_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
+                        </div>
+                        <div class="purchase">
+                            <h3>$<?php echo $fetch_combo_products['price'];?></h3>
+                            <input type="hidden" name="product_quantity" value="1">
+                            <input type="hidden" name="product_name" value="<?php echo $fetch_combo_products ['combo_name']; ?>">
+                            <input type="hidden" name="product_price" value="<?php echo $fetch_combo_products['price']; ?>">
+                            <input type="hidden" name="product_image" value="<?php echo $fetch_combo_products['image_combo']; ?>">
+                            <button type="submit" name="add_to_cart">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-<!-- review section starts  -->
+      <?php
+            }
+        }else{
+            echo '<p class="empty">no products added yet!</p>';
+        }
+      ?>
+    </div>
+  
+   
+</section>
+
+<!-- Latest release Products section ends -->
+
+<!-- authors section starts -->
 
 <section class="authors" id= "authors">
 
@@ -147,112 +170,60 @@ include '../../config/config.php';
     </div>
 
     <div class="box-container" data-aos="fade-left" data-aos-delay="600">
-
+        <?php
+            $select_authors = mysqli_query($conn, "SELECT * FROM `authors` LIMIT 4") or die('query failed');
+            if(mysqli_num_rows($select_authors) > 0){
+            while( $authors = mysqli_fetch_assoc($select_authors)){
+        ?>
         <div class="box">
-            <p>Trở ngại lớn nhất của những người luyện tâm rèn chí là sự kiêu ngạo và óc chỉ trích.</p>
+            <p><?php echo $authors['slogan']?></p>
             <div class="user">
-                <img src="../images/pic-1.png" alt="">
+            <img src="<?php echo $authors['image']; ?>" alt="">
                 <div class="info">
-                    <h3>Baird T. Spalding</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Baird_T._Spalding">
+                    <h3><?php echo $authors['name']?></h3>
+                    <a href="<?php echo $authors['information']?>">
                         Thông tin tác giả</a>
                 </div>
             </div>
         </div>
-        
-        <div class="box">
-            <p>Cuộc đời là một bộ phim mà trong đó ai cũng phải đóng một vai nào đó. Vậy sao không tỏa sáng trong vở diễn đời mình?</p>
-            <div class="user">
-                <img src="../images/pic-2.png" alt="">
-                <div class="info">
-                    <h3>Rosie Nguyễn</h3>
-                    <a href="https://nguoinoitieng.tv/nghe-nghiep/blogger/rosie-nguyen/bcgc">
-                        Thông tin tác giả</a>
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <p>Một cuốn sách hay cho ta một điều tốt, một người bạn tốt cho ta một điều hay.</p>
-            <div class="user">
-                <img src="../images/pic-3.png" alt="">
-                <div class="info">
-                    <h3>Gustavơ Lebon</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Gustave_Le_Bon">
-                        Thông tin tác giả
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <p>Chính từ sách mà những người khôn ngoan tìm được sự an ủi khỏi những rắc rối của cuộc đời.</p>
-            <div class="user">
-                <img src="../images/pic-4.png" alt="">
-                <div class="info">
-                    <h3>Victor Hugo</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Victor_Hugo">
-                        Thông tin tác giả
-                    </a>
-                </div>
-            </div>
-        </div>
-        
+        <?php
+        }
+        }
+        ?>
     </div>
+    
     <div class="box-containers" data-aos="fade-left" data-aos-delay="600">
-
+        <?php
+            $select_authors = mysqli_query($conn, "SELECT * FROM `authors` LIMIT 18446744073709551615 OFFSET 4") or die('query failed');
+            if(mysqli_num_rows($select_authors) > 0){
+            while( $authors = mysqli_fetch_assoc($select_authors)){
+        ?>
         <div class="box">
-            <p>Trở ngại lớn nhất của những người luyện tâm rèn chí là sự kiêu ngạo và óc chỉ trích.</p>
+            <p><?php echo $authors['slogan']?></p>
             <div class="user">
-                <img src="../images/pic-1.png" alt="">
+            <img src="<?php echo $authors['image']; ?>" alt="">
                 <div class="info">
-                    <h3>Baird T. Spalding</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Baird_T._Spalding">
+                    <h3><?php echo $authors['name']?></h3>
+                    <a href="<?php echo $authors['information']?>">
                         Thông tin tác giả</a>
                 </div>
             </div>
         </div>
-        <div class="box">
-            <p>Trở ngại lớn nhất của những người luyện tâm rèn chí là sự kiêu ngạo và óc chỉ trích.</p>
-            <div class="user">
-                <img src="../images/pic-1.png" alt="">
-                <div class="info">
-                    <h3>Baird T. Spalding</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Baird_T._Spalding">
-                        Thông tin tác giả</a>
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <p>Trở ngại lớn nhất của những người luyện tâm rèn chí là sự kiêu ngạo và óc chỉ trích.</p>
-            <div class="user">
-                <img src="../images/pic-1.png" alt="">
-                <div class="info">
-                    <h3>Baird T. Spalding</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Baird_T._Spalding">
-                        Thông tin tác giả</a>
-                </div>
-            </div>
-        </div>
-        <div class="box">
-            <p>Trở ngại lớn nhất của những người luyện tâm rèn chí là sự kiêu ngạo và óc chỉ trích.</p>
-            <div class="user">
-                <img src="../images/pic-1.png" alt="">
-                <div class="info">
-                    <h3>Baird T. Spalding</h3>
-                    <a href="https://vi.wikipedia.org/wiki/Baird_T._Spalding">
-                        Thông tin tác giả</a>
-                </div>
-            </div>
-        </div>
-        
+        <?php
+        }
+        }
+        ?>
     </div>
     
 </section>
 
 <!-- review section ends -->
 
-
 <?php include 'banner.php'; ?>
 <?php include 'footer.php'; ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<?php include '../View/alert.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>

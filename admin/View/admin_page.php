@@ -2,7 +2,7 @@
 
 include '../../config/config.php';
 
-session_start();
+// session_start();
 
 // $admin_id = $_SESSION['admin_id'];
 
@@ -24,7 +24,7 @@ session_start();
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="../../public/css/admin_style.css">
+    <link rel="stylesheet" href="../../public/css/admin.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
@@ -56,7 +56,7 @@ session_start();
                };
             };
          ?>
-         <h3><?php echo $total_pendings; ?>VNĐ</h3>
+         <h3><?php echo $total_pendings; ?> Đ</h3>
          <p>total pendings</p>
       </div>
 
@@ -71,7 +71,7 @@ session_start();
                };
             };
          ?>
-         <h3>$<?php echo $total_completed; ?></h3>
+         <h3><?php echo $total_completed; ?> Đ</h3>
          <p>completed payments</p>
       </div>
 
