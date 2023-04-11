@@ -49,7 +49,7 @@ if(isset($_GET['get_id'])){
       <p class="placeholder">Review Title <span>*</span></p>
       <input type="text" name="title" required maxlength="50" placeholder="Enter review title" class="box" value="<?= $fetch_review['title']; ?>">
       <p class="placeholder">Review Description</p>
-      <textarea name="description" class="box" placeholder="Enter review description" maxlength="1000" cols="30" rows="10"><?= $fetch_review['description']; ?></textarea>
+      <textarea name="description" class="box" placeholder="Enter review description"><?= $fetch_review['description']; ?></textarea>
       <p class="placeholder">Review Rating <span>*</span></p>
       <select name="rating" class="box" required>
          <option value="<?= $fetch_review['rating']; ?>"><?= $fetch_review['rating']; ?></option>

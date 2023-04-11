@@ -52,7 +52,7 @@ if(isset($_POST['delete_review'])){
 
     <div class="book-img" data-aos="fade-right" data-aos-delay="300">
         <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id=$get_id") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id='$get_id'") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
             $product = mysqli_fetch_assoc($select_products);
         ?>
@@ -74,7 +74,7 @@ if(isset($_POST['delete_review'])){
     <?php
         $average = 0;
         $total_ratings = 0;
-        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
         $total_reviews = mysqli_num_rows($select_ratings);
         while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
             $total_ratings += $fetch_rating['rating'];
@@ -164,7 +164,7 @@ if(isset($_POST['delete_review'])){
     <div class="box-review">
     <div class="view-post">
         <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = $get_id") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = '$get_id'") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
                 while($fetch_products = mysqli_fetch_assoc($select_products)){
                     $total_ratings = 0;
@@ -173,7 +173,7 @@ if(isset($_POST['delete_review'])){
                     $rating_3 = 0;
                     $rating_4 = 0;
                     $rating_5 = 0;
-                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
                 $total_reivews = mysqli_num_rows($select_ratings);
                 while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
                     $total_ratings += $fetch_rating['rating'];
@@ -254,7 +254,7 @@ if(isset($_POST['delete_review'])){
    
    <div class="box-container">
    <?php
-        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
         if(mysqli_num_rows($select_reviews) > 0){
         while($fetch_review = mysqli_fetch_assoc($select_reviews)){
         ?>

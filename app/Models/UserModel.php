@@ -19,7 +19,7 @@ class User {
             $row = mysqli_fetch_assoc($select_users);
             if(password_verify($password, $row['password'])){
                 if($row['user_type'] == 'admin'){
-                    $_SESSION['admin_name'] = $row['name'];
+                    $_SESSION['admin_name'] = $row['fullname'];
                     $_SESSION['admin_email'] = $row['email'];
                     $_SESSION['admin_id'] = $row['id'];
                     return '../View/admin_page.php';    
@@ -93,7 +93,7 @@ class User {
     }
 
     public function verify_review($get_id, $user_id) {
-        $verify_review = mysqli_query($this->conn, "SELECT * FROM `reviews` WHERE post_id = $get_id AND user_id = '$user_id'") or die('query failed');
+        $verify_review = mysqli_query($this->conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id' AND user_id = '$user_id'") or die('query failed');
         return mysqli_num_rows($verify_review);
     }
 
