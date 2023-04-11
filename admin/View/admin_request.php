@@ -56,12 +56,12 @@ if (isset($_GET['delete'])) {
                         <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
                         <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
                         <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
-                        <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this message?');" class="delete-btn">delete message</a>
+                        <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">delete request</a>
                     </div>
             <?php
                 };
             } else {
-                echo '<p class="empty">you have no requests !</p>';
+                echo '<p class="empty">Hiện tại không có yêu cầu nào!</p>';
             }
             ?>
         </div>

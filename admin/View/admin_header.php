@@ -30,17 +30,18 @@ if (isset($message)) {
             <div id="user-btn" class="fas fa-user"></div>
         </div>
 
-        <div class="account-box">
-            <p>username : <span>
-                    <?php echo $_SESSION['admin_name']; ?>
-                </span></p>
-            <p>email : <span>
-                    <?php echo $_SESSION['admin_email']; ?>
-                </span></p>
-            <a href="../../app/View/logout.php" class="delete-btn">logout</a>
-            <div>new <a href="../../app/View/loginForm.php">login</a> | <a href="../../app/View/registerForm.php">register</a></div>
-        </div>
 
+
+    </div>
+    <div class="account-box">
+        <p>username : <br> <span>
+                <?php echo $_SESSION['admin_username']; ?>
+            </span></p>
+        <p>email : <span>
+                <?php echo $_SESSION['admin_email']; ?>
+            </span></p>
+        <a href="../../app/View/logout.php" class="delete-btn">logout</a>
+        <div>new <a href="../../app/View/loginForm.php">login</a> | <a href="../../app/View/registerForm.php">register</a></div>
     </div>
 
 </header>

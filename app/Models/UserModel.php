@@ -16,11 +16,10 @@ class User
 
         if (mysqli_num_rows($select_users) > 0) {
             $row = mysqli_fetch_assoc($select_users);
-
             if ($row['user_type'] == 'admin') {
-                $_SESSION['admin_name'] = $row['name'];
+                $_SESSION['admin_username'] = $row['username'];
                 $_SESSION['admin_email'] = $row['email'];
-                $_SESSION['admin_id'] = $row['id'];
+                $_SESSION['admin_id'] = $row['user_id'];
                 return '../../admin/View/admin_page.php';
             } elseif ($row['user_type'] == 'user') {
                 setcookie('user_id', $row['user_id'], time() + 60 * 60 * 24 * 30, '/');
