@@ -25,6 +25,15 @@ if (isset($_GET['delete'])) {
 
 ?>
 
+<?php
+function truncate_text($text)
+{
+    if (strlen($text) > 40) {
+        $text = substr($text, 0, 30) . '...';
+    }
+    return $text;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,29 +65,30 @@ if (isset($_GET['delete'])) {
             if (mysqli_num_rows($select_orders) > 0) {
                 while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
             ?>
-                    <div class="box">
-                        <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-                        <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
-                        <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
-                        <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
-                        <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-                        <p> address : <span><?php echo $fetch_orders['address']; ?></span> </p>
-                        <p> total products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
-                        <p> total price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
-                        <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
-                        <div class="select-button">
-                            <form action="" method="post">
-                                <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
-                                <select name="update_payment">
-                                    <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
-                                    <option value="pending">pending</option>
-                                    <option value="completed">completed</option>
-                                </select>
-                                <input type="submit" value="update" name="update_order" class="option-btn">
-                                <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
-                            </form>
-                        </div>
-                    </div>
+            <div class="box">
+                <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
+                <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+                <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
+                <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
+                <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+                <p> address : <span><?php echo truncate_text($fetch_orders['address']); ?></span> </p>
+                <p> total products : <span><?php echo truncate_text($fetch_orders['total_products']); ?></span> </p>
+                <p> total price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
+                <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
+                <div class="select-button">
+                    <form action="" method="post">
+                        <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
+                        <select name="update_payment">
+                            <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
+                            <option value="pending">pending</option>
+                            <option value="completed">completed</option>
+                        </select>
+                        <input type="submit" value="update" name="update_order" class="option-btn">
+                        <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>"
+                            onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
+                    </form>
+                </div>
+            </div>
             <?php
                 }
             } else {
