@@ -14,7 +14,7 @@
         <a data-aos="zoom-in-left" data-aos-delay="450" href="about.php">Giới thiệu</a>
         <a data-aos="zoom-in-left" data-aos-delay="600" href="shop.php">Sản phẩm</a>
         <a data-aos="zoom-in-left" data-aos-delay="750" href="products_combo.php">Combo sách hay</a>
-        <a data-aos="zoom-in-left" data-aos-delay="900" href="#authors">Liên hệ</a>
+        <a data-aos="zoom-in-left" data-aos-delay="900" href="support.php">Hỗ trợ</a>
     </nav>
     <div class = "icons btn">
     <a data-aos="zoom-in-left" data-aos-delay="1100" href="#book-form">

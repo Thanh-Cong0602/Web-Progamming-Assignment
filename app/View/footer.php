@@ -43,12 +43,9 @@
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="600">
-        <h3>newsletter</h3>
-        <p>subscribe for latest updates</p>
-        <form action="">
-            <input type="email" name="" placeholder="enter your email" class="email" id="">
-            <input type="submit" value="subscribe" class="btn">
-        </form>
+        <h3>Hỗ trợ</h3>
+        <p style="text-align: center;">Mọi thắc mắc xin vui lòng bấm nút bên dưới.</p>
+        <a href="support.php"><input type="submit" value="Hỗ trợ" class="btn"></a>
     </div>
 
 </div>

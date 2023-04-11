@@ -9,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Book Store Online Website</title>
+    <title>BookStore Website by TCN</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -30,11 +30,11 @@ session_start();
 <section class="home" id="home">
 
     <div class="content">
-        <span data-aos="fade-up" data-aos-delay="150">follow us</span>
+        <span data-aos="fade-up" data-aos-delay="150">BookStore</span>
         <h4 data-aos="fade-up" data-aos-delay="300">Việc đọc sách rất quan trọng</h4>
         <h4 data-aos="fade-up" data-aos-delay="450">Nếu bạn biết cách đọc, cả thế giới sẽ mở ra cho bạn</h4>
         <p data-aos="fade-up" data-aos-delay="600">Barack Obama</p>
-        <a data-aos="fade-up" data-aos-delay="600" href="#" class="btn">Tham khảo ngay</a>
+        <a data-aos="fade-up" data-aos-delay="600" href="#product" class="btn">Tham khảo ngay</a>
     </div>
 
 </section>
