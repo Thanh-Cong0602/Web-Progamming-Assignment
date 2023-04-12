@@ -4,12 +4,12 @@ include '../../config/config.php';
 
 session_start();
 
-// $admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['admin_id'];
 
-// if (!isset($admin_id)) {
-//     header('location:login.php');
-// }
-// ;
+if (!isset($admin_id)) {
+    header('location:login.php');
+}
+;
 
 if (isset($_POST['add_product'])) {
 
@@ -85,23 +85,24 @@ if (isset($_POST['update_product'])) {
             if (mysqli_num_rows($select_products) > 0) {
                 while ($fetch_products = mysqli_fetch_assoc($select_products)) {
             ?>
-                    <div class="box">
-                        <img src="<?php echo $fetch_products['image']; ?>" alt="">
-                        <div class="name">
-                            <?php echo $fetch_products['name']; ?>
-                        </div>
-                        <div class="author">
-                            <?php echo $fetch_products['author']; ?>
-                        </div>
-                        <div class="price">$
-                            <?php echo $fetch_products['price']; ?>
-                        </div>
-                        <a href="./admin_view_detail.php?id=<?php echo $fetch_products['product_id'] ?>" class="detail_book">Xem
-                            thêm <i class="fas fa-angle-right"></i></a> <br>
-                        <a href="admin_product.php?update=<?php echo $fetch_products['product_id']; ?>" class="option-btn">Cập
-                            nhật</a>
-                        <a href="admin_product.php?delete=<?php echo $fetch_products['product_id']; ?>" class="delete-btn" onclick="return confirm('Xóa quyển sách này?');">Xóa</a>
-                    </div>
+            <div class="box">
+                <img src="<?php echo $fetch_products['image']; ?>" alt="">
+                <div class="name">
+                    <?php echo $fetch_products['name']; ?>
+                </div>
+                <div class="author">
+                    <?php echo $fetch_products['author']; ?>
+                </div>
+                <div class="price">$
+                    <?php echo $fetch_products['price']; ?>
+                </div>
+                <a href="./admin_view_detail.php?id=<?php echo $fetch_products['product_id'] ?>" class="detail_book">Xem
+                    thêm <i class="fas fa-angle-right"></i></a> <br>
+                <a href="admin_product.php?update=<?php echo $fetch_products['product_id']; ?>" class="option-btn">Cập
+                    nhật</a>
+                <a href="admin_product.php?delete=<?php echo $fetch_products['product_id']; ?>" class="delete-btn"
+                    onclick="return confirm('Xóa quyển sách này?');">Xóa</a>
+            </div>
             <?php
                 }
             } else {
@@ -120,15 +121,19 @@ if (isset($_POST['update_product'])) {
             if (mysqli_num_rows($update_query) > 0) {
                 while ($fetch_update = mysqli_fetch_assoc($update_query)) {
         ?>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['product_id']; ?>">
-                        <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="Nhập tên sách cần cập nhật">
-                        <input type="text" name="update_author" value="<?php echo $fetch_update['author']; ?>" class="box" required placeholder="Nhập tên tác gải cần cập nhật">
-                        <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="Nhập giá sách cần cập nhật">
-                        <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>" placeholder="Nhập url ảnh sách cần cập nhật">
-                        <input type="submit" value="Lưu" name="update_product" class="btn">
-                        <input type="reset" value="Reset" id="close-update" class="option-btn">
-                    </form>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['product_id']; ?>">
+            <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required
+                placeholder="Nhập tên sách cần cập nhật">
+            <input type="text" name="update_author" value="<?php echo $fetch_update['author']; ?>" class="box" required
+                placeholder="Nhập tên tác gải cần cập nhật">
+            <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box"
+                required placeholder="Nhập giá sách cần cập nhật">
+            <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>"
+                placeholder="Nhập url ảnh sách cần cập nhật">
+            <input type="submit" value="Lưu" name="update_product" class="btn">
+            <input type="reset" value="Reset" id="close-update" class="option-btn">
+        </form>
         <?php
                 }
             }
@@ -139,7 +144,7 @@ if (isset($_POST['update_product'])) {
 
     </section>
     <!-- custom admin js file link  -->
-    <!-- <script src="js/admin_script.js"></script> -->
+    <script src="../../public/js/admin_script.js"></script>
 
 </body>
 

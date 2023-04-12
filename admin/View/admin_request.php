@@ -4,11 +4,11 @@ include '../../config/config.php';
 
 session_start();
 
-// $admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['admin_id'];
 
-// if (!isset($admin_id)) {
-//     header('location:../../app/View/loginForm.php');
-// };
+if (!isset($admin_id)) {
+    header('location:../../app/View/loginForm.php');
+};
 
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
@@ -50,14 +50,15 @@ if (isset($_GET['delete'])) {
                 while ($fetch_message = mysqli_fetch_assoc($select_message)) {
 
             ?>
-                    <div class="box">
-                        <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
-                        <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
-                        <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
-                        <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
-                        <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
-                        <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">delete request</a>
-                    </div>
+            <div class="box">
+                <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
+                <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
+                <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
+                <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
+                <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
+                <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>"
+                    onclick="return confirm('delete this request?');" class="delete-btn">delete request</a>
+            </div>
             <?php
                 };
             } else {
