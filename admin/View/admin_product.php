@@ -17,13 +17,15 @@ if (isset($_POST['add_product'])) {
     $price = $_POST['price'];
     $author = $_POST['author'];
     $image = $_POST['image'];
-
+    $description = $_POST['description'];
+    $supplier = $_POST['supplier'];
+    $publiser = $_POST['publiser'];
     $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
     if (mysqli_num_rows($select_product_name) > 0) {
         $message[] = 'Sách đã tồn tại';
     } else {
         $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author,price, image) VALUES('$product_id', '$name', '$author' ,'$price', '$image')") or die('query failed');
+        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author, price, image, description, supplier, publiser) VALUES('$product_id', '$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
         $message[] = 'Sách đã được thêm vào danh mục';
     }
 }
@@ -40,7 +42,13 @@ if (isset($_POST['update_product'])) {
     $update_author = $_POST['update_author'];
     $update_price = $_POST['update_price'];
     $update_image = $_POST['update_image'];
-    mysqli_query($conn, "UPDATE `products` SET name = '$update_name', author = '$update_author' ,price = '$update_price', image = '$update_image' WHERE product_id = '$update_p_id'") or die('query failed');
+    $update_description = $_POST['update_description'];
+    $update_supplier = $_POST['update_supplier'];
+    $update_publiser = $_POST['update_publiser'];
+
+
+
+    mysqli_query($conn, "UPDATE `products` SET name = '$update_name', author = '$update_author' , price = '$update_price', image = '$update_image', description = '$update_description', supplier = '$update_supplier', publiser = '$update_publiser'  WHERE product_id = '$update_p_id'") or die('query failed');
     header('location:admin_product.php');
 }
 
@@ -72,8 +80,10 @@ if (isset($_POST['update_product'])) {
             <input type="text" name="name" class="box" placeholder="Nhập tên sách" required>
             <input type="text" min="0" name="author" class="box" placeholder="Nhập tên tác giả" required>
             <input type="number" min="0" name="price" class="box" placeholder="Nhập giá" required>
-            
             <input type="text" name="image" class="box" placeholder="Nhập url ảnh" required>
+            <input type="text" name="supplier" class="box" placeholder="Nhập nhà cung cấp" required>
+            <input type="text" name="publiser" class="box" placeholder="Nhập nhà xuất bản" required>
+            <textarea name="description" class="description" placeholder="Nhập mô tả về sách" cols="30" rows="5"></textarea>
             <input type="submit" value="add product" name="add_product" class="btn">
         </form>
 
@@ -129,6 +139,10 @@ if (isset($_POST['update_product'])) {
                         <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box"
                             required placeholder="Nhập giá sách cần cập nhật">
                         <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>" placeholder="Nhập url ảnh sách cần cập nhật">
+                        <!-- <input type="text" class="box" name="update_description" value="" placeholder="Nhập mô tả sách cần cập nhật"> -->
+                        <textarea name="update_description" class="box" c   ols="30" rows="10" style="width: 100%"><?php echo $fetch_update['description']; ?></textarea>
+                        <input type="text" class="box" name="update_supplier" value="<?php echo $fetch_update['supplier']; ?>" placeholder="Nhập nhà cung cấp sách cần cập nhật">
+                        <input type="text" class="box" name="update_publiser" value="<?php echo $fetch_update['publiser']; ?>" placeholder="Nhập nhà cung cấp sách cần cập nhật">
                         <input type="submit" value="Lưu" name="update_product" class="btn">
                         <input type="reset" value="Reset" id="close-update" class="option-btn">
                     </form>
