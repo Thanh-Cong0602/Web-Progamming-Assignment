@@ -1,5 +1,4 @@
 <?php
-
 $conn = mysqli_connect('localhost','root','','shop_database') or die('connection failed');
 mysqli_set_charset($conn, 'utf8mb4');
 function create_unique_id(){

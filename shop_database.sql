@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Apr 11, 2023 at 02:38 AM
+=======
+-- Generation Time: Apr 08, 2023 at 04:44 AM
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -67,6 +71,7 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `product_name`, `price`, `quantity`, `image`) VALUES
 (1, 'UvHhPrzKzI', 'Nhà giả kim', 100000, 1, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+<<<<<<< HEAD
 (2, '0Rk2uEgpJb', 'Nhà giả kim', 100000, 3, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
 (3, 'UvHhPrzKzI', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
 (28, 'U2PHm8hQj3', 'Sức mạnh của ngôn từ', 96000, 3, 'https://cf.shopee.vn/file/39a86fc5a2b49890b7d3dc04a911ff44'),
@@ -121,6 +126,17 @@ INSERT INTO `combo_products` (`combo_id`, `combo_name`, `price`, `image_combo`, 
 (4, 'Combo 2 sách về Phương pháp đầu tư giá trị của Benjamin Graham', 420000, 'https://vnibooks.com/wp-content/uploads/2021/09/pha%CC%82n-ti%CC%81ch-chu%CC%9B%CC%81ng-khoa%CC%81n-da%CC%82%CC%80u-tu%CC%9B-gia%CC%81-trj-768x768.jpg.webp', 'Nếu bạn ưa thích phương pháp đầu tư giá trị như Warren Buffett hay thầy của ông – Benjamin Graham thì đây là một bộ sách bạn không nên bỏ qua.', '', 'https://vnibooks.com/wp-content/uploads/2021/09/nha%CC%80-da%CC%82%CC%80u-tu%CC%9B-tho%CC%82ng-minh.jpeg.webp', 'Nhà Đầu Tư Thông Minh', 'Là nhà tư vấn đầu tư vĩ đại nhất của thế kỷ 20, Benjamin Graham đã giảng dạy và truyền cảm hứng cho nhiều người trên khắp thế giới. Triết lý “đầu tư theo giá trị“ của Graham, bảo vệ nhà đầu tư khỏi những sai lầm lớn và dạy anh ta phát triển các chiến lược dài hạn, đã khiến Nhà đầu tư thông minh trở thành cẩm nang của thị trường chứng khoán kể từ lần xuất bản đầu tiên vào năm 1949.\r\nTrải qua năm tháng, diễn biến thị trường đã chứng minh tính sáng suốt trong các chiến lược của Graham. Trong khi vẫn giữ lại toàn vẹn văn bản ban đầu của Graham, ấn phẩm tái bản này bổ sung thêm bình luận cập nhật của ký giả chuyên về tài chính nổi tiếng Jason Zweig. Cái nhìn của Zweig bao quát hiện thực của thị trường ngày nay, vạch ra sự tương tự giữa những ví dụ của Graham và các tít báo về tài chính hiện nay, giúp bạn đọc có sự hiểu biết kỹ lưỡng hơn về cách thức áp dụng các nguyên tắc của Graham.\r\nSống động và cần thiết, Nhà đầu tư thông minh là cuốn sách quan trọng nhất mà bạn có dịp đọc về cách thức đạt được các mục tiêu tài chính của mình.', 'https://vnibooks.com/wp-content/uploads/2021/09/phan-tich-chung-khoan-800x800-1.jpeg.webp', 'Phân Tích Chứng Khoán', 'Phân Tích Chứng Khoán là một trong những cuốn sách tài chính có ảnh hưởng nhất thế giới từng được viết ra. Với hơn một triệu bản được bán ra thông qua năm phiên bản trước, Phân tích chứng khoán đã cung cấp cho các thế hệ nhà đầu tư những triết lý và kỹ thuật đầu tư vô cùng giá trị của Benjamin Graham và David L. Dodd.\r\nDựa trên nội dung của phiên bản thứ hai, được xuất bản năm 1940, phiên bản thứ 6 này bổ sung các tiểu luận sinh động và thực tế do những cây viết xuất sắc soạn thảo. Đội ngũ này bao gồm các nhà đầu tư giá trị lỗi lạc, một chuyên gia học thuật tài năng và các cây bút tài chính hàng đầu thế giới. Độc giả sẽ hưởng lợi từ kinh nghiệm và sự thông thái của các chuyên gia thực hành xuất sắc nhất trong thế giới tài chính và các nhà quan sát thị trường thạo tin nhất.\r\n\r\nPhân tích chứng khoán của tác giả Benjamin Graham và David Dodd được ví như “cuốn kinh thánh của đầu tư giá trị”. Cuốn sách là tác phẩm hoàn chỉnh và chi tiết, đầy ắp sự thông thái cho các thế hệ. Trong cuốn sách này, tác giả đã đưa ra những bài học hữu ích, phương pháp đầu tư với tính ứng dụng tuyệt vời đến ngày hôm nay. Không phải ngẫu nhiên mà Phân tích chứng khoán được Warren Buffett coi là “Một tấm bản đồ chỉ đường trong đầu tư mà tôi đã, đang và sẽ sử dụng.”\r\n\r\nPhân tích chứng khoán phiên bản 6 của Graham và Dodd đã được cải tiến rất nhiều so với 5 phiên bản trước. Tại phiên bản mới nhất này, quyển sách đã được bổ sung các bài tiểu luận trình bày cách thực hành của các nhà đầu tư giá trị hàng đầu thế giới, khiến giá trị của tác phẩm này càng trở nên quý giá. Ở phiên bản này, Phân tích chứng khoán được Morris Smith – Nhà đầu tư cá nhân hàng đầu đánh giá là phiên bản tuyệt vời nhất mà các nhà đầu tư nhất định phải đọc.\r\nVới 8 chương sách, Phân tích chứng khoán không chỉ đưa ra những bài học vô giá trong đầu tư giá trị mà còn khiến các nhà đầu tư có được sự tỉnh táo, lựa chọn khôn ngoan khi đối mặt với sự biến động thất thường trong quá trình đầu tư.', '', '', ''),
 (5, 'Combo Sách Đúng Việc và 7 Thói Quen Hiệu Quả', 230000, 'https://vnibooks.com/wp-content/uploads/2022/11/combo-dung-viec-768x768.jpg.webp', 'Combo sách giúp bạn làm việc hiệu quả và tiết kiệm thời gian hơn mỗi ngày', '', '', 'Đúng Việc (Tái Bản)', 'Đúng Việc là con đường cho mọi đổi thay có tính cách mạng. Đúng Việc đề cập đến những vấn đề căn cơ và nền tảng nhất của con người, đó là: làm người (đạo nhân), làm mình (đạo sống), làm dân (đạo dân) và làm nghề (đạo nghề) bằng văn phong dí dỏm, súc tích và có tính hệ thống cao. Từ đó, sách đưa ra phương pháp luận để mỗi người tự thấu hiểu bản thân, tự tìm ra đường đời của mình, hình thành đạo nhân, đạo sống và đạo nghề của riêng mình. Hay nói cách khác, “Đúng Việc” là một phương pháp luận để góp sức cho mỗi người, mỗi nhà, mỗi tổ chức và mỗi xứ sở trên hành trình tự tìm ra “đích đến” và “con đường” cho sự đổi thay có tính cách mạng của riêng mình.\r\n\r\nTrích đoạn:\r\n\r\n“Công việc” của bất kỳ ai trong đời cũng bao gồm làm người, làm dân và làm nghề. Lựa chọn của mỗi người trong từng “công việc” đó sẽ làm nên cuộc đời họ. Bởi lẽ, con người thì khác với muông thú và cỏ cây, con người tự do thì khác với con người nô lệ, công dân thì khác với thần dân, ca sĩ thì khác với thợ hát, trí thức thì khác với trí nô, nhà báo thì khác với bồi bút, nhà quản trị thì khác với kẻ cai trị, doanh nhân thì khác với trọc phú hay con buôn…\r\n\r\nNhưng làm sao lựa chọn nếu không hề biết đến sự tồn tại của những lựa chọn, không rõ đâu là sự khác biệt giữa chúng và đâu là “mình” giữa những lựa chọn đó? Làm sao có thể làm đúng việc khi chưa biết đâu là cái đúng? Làm sao “làm ra chính mình”, làm sao “hãy là chính mình” khi chưa biết “đâu là mình”… Hành trình “tôi đi tìm tôi” đó cũng là câu chuyện khai minh của mỗi con người, mỗi nhà và mỗi xứ sở.', '', '7 Thói Quen Hiệu Quả', 'Tác phẩm “7 Thói quen Hiệu quả/ 7 Habits for Highly Effective People” đã ra đời hơn 25 năm, được biết đến là cuốn sách quản trị (quản trị bản thân và quản trị tổ chức) bán chạy nhất mọi thời đại với hơn 30 triệu bản bán ra trên toàn thế giới và được dịch sang 40 ngôn ngữ. Sách có mặt tại thị trường Việt Nam hơn 10 năm nay dưới cái tên “7 Thói quen để Thành đạt”. Ấn bản mới năm 2016 được đặt lại đúng với cái tên mộc mạc vốn có của bản gốc Tiếng Anh và có nội dung không chỉ được dịch lại toàn bộ cho sát nghĩa, dễ đọc hơn với các độc giả mà còn được cập nhật thêm những công cụ và ví dụ thực tiễn từ phiên bản nước ngoài mới nhất và có hình ảnh bìa (màu xanh đậm) giống với phiên bản gốc mới nhất.\r\nTrích lời giới thiệu của nhà giáo Giản Tư Trung – tác giả sách Đúng Việc (lời giới thiệu chỉ có trong ấn bản tiếng Việt được dịch bởi FranklinCovey Việt Nam): Tên đầy đủ của cuốn sách này, nếu dịch sát nghĩa sẽ là: “7 Thói quen của người có hiệu quả vượt trội” còn nếu dịch một cách ngắn gọn nhưng vẫn sâu sắc sẽ là “7 Thói quen Hiệu quả”. Gần như Stephen Covey đã dành cả cuộc đời mình để nghiên cứu về tính hiệu quả của con người, để đi tìm câu trả lời cho ba câu hỏi lớn lao, đó là: Vì sao con người ta trở nên ít hiệu quả?; Điều gì làm cho con người ta trở nên hiệu quả cao?; và Điều gì tạo nên hiệu quả bền vững? và 7 Habits chính là sự đúc kết sự nghiệp nghiên cứu cả đời của ông cho ba câu hỏi mang tính “muôn đời” đó.\r\nMơ ước của hầu hết mọi người trong đời là trở thành một con người thành công và hạnh phúc bằng chính tài năng và đạo đức của mình. Ở bình diện tổ chức hay các quốc gia cũng vậy. Một tổ chức hay quốc gia càng có nhiều người hướng đến thành công bằng tài năng và đạo đức, tổ chức hay quốc gia đó càng có cơ hội phát triển thịnh vượng và văn minh. Tài năng và đạo đức đã trở thành những phẩm chất được tìm kiếm và tôn vinh hàng đầu trong mọi xã hội và mọi thời đại, và chúng có một mối liên quan chặt chẽ với\r\nvới hiệu quả và hiệu quả bền vững. Cần có tài năng thì mới tạo ra được hiệu quả, cần có đạo đức thì mới tạo ra được hiệu quả bền vững. Và ngược lại, không ai có thể được xem là tài năng nếu không tạo ra hiệu quả, cũng như không ai có thể được coi là có đạo đức nếu như việc tạo ra hiệu quả đó chỉ là nhất thời chứ không mang tính bền vững, bởi lẽ, để tạo ra hiệu quả bền vững thì luôn phải dựa trên nền tảng đạo đức. Vì thế, câu trả lời về “hiệu quả” cũng chính là”lời đáp” cho câu chuyện về tài năng và đạo đức mà nhiều người tìm kiếm, mà lại là một “lời đáp” được đúc kết bằng việc chuyển hóa một hệ thống giá trị ở bên trong để hình thành bản tính thành công bền vững của con người, chứ hoàn toàn không phải là những chiêu trò hay thủ thuật ở bên ngoài.\r\nStephen Covey từng nói rằng, ông không phát minh hay tạo ra mà được đưa ra dựa trên những giá trị phổ quát và những nguyên tắc trường tồn của nhân loại. Chính trong thái độ khiêm nhường đó, ta nhận ra tầm vóc của ông. Vì ông đã tạo ra một cầu nối giữa chúng ta với những tri thức tinh hoa của nhân loại về làm người, về giá trị sống, và nhất là về tính hiệu quả. Thường những tri thức này không phải là thứ dễ tiếp cận, dễ tiếp thu với đại chúng, nhưng bằng việc sắp xếp và tổng hợp chúng trong một hình hài có tính hệ thống và tính ứng dụng cao, ông đã góp phần đưa những tinh hoa tri thức đó đến với công chúng dễ dàng hơn. Và cũng bởi được xây dựng dựa trên những gì phổ quát và trường\r\ntồn nên “7 Habits” mới trở thành một nền văn hóa vượt không gian, vượt thời gian, dành cho tất cả mọi người, mọi tổ chức và mọi xứ sở. Bất kỳ ai cài đặt nền văn hóa “7 habits” này vào và sống hàng ngày với nền văn hóa đó, thì dù là một tổng thống, một doanh nhân, một quản lý hay một đầu bếp, một nhân viên cũng sẽ trở nên hiệu quả hơn hẳn.', '', '', ''),
 (6, 'Bộ sách Quản trị rủi ro trong đầu tư Chứng Khoán', 650000, 'https://vnibooks.com/wp-content/uploads/2021/09/qua%CC%89n-tri%CC%A3-ru%CC%89i-ro-768x768.jpg.webp', 'Trong một nơi đầy nguy hiểm như thị trường chứng khoán thì điều đầu tiên bạn nên học trước khi tham gia vào thị trường đó là quản trị rủi ro của những khoản đầu tư. Chúng tôi xin giới thiệu 2 cuốn sách giúp bạn có thể giảm bớt thiệt hại khi mới tham gia vào thị trường.', 'Trong một thị trường đi lên ai cũng có thể kiếm được tiền, ai cũng có thể là nhà đầu tư thiên tài. Nhưng trong một thị trường đi xuống nếu không có một khả năng quản trị rủi ro tốt thì bạn hoàn toàn có thể mất tất cả những gì đã kiếm được trong những giao dịch trước. 2 Cuốn sách sau là sự lựa chọn vô chùng chất lượng để bạn tìm hiểu về quản trị rủi ro:', 'https://vnibooks.com/wp-content/uploads/2021/09/nha-vo-dich-chung-khoan-851x800-1.jpeg.webp', 'Cách Tư Duy Và Giao Dịch Như Một Nhà Vô Địch Đầu Tư Chứng Khoán – Mark Minervini', 'Đây là một cuốn sách ngắn gọn, thuần về kỹ năng và bạn có thể dễ dàng tiếp thu lượng kiến thức trong cuốn sách này. Sách nói về cách Mark Minervini đầu tư chứng khoán nhưng nội dung hữu ích nhất theo chúng tôi đó là về Tối thiểu Hóa rủi ro.\r\nMark Miniverni là tác giả cuốn sách bán chạy Trade Like a Stock Market Wizard: How to Achieve Superperformance in Stocks (Phong Cách Giao Dịch của một Phù Thủy Chứng Khoán: Làm thế nào đạt được thành tích giao dịch chứng khoán siêu hạng). Bắt đầu sự nghiệp đầu tư chứng khoán chỉ với vài ngàn đôla, Mark Minervini đã biến tài khoản của mình thành hàng triệu đôla, với tỷ suất sinh lợi trung bình hàng năm lên đến 220% và chỉ duy nhất một quý thua lỗ. Được biết, ông đã từng biến tài khoản 100,000 đôla tăng vọt thành hơn 30 triệu đôla chỉ trong vòng 5 năm. Điều này tương ứng với tỷ suất sinh lợi gộp lên đến 33,500%!', 'https://vnibooks.com/wp-content/uploads/2021/09/da%CC%82%CC%80u-tu%CC%9B-ta%CC%80i-chi%CC%81nh-1024x1024.jpg.webp', 'Đầu tư tài chính', 'Đây thực sự là một cuốn sách rất nhiều kiến thức nếu bạn muốn tham gia vào thị trường. Chúng tôi không khuyến khích bạn sử dụng nó như là một cuốn sách kỹ năng. Hãy sử dụng nó như một cuốn sách học, một cuốn từ điển khi tham gia vào thị trường tài chính. Từ đó bạn có thể giảm thiểu tối đa rủi ro của mình.Đây thực sự là một cuốn sách rất nhiều kiến thức nếu bạn muốn tham gia vào thị trường. Chúng tôi không khuyến khích bạn sử dụng nó như là một cuốn sách kỹ năng. Hãy sử dụng nó như một cuốn sách học, một cuốn từ điển khi tham gia vào thị trường tài chính. Từ đó bạn có thể giảm thiểu tối đa rủi ro của mình.', '', '', '');
+=======
+(2, '0Rk2uEgpJb', 'Nhà giả kim', 100000, 1, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(3, 'UvHhPrzKzI', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(4, 'tbljO8qAlK', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(5, 'tbljO8qAlK', 'Khéo ăn nói sẽ có được thiên hạ', 95000, 1, 'https://file.hstatic.net/1000237375/file/kheo-an-noi-900x900_617a5dffb3e3494f838aa767d5866669_grande'),
+(6, 'tbljO8qAlK', 'Hành trình về phương Đông', 55000, 1, 'https://salt.tikicdn.com/cache/w1200/media/catalog/product/h/a/hanh_trinh_ve_phuong_dong_2.jpg'),
+(11, 'tbljO8qAlK', 'Trí tuệ do thái', 111222, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/9.jpg'),
+(12, 'tbljO8qAlK', 'Nhà giả kim', 100000, 1, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(26, 'U2PHm8hQj3', 'Nhà giả kim', 100000, 3, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(27, 'U2PHm8hQj3', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp');
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 
 -- --------------------------------------------------------
 
@@ -176,16 +192,21 @@ CREATE TABLE `products` (
   `name` varchar(100) NOT NULL,
   `author` varchar(100) NOT NULL,
   `price` int(100) NOT NULL,
+<<<<<<< HEAD
   `image` varchar(200) NOT NULL,
   `description` varchar(10000) NOT NULL,
   `supplier` varchar(100) NOT NULL,
   `publiser` varchar(100) NOT NULL
+=======
+  `image` varchar(200) NOT NULL
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
+<<<<<<< HEAD
 INSERT INTO `products` (`product_id`, `name`, `author`, `price`, `image`, `description`, `supplier`, `publiser`) VALUES
 (1, 'Nhà giả kim', 'Paulo Coelho', 100000, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg', 'Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người. \r\n\r\nTiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.\r\n\r\n“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”\r\n\r\n- Trích Nhà giả kim\r\n\r\nNhận định\r\n\r\n“Sau Garcia Márquez, đây là nhà văn Mỹ Latinh được đọc nhiều nhất thế giới.” - The Economist, London, Anh\r\n\r\n \r\n\r\n“Santiago có khả năng cảm nhận bằng trái tim như Hoàng tử bé của Saint-Exupéry.” - Frankfurter Allgemeine Zeitung, Đức\r\n\r\n', 'Nhã Nam', 'NXB Hội Nhà Văn'),
 (2, 'Tuổi trẻ đáng giá bao nhiêu', 'Rosie Nguyễn', 121000, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp', '\"Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ.\r\nBạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng.\r\nBạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ.\r\nSuy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.\r\nNên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống.\r\nVì sau tất cả, chẳng ai quan tâm.\"\r\n\"Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi.\r\nTuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI.\r\nNhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC.\r\nHãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình.\r\nNếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu? nhiều hơn một lần.\"\r\n- Đặng Nguyễn Đông Vy, tác giả, nhà báo', 'Nhã Nam', 'NXB Hội Nhà Văn'),
@@ -202,6 +223,18 @@ INSERT INTO `products` (`product_id`, `name`, `author`, `price`, `image`, `descr
 (13, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ ', 'Ngô Sa Thạch', 233600, 'https://cdn0.fahasa.com/media/catalog/product/b/i/bia_luattamthuc_bia-1.jpg', 'Dịch bệnh, thiên tai, chiến tranh… có phải là lời cảnh cáo của tự nhiên đến con người?\r\n\r\n“Biến đổi khí hậu” là một nước đi chính trị hay chỉ là sự thay đổi của Trái Đất theo chu kỳ?\r\n\r\nUFO, người ngoài hành tinh có thật không?\r\n\r\nTại sao Kinh dịch lại tiên đoán được các sự kiện?\r\n\r\nMỗi con người có số mệnh định sẵn không? Chúng ta sẽ đi về đâu sau khi chết?\r\n\r\n…\r\n\r\nLiệu tất cả chỉ là ngẫu nhiên, hay có một sự sắp đặt tài tình của vũ trụ?\r\n\r\n“Luật Tâm Thức - giải mã ma trận vũ trụ” sẽ giải đáp tất cả những khía cạnh mà có thể bạn không nhận thức được chúng tồn tại, và có thể khám phá những vùng đất mình chưa từng biết đến.  \r\n\r\nNhững góc nhìn trong “Luật Tâm Thức” bắt nguồn từ tất cả những kiến thức cổ xưa nhất của loài người… nhưng được tác giả Ngô Sa Thạch giải thích bằng một góc nhìn gần gũi, đặc biệt, qua đó bạn sẽ hiểu được:\r\n\r\nNguồn gốc của vũ trụ, những quy luật tự nhiên chi phối sự hình thành của mọi vật,  trí tuệ cổ xưa khi thông hiểu và ứng dụng các quy luật tự nhiên.\r\n\r\nNăng lượng và tần số rung động, giải thích những hiện tượng tâm linh như quy hồi tiền kiếp, tiên đoán sự kiện, du hành thời gian,...\r\n\r\nCon người: tổ hợp thân - tâm - trí, nghiệp quả, sứ mệnh trong các kiếp, sự tiến hóa của tâm thức.\r\n\r\nThay đổi cuộc sống bằng cách thay đổi tâm thức, hiểu đúng về các quy luật vũ trụ để thu hút năng lượng cải thiện cuộc sống của mình và cả vũ trụ.\r\n\r\nCuốn sách này sẽ giúp bạn thấy rằng những kiến thức của người xưa không hề cao siêu huyền bí mà vô cùng đơn giản và liên quan chặt chẽ tới khoa học hiện đại.\r\n\r\nViệc của bạn chỉ là đọc với một tâm trí cởi mở để thức tỉnh, vượt qua những rào cản của tâm trí, những niềm tin cố hữu của mình.  \r\n\r\nNếu con người cứ đóng khung tư duy của mình trong hai trường phái duy vật và duy tâm, chúng ta sẽ mãi mãi không bao giờ có thể giải đáp được những vấn đề lớn lao của nhân loại. Khi đó, chúng ta cũng sẽ không bao giờ hiểu được bản chất của những câu chuyện về tâm linh, cũng như những vấn đề chưa lý giải được của khoa học. \r\n\r\nSự thiếu hiểu biết này, sẽ dẫn tới những con người mù quáng khi có một số trải nghiệm “tâm linh”, sa đà vào mê tín. Ngược lại, chính nó cũng hình thành một nhóm người mù quáng tin vào khoa học, duy vật, dẫn tới sự hủy hoại nghiêm trọng tới sự sống trên cả hành tinh này.\r\n\r\nHiểu về luật tâm thức, nâng cao tâm thức là quá trình mỗi linh hồn trải nghiệm và vượt qua những bài học cuộc đời.\r\n', 'Skybooks', 'Dân Trí'),
 (14, 'Đời Ngắn Đừng Ngủ Dài', 'Robin Sharma', 56250, 'https://cdn0.fahasa.com/media/flashmagazine/images/page_images/doi_ngan_dung_ngu_dai_tai_ban_2018/2021_06_08_15_55_42_1-390x510.jpg', '“Mọi lựa chọn đều giá trị. Mọi bước đi đều quan trọng. Cuộc sống vẫn diễn ra theo cách của nó, không phải theo cách của ta. Hãy kiên nhẫn. Tin tưởng. Hãy giống như người thợ cắt đá, đều đặn từng nhịp, ngày qua ngày. Cuối cùng, một nhát cắt duy nhất sẽ phá vỡ tảng đá và lộ ra viên kim cương. Người tràn đầy nhiệt huyết và tận tâm với việc mình làm không bao giờ bị chối bỏ. Sự thật là thế.”\r\n\r\nBằng những lời chia sẻ thật ngắn gọn, dễ hiểu về những trải nghiệm và suy ngẫm trong đời, Robin Sharma tiếp tục phong cách viết của ông từ cuốn sách Điều vĩ đại đời thường để mang đến cho độc giả những bài viết như lời tâm sự, vừa chân thành vừa sâu sắc.\r\n', 'NXB Trẻ', 'NXB Trẻ'),
 (15, 'Không Giới Hạn - Khám Phá Ho\'Oponopono', 'Joe Vitale, Ihaleakala Hew Len', 119200, 'https://anybooks.vn/uploads/images/review-sach-khong-gioi-han-kham-pha-hooponopono-3.jpeg', '\"KHÔNG GIỚI HẠN là câu chuyện về sự trở về trạng thái zero, nơi không một thứ gì tồn tại nhưng mọi thứ đều khả dĩ. Ở trạng thái zero, không còn tư tưởng, ngôn từ, hành vi, ký ức, chương trình, niềm tin hoặc bất kỳ điều gì khác. Chẳng có gì cả.\" (Bí mật của vũ trụ)\r\n\r\nCó phải bạn đang làm việc quá sức và quá căng thẳng?\r\n\r\nCó phải bạn đang làm hết sức nhưng vẫn chẳng thành công trong sự nghiệp và cuộc sống cá nhân?\r\n\r\nNếu bạn đang cố gắng vất vả nhưng chưa đạt được kết quả như ý thì có lẽ vấn để nằm ở bên trong bạn. Có lẽ điều đang cản trở bạn nằm bên trong bạn chứ không phải ở bên ngoài. Không giới hạn đưa đến cho bạn một phương pháp đột phá để vượt qua những giới hạn nội tại và đạt được những mục tiêu mơ ước.\r\n\r\nHo\'oponopono là một hệ thống bí quyết tâm linh cổ xưa của người Hawaii, một phương pháp trị liệu vô cùng hiệu quả để giải phóng tâm thức, loại bỏ những trở ngại tinh thần, giúp bạn đạt đến mục tiêu không giới hạn trong công việc lẫn cuộc sống.\r\n\r\nJoe Vitale và Ihaleakala Hew Len, những bậc thầy về Ho\'oponopono hiện đại, sẽ từng bước hướng dẫn bạn áp dụng phương pháp này để gặt hái thành công về vật chất, sức khỏe, tinh thần và hạnh phúc.\r\n', 'NXB Thế Giới', 'NXB Thế Giới');
+=======
+INSERT INTO `products` (`product_id`, `name`, `author`, `price`, `image`) VALUES
+(1, 'Nhà giả kim', '', 100000, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(2, 'Tuổi trẻ đáng giá bao nhiêu', '', 121000, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(3, 'Khéo ăn nói sẽ có được thiên hạ', '', 95000, 'https://lzd-img-global.slatic.net/g/p/da59103876cd0f1675ae9add24a29e2e.jpg_720x720q80.jpg_.webp'),
+(4, 'Hành trình về phương Đông', '', 55000, 'https://salt.tikicdn.com/cache/w1200/media/catalog/product/h/a/hanh_trinh_ve_phuong_dong_2.jpg'),
+(5, 'Không phải sói nhưng cũng đừng là cừu', '', 321000, 'https://temibook.com.vn/wp-content/uploads/2022/11/118.jpg'),
+(6, 'Trí tuệ do thái', '', 111222, 'https://temibook.com.vn/wp-content/uploads/2022/11/9.jpg'),
+(7, 'Đắc nhân tâm', '', 150000, 'https://s3-hcm-r1.longvan.net/truyenmp3/wp-content/uploads/2021/04/08150635/Dac-Nhan-Tam.jpg'),
+(8, 'Hạt giống tâm hồn', '', 51000, 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_225159.jpg'),
+(9, 'Bố già', 'Mario Puzo', 200000, 'https://cdn0.fahasa.com/media/catalog/product/z/2/z2611575615164_9f60c133cfed1c7bb3f59b247f-600.jpg');
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 
 -- --------------------------------------------------------
 
@@ -214,8 +247,13 @@ CREATE TABLE `reviews` (
   `post_id` varchar(20) NOT NULL,
   `user_id` varchar(20) NOT NULL,
   `rating` varchar(1) NOT NULL,
+<<<<<<< HEAD
   `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `description` varchar(2500) NOT NULL,
+=======
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+>>>>>>> Nguyen-Phuoc-Dac-Hung
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -224,6 +262,7 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `post_id`, `user_id`, `rating`, `title`, `description`, `date`) VALUES
+<<<<<<< HEAD
 ('MWOCQF6Gq1', '7', 'U2PHm8hQj3', '4', 'Th&agrave;nh C&ocirc;ng NGuyễn', 'Th&agrave;nh C&ocirc;ng NGuyễn', '2023-04-08'),
 ('76MVF5c8kg', '9', 'U2PHm8hQj3', '5', 'Bản lĩnh của người đ&agrave;n &ocirc;ng trước s&am', 'D&aacute;m c&aacute; l&agrave; 100% những người đ&agrave;n &ocirc;ng đọc cuốn Bố Gi&agrave; đều kh&acirc;m phục v&agrave; ngưỡng mộ h&igrave;nh tượng &ocirc;ng tr&ugrave;m Corleone. &Ocirc;ng qu&aacute; giỏi trong c&aacute;ch quan hệ với mọi người, biết c&aacute;ch xử l&yacute; khi n&oacute;i chuyện &ldquo;phải quấy&rdquo; kh&ocirc;ng th&agrave;nh c&ocirc;ng, sẵn s&agrave;ng &ldquo;trải nệm&rdquo; cho kẻ n&agrave;o d&aacute;m l&agrave;m hại tới gia đ&igrave;nh m&igrave;nh.\r\n\r\nD&ugrave; l&agrave; mafia nhưng nguy&ecirc;n tắc của Bố Gi&agrave; l&agrave; kh&ocirc;ng d&iacute;nh đến mại d&acirc;m v&agrave; ma t&uacute;y. &Ocirc;ng cũng rất gh&eacute;t việc quan hệ lằng nhằng với nhiều phụ nữ kh&aacute;c nhau.\r\nV&igrave; lu&ocirc;n sẵn s&agrave;ng gi&uacute;p đỡ người kh&aacute;c n&ecirc;n Bố Gi&agrave; được v&ocirc; số người nể trọng, c&oacute; những người sẵn s&agrave;ng chết v&igrave; &ocirc;ng v&agrave; v&igrave; chữ t&iacute;n m&agrave; &ocirc;ng đ&atilde; cho họ thấy. &Ocirc;ng tr&ugrave;m Corleone lu&ocirc;n giữ lời hứa trong cuộc đời m&igrave;nh, chỉ cần &ocirc;ng đ&atilde; hứa th&igrave; việc kh&oacute; đến mấy cũng sẽ l&agrave;m được.\r\nLời cuối c&ugrave;ng Bố Gi&agrave; để lại khi tạm biệt cuộc đời chỉ vỏn vẹn ba chữ &ldquo;Đời đẹp qu&aacute;&rdquo;\r\n', '2023-04-08'),
 ('mMPYPAniAc', '8', 'UvHhPrzKzI', '4', 'H&atilde;y y&ecirc;u s&aacute;ch', 'Đọc s&aacute;ch l&agrave; cả 1 qu&aacute; tr&igrave;nh n&ecirc;n h&atilde;y bỏ thời gian ra đọc s&aacute;ch nha &lt;3', '2023-04-09'),
@@ -239,6 +278,10 @@ INSERT INTO `reviews` (`id`, `post_id`, `user_id`, `rating`, `title`, `descripti
 ('hiABr0DcEJ', '11', '0Rk2uEgpJb', '5', 'Trong cuộc sống luôn tồn tại nghịch lý', 'Trong thế giới không ngừng phát triển này, con người không thể cô lập chính mình mà phải hòa mình với xã hội. Nhưng để hòa mình thì không phải dễ, tôi đã gặp rất nhiều rắc rối trong việc này. Tôi không muốn làm người khác thất vọng nên thường có ai nhờ việc gì là tôi đồng ý, kết quả là mọi chuyện trở nên quá sức và không ai vui vẻ cả. Đôi khi trong cuộc sống, lời từ chối cần phải được đưa ra, nhưng nhiều người không muốn làm người người khác phật lòng. Cho nên quyển sách Lời Từ Chối Hoàn Hảo rất thích hợp cho những ai không biết cách từ chối người khác hay sự hấp dẫn của việc giải trí. Bản dịch rất mượt, văn phong hiện đại nên cũng dễ hiểu, đây là quyển sách ', '2023-04-10'),
 ('fLF3DEyxj6', '3', 'U2PHm8hQj3', '5', 'Cuốn s&aacute;ch mang nhiều hương vị, thực tiễn v&agrave; đ&aacute;ng để đọc một lần trong đời', 'L&agrave; nh&agrave; T&acirc;m l&yacute; học, Tr&aacute;c Nh&atilde; x&acirc;y dựng v&agrave; viết &ldquo;Kh&eacute;o ăn kh&eacute;o n&oacute;i sẽ c&oacute; được thi&ecirc;n hạ&rdquo; một c&aacute;ch th&ocirc;ng minh. S&aacute;ch được chia ra th&agrave;nh hai phần v&agrave; nhiều chương, d&ugrave; vậy, vẫn rất đầy đủ, r&otilde; r&agrave;ng, ph&acirc;n t&iacute;ch nhiều khả năng xảy ra trong cuộc sống h&agrave;ng ng&agrave;y. Đặc biệt, phần I &ndash; D&aacute;m n&oacute;i chuyện đảm bảo thu h&uacute;t trong qu&aacute; tr&igrave;nh người đọc t&igrave;m hiểu hoặc ph&acirc;n v&acirc;n c&oacute; n&ecirc;n tiếp tục hay kh&ocirc;ng; bất kỳ lứa tuổi n&agrave;o cũng sẽ nhận ra việc bản th&acirc;n thiếu s&oacute;t phần n&agrave;o v&agrave; ngạc nhi&ecirc;n, n&oacute; hiển nhi&ecirc;n đ&uacute;ng, nhưng chưa biết c&aacute;ch &aacute;p dụng sao cho tối ưu h&oacute;a nhất.\r\nNghi&ecirc;ng về cuối s&aacute;ch tuy nhi&ecirc;n, phần n&agrave;y lại chưa được cụ thể lắm. Những t&igrave;nh huống kh&oacute; xử ng&agrave;y c&agrave;ng nhiều v&agrave; d&agrave;y đặc, tiếp nữa l&agrave; mức độ của n&oacute; được n&acirc;ng l&ecirc;n, n&acirc;ng l&ecirc;n được hiểu như suy luận v&agrave; &yacute; nghĩ của con người mở rộng, h&agrave;nh vi cũng như ho&agrave;n cảnh đẩy đưa li&ecirc;n tục n&ecirc;n d&ugrave; l&agrave; người giỏi giang đến mấy cũng chưa thể gi&uacute;p chi tiết đến ho&agrave;n hảo.\r\n\r\nT&igrave;nh huống kh&oacute; xử lu&ocirc;n thật sự rắc rối, buộc ta phải biến đổi li&ecirc;n tục, tư duy kh&ocirc;ng ngừng nghỉ để th&iacute;ch ứng được việc giả', '2023-04-10'),
 ('acstKGErk7', '2', 'U2PHm8hQj3', '4', 'Tuổi trẻ đáng giá bao nhiêu đơn giản chỉ là cuốn sách của sự trải nghiệm', 'Tuổi trẻ đáng giá bao nhiêu là cuốn sách không nặng nề giáo điều, không chỉ trích cực đoan, đơn giản chỉ là những tâm sự bình dị của người đi trước, Rosie Nguyễn mang đến cho bạn trẻ những tư tưởng tích cực nhất để mạnh mẽ bước chân vào đời.\r\nBạn đã đọc bao nhiêu sách kĩ năng, self-help rồi?\r\n\r\nBạn có áp dụng được những gì tốt đẹp mà các tác giả đúc kết lại, truyền cảm hứng để bạn thực hành, hay chỉ đơn giản là bạn cũng mắc bệnh hào hứng 1 phút, chỉ siêng năng nhất thời và ba bốn hôm lại “ngày mới cuộc sống cũ”?\r\nNếu như bạn đã quá quen với những cuốn sách dạy kĩ năng nhưng đa phần nội dung giống hệt nhau, gần như khó áp dụng cho thực tế, thì cuốn sách này sẽ…..', '2023-04-10');
+=======
+('2h4vqU8YA9', '1', '0Rk2uEgpJb', '4', 'TCN ahuhu', 'Hay song la chinh minh', '2023-04-07'),
+('KurXDFlVHA', '9', 'tbljO8qAlK', '5', 'Tuyet voi', 'Truyen nay hay lam &lt;33333', '2023-04-07');
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 
 -- --------------------------------------------------------
 
@@ -263,35 +306,49 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phonenumber`, `password`, `user_type`, `image`) VALUES
 ('RIHIJafONk', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen0602@gmail.com', '0847476547', '$2y$10$hpPlEItu6bvl/.QywclYae9S3.qC7IT3ZP5lGzLptKXWvuWAmtNmK', 'user', 't1qu4Ht5vm.jpg'),
+<<<<<<< HEAD
 ('UvHhPrzKzI', 'Thanh Cong Nguyen', 'Cong.Nguyen@0602', 'cong.nguyen0602@hcmut.edu.vn', '0847476547', '$2y$10$rQvScSRrrrrrlGaqkkZAYOrCTbunZN5GLOUkumKOgpxK7n5pGdcm2', 'user', '7suq9ZQ7QI.jpg'),
 ('0Rk2uEgpJb', 'Ha ma tau', 'thu_ha1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$yRvFEt51DM3XxaSFzxI02e61euRJ78bxF3PsbLjRcW4tUN.diKh/m', 'user', 'ENUAkAOOWl.jpg'),
 ('', 'test', '', 'test@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'user', ''),
 ('tbljO8qAlK', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen060202@gmail.com', '0847476547', '$2y$10$JRs/5vMuE7owbn7eipQftus5ScFZfOHc/TnPy4mdNOElS8xUdvKCG', 'user', 'hV0wPQa1jQ.jpg'),
 ('U2PHm8hQj3', 'Đỗ Trần Ngọc Linh', 'ngoc_linh1703', 'ngoclinh1703@gmail.com', '0847476547', '$2y$10$Cj8crljO5EoUw7KFm6Wdcu/qMyg2xJh5/w2GnRejeuwROIgOiDHjy', 'user', 'TTX7XhmN86.png');
+=======
+('UvHhPrzKzI', 'Thanh Cong Nguyen', 'cong.nguyen0602@hcmut.edu.vn', 'cong.nguyen0602@hcmut.edu.vn', '0847476547', '$2y$10$rQvScSRrrrrrlGaqkkZAYOrCTbunZN5GLOUkumKOgpxK7n5pGdcm2', 'user', '7suq9ZQ7QI.jpg'),
+('0Rk2uEgpJb', 'Ha ma tau', 'thu_ha1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$yRvFEt51DM3XxaSFzxI02e61euRJ78bxF3PsbLjRcW4tUN.diKh/m', 'user', 'wsyqqkEm8U.jpeg'),
+('', 'test', '', 'test@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'user', ''),
+('tbljO8qAlK', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen060202@gmail.com', '0847476547', '$2y$10$JRs/5vMuE7owbn7eipQftus5ScFZfOHc/TnPy4mdNOElS8xUdvKCG', 'user', 'hV0wPQa1jQ.jpg'),
+('U2PHm8hQj3', 'Ngoc Linh', 'ngoc_linh1703', 'ngoclinh1703@gmail.com', '0847476547', '$2y$10$Cj8crljO5EoUw7KFm6Wdcu/qMyg2xJh5/w2GnRejeuwROIgOiDHjy', 'user', 'TTX7XhmN86.png');
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 
 --
 -- Indexes for dumped tables
 --
 
 --
+<<<<<<< HEAD
 -- Indexes for table `authors`
 --
 ALTER TABLE `authors`
   ADD PRIMARY KEY (`id`);
 
 --
+=======
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `combo_products`
 --
 ALTER TABLE `combo_products`
   ADD PRIMARY KEY (`combo_id`);
 
 --
+=======
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -302,14 +359,22 @@ ALTER TABLE `products`
 --
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
+<<<<<<< HEAD
 ALTER TABLE `cart`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
@@ -324,6 +389,10 @@ ALTER TABLE `combo_products`
 --
 ALTER TABLE `products`
   MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+=======
+ALTER TABLE `products`
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+>>>>>>> Nguyen-Phuoc-Dac-Hung
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
