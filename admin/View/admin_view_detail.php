@@ -1,7 +1,7 @@
 <?php 
 include '../../config/config.php';
 $id = $_GET['id'];
-$get_product = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = $id") or die('query failed');
+$get_product = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = '$id'") or die('query failed');
 $detail_product = mysqli_fetch_array($get_product);
 ?>
 <!DOCTYPE html>
@@ -14,12 +14,17 @@ $detail_product = mysqli_fetch_array($get_product);
     <title><?php echo $detail_product['name'];?></title>
 </head>
 <body>
+    <?php include 'admin_header.php'; ?>
     <div class="info-book">
         <img src="<?php echo $detail_product['image'];?>" alt="" class="info-book-img">
         <div class="info-book-detail">
-            <h1 class="info-book-detail-name"></h1><?php echo $detail_product['name'];?></h1>
-            <p class="info-book-detail-author"></p><?php echo $detail_product['author'];?></p>
-            <p class="info-book-detail-price"></p><?php echo $detail_product['price'];?></p>
+            <h1 class="info-book-detail-name"><?php echo $detail_product['name'];?></h1>
+            <p class="info-book-detail-author">Tác giả: <?php echo $detail_product['author'];?></p>
+            <p class="info-book-detail-publisher">Nhà xuất bản: <?php echo $detail_product['publiser'];?></p>
+            <p class="info-book-detail-supplier">Nhà cung cấp: <?php echo $detail_product['supplier'];?></p>
+            <p class="info-book-detail-price">Giá: <?php echo $detail_product['price'];?>$</p>
+            <p class="info-book-detail-description"><?php echo $detail_product['description'];?></p>
+            <a href="./admin_product.php" class="admin-return-product">Quay lại</a> <br>
         </div>
     </div>
     

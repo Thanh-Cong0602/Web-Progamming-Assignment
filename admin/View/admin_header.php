@@ -35,7 +35,7 @@ if (isset($message)) {
     </div>
     <div class="account-box">
         <p>username : <br> <span>
-                <?php echo $_SESSION['admin_username']; ?>
+                <?php echo $_SESSION['admin_name']; ?>
             </span></p>
         <p>email : <span>
                 <?php echo $_SESSION['admin_email']; ?>

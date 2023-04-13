@@ -178,10 +178,10 @@ section {
   color: var(--purple);
 }
 
-.header .flex .account-box {
+.header .account-box {
   position: absolute;
   top: 120%;
-  right: 2rem;
+  right: 3rem;
   width: 30rem;
   box-shadow: var(--box-shadow);
   border-radius: 0.5rem;
@@ -194,35 +194,35 @@ section {
   animation: fadeIn 0.2s linear;
 }
 
-.header .flex .account-box.active {
+.header .account-box.active {
   display: inline-block;
 }
 
-.header .flex .account-box p {
+.header .account-box p {
   font-size: 2rem;
   color: var(--light-color);
   margin-bottom: 1.5rem;
 }
 
-.header .flex .account-box p span {
+.header .account-box p span {
   color: var(--purple);
 }
 
-.header .flex .account-box .delete-btn {
+.header .account-box .delete-btn {
   margin-top: 0;
 }
 
-.header .flex .account-box div {
+.header .account-box div {
   margin-top: 1.5rem;
   font-size: 2rem;
   color: var(--light-color);
 }
 
-.header .flex .account-box div a {
+.header .account-box div a {
   color: var(--orange);
 }
 
-.header .flex .account-box div a:hover {
+.header .account-box div a:hover {
   text-decoration: underline;
 }
 
@@ -283,7 +283,8 @@ section {
   margin-bottom: 2rem;
 }
 
-.add-products form .box {
+.add-products form .box,
+.add-products form .description {
   width: 100%;
   background-color: var(--light-bg);
   border-radius: 1rem;
@@ -296,7 +297,7 @@ section {
 
 .show-products .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-template-columns: repeat(auto-fit, 32rem);
   justify-content: center;
   gap: 2.5rem;
   max-width: 1200px;
@@ -332,14 +333,15 @@ section {
 }
 .show-products .box-container .box .name {
   padding: 1rem 0;
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   height: 8rem;
   color: var(--black);
   font-weight: 600;
 }
 .show-products .box-container .box .author {
   padding: 1rem 0;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  height: 4.5rem;
   font-style: italic;
 }
 .show-products .box-container .box .price {
@@ -396,9 +398,10 @@ section {
 }
 
 .info-book {
-  background-color: #d9d4d4;
+  background-color: #fffa5faf;
   width: 60%;
   margin: 2rem auto;
+  padding: 5rem;
   display: flex;
   justify-content: space-between;
   /* border: var(--border); */
@@ -406,22 +409,55 @@ section {
 
 }
 .info-book-img {
-  width: 30%;
+  width: 40%;
   border-radius: 30px;
-  height: 50rem;
+  height: 70rem;
+  margin: 5rem;
+  /* margin: auto; */
 }
 .info-book-detail {
-  width: 70%;
+  width: 60%;
   text-align: center;
 }
 
 .info-book-detail-name {
-  font-size: 2rem;
+  font-size: 3.5rem;
+  margin: 2rem;
 }
+.info-book-detail-price {
+  font-size: 2.75rem;
+  margin: 2rem;
+  font-style: oblique;
+  /* text-align: start; */
+  color: var(--red)
+}
+.info-book-detail-author, .info-book-detail-publisher, .info-book-detail-supplier {
+  font-size: 2rem;
+  margin: 1.5rem auto;
+  
+}
+.info-book-detail-description {
+  font-size: 1.5rem;
+  text-align: start;
+  margin: 2rem;
+  line-height: 1.5;
+  font-style: oblique;
+
+}
+.admin-return-product {
+  background-color: var(--red);
+  padding: 1rem;
+  color: #fff;
+}
+.admin-return-product:hover {
+  opacity: 0.7;
+}
+/* THE END PRODUCT */
+/* ######################## */
 
 .orders .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-template-columns: repeat(auto-fit, 36rem);
   justify-content: center;
   gap: 1.5rem;
   max-width: 1200px;
@@ -435,6 +471,10 @@ section {
   border: var(--border);
   box-shadow: var(--box-shadow);
   border-radius: 0.5rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  min-height: 520px;
+  position: relative;
 }
 
 .orders .box-container .box p {
@@ -445,26 +485,33 @@ section {
 
 .orders .box-container .box p span {
   color: var(--purple);
+  /* word-wrap: break-word;
+  word-break: break-all; */
 }
 
 .orders .box-container .box form {
   text-align: center;
 }
 
-.orders .box-container .box form select {
+.orders .box-container .box .select-button {
+  position: absolute;
+  bottom: 20px;
+  margin-right: 22px;
+}
+.orders .box-container .box .select-button form select {
   border-radius: 0.5rem;
   margin: 0.5rem 0;
   width: 100%;
   background-color: var(--light-bg);
   border: var(--border);
-  padding: 1.2rem 1.4rem;
+  padding: 1.2rem 1rem;
   font-size: 1.8rem;
   color: var(--black);
 }
 
 .users .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 30rem);
+  grid-template-columns: repeat(auto-fit, 35rem);
   justify-content: center;
   gap: 1.5rem;
   max-width: 1200px;
@@ -478,7 +525,10 @@ section {
   border: var(--border);
   box-shadow: var(--box-shadow);
   border-radius: 0.5rem;
-  text-align: center;
+  min-height: 300px;
+  position: relative;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .users .box-container .box p {
@@ -489,10 +539,15 @@ section {
 
 .users .box-container .box p span {
   color: var(--purple);
+  /* margin-right: 15px; */
 }
 
 .users .box-container .box .delete-btn {
   margin-top: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 20px;
 }
 
 .messages .box-container {
@@ -511,6 +566,8 @@ section {
   border: var(--border);
   box-shadow: var(--box-shadow);
   border-radius: 0.5rem;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .messages .box-container .box p {
@@ -526,6 +583,9 @@ section {
 
 .messages .box-container .box .delete-btn {
   margin-top: 0;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 /* media queries  */
