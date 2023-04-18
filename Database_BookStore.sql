@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2023 at 04:40 PM
+-- Generation Time: Apr 18, 2023 at 04:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,128 @@ SET time_zone = "+00:00";
 --
 -- Database: `Database_BookStore`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `authors`
+--
+
+CREATE TABLE `authors` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `slogan` varchar(500) NOT NULL,
+  `information` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`id`, `name`, `image`, `slogan`, `information`) VALUES
+(1, 'Trác Nhã', 'https://images.kienthuc.net.vn/zoomh/800/uploaded/hongngan/2016_01_08/A/nu-sinh-truong-kich-xinh-dep-dong-long-nguoi.jpg', 'Vì một khi bạn nghe nhiều bạn sẽ hiểu đối phương hơn, có thể giúp đỡ họ, cũng như tự mang lại niềm vui cho mình.', 'https://eccthai.com/trac-nha/'),
+(2, 'Dale Carnegie', 'https://eccthai.com/wp-content/uploads/2021/01/tac-gia-dac-nhan-tam.jpeg', 'Đừng sợ những kẻ thù tấn công bạn. Hãy cẩn thận những người nịnh hót bạn.', ''),
+(3, 'Dr Blair Thomas Spalding', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Baird_T._Spalding_1935_portrait.jpg/330px-Baird_T._Spalding_1935_portrait.jpg', ' Tình thương là một năng lực sáng tạo khiến người thương và kẻ được thương trở nên giàu có.', 'https://vi.wikipedia.org/wiki/Baird_T._Spalding'),
+(4, 'Paulo Coelho', 'https://static.tuoitre.vn/tto/i/s626/2006/04/05/wwo9DGA2.jpg', 'When we strive to become better than we are, everything around us becomes better, too.', 'https://vi.wikipedia.org/wiki/Paulo_Coelho'),
+(5, 'Joe Vitale, Ihaleakala Hew Len', 'https://eccthai.com/wp-content/uploads/2021/06/Ihaleakala-Hew-Len.jpg', 'Tại sao vấn đề ở người khác mà ta có thể hóa giải được khi chữa lành chính mình?', 'https://eccthai.com/ihaleakala-hew-len/');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(100) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `price` int(100) NOT NULL,
+  `quantity` int(100) NOT NULL,
+  `image` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_name`, `price`, `quantity`, `image`) VALUES
+(1, 'UvHhPrzKzI', 'Nhà giả kim', 100000, 1, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(2, '0Rk2uEgpJb', 'Nhà giả kim', 100000, 3, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(3, 'UvHhPrzKzI', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(36, 'tbljO8qAlK', 'Khéo ăn nói sẽ có được thiên hạ', 95000, 8, 'https://lzd-img-global.slatic.net/g/p/da59103876cd0f1675ae9add24a29e2e.jpg_720x720q80.jpg_.webp'),
+(38, 'tbljO8qAlK', 'Lời từ chối hoàn hảo', 83000, 5, 'https://sachhay24h.com/uploads/images/sach-loi-tu-choi-hoan-hao-3.jpg'),
+(39, 'tbljO8qAlK', 'Không phải sói nhưng cũng đừng là cừu', 321000, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/118.jpg'),
+(40, 'tbljO8qAlK', 'Sức mạnh của ngôn từ', 96000, 1, 'https://cf.shopee.vn/file/39a86fc5a2b49890b7d3dc04a911ff44'),
+(41, 'tbljO8qAlK', 'Trí tuệ do thái', 111222, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/9.jpg'),
+(42, 'tbljO8qAlK', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 5, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(59, 'U2PHm8hQj3', 'Bố già', 200000, 6, 'https://cdn0.fahasa.com/media/catalog/product/z/2/z2611575615164_9f60c133cfed1c7bb3f59b247f-600.jpg'),
+(64, '3K9yBFY139', 'Lời từ chối hoàn hảo', 83000, 4, 'https://sachhay24h.com/uploads/images/sach-loi-tu-choi-hoan-hao-3.jpg'),
+(65, '3K9yBFY139', 'Combo 2 cuốn: Chiến Tranh Tiền Tệ – Tập 1 + 2 tác giả Song Hongbing', 207000, 1, 'https://vnibooks.com/wp-content/uploads/2022/03/combo-2-cuon-chien-tranh-tien-te-tap-1-2.jpeg.webp'),
+(66, '', 'Không phải sói nhưng cũng đừng là cừu', 321000, 4, 'https://temibook.com.vn/wp-content/uploads/2022/11/118.jpg'),
+(1, 'UvHhPrzKzI', 'Nhà giả kim', 100000, 1, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(2, '0Rk2uEgpJb', 'Nhà giả kim', 100000, 3, 'https://medio.vn/wp-content/uploads/2017/11/265266-nha-gia-kim-tai-ban-05-2015.jpg'),
+(3, 'UvHhPrzKzI', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 1, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(28, 'U2PHm8hQj3', 'Sức mạnh của ngôn từ', 96000, 3, 'https://cf.shopee.vn/file/39a86fc5a2b49890b7d3dc04a911ff44'),
+(29, 'U2PHm8hQj3', 'Hạt giống tâm hồn', 51000, 3, 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_225159.jpg'),
+(30, 'U2PHm8hQj3', 'Khéo ăn nói sẽ có được thiên hạ', 95000, 2, 'https://lzd-img-global.slatic.net/g/p/da59103876cd0f1675ae9add24a29e2e.jpg_720x720q80.jpg_.webp'),
+(35, 'U2PHm8hQj3', 'Lời từ chối hoàn hảo', 83000, 6, 'https://sachhay24h.com/uploads/images/sach-loi-tu-choi-hoan-hao-3.jpg'),
+(36, 'tbljO8qAlK', 'Khéo ăn nói sẽ có được thiên hạ', 95000, 8, 'https://lzd-img-global.slatic.net/g/p/da59103876cd0f1675ae9add24a29e2e.jpg_720x720q80.jpg_.webp'),
+(38, 'tbljO8qAlK', 'Lời từ chối hoàn hảo', 83000, 5, 'https://sachhay24h.com/uploads/images/sach-loi-tu-choi-hoan-hao-3.jpg'),
+(39, 'tbljO8qAlK', 'Không phải sói nhưng cũng đừng là cừu', 321000, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/118.jpg'),
+(40, 'tbljO8qAlK', 'Sức mạnh của ngôn từ', 96000, 1, 'https://cf.shopee.vn/file/39a86fc5a2b49890b7d3dc04a911ff44'),
+(41, 'tbljO8qAlK', 'Trí tuệ do thái', 111222, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/9.jpg'),
+(42, 'tbljO8qAlK', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 5, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(44, 'U2PHm8hQj3', 'Tuổi trẻ đáng giá bao nhiêu', 121000, 6, 'https://images.thuvienpdf.com/002/BUsRzLImN6.webp'),
+(47, 'U2PHm8hQj3', 'Combo 2 cuốn: Chiến Tranh Tiền Tệ – Tập 1 + 2 tác giả Song Hongbing', 207000, 1, 'https://vnibooks.com/wp-content/uploads/2022/03/combo-2-cuon-chien-tranh-tien-te-tap-1-2.jpeg.webp'),
+(48, 'U2PHm8hQj3', 'Trí tuệ do thái', 111222, 1, 'https://temibook.com.vn/wp-content/uploads/2022/11/9.jpg'),
+(52, 'U2PHm8hQj3', 'Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023', 515000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/combo-sa%CC%81ch-chu%CC%9B%CC%81ng-khoa%CC%81n-cho-ngu%CC%9Bo%CC%9B%CC%80i-mo%CC%9B%CC%81i-768x768.jpg.webp'),
+(53, 'U2PHm8hQj3', 'Bộ sách nền tảng về Đầu tư tài chính', 899000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/bo%CC%A3%CC%82-sa%CC%81ch-da%CC%82%CC%80u-tu%CC%9B-ta%CC%80i-chi%CC%81nh-768x768.jpg.webp'),
+(54, 'U2PHm8hQj3', 'Bộ sách Quản trị rủi ro trong đầu tư Chứng Khoán – 2021', 650000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/qua%CC%89n-tri%CC%A3-ru%CC%89i-ro-768x768.jpg.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `combo_products`
+--
+
+CREATE TABLE `combo_products` (
+  `combo_id` int(100) NOT NULL,
+  `combo_name` varchar(100) NOT NULL,
+  `price` int(100) NOT NULL,
+  `image_combo` varchar(200) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `description_detail` varchar(2000) NOT NULL,
+  `image_1` varchar(200) NOT NULL,
+  `name_1` varchar(200) NOT NULL,
+  `description_1` varchar(5000) NOT NULL,
+  `image_2` varchar(200) NOT NULL,
+  `name_2` varchar(200) NOT NULL,
+  `description_2` varchar(5000) NOT NULL,
+  `image_3` varchar(200) NOT NULL,
+  `name_3` varchar(200) NOT NULL,
+  `description_3` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `method` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `total_products` varchar(1000) NOT NULL,
+  `total_price` int(100) NOT NULL,
+  `placed_on` varchar(50) NOT NULL,
+  `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -74,6 +196,72 @@ INSERT INTO `products` (`product_id`, `name`, `author`, `price`, `image`, `descr
 (13, 'Luật Tâm Thức - Giải Mã Ma Trận Vũ Trụ ', 'Ngô Sa Thạch', 233600, 'https://cdn0.fahasa.com/media/catalog/product/b/i/bia_luattamthuc_bia-1.jpg', 'Dịch bệnh, thiên tai, chiến tranh… có phải là lời cảnh cáo của tự nhiên đến con người?\r\n\r\n“Biến đổi khí hậu” là một nước đi chính trị hay chỉ là sự thay đổi của Trái Đất theo chu kỳ?\r\n\r\nUFO, người ngoài hành tinh có thật không?\r\n\r\nTại sao Kinh dịch lại tiên đoán được các sự kiện?\r\n\r\nMỗi con người có số mệnh định sẵn không? Chúng ta sẽ đi về đâu sau khi chết?\r\n\r\n…\r\n\r\nLiệu tất cả chỉ là ngẫu nhiên, hay có một sự sắp đặt tài tình của vũ trụ?\r\n\r\n“Luật Tâm Thức - giải mã ma trận vũ trụ” sẽ giải đáp tất cả những khía cạnh mà có thể bạn không nhận thức được chúng tồn tại, và có thể khám phá những vùng đất mình chưa từng biết đến.  \r\n\r\nNhững góc nhìn trong “Luật Tâm Thức” bắt nguồn từ tất cả những kiến thức cổ xưa nhất của loài người… nhưng được tác giả Ngô Sa Thạch giải thích bằng một góc nhìn gần gũi, đặc biệt, qua đó bạn sẽ hiểu được:\r\n\r\nNguồn gốc của vũ trụ, những quy luật tự nhiên chi phối sự hình thành của mọi vật,  trí tuệ cổ xưa khi thông hiểu và ứng dụng các quy luật tự nhiên.\r\n\r\nNăng lượng và tần số rung động, giải thích những hiện tượng tâm linh như quy hồi tiền kiếp, tiên đoán sự kiện, du hành thời gian,...\r\n\r\nCon người: tổ hợp thân - tâm - trí, nghiệp quả, sứ mệnh trong các kiếp, sự tiến hóa của tâm thức.\r\n\r\nThay đổi cuộc sống bằng cách thay đổi tâm thức, hiểu đúng về các quy luật vũ trụ để thu hút năng lượng cải thiện cuộc sống của mình và cả vũ trụ.\r\n\r\nCuốn sách này sẽ giúp bạn thấy rằng những kiến thức của người xưa không hề cao siêu huyền bí mà vô cùng đơn giản và liên quan chặt chẽ tới khoa học hiện đại.\r\n\r\nViệc của bạn chỉ là đọc với một tâm trí cởi mở để thức tỉnh, vượt qua những rào cản của tâm trí, những niềm tin cố hữu của mình.  \r\n\r\nNếu con người cứ đóng khung tư duy của mình trong hai trường phái duy vật và duy tâm, chúng ta sẽ mãi mãi không bao giờ có thể giải đáp được những vấn đề lớn lao của nhân loại. Khi đó, chúng ta cũng sẽ không bao giờ hiểu được bản chất của những câu chuyện về tâm linh, cũng như những vấn đề chưa lý giải được của khoa học. \r\n\r\nSự thiếu hiểu biết này, sẽ dẫn tới những con người mù quáng khi có một số trải nghiệm “tâm linh”, sa đà vào mê tín. Ngược lại, chính nó cũng hình thành một nhóm người mù quáng tin vào khoa học, duy vật, dẫn tới sự hủy hoại nghiêm trọng tới sự sống trên cả hành tinh này.\r\n\r\nHiểu về luật tâm thức, nâng cao tâm thức là quá trình mỗi linh hồn trải nghiệm và vượt qua những bài học cuộc đời.\r\n', 'Skybooks', 'Dân Trí'),
 (14, 'Đời Ngắn Đừng Ngủ Dài', 'Robin Sharma', 56250, 'https://cdn0.fahasa.com/media/flashmagazine/images/page_images/doi_ngan_dung_ngu_dai_tai_ban_2018/2021_06_08_15_55_42_1-390x510.jpg', '“Mọi lựa chọn đều giá trị. Mọi bước đi đều quan trọng. Cuộc sống vẫn diễn ra theo cách của nó, không phải theo cách của ta. Hãy kiên nhẫn. Tin tưởng. Hãy giống như người thợ cắt đá, đều đặn từng nhịp, ngày qua ngày. Cuối cùng, một nhát cắt duy nhất sẽ phá vỡ tảng đá và lộ ra viên kim cương. Người tràn đầy nhiệt huyết và tận tâm với việc mình làm không bao giờ bị chối bỏ. Sự thật là thế.”\r\n\r\nBằng những lời chia sẻ thật ngắn gọn, dễ hiểu về những trải nghiệm và suy ngẫm trong đời, Robin Sharma tiếp tục phong cách viết của ông từ cuốn sách Điều vĩ đại đời thường để mang đến cho độc giả những bài viết như lời tâm sự, vừa chân thành vừa sâu sắc.\r\n', 'NXB Trẻ', 'NXB Trẻ'),
 (15, 'Không Giới Hạn - Khám Phá Ho\'Oponopono', 'Joe Vitale, Ihaleakala Hew Len', 119200, 'https://anybooks.vn/uploads/images/review-sach-khong-gioi-han-kham-pha-hooponopono-3.jpeg', '\"KHÔNG GIỚI HẠN là câu chuyện về sự trở về trạng thái zero, nơi không một thứ gì tồn tại nhưng mọi thứ đều khả dĩ. Ở trạng thái zero, không còn tư tưởng, ngôn từ, hành vi, ký ức, chương trình, niềm tin hoặc bất kỳ điều gì khác. Chẳng có gì cả.\" (Bí mật của vũ trụ)\r\n\r\nCó phải bạn đang làm việc quá sức và quá căng thẳng?\r\n\r\nCó phải bạn đang làm hết sức nhưng vẫn chẳng thành công trong sự nghiệp và cuộc sống cá nhân?\r\n\r\nNếu bạn đang cố gắng vất vả nhưng chưa đạt được kết quả như ý thì có lẽ vấn để nằm ở bên trong bạn. Có lẽ điều đang cản trở bạn nằm bên trong bạn chứ không phải ở bên ngoài. Không giới hạn đưa đến cho bạn một phương pháp đột phá để vượt qua những giới hạn nội tại và đạt được những mục tiêu mơ ước.\r\n\r\nHo\'oponopono là một hệ thống bí quyết tâm linh cổ xưa của người Hawaii, một phương pháp trị liệu vô cùng hiệu quả để giải phóng tâm thức, loại bỏ những trở ngại tinh thần, giúp bạn đạt đến mục tiêu không giới hạn trong công việc lẫn cuộc sống.\r\n\r\nJoe Vitale và Ihaleakala Hew Len, những bậc thầy về Ho\'oponopono hiện đại, sẽ từng bước hướng dẫn bạn áp dụng phương pháp này để gặt hái thành công về vật chất, sức khỏe, tinh thần và hạnh phúc.\r\n', 'NXB Thế Giới', 'NXB Thế Giới');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` varchar(10) NOT NULL,
+  `post_id` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `rating` varchar(1) NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(2500) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `post_id`, `user_id`, `rating`, `title`, `description`, `date`) VALUES
+('MWOCQF6Gq1', '7', 'U2PHm8hQj3', '4', 'Th&agrave;nh C&ocirc;ng NGuyễn', 'Th&agrave;nh C&ocirc;ng NGuyễn', '2023-04-08'),
+('76MVF5c8kg', '9', 'U2PHm8hQj3', '5', 'Bản lĩnh của người đ&agrave;n &ocirc;ng trước s&am', 'D&aacute;m c&aacute; l&agrave; 100% những người đ&agrave;n &ocirc;ng đọc cuốn Bố Gi&agrave; đều kh&acirc;m phục v&agrave; ngưỡng mộ h&igrave;nh tượng &ocirc;ng tr&ugrave;m Corleone. &Ocirc;ng qu&aacute; giỏi trong c&aacute;ch quan hệ với mọi người, biết c&aacute;ch xử l&yacute; khi n&oacute;i chuyện &ldquo;phải quấy&rdquo; kh&ocirc;ng th&agrave;nh c&ocirc;ng, sẵn s&agrave;ng &ldquo;trải nệm&rdquo; cho kẻ n&agrave;o d&aacute;m l&agrave;m hại tới gia đ&igrave;nh m&igrave;nh.\r\n\r\nD&ugrave; l&agrave; mafia nhưng nguy&ecirc;n tắc của Bố Gi&agrave; l&agrave; kh&ocirc;ng d&iacute;nh đến mại d&acirc;m v&agrave; ma t&uacute;y. &Ocirc;ng cũng rất gh&eacute;t việc quan hệ lằng nhằng với nhiều phụ nữ kh&aacute;c nhau.\r\nV&igrave; lu&ocirc;n sẵn s&agrave;ng gi&uacute;p đỡ người kh&aacute;c n&ecirc;n Bố Gi&agrave; được v&ocirc; số người nể trọng, c&oacute; những người sẵn s&agrave;ng chết v&igrave; &ocirc;ng v&agrave; v&igrave; chữ t&iacute;n m&agrave; &ocirc;ng đ&atilde; cho họ thấy. &Ocirc;ng tr&ugrave;m Corleone lu&ocirc;n giữ lời hứa trong cuộc đời m&igrave;nh, chỉ cần &ocirc;ng đ&atilde; hứa th&igrave; việc kh&oacute; đến mấy cũng sẽ l&agrave;m được.\r\nLời cuối c&ugrave;ng Bố Gi&agrave; để lại khi tạm biệt cuộc đời chỉ vỏn vẹn ba chữ &ldquo;Đời đẹp qu&aacute;&rdquo;\r\n', '2023-04-08'),
+('mMPYPAniAc', '8', 'UvHhPrzKzI', '4', 'H&atilde;y y&ecirc;u s&aacute;ch', 'Đọc s&aacute;ch l&agrave; cả 1 qu&aacute; tr&igrave;nh n&ecirc;n h&atilde;y bỏ thời gian ra đọc s&aacute;ch nha &lt;3', '2023-04-09'),
+('T8UZnRRmS8', '8', '0Rk2uEgpJb', '1', 'Enjoy the moment!!!!!!', 'H&atilde;y l&agrave; ch&iacute;nh m&igrave;nh ', '2023-04-09'),
+('ubhQoT6F7g', '8', 'U2PHm8hQj3', '4', 'TCN', 'TCN ahuah', '2023-04-09'),
+('XtOhxtonwB', '11', 'tbljO8qAlK', '5', 'H&atilde;y n&ecirc;n đọc &iacute;t nhất 1 lần !!!!', '\r\nĐ&acirc;y l&agrave; một cuốn s&aacute;ch rất hay v&agrave; &yacute; nghĩa. Trong cuộc sống hiện nay t&ocirc;i thấy kỹ năng từ chối l&agrave; rất cần thiết, n&oacute; gi&uacute;p ta c&oacute; thể sống với những điều m&igrave;nh thật sự muốn. Đ&ocirc;i khi khi ai nhờ ta một việc g&igrave; đ&oacute; mặc d&ugrave; ta rất kh&ocirc;ng muốn l&agrave;m nhưng v&igrave; cả nể n&ecirc;n cứ phải gật đầu đồng &yacute;. Cuốn s&aacute;ch n&agrave;y đ&atilde; gi&uacute;p t&ocirc;i biết c&aacute;ch từ chối một c&aacute;ch hợp l&yacute; nhất, từ chối nhưng vẫn giữ được mối quan hệ. Dạy ta c&aacute;c bước để đưa ra lời từ chối. Cuốn s&aacute;ch đ&atilde; đưa ra được những v&iacute; dụ thật sự cụ thể v&agrave; thuyết phục khiến người đọc cảm thấy dễ hiểu v&agrave; cảm thấy c&oacute; thể &aacute;p dụng được. Lời văn dễ hiểu gần gũi. T&oacute;m lại t&ocirc;i thấy đ&acirc;y l&agrave; một cuốn s&aacute;ch rất hay v&agrave; &yacute; nghĩa, l&agrave; một cuốn s&aacute;ch mọi người n&ecirc;n t&igrave;m đọc. V&agrave; tối rất chờ đợi c&aacute;c cuốn s&aacute;ch kh&aacute;c của t&aacute;c giả, cảm ơn.', '2023-04-09'),
+('uNM3qgoqPN', '3', '0Rk2uEgpJb', '4', 'TCN', 'TCN ahauhau', '2023-04-09'),
+('edOhbropr9', '9', 'tbljO8qAlK', '4', 'Cuộc sống trong thế giới ngầm', 'Thế giới ngầm trong &ldquo;Bố Gi&agrave;&rdquo; l&agrave; sự gặp gỡ của &yacute; ch&iacute; cương cường theo truyền thống Mafia xứ Sicily v&agrave; x&atilde; hội Mỹ nhập nhằng đen trắng, mảnh đất m&agrave;u mỡ cho những cơ hội l&agrave;m ăn bất ch&iacute;nh hứa hẹn những m&oacute;n lợi kếch x&ugrave;.\r\nTrong thế giới ấy, h&igrave;nh tượng bố gi&agrave; được t&aacute;c giả d&agrave;y c&ocirc;ng khắc họa đ&atilde; trở th&agrave;nh bức ch&acirc;n dung bất hủ trong l&ograve;ng người đọc.\r\nTừ một kẻ nhập cư trắng tay đến &ocirc;ng tr&ugrave;m tột đỉnh quyền uy, Don Vito Corleone l&agrave; con rắn hổ mang th&acirc;m trầm, nguy hiểm khiến kẻ th&ugrave; phải ki&ecirc;ng nể, e d&egrave;, nhưng cũng được bạn b&egrave;, th&acirc;n quyến xem như một đấng to&agrave;n năng đầy nghĩa kh&iacute;.', '2023-04-10'),
+('FzfdgzeD1i', '9', '0Rk2uEgpJb', '4', 'X&atilde; hội đen theo c&aacute;i nghĩa nguy&ecirc', 'Được độc giả Việt Nam biết tới từ thập ni&ecirc;n 1970 qua bản dịch của Ngọc Thứ Lang t&agrave;i hoa bạc mệnh, bố gi&agrave; Vito l&agrave; người m&agrave; kẻ th&ugrave; căm gh&eacute;t, khiếp sợ, khinh bỉ bởi &ldquo;đ&ocirc;i mắt chứa đựng một uy lực tối thượng nh&igrave;n thấy hết, biết hết, l&agrave;m được hết&rdquo;. Nhưng đối với bạn b&egrave;, th&acirc;n quyến, bố gi&agrave; gần như l&agrave; một đấng to&agrave;n năng c&oacute; thể cứu họ tho&aacute;t khỏi những thế kẹt v&agrave; nỗi oan ức m&agrave; ngay cả luật ph&aacute;p cũng chẳng gỡ được. &Ocirc;ng đ&uacute;ng l&agrave; &ldquo;x&atilde; hội đen&rdquo; theo c&aacute;i nghĩa nguy&ecirc;n thủy của n&oacute; thuở ban đầu h&igrave;nh th&agrave;nh.', '2023-04-10'),
+('1lPUnkJcAm', '15', 'U2PHm8hQj3', '5', 'Sách hay quá huhuh', 'Sách hay quá huhuh', '2023-04-10'),
+('UgfDJ054VZ', '14', 'U2PHm8hQj3', '4', 'Trích dẫn hay trong sách', 'Mỗi khi bạn cảm thấy nôn nóng, tuyệt vọng chán nản trên đường tiến tới một cuộc đời mình mong muốn, hãy nhớ rằng chính nơi bạn dừng chân có thể là nơi tốt nhất dành cho bạn. Và có lẽ hành trình còn tốt hơn đích đến.\r\n\r\nHãy nhìn thật sâu vào tâm can của mình, và nghiêm túc thực hiện bất cứ hành động nào để biến ý tưởng thành hiện thực. Bởi vì nếu bạn không thực hiện, sẽ chẳng có điều gì xảy ra cả.\r\n\r\nMỗi ngày cuộc đời gửi đến bạn cơ hội học hỏi, phát triển và bước gần đến chân thiện mỹ. Đừng bỏ lỡ, có những cơ hội không bao giờ trở lại. Đừng lựa chọn sự hối tiếc.\r\n\r\nThành công không phải một cuộc tranh tài xem ai sẽ được ưa chuộng hơn. Sau tất cả, điều đáng quan tâm nhất vẫn là bạn có thật sự là chính mình hay không?', '2023-04-10'),
+('NzSIJ36n6F', '11', 'U2PHm8hQj3', '5', 'Từ chối hoàn hảo là một nghệ thuật', 'Ngôn từ gần gũi, dễ dàng đi vào lòng người, có một cái nhìn tổng quát. Giúp các bạn hiểu rõ những về việc từ chối sao cho khôn khéo, không mất lòng người khác. Học cách từ chối người khác được ví như một môn nghệ thuật, nghệ thuật chối từ.\r\n\r\nBản thân mình trước khi đọc cuốn sách này thật sự là một người cực kì cực kì ngại giao tiếp. Ai nhờ gì làm nấy không thể nào nói say NO được. Đôi khi cũng suy nghĩ nhiều những cuối cùng vẫn không thể từ chối người ta được. Cũng may sau khi đọc và tập thực hành theo cuốn sách này thì vẫn ngại giao tiếp lắm nhưng được cái có thể mạnh dạng từ chối nhiều tình huống không vừa ý của mình rồi.\r\n\r\nLời từ chối hoàn hảo là một cuốn sách cực kì phù hợp cho người ngại giao tiếp. Cuốn sách này sẽ giúp bạn không trở thành một Yes Man. Để rồi từ đó bạn sẽ có thêm thời gian để sống và khám phá những điều đúng với mong muốn của bản thận hơn.', '2023-04-10'),
+('hiABr0DcEJ', '11', '0Rk2uEgpJb', '5', 'Trong cuộc sống luôn tồn tại nghịch lý', 'Trong thế giới không ngừng phát triển này, con người không thể cô lập chính mình mà phải hòa mình với xã hội. Nhưng để hòa mình thì không phải dễ, tôi đã gặp rất nhiều rắc rối trong việc này. Tôi không muốn làm người khác thất vọng nên thường có ai nhờ việc gì là tôi đồng ý, kết quả là mọi chuyện trở nên quá sức và không ai vui vẻ cả. Đôi khi trong cuộc sống, lời từ chối cần phải được đưa ra, nhưng nhiều người không muốn làm người người khác phật lòng. Cho nên quyển sách Lời Từ Chối Hoàn Hảo rất thích hợp cho những ai không biết cách từ chối người khác hay sự hấp dẫn của việc giải trí. Bản dịch rất mượt, văn phong hiện đại nên cũng dễ hiểu, đây là quyển sách ', '2023-04-10'),
+('fLF3DEyxj6', '3', 'U2PHm8hQj3', '5', 'Cuốn s&aacute;ch mang nhiều hương vị, thực tiễn v&agrave; đ&aacute;ng để đọc một lần trong đời', 'L&agrave; nh&agrave; T&acirc;m l&yacute; học, Tr&aacute;c Nh&atilde; x&acirc;y dựng v&agrave; viết &ldquo;Kh&eacute;o ăn kh&eacute;o n&oacute;i sẽ c&oacute; được thi&ecirc;n hạ&rdquo; một c&aacute;ch th&ocirc;ng minh. S&aacute;ch được chia ra th&agrave;nh hai phần v&agrave; nhiều chương, d&ugrave; vậy, vẫn rất đầy đủ, r&otilde; r&agrave;ng, ph&acirc;n t&iacute;ch nhiều khả năng xảy ra trong cuộc sống h&agrave;ng ng&agrave;y. Đặc biệt, phần I &ndash; D&aacute;m n&oacute;i chuyện đảm bảo thu h&uacute;t trong qu&aacute; tr&igrave;nh người đọc t&igrave;m hiểu hoặc ph&acirc;n v&acirc;n c&oacute; n&ecirc;n tiếp tục hay kh&ocirc;ng; bất kỳ lứa tuổi n&agrave;o cũng sẽ nhận ra việc bản th&acirc;n thiếu s&oacute;t phần n&agrave;o v&agrave; ngạc nhi&ecirc;n, n&oacute; hiển nhi&ecirc;n đ&uacute;ng, nhưng chưa biết c&aacute;ch &aacute;p dụng sao cho tối ưu h&oacute;a nhất.\r\nNghi&ecirc;ng về cuối s&aacute;ch tuy nhi&ecirc;n, phần n&agrave;y lại chưa được cụ thể lắm. Những t&igrave;nh huống kh&oacute; xử ng&agrave;y c&agrave;ng nhiều v&agrave; d&agrave;y đặc, tiếp nữa l&agrave; mức độ của n&oacute; được n&acirc;ng l&ecirc;n, n&acirc;ng l&ecirc;n được hiểu như suy luận v&agrave; &yacute; nghĩ của con người mở rộng, h&agrave;nh vi cũng như ho&agrave;n cảnh đẩy đưa li&ecirc;n tục n&ecirc;n d&ugrave; l&agrave; người giỏi giang đến mấy cũng chưa thể gi&uacute;p chi tiết đến ho&agrave;n hảo.\r\n\r\nT&igrave;nh huống kh&oacute; xử lu&ocirc;n thật sự rắc rối, buộc ta phải biến đổi li&ecirc;n tục, tư duy kh&ocirc;ng ngừng nghỉ để th&iacute;ch ứng được việc giả', '2023-04-10'),
+('acstKGErk7', '2', 'U2PHm8hQj3', '4', 'Tuổi trẻ đáng giá bao nhiêu đơn giản chỉ là cuốn sách của sự trải nghiệm', 'Tuổi trẻ đáng giá bao nhiêu là cuốn sách không nặng nề giáo điều, không chỉ trích cực đoan, đơn giản chỉ là những tâm sự bình dị của người đi trước, Rosie Nguyễn mang đến cho bạn trẻ những tư tưởng tích cực nhất để mạnh mẽ bước chân vào đời.\r\nBạn đã đọc bao nhiêu sách kĩ năng, self-help rồi?\r\n\r\nBạn có áp dụng được những gì tốt đẹp mà các tác giả đúc kết lại, truyền cảm hứng để bạn thực hành, hay chỉ đơn giản là bạn cũng mắc bệnh hào hứng 1 phút, chỉ siêng năng nhất thời và ba bốn hôm lại “ngày mới cuộc sống cũ”?\r\nNếu như bạn đã quá quen với những cuốn sách dạy kĩ năng nhưng đa phần nội dung giống hệt nhau, gần như khó áp dụng cho thực tế, thì cuốn sách này sẽ…..', '2023-04-10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` varchar(100) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phonenumber` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_type` varchar(100) NOT NULL DEFAULT 'user',
+  `image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phonenumber`, `password`, `user_type`, `image`) VALUES
+('RIHIJafONk', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen0602@gmail.com', '0847476547', '$2y$10$hpPlEItu6bvl/.QywclYae9S3.qC7IT3ZP5lGzLptKXWvuWAmtNmK', 'user', 't1qu4Ht5vm.jpg'),
+('UvHhPrzKzI', 'Thanh Cong Nguyen', 'Cong.Nguyen@0602', 'cong.nguyen0602@hcmut.edu.vn', '0847476547', '$2y$10$rQvScSRrrrrrlGaqkkZAYOrCTbunZN5GLOUkumKOgpxK7n5pGdcm2', 'user', '7suq9ZQ7QI.jpg'),
+('0Rk2uEgpJb', 'Ha ma tau', 'thu_ha1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$yRvFEt51DM3XxaSFzxI02e61euRJ78bxF3PsbLjRcW4tUN.diKh/m', 'user', 'ENUAkAOOWl.jpg'),
+('', 'test', '', 'test@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'user', ''),
+('tbljO8qAlK', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen060202@gmail.com', '0847476547', '$2y$10$JRs/5vMuE7owbn7eipQftus5ScFZfOHc/TnPy4mdNOElS8xUdvKCG', 'user', 'hV0wPQa1jQ.jpg'),
+('U2PHm8hQj3', 'Đỗ Trần Ngọc Linh', 'ngoc_linh1703', 'ngoclinh1703@gmail.com', '0847476547', '$2y$10$Cj8crljO5EoUw7KFm6Wdcu/qMyg2xJh5/w2GnRejeuwROIgOiDHjy', 'user', 'TTX7XhmN86.png');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
