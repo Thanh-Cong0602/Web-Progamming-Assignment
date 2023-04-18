@@ -43,7 +43,7 @@ session_start();
 
 <!-- About section starts  -->
 
-<section class="about" id="about">
+<section class="about tcn" id="about">
 
     <div class="video-container" data-aos="fade-right" data-aos-delay="300">
         <video src="../../public/images/book-video-2.mp4" muted autoplay loop class="video"></video>

@@ -4,11 +4,11 @@ include '../../config/config.php';
 
 session_start();
 
-// $admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['admin_id'];
 
-// if (!isset($admin_id)) {
-//     header('location: ../../app/View/loginForm.php');
-// }
+if (!isset($admin_id)) {
+    header('location: ../../app/View/loginForm.php');
+}
 
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
@@ -48,16 +48,17 @@ if (isset($_GET['delete'])) {
             $select_users = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
             while ($fetch_users = mysqli_fetch_assoc($select_users)) {
             ?>
-                <div class="box">
-                    <p> user id : <span><?php echo $fetch_users['user_id']; ?></span> </p>
-                    <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
-                    <p> username : <span><?php echo $fetch_users['username']; ?></span> </p>
-                    <p> email : <span><?php echo $fetch_users['email']; ?></span> </p>
-                    <p> user type : <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+            <div class="box">
+                <p> user id : <span><?php echo $fetch_users['user_id']; ?></span> </p>
+                <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
+                <p> username : <span><?php echo $fetch_users['username']; ?></span> </p>
+                <p> email : <span><?php echo $fetch_users['email']; ?></span> </p>
+                <p> user type : <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
                                                             echo 'var(--orange)';
                                                         } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
-                    <a href="admin_user.php?delete=<?php echo $fetch_users['user_id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">delete user</a>
-                </div>
+                <a href="admin_user.php?delete=<?php echo $fetch_users['user_id']; ?>"
+                    onclick="return confirm('delete this user?');" class="delete-btn">delete user</a>
+            </div>
             <?php
             };
             ?>

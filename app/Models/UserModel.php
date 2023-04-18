@@ -19,10 +19,10 @@ class User {
             $row = mysqli_fetch_assoc($select_users);
             if(password_verify($password, $row['password'])){
                 if($row['user_type'] == 'admin'){
-                    $_SESSION['admin_name'] = $row['fullname'];
+                    $_SESSION[' '] = $row['fullname'];
                     $_SESSION['admin_email'] = $row['email'];
                     $_SESSION['admin_id'] = $row['id'];
-                    return '../View/admin_page.php';    
+                    return '../../admin/View/admin_page.php';  
                 }
                 elseif($row['user_type'] == 'user'){
                     setcookie('user_id', $row['user_id'], time() + 60*60*24*30, '/');

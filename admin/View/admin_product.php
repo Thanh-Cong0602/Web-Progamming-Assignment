@@ -25,7 +25,7 @@ if (isset($_POST['add_product'])) {
         $message[] = 'Sách đã tồn tại';
     } else {
         $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author, price, image, description, supplier, publiser) VALUES('$product_id', '$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
+        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, image, description, supplier, publiser) VALUES('$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
         $message[] = 'Sách đã được thêm vào danh mục';
     }
 }
@@ -158,6 +158,8 @@ if (isset($_POST['update_product'])) {
     <!-- custom admin js file link  -->
     <!-- <script src="js/admin_script.js"></script> -->
 
+    <!-- custom admin js file link  -->
+    <script src="../../public/js/admin_script.js"></script>
 </body>
 
 </html>
