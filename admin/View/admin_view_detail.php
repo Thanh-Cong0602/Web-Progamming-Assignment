@@ -1,7 +1,7 @@
 <?php 
 include '../../config/config.php';
 $id = $_GET['id'];
-$get_product = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = $id") or die('query failed');
+$get_product = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = '$id'") or die('query failed');
 $detail_product = mysqli_fetch_array($get_product);
 ?>
 <!DOCTYPE html>

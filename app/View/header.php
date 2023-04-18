@@ -6,7 +6,7 @@
 
     <div id="menu-btn" class="fas fa-bars"></div>
 
-    <a data-aos="zoom-in-left" data-aos-delay="150" href="#" class="logo"> 
+    <a data-aos="zoom-in-left" data-aos-delay="150" href="home.php" class="logo"> 
         <i class="fas fa-book-open"></i>Book Store </a>
 
     <nav class="navbar">
@@ -96,6 +96,16 @@ window.addEventListener("scroll", () => {
 });
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <?php include '../View/alert.php'; ?>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      offset: 150,
+    });
+  </script>
 </header>
 <!-- header section ends -->
 <style>
