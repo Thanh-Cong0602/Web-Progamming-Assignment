@@ -19,9 +19,9 @@ class User {
             $row = mysqli_fetch_assoc($select_users);
             if(password_verify($password, $row['password'])){
                 if($row['user_type'] == 'admin'){
-                    $_SESSION[' '] = $row['fullname'];
+                    $_SESSION['admin_name'] = $row['fullname'];
                     $_SESSION['admin_email'] = $row['email'];
-                    $_SESSION['admin_id'] = $row['id'];
+                    $_SESSION['admin_id'] = $row['user_id'];
                     return '../../admin/View/admin_page.php';  
                 }
                 elseif($row['user_type'] == 'user'){
@@ -33,11 +33,11 @@ class User {
                 }
             }
             else{
-                return 'Incorrect password!';
+                return 'Mật khẩu không chính xác!';
             }
             
         } else {
-            return 'Incorrect email!';
+            return 'Địa chỉ email không chính xác!';
         }
     }
 
@@ -64,7 +64,7 @@ class User {
         $image_folder = '../../public/images/'.$rename;
         if(!empty($image)){
             if($image_size > 2000000){
-                return 'Image size is too large!';
+                return 'Kích thước ảnh quá lớn!';
             }else{
                 move_uploaded_file($image_tmp_name, $image_folder);
             }
@@ -93,22 +93,34 @@ class User {
     }
 
     public function verify_review($get_id, $user_id) {
-        $verify_review = mysqli_query($this->conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id' AND user_id = '$user_id'") or die('query failed');
+        $verify_review = mysqli_query($this->conn, "SELECT * FROM `reviews` WHERE (product_id = '$get_id' OR combo_id = '$get_id') AND user_id = '$user_id'") or die('query failed');
         return mysqli_num_rows($verify_review);
     }
 
     public function userAddReview($post_id, $user_id, $rating, $title, $description) {
         $user_id = $_COOKIE['user_id'];
-        $review_id = create_unique_id();
+        // $review_id = create_unique_id();
         if($user_id != ''){
             $title = $_POST['title'];
-            // $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $description = $_POST['description'];
-            // $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $rating = $_POST['rating'];
-            $rating = filter_var($rating, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            mysqli_query($this->conn, "INSERT INTO `reviews`(id, post_id, user_id, rating, title, description) VALUES('$review_id','$post_id', '$user_id', '$rating', '$title', '$description')") or die('query failed');
-            return 'Đã thêm đánh giá của bạn!';
+            $mycheck = mysqli_query($this->conn, "SELECT * FROM products WHERE product_id = '$post_id'");
+            if (mysqli_num_rows($mycheck) > 0) {
+                $combo_id = null; // Set combo_id to null
+                mysqli_query($this->conn, "INSERT INTO `reviews`(product_id , user_id, rating, title, description) VALUES('$post_id', '$user_id', '$rating', '$title', '$description')") or die('query failed');
+                return 'Đã thêm đánh giá của bạn!';
+            }
+            else {
+                $result = mysqli_query($this->conn, "SELECT * FROM combo_products WHERE combo_id = '$post_id'");
+                if(mysqli_num_rows($result) > 0){
+                    $product_id = null;
+                    mysqli_query($this->conn, "INSERT INTO `reviews`(combo_id, user_id, rating, title, description) VALUES('$post_id', '$user_id', '$rating', '$title', '$description')") or die('query failed');
+
+                    return 'Đã thêm đánh giá của bạn!';
+                }
+            }
+            
+            
         }
         else{
             return 'Vui lòng đăng nhập trước tiên!';
@@ -117,9 +129,9 @@ class User {
 
     public function userUpdateReview($rating, $title, $description, $review_id) {
         $title = $_POST['title'];
-        $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $description = $_POST['description'];
-        $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $rating = $_POST['rating'];
         $rating = filter_var($rating, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         mysqli_query($this->conn, "UPDATE `reviews` SET rating = $rating, title = '$title', description = '$description' WHERE id = '$review_id'") or die('query failed');
@@ -205,6 +217,16 @@ class User {
         return 'Cập nhật thông tin thành công!';
     }
 
+    public function userSendMessage($name, $email, $username, $phonenumber, $message){
+        $user_id = $_COOKIE['user_id'];
+        if($user_id != ''){
+            mysqli_query($this->conn, "INSERT INTO `message`(user_id, name, username, email, phonenumber, message) VALUES('$user_id', '$name', '$email', '$username','$phonenumber', '$message')") or die('query failed');
+            return 'Yêu cầu hỗ trợ thành công!';
+        }
+        else {
+            return 'Vui lòng đăng nhập trước tiên!';
+        }
+    }
     public function userDetelePic(){
         $user_id = $_COOKIE['user_id'];
         $select_old_pic = mysqli_query($this->conn, "SELECT * FROM `users` WHERE user_id = '$user_id' LIMIT 1") or die('query failed');

@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($message)) {
     foreach ($message as $message) {
         echo '

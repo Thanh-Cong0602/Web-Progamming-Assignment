@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
    $user_type = $_POST['user_type'];
    $user = new User($conn);
    $result = $user->registerUser($fullname, $username, $email, $phonenumber, $confirmpassword, $user_type);
-   if ($result == 'Image size is too large'){
+   if ($result == 'Kích thước ảnh quá lớn!'){
       $_SESSION['warning_msg'] = $result;
    }
    elseif ($result == 'Error uploading file'){ 

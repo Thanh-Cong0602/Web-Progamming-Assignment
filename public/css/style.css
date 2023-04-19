@@ -447,12 +447,14 @@ section {
 
 .about .content span {
   color: #29d9d5;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 .about .content h3 {
   color: #fff;
-  font-size: 4rem;
+  font-size: 3rem;
   margin-top: .5rem;
 }
 
@@ -1756,7 +1758,10 @@ information-detail.credit {
   display: block;
   text-align: center;
 }
-
+.updateInfo-form .error {
+  color: red;
+  font-size: 1.5rem;
+}
 /*End CSS Update User Information */
 
 /* End Detail Book Style */
@@ -1938,6 +1943,78 @@ information-detail.credit {
 
 
 
+.reviews .box-container{
+  max-width: 1200px;
+  margin:0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  align-items: center;
+  gap:1.5rem;
+  justify-content: center;
+}
+
+.reviews .box-container .box{
+  background-color: #222;
+  box-shadow: var(--box-shadow);
+  border:var(--border);
+  border-radius: .5rem;
+  text-align: center;
+  padding:2rem;
+  height: 40rem;
+}
+
+.reviews .box-container .box img{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+}
+
+.reviews .box-container .box p{
+  padding: 1rem 1rem;
+  margin-top: 1rem;
+  /* text-align: justify; */
+  line-height: 2;
+  color:var(--light-color);
+  font-size: 1.5rem;
+  height: 15rem;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  
+}
+.reviews .box-container .box p::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f2f2f2;
+}
+ 
+.reviews .box-container .box p::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 5px;
+}
+
+.reviews .box-container .box .stars{
+  display: inline-block;
+  margin: 1rem;
+  border-radius: .5rem;
+  padding:.5rem 1.5rem;
+}
+
+.reviews .box-container .box .stars i{
+  color: orange;
+}
+
+.reviews .box-container .box h3{
+  font-size: 1.5rem;
+  color: aqua;
+  margin-top: 1rem;
+}
+.reviews h1{
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+
 .product .box-container .box .purchase button:hover i {
   color: whitesmoke;
 }
@@ -2043,7 +2120,7 @@ information-detail.credit {
 }
 
 .checkout form .btn {
-  width: 20%;
+  width: none;
   display: block;
   margin: 0 auto;
   font-size: 2em;
@@ -2058,7 +2135,7 @@ information-detail.credit {
 .contact form {
   margin: 0 auto;
   background-color: var(--light-bg);
-  border-radius: .5rem;
+  border-radius: 1.5rem;
   border: var(--border);
   padding: 2rem;
   max-width: 50rem;
@@ -2076,7 +2153,7 @@ information-detail.credit {
 .contact form .box {
   margin: 1rem 0;
   width: 100%;
-  border: var(--border);
+  border: 1rem;
   background-color: var(--white);
   padding: 1.2rem 1.4rem;
   font-size: 1.8rem;
@@ -2088,7 +2165,9 @@ information-detail.credit {
   height: 20rem;
   resize: none;
 }
-
+.contact form .btn {
+  margin: 0 auto;
+}
 .policyShipping {
   margin-top: 10rem;
 }
@@ -2106,7 +2185,9 @@ information-detail.credit {
   width: 50%;
   margin: 0 auto;
 }
-
+.rate {
+  font-size: 2rem;
+}
 .policyShipping .policy h4 {
   margin-top: 3rem;
   text-align: left;
@@ -2147,7 +2228,13 @@ information-detail.credit {
     padding: 3rem 2rem;
   }
 }
-
+@media (max-width: 1330px) {
+  .detailBook .provider {
+    display: block;
+    gap: 0;
+    margin-top: 2rem;
+  }
+}
 @media (max-width: 768px) {
   #menu-btn {
     display: inline-block;
@@ -2193,10 +2280,6 @@ information-detail.credit {
     height: 50rem;
   }
 
-  .checkout form .btn {
-    width: 40%;
-    font-size: 1.5em;
-  }
 
   .detailBook {
     display: block;
@@ -2220,7 +2303,13 @@ information-detail.credit {
     gap: 1.5rem;
   }
 }
-
+@media (max-width: 610px) {
+  .detailBook .provider {
+    display: block;
+    gap: 0;
+    margin-top: 2rem;
+  }
+}
 @media (max-width: 450px) {
   html {
     font-size: 50%;

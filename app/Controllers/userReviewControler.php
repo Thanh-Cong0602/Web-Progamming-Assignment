@@ -9,10 +9,14 @@
             $get_id = '';
             header('location:home.php');
         }
+        echo $get_id;
         $user_id = $_COOKIE['user_id'];
+        $title = $_POST['title'];
+        $rating = $_POST['rating'];
+        $description = $_POST['description'];
         $user = new User($conn);
         if($user->verify_review($get_id, $user_id) > 0) {
-            $_SESSION['warning_msg'] = 'Đánh giá của bạn đã được thêm!';
+            $_SESSION['warning_msg'] = 'Đánh giá của bạn đã tồn tại!';
         }
         else {
             $result = $user->userAddReview($get_id, $user_id, $rating, $title, $description);
@@ -25,5 +29,20 @@
         }
         header('Location: ../View/add_review.php?get_id=' . $get_id);
     }
-
+    
+    if(isset($_POST['submit_update'])){
+        if(isset($_GET['get_id'])){
+            $get_id = $_GET['get_id'];
+         }else{
+            $get_id = '';
+            header('location:home.php');
+        }
+        $rating = $_POST['rating'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $user = new User($conn);
+        $user->userUpdateReview($rating, $title, $description, $get_id);
+        $_SESSION['success_msg'] = 'Cập nhật đánh giá thành công!';  
+        header('Location: ../View/update_review.php?get_id=' . $get_id);
+    }
 ?>

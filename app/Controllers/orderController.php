@@ -10,7 +10,7 @@ if(isset($_POST['order_btn'])){
     $adress = $_POST['address'];
     $orderModel = new OderModel($conn);
     $message = $orderModel->addToOrder($name, $number, $email, $method, $adress);
-    if($message == 'Your cart is empty' || $message == 'Order already placed!'){
+    if($message == 'Giỏ hàng của bạn đang trống!' || $message == 'Đơn hàng đã được đặt!'){
         $_SESSION['warning_msg'] = $message;
     }
     else{

@@ -39,18 +39,18 @@ if(isset($_GET['get_id'])){
 <!-- add review section starts  -->
 <section class="account-form">
 
-   <form action="../Controllers/userUpdateReviewCTRL.php?get_id=<?= $get_id; ?>" method="post">
+   <form action="../Controllers/userReviewControler.php?get_id=<?= $get_id; ?>" method="post">
    <?php
     $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = '$get_id'") or die('query failed');
     if(mysqli_num_rows($select_reviews) > 0){
     while($fetch_review = mysqli_fetch_assoc($select_reviews)){
    ?>
-       <h3>Edit your review</h3>
-      <p class="placeholder">Review Title <span>*</span></p>
+       <h3>Chỉnh sửa đánh giá</h3>
+      <p class="placeholder">Tiêu đề đánh giá <span>*</span></p>
       <input type="text" name="title" required maxlength="50" placeholder="Enter review title" class="box" value="<?= $fetch_review['title']; ?>">
-      <p class="placeholder">Review Description</p>
+      <p class="placeholder">Mô tả đánh giá</p>
       <textarea name="description" class="box" placeholder="Enter review description"><?= $fetch_review['description']; ?></textarea>
-      <p class="placeholder">Review Rating <span>*</span></p>
+      <p class="placeholder">Điểm đánh giá <span>*</span></p>
       <select name="rating" class="box" required>
          <option value="<?= $fetch_review['rating']; ?>"><?= $fetch_review['rating']; ?></option>
          <option value="2">2</option>
@@ -58,8 +58,15 @@ if(isset($_GET['get_id'])){
          <option value="4">4</option>
          <option value="5">5</option>
       </select>
-      <input type="submit" value="Update Review" name="submit_update" class="submit-btn">
-      <a href="detail_book.php?get_id=<?= $fetch_review['post_id']; ?>" class="submit-btn">Go Back</a>
+      <input type="submit" value="Cập nhật đánh giá" name="submit_update" class="submit-btn">
+      <?php
+       if ($fetch_review['product_id']) {
+         $link = "detail_book.php?get_id=" . $fetch_review['product_id'];
+      } else {
+         $link = "detail_combo_book.php?get_id=" . $fetch_review['combo_id'];
+      }
+      echo '<a href="' . $link . '" id="myLink" class="submit-btn">Quay lại</a>';
+      ?>
    </form>
    <?php
          }
@@ -68,6 +75,7 @@ if(isset($_GET['get_id'])){
       }
    ?>
 </section>
+
 <!-- update review section ends -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <?php include '../View/alert.php'; ?>

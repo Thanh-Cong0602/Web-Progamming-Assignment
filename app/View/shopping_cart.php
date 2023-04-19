@@ -81,7 +81,7 @@ session_start();
           $grand_total += $sub_total;
         }
       } else {
-        echo '<p class="empty">Your cart is empty</p>';
+        echo '<p class="empty">Giỏ hàng của bạn hiện đang trống</p>';
       }
       ?>
     </div>

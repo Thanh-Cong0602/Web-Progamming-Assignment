@@ -101,6 +101,76 @@ session_start();
     
 </section>
 
+<!-- review section starts -->
+
+<section class="reviews">
+
+   <h1 class="title">Đánh giá của khách hàng</h1>
+
+   <div class="box-container">
+    <?php
+         $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id IN (7, 21,22,23) LIMIT 6") or die('query failed');
+         if(mysqli_num_rows($select_reviews) > 0){
+            while($fetch_reviews = mysqli_fetch_assoc($select_reviews)){
+            $user_identifier = $fetch_reviews['user_id'];
+            $select_users = mysqli_query($conn, "SELECT * FROM `users`  WHERE user_id ='$user_identifier'") or die('query failed');
+            $fetch_users = mysqli_fetch_assoc($select_users);
+    ?>
+      <div class="box">
+      <img src="../../public/images/<?= $fetch_users['image']; ?>" alt="">
+        <h3><?php echo $fetch_users['fullname']; ?></h3>
+         <p><?php echo $fetch_reviews['description']; ?></p>
+         <div class="stars">
+         <?php if($fetch_reviews['rating'] == 1){ ?>
+            <p>
+                <i class="fas fa-star"></i> 
+            </p>
+         <?php }; ?> 
+         <?php if($fetch_reviews['rating'] == 2){ ?>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+            </p>
+         <?php }; ?>
+         <?php if($fetch_reviews['rating'] == 3){ ?>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+            </p>
+         <?php }; ?>   
+         <?php if($fetch_reviews['rating'] == 4){ ?>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </p>
+         <?php }; ?>
+         <?php if($fetch_reviews['rating'] == 5){ ?>
+            <p>
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i> 
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </p>
+         <?php }; ?>
+         </div>
+      </div>
+      <?php
+            }
+        }
+        else {
+            echo '<p class="empty">Chưa có bài đánh giá nào cả!</p>';
+        }
+    ?>
+      
+
+   </div>
+
+</section>
+
 <!-- review section ends -->
 
 <?php include 'footer.php'; ?>

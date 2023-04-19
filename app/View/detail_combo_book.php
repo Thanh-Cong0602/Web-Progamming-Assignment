@@ -52,7 +52,7 @@ if(isset($_POST['delete_review'])){
 
     <div class="book-img" data-aos="fade-right" data-aos-delay="300">
         <?php
-            $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id=$get_id") or die('query failed');
+            $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id='$get_id'") or die('query failed');
             if(mysqli_num_rows($select_combo_products) > 0){
             $product = mysqli_fetch_assoc($select_combo_products);
         ?>
@@ -73,7 +73,7 @@ if(isset($_POST['delete_review'])){
     <?php
         $average = 0;
         $total_ratings = 0;
-        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE combo_id = '$get_id'") or die('query failed');
         $total_reviews = mysqli_num_rows($select_ratings);
         while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
             $total_ratings += $fetch_rating['rating'];
@@ -141,7 +141,13 @@ if(isset($_POST['delete_review'])){
         <p><?php echo $product['combo_name']?></p>
         <div class="description"><?php echo nl2br($product['description_detail'])?></div>
         <div class="book">
-        <p>1. <?php echo $product['name_1']?></p>
+        <?php 
+            if ($product['name_1'] != null) {
+                echo '<p>1. '.$product['name_1'].'</p>';
+            } else {
+                echo '<p></p>';
+            }
+        ?>
         <div class="description"><?php echo nl2br($product['description_1'])?></div>
         <?php 
             if ($product['image_1'] != null) {
@@ -150,7 +156,13 @@ if(isset($_POST['delete_review'])){
         ?>
         </div>
         <div class="book">
-        <p>2. <?php echo $product['name_2']?></p>
+        <?php 
+            if ($product['name_2'] != null) {
+                echo '<p>2. '.$product['name_2'].'</p>';
+            } else {
+                echo '<p></p>';
+            }
+        ?>
         <div class="description"><?php echo nl2br($product['description_2'])?></div>
         <?php 
             if ($product['image_2'] != null) {
@@ -188,7 +200,7 @@ if(isset($_POST['delete_review'])){
     <div class="box-review">
     <div class="view-post">
         <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id = $get_id") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id = '$get_id'") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
                 while($fetch_products = mysqli_fetch_assoc($select_products)){
                     $total_ratings = 0;
@@ -197,7 +209,7 @@ if(isset($_POST['delete_review'])){
                     $rating_3 = 0;
                     $rating_4 = 0;
                     $rating_5 = 0;
-                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE combo_id = '$get_id'") or die('query failed');
                 $total_reivews = mysqli_num_rows($select_ratings);
                 while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
                     $total_ratings += $fetch_rating['rating'];
@@ -278,7 +290,7 @@ if(isset($_POST['delete_review'])){
    
    <div class="box-container">
    <?php
-        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = $get_id") or die('query failed');
+        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE combo_id = '$get_id'") or die('query failed');
         if(mysqli_num_rows($select_reviews) > 0){
         while($fetch_review = mysqli_fetch_assoc($select_reviews)){
         ?>
@@ -343,8 +355,8 @@ if(isset($_POST['delete_review'])){
       <?php if($fetch_review['user_id'] == $user_id){ ?>
          <form action="" method="post" class="flex-btn">
             <input type="hidden" name="delete_id" value="<?= $fetch_review['id']; ?>">
-            <a href="update_review.php?get_id=<?= $fetch_review['id']; ?>" class="update">Edit Review</a>
-            <input type="submit" value="delete review" class="delete-review" name="delete_review" >
+            <a href="update_review.php?get_id=<?= $fetch_review['id']; ?>" class="update">Chỉnh sửa</a>
+            <input type="submit" value="Xóa" class="delete-review" name="delete_review" >
          </form>
       <?php }; ?>   
    </div>

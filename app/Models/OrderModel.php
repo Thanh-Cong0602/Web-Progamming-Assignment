@@ -26,14 +26,14 @@ class OderModel
         $total_products = implode(', ', $cart_products);
         $order_query = mysqli_query($this->conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
         if ($cart_total == 0) {
-            return 'Your cart is empty';
+            return 'Giỏ hàng của bạn đang trống!';
         } else {
             if (mysqli_num_rows($order_query) > 0) {
-                return 'Order already placed!';
+                return 'Đơn hàng đã được đặt!';
             } else {
                 mysqli_query($this->conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
                 mysqli_query($this->conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-                return 'Order placed successfully!';
+                return 'Bạn đã đặt hàng thành công!';
             }
         }
     }

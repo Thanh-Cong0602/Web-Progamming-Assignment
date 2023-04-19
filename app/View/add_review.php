@@ -54,7 +54,18 @@ if(isset($_GET['get_id'])){
          <option value="5">5</option>
       </select>
       <input type="submit" value="Gửi đánh giá" name="submit_review" class="submit-btn">
-      <a href="detail_book.php?get_id=<?= $get_id; ?>" class="submit-btn">Quay lại</a>
+         <?php
+          $selectCheck = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = '$get_id'") or die('query failed');
+          if(mysqli_num_rows($selectCheck)) {
+            $link = '<a href="detail_book.php?get_id=' . $get_id . '" class="submit-btn">Quay lại</a>';
+            echo $link;
+          }
+          else {
+            $link = '<a href="detail_combo_book.php?get_id=' . $get_id . '" class="submit-btn">Quay lại</a>';
+            echo $link;
+          }
+           ?>
+      <!-- // <a href="detail_book.php?get_id=<?= $get_id; ?>" class="submit-btn">Quay lại</a> -->
    </form>
 
 </section>

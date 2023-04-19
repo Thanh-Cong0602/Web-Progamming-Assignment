@@ -32,7 +32,7 @@ session_start();
 
 <section class="updateInfo-form">
 
-   <form action="../Controllers/userUpdateProfileCTRL.php" method="post" enctype="multipart/form-data">
+   <form onsubmit="return validateForm()" action="../Controllers/userUpdateProfileCTRL.php" method="post" enctype="multipart/form-data">
       <h3>Cập nhật thông tin cá nhân!</h3>
       <?php
          $user_id = $_COOKIE['user_id'];
@@ -42,17 +42,21 @@ session_start();
       <p class="placeholder">Họ và tên</p>
       <input type="text" name="fullname" maxlength="50" placeholder="<?= $fetch_profile['fullname']; ?>" class="box">
       <p class="placeholder">Username</p>
-      <input type="text" name="username" maxlength="50" placeholder="<?= $fetch_profile['username']; ?>" class="box">
+      <input type="text" id="username" name="username" maxlength="50" placeholder="<?= $fetch_profile['username']; ?>" class="box">
+      <span class="error" id="usernameError"></span>
       <p class="placeholder">Email của bạn</p>
-      <input type="email" name="email" maxlength="50" placeholder="<?= $fetch_profile['email']; ?>" class="box">
+      <input type="email" id="email" name="email" maxlength="50" placeholder="<?= $fetch_profile['email']; ?>" class="box">
+      <span class="error" id="emailError"></span>
       <p class="placeholder">Số điện thoại</p>
-      <input type="text" name="phonenumber" maxlength="50" placeholder="<?= $fetch_profile['phonenumber']; ?>" class="box">
+      <input type="text" id="phoneNumber" name="phonenumber" maxlength="50" placeholder="<?= $fetch_profile['phonenumber']; ?>" class="box">
+      <span class="error" id="numberError"></span>
       <p class="placeholder">Mật khẩu cũ</p>
-      <input type="password" name="oldpass" maxlength="50" placeholder="Enter your old password" class="box">
+      <input type="password" name="oldpass" maxlength="50" placeholder="Nhập mật khẩu cũ" class="box">
       <p class="placeholder">Mật khẩu mới</p>
-      <input type="password" name="newpass" maxlength="50" placeholder="Enter your new password" class="box">
+      <input type="password" id="password" name="newpass" maxlength="50" placeholder="Nhập mật khẩu mới" class="box">
+      <span class="error" id="passwordError"></span>
       <p class="placeholder">Xác nhận mật khẩu mới</p>
-      <input type="password" name="confirmpass" maxlength="50" placeholder="Confirm your new password" class="box">
+      <input type="password" name="confirmpass" maxlength="50" placeholder="Nhập lại mật khẩu mới" class="box">
       <?php if($fetch_profile['image'] != ''){ ?>
          <img src="../../public/images/<?= $fetch_profile['image']; ?>" alt="" class="image">
          <input type="submit" value="Xóa ảnh đại diện" name="delete_image" class="delete-btn" onclick="return confirm('delete this image?');">
@@ -61,7 +65,49 @@ session_start();
       <input type="file" name="image" class="box" accept="image/*">
       <input type="submit" value="Cập nhật thông tin" name="submit" class="btn">
    </form>
+   <script>
+    // Client-side validation using JavaScript
+    function validateForm() {
+      let username = document.getElementById("username").value;
+      let phoneNumber = document.getElementById("phoneNumber").value;
+      let password = document.getElementById("password").value;
+      let email = document.getElementById("email").value;
 
+      let usernameError = document.getElementById("usernameError");
+      let numberError = document.getElementById("numberError");
+      let passwordError = document.getElementById("passwordError");
+      let emailError = document.getElementById("emailError");
+
+      let isValid = true;
+
+      if ( username.length > 0 && username.length < 6) {
+        usernameError.innerHTML = "Tên người dùng phải có ít nhất 6 ký tự";
+        isValid = false;
+      } else {
+        usernameError.innerHTML = "";
+      }
+      if (phoneNumber.length > 0 && phoneNumber.length < 10) {
+        numberError.innerHTML = "Số điện thoại phải có ít nhất 10 chữ số";
+        isValid = false;
+      } else {
+        numberError.innerHTML = "";
+      }
+      if (password.length > 0 && password.length < 8) {
+        passwordError.innerHTML = "Mật khẩu phải có ít nhất 8 ký tự";
+        isValid = false;
+      } else {
+        passwordError.innerHTML = "";
+      }
+      let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if ( email.length > 0 &&  !emailRegex.test(email)) {
+        emailError.innerHTML = "Email không hợp lệ. Vui lòng nhập lại";
+        isValid = false;
+      } else {
+        emailError.innerHTML = "";
+      }
+      return isValid;
+    }
+  </script>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <?php include '../View/alert.php'; ?>

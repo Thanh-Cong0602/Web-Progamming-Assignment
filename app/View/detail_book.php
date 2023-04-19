@@ -74,7 +74,7 @@ if(isset($_POST['delete_review'])){
     <?php
         $average = 0;
         $total_ratings = 0;
-        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
+        $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE product_id = '$get_id'") or die('query failed');
         $total_reviews = mysqli_num_rows($select_ratings);
         while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
             $total_ratings += $fetch_rating['rating'];
@@ -173,7 +173,7 @@ if(isset($_POST['delete_review'])){
                     $rating_3 = 0;
                     $rating_4 = 0;
                     $rating_5 = 0;
-                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
+                $select_ratings = mysqli_query($conn, "SELECT * FROM `reviews` WHERE product_id = '$get_id'") or die('query failed');
                 $total_reivews = mysqli_num_rows($select_ratings);
                 while($fetch_rating = mysqli_fetch_assoc($select_ratings)){
                     $total_ratings += $fetch_rating['rating'];
@@ -254,7 +254,7 @@ if(isset($_POST['delete_review'])){
    
    <div class="box-container">
    <?php
-        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE post_id = '$get_id'") or die('query failed');
+        $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE product_id = '$get_id'") or die('query failed');
         if(mysqli_num_rows($select_reviews) > 0){
         while($fetch_review = mysqli_fetch_assoc($select_reviews)){
         ?>
@@ -319,8 +319,8 @@ if(isset($_POST['delete_review'])){
       <?php if($fetch_review['user_id'] == $user_id){ ?>
          <form action="" method="post" class="flex-btn">
             <input type="hidden" name="delete_id" value="<?= $fetch_review['id']; ?>">
-            <a href="update_review.php?get_id=<?= $fetch_review['id']; ?>" class="update">Edit Review</a>
-            <input type="submit" value="delete review" class="delete-review" name="delete_review" >
+            <a href="update_review.php?get_id=<?= $fetch_review['id']; ?>" class="update">Chỉnh sửa</a>
+            <input type="submit" value="Xóa đánh giá" class="delete-review" name="delete_review" >
          </form>
       <?php }; ?>   
    </div>

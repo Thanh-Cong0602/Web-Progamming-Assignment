@@ -25,7 +25,7 @@ if (isset($_POST['add_product'])) {
         $message[] = 'Sách đã tồn tại';
     } else {
         $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, image, description, supplier, publiser) VALUES('$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
+        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author, price, image, description, supplier, publiser) VALUES('$product_id', '$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
         $message[] = 'Sách đã được thêm vào danh mục';
     }
 }
@@ -92,7 +92,7 @@ if (isset($_POST['update_product'])) {
     <section class="show-products">
         <div class="box-container">
             <?php
-            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY `date` ASC") or die('query failed');
             if (mysqli_num_rows($select_products) > 0) {
                 while ($fetch_products = mysqli_fetch_assoc($select_products)) {
                     ?>

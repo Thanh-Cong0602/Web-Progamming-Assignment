@@ -1,5 +1,9 @@
 <?php
   $user_id = $_COOKIE['user_id'];
+  $check_id = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'") or die('query failed');
+  if(mysqli_num_rows($check_id) ==0) {
+    $user_id = '';
+  }
 ?>
 <!-- header section starts  -->
 <header class="header">

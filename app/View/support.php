@@ -30,13 +30,14 @@ session_start();
 
 <section class="contact">
 
-   <form action="" method="post">
-      <h3>say something!</h3>
-      <input type="text" name="name" required placeholder="enter your name" class="box">
-      <input type="email" name="email" required placeholder="enter your email" class="box">
-      <input type="number" name="number" required placeholder="enter your number" class="box">
-      <textarea name="message" class="box" placeholder="enter your message" id="" cols="30" rows="10"></textarea>
-      <input type="submit" value="send message" name="send" class="btn">
+   <form action="../Controllers/supportController.php" method="post">
+      <h3>Hỗ trợ!</h3>
+      <input type="text" name="name" required placeholder="Nhập tên của bạn" class="box">
+      <input type="email" name="email" required placeholder="Nhập địa chỉ email của bạn" class="box">
+      <input type="text" name="username" required placeholder="Nhập username của bạn" class="box">
+      <input type="number" name="number" required placeholder="Nhập số điện thoại" class="box">
+      <textarea name="message" class="box" placeholder="Nhập nội dung cần hỗ trợ" id="" cols="30" rows="10"></textarea>
+      <input type="submit" value="Xác nhận" name="send" class="btn">
    </form>
 
 </section>

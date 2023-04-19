@@ -25,13 +25,12 @@
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="300">
-        <h3>Truy cập</h3>
-        <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> Trang chủ </a>
-        <a href="#about" class="links"> <i class="fas fa-arrow-right"></i> Giới thiệu </a>
-        <a href="#destination" class="links"> <i class="fas fa-arrow-right"></i> Sản phẩm </a>
-        <a href="#services" class="links"> <i class="fas fa-arrow-right"></i> services </a>
-        <a href="#gallery" class="links"> <i class="fas fa-arrow-right"></i> gallery </a>
-        <a href="#blogs" class="links"> <i class="fas fa-arrow-right"></i> Bài viết </a>
+        <h3>Hỗ trợ</h3>
+        <a href="../View/policy_shipping.php" class="links"> <i class="fas fa-arrow-right"></i> Chính sách vận chuyển/giao hàng </a>
+        <a href="../View/payment_Guide.php" class="links"> <i class="fas fa-arrow-right"></i> Hướng dẫn thanh toán </a>
+        <a href="../View/policy_return.php" class="links"> <i class="fas fa-arrow-right"></i> Chính sách đổi trả </a>
+        <a href="../View/policy_refund.php" class="links"> <i class="fas fa-arrow-right"></i> Chính sách hoàn tiền </a>
+        <a href="../View/policy_privacy.php" class="links"> <i class="fas fa-arrow-right"></i> Chính sách bảo mật </a>
     </div>
 
     <div class="box" data-aos="fade-up" data-aos-delay="450">

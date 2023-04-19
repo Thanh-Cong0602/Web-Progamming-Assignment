@@ -46,7 +46,7 @@ session_start();
 <section class="product" id="product" data-aos="fade-up" data-aos-delay="500">
     <div class="box-container shop">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY `date` ASC") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
@@ -60,7 +60,9 @@ session_start();
                             <a href="detail_book.php?get_id=<?php echo $fetch_products['product_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                         </div>
                         <div class="purchase">
-                            <h3>$<?php echo $fetch_products['price'];?></h3>
+                            <h3><?php echo $fetch_products['price'];?>
+                            <span class="rate">₫</span></h3>
+                        </h3>
                             <input type="hidden" name="product_quantity" value="1">
                             <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
                             <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">

@@ -49,7 +49,7 @@ session_start();
     <section class="product" id="product" data-aos="fade-up" data-aos-delay="500">
         <div class="box-container ">
             <?php
-            $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products`") or die('query failed');
+            $select_combo_products = mysqli_query($conn, "SELECT * FROM `combo_products` ORDER BY `date` ASC") or die('query failed');
             if (mysqli_num_rows($select_combo_products) > 0) {
                 while ($fetch_combo_products = mysqli_fetch_assoc($select_combo_products)) {
             ?>
@@ -63,7 +63,8 @@ session_start();
                                 <a href="detail_combo_book.php?get_id=<?php echo $fetch_combo_products['combo_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                             </div>
                             <div class="purchase">
-                                <h3>$<?php echo $fetch_combo_products['price']; ?></h3>
+                                <h3><?php echo $fetch_combo_products['price']; ?>
+                                    <span class="rate">₫</span></h3>
                                 <input type="hidden" name="product_quantity" value="1">
                                 <input type="hidden" name="product_name" value="<?php echo $fetch_combo_products['combo_name']; ?>">
                                 <input type="hidden" name="product_price" value="<?php echo $fetch_combo_products['price']; ?>">

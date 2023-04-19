@@ -4,6 +4,10 @@ include '../../config/config.php';
 session_start();
 $cartModel = new CartModel($conn);
 if (isset($_POST['add_to_cart'])) {
+   if($user_id == ''){
+      $_SESSION['warning_msg'] = 'Vui lòng đăng nhập trước tiên!';
+      header('Location: ../View/home.php');
+   }
    $user_id = $_COOKIE['user_id'];
    $product_name = $_POST['product_name'];
    $product_price = $_POST['product_price'];

@@ -46,7 +46,7 @@ session_start();
 <section class="about tcn" id="about">
 
     <div class="video-container" data-aos="fade-right" data-aos-delay="300">
-        <video src="../../public/images/book-video-2.mp4" muted autoplay loop class="video"></video>
+        <video src="../../public/images/book-video-3.mp4" muted autoplay loop class="video"></video>
         <div class="controls">
             <span class="control-btn" data-src="../../public/images/book-video-1.mp4"></span>
             <span class="control-btn" data-src="../../public/images/book-video-2.mp4"></span>
@@ -55,9 +55,9 @@ session_start();
     </div>
 
     <div class="content" data-aos="fade-left" data-aos-delay="600">
-        <span>Tại sao bạn phải đọc sách?</span>
-        <h3>Đố bạn biết đấy</h3>
-        <p>TCN</p>
+        <h3>Tại sao bạn phải đọc sách??</h3>
+        <span>Đọc sách không chỉ nâng cao kiến thức, kỹ năng, phát triển tư duy giáo dục mà còn rèn luyện nhân cách con người. Ý nghĩa của việc đọc sách là vô cùng to lớn và rộng mở. Đọc sách cung cấp tri thức cho con người để học tập và làm việc.</span>
+        <!-- <p>TCN</p> -->
         <a href="about.php" class="btn">Xem thêm</a>
     </div>
 
@@ -75,7 +75,8 @@ session_start();
     </div>
     <div class="box-container">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY id DESC LIMIT 8") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY product_id DESC LIMIT 8") or die('query failed');
+
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
@@ -89,7 +90,10 @@ session_start();
                             <a href="detail_book.php?get_id=<?php echo $fetch_products['product_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                         </div>
                         <div class="purchase">
-                            <h3>$<?php echo $fetch_products['price'];?></h3>
+                            <h3>
+                                <?php echo $fetch_products['price'];?>
+                                <span class="rate">₫</span></h3>
+                            </h3>
                             <input type="hidden" name="product_quantity" value="1">
                             <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
                             <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
@@ -133,7 +137,9 @@ session_start();
                             <a href="detail_combo_book.php?get_id=<?php echo $fetch_combo_products['combo_id']; ?>">Xem thêm<i class="fas fa-angle-right"></i></a>
                         </div>
                         <div class="purchase">
-                            <h3>$<?php echo $fetch_combo_products['price'];?></h3>
+                            <h3><?php echo $fetch_combo_products['price'];?>
+                            <span class="rate">₫</span></h3>
+                        </h3>
                             <input type="hidden" name="product_quantity" value="1">
                             <input type="hidden" name="product_name" value="<?php echo $fetch_combo_products ['combo_name']; ?>">
                             <input type="hidden" name="product_price" value="<?php echo $fetch_combo_products['price']; ?>">
