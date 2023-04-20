@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 08:42 PM
+-- Generation Time: Apr 20, 2023 at 06:16 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -66,9 +66,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_name`, `price`, `quantity`, `image`) VALUES
-(0, 'nHwusQXym3', 'Bố già', 212500, 4, 'https://cdn0.fahasa.com/media/catalog/product/z/2/z2611575615164_9f60c133cfed1c7bb3f59b247f-600.jpg'),
-(0, 'nHwusQXym3', '1% Mỗi Ngày - Không Ngừng Chinh Phục Bản Thân', 102000, 1, 'https://cdn0.fahasa.com/media/catalog/product/8/9/8934974179566.jpg'),
-(0, 'nHwusQXym3', 'Thuật Thao Túng - Góc Tối Ẩn Sau Mỗi Câu Nói', 104000, 1, 'https://cdn0.fahasa.com/media/catalog/product/u/n/untitledthaotungtamly.jpg');
+(0, 'jBSM7nyWJV', 'Không Phải Sói Nhưng Cũng Đừng Là Cừu', 96000, 1, 'https://cdn0.fahasa.com/media/catalog/product/_/k/_khong-phai-soi-nhung-cung-dung-la-cuu.jpg'),
+(0, 'jBSM7nyWJV', 'Nhà Giả Kim', 65500, 1, 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_195509_1_36793.jpg'),
+(0, 'jBSM7nyWJV', 'Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023', 515000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/combo-sa%CC%81ch-chu%CC%9B%CC%81ng-khoa%CC%81n-cho-ngu%CC%9Bo%CC%9B%CC%80i-mo%CC%9B%CC%81i-768x768.jpg.webp');
 
 -- --------------------------------------------------------
 
@@ -109,6 +109,31 @@ INSERT INTO `combo_products` (`combo_id`, `combo_name`, `price`, `image_combo`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `database_bai3`
+--
+
+CREATE TABLE `database_bai3` (
+  `id` int(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(5000) NOT NULL,
+  `price` float NOT NULL,
+  `image` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `database_bai3`
+--
+
+INSERT INTO `database_bai3` (`id`, `name`, `description`, `price`, `image`) VALUES
+(1, 'Kingston FURY Beast DDR5', 'Dung lượng 16GB lên đến 6000MT/s', 123, 'https://minhancomputercdn.com/media/product/7472_kingston_fury_beast_rgb_16gb_1.jpg'),
+(2, 'Kingston FURY Beast DDR4 RGB', 'Giúp nâng cao hiệu năng và cải tiến phong cách với tốc độ lên đến 3733MT/s', 13.25, 'https://media.kingston.com/kingston/product/ktc-product-beast-ddr4-rgb-dimm-1-angled-zm-lg.jpg'),
+(7, 'Thanh Cong Nguyen', 'Giúp nâng cao hiệu năng và cải tiến phong cách với tốc độ lên đến 3600MHz', 12, 'https://bizweb.dktcdn.net/100/329/122/products/ram-pc-kingston-fury-beast-rgb-32gb-3600mhz-ddr4-2x16gb-kf436c18bbak2-32-1-38a0d576-31f5-4e9b-b9b2-cd40bed9723a.png?v=1671726823967'),
+(12, 'Ram PC Kingston Fury Beast', 'Chuẩn RAM DDR4 Bus hỗ trợ 2400MHz Dung lượng 8 GB (1x8GB)', 12, 'https://bizweb.dktcdn.net/100/329/122/products/ram-pc-kingston-fury-beast-rgb-32gb-3600mhz-ddr4-2x16gb-kf436c18bbak2-32-1-38a0d576-31f5-4e9b-b9b2-cd40bed9723a.png?v=1671726823967'),
+(14, 'Ram desktop Kingston Fury Renegade', 'Giúp nâng cao hiệu năng và cải tiến phong cách với tốc độ lên đến 3600MHz', 123, 'https://bizweb.dktcdn.net/100/329/122/products/ram-pc-kingston-fury-beast-rgb-32gb-3600mhz-ddr4-2x16gb-kf436c18bbak2-32-1-38a0d576-31f5-4e9b-b9b2-cd40bed9723a.png?v=1671726823967');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `message`
 --
 
@@ -121,15 +146,6 @@ CREATE TABLE `message` (
   `phonenumber` varchar(20) NOT NULL,
   `message` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `message`
---
-
-INSERT INTO `message` (`id`, `user_id`, `name`, `username`, `email`, `phonenumber`, `message`) VALUES
-(1, 'nHwusQXym3', 'Thanh Cong Nguyen', 'thanhcongnguyen0602@gmail.com', 'thanh_luon29', '0847476547', 'Mong đừng lỗi ahuhu'),
-(2, 'nHwusQXym3', 'Thanh Cong Nguyen', 'thanhcongnguyen0602@gmail.com', 'thanh_luon29', '0847476547', 'Ahuhu'),
-(3, 'nHwusQXym3', 'Thanh Cong Nguyen', 'thanhcongnguyen0602@gmail.com', 'thanhcong123', '0847476547', 'HMMMMM');
 
 -- --------------------------------------------------------
 
@@ -150,6 +166,14 @@ CREATE TABLE `orders` (
   `placed_on` varchar(50) NOT NULL,
   `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
+(0, 'jBSM7nyWJV', 'Thanh Cong Nguyen', '0847476547', 'thanhcongnguyen0602@gmail.com', 'credit card', 'Ho Chi Minh', ', Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023 (1) ', 515000, '20-Apr-2023', 'pending'),
+(0, 'jBSM7nyWJV', 'Thanh Cong Nguyen', '1231243', 'thanhcongnguyen0602@gmail.com', 'cash on delivery', 'Ho Chi Minh', ', Không Phải Sói Nhưng Cũng Đừng Là Cừu (1) , Nhà Giả Kim (1) , Trí Tuệ Do Thái (1) ', 303250, '20-Apr-2023', 'pending');
 
 -- --------------------------------------------------------
 
@@ -175,6 +199,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `name`, `author`, `price`, `image`, `description`, `supplier`, `publiser`, `date`) VALUES
 ('85glwWSTrg', 'Bố già', 'Mario Puzo', 212500, 'https://cdn0.fahasa.com/media/catalog/product/z/2/z2611575615164_9f60c133cfed1c7bb3f59b247f-600.jpg', 'Thế giới ngầm được phản ánh trong tiểu thuyết Bố già là sự gặp gỡ giữa một bên là ý chí cương cường và nền tảng gia tộc chặt chẽ theo truyền thống mafia xứ Sicily với một bên là xã hội Mỹ nhập nhằng đen trắng, mảnh đất màu mỡ cho những cơ hội làm ăn bất chính hứa hẹn những món lợi kếch xù. Trong thế giới ấy, hình tượng Bố già được tác giả dày công khắc họa đã trở thành bức chân dung bất hủ trong lòng người đọc. Từ một kẻ nhập cư tay trắng đến ông trùm tột đỉnh quyền uy, Don Vito Corleone là con rắn hổ mang thâm trầm, nguy hiểm khiến kẻ thù phải kiềng nể, e dè, nhưng cũng được bạn bè, thân quyến xem như một đấng toàn năng đầy nghĩa khí. Nhân vật trung tâm ấy đồng thời cũng là hiện thân của một pho triết lí rất “đời” được nhào nặn từ vốn sống của hàng chục năm lăn lộn giữa chốn giang hồ bao phen vào sinh ra tử, vì thế mà có ý kiến cho rằng “Bố già là sự tổng hòa của mọi hiểu biết. Bố già là đáp án cho mọi câu hỏi”.\r\n\r\nVới cấu tứ hoàn hảo, cốt truyện không thiếu những pha hành động gay cấn, tình tiết bất ngờ và không khí kình địch đến nghẹt thở, Bố già xứng đáng là đỉnh cao trong sự nghiệp văn chương của Mario Puzo. Và như một cơ duyên đặc biệt, ngay từ năm 1971-1972, Bố già đã đến với bạn đọc trong nước qua phong cách chuyển ngữ hào sảng, đậm chất giang hồ của dịch giả Ngọc Thứ Lang.\r\n\r\nGiới thiệu tác giả:\r\n\r\nMario Puzo (1920 - 1999) là nhà văn, nhà biên kịch người Mỹ gốc Italy nổi tiếng với nhiều tiểu thuyết về đề tài mafia và tội phạm. Bố già (The Godfather) xuất bản năm 1969 là đỉnh cao của dòng văn chương hư cấu này, đồng thời là tác phẩm đưa Puzo lên tột đỉnh vinh quang. Đây cũng là một trong những tiểu thuyết bán chạy nhất mọi thời đại. Ngoài Bố già, Mario Puzo còn nổi tiếng với các tiểu thuyết khác như Sicilian khúc ca bi tráng, Luật im lặng, Ông trùm quyền lực cuối cùng, Gia đình Giáo hoàng…\r\n\r\nGiới thiệu dịch giả:\r\n\r\nNgọc Thứ Lang tên thật là Nguyễn Ngọc Tú, biệt danh là công tử Bắc Kỳ, vào Sài Gòn lập nghiệp khoảng năm 1950. Ngọc Thứ Lang là dịch giả của thời kì trước năm 1975, đã chuyển ngữ nhiều tác phẩm nhưng có lẽ Bố già là một dấu son trong sự nghiệp của ông.\r\n\r\nNăm 1972, bản dịch Bố già của Ngọc Thứ Lang chuyển ngữ từ nguyên bản tiếng Anh ra mắt và đã thu hút được sự chú ý của rất nhiều độc giả. Nếu như The Godfather của Mario Puzo khi vừa xuất bản đã nằm trong danh sách sách bán chạy nhất suốt 67 tuần thì Bố già của Ngọc Thứ Lang cũng “làm mưa làm gió” trên thị trường văn học dịch của Sài Gòn những năm 70 của thế kỉ trước.\r\n\r\nCái hay, cái khiến người đọc say mê Bố già có lẽ nằm ở chính giọng văn đậm chất giang hồ súng đạn của người dịch. Và bản thân cái tên Bố già cũng là một sáng tạo vô tiền khoáng hậu của Ngọc Thứ Lang. Nhiều độc giả Việt Nam nói rằng nếu đọc The Godfather của Mario Puzo, hãy tìm đúng bản dịch của Ngọc Thứ Lang để thấy chất đàn ông trong đó…\r\n\r\nNhận xét về tác phẩm:\r\n\r\n “Bố già là sự tổng hòa của mọi hiểu biết. Bố già là đáp án cho mọi câu hỏi.” - Diễn viên Tom Hanks\r\n\r\n“Bạn không thể dừng đọc nó và khó lòng ngừng mơ về nó.” - New York Times Magazine\r\n\r\n“Một tác phẩm kinh điển về mafia… Tự bản thân nó đã tạo ra một thứ bùa mê hoặc độc giả.” - The Times.', 'Đông A', 'NXB Văn Học', '2023-04-19 20:59:45'),
+('dINC5JnqoZ', 'Thanh Cong Nguyen', 'Paulo Coelho', 124124, 'https://cdn0.fahasa.com/media/catalog/product/m/u/muonkiepnhansinh.jpg', '123123', 'AZ Việt Nam', 'Lao Động', '2023-04-20 23:03:49'),
 ('e8M13U7eOs', 'Tuổi Trẻ Đáng Giá Bao Nhiêu', 'Rosie Nguyễn', 67500, 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSrv-mgwTc98hztAPGj63HQpZFq4FQVv_ztegcsf5HZe1w8eZyZnHHFP2hvyrcGQ614f5HuoMtJlt3z12r3Y13vnAEXtNlIwtwX07lOb2gY&usqp=CAE', '“Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ...\r\n\r\nBạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng.\r\n\r\nBạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ.\r\n\r\nSuy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.\r\n\r\nNên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống.\r\n\r\nVì sau tất cả, chẳng ai quan tâm.”\r\n\r\n“Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi.\r\n\r\nTuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI.\r\n\r\nNhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC.\r\n\r\nHãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình.\r\n\r\nNếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu? nhiều hơn một lần.”\r\n\r\n- Đặng Nguyễn Đông Vy, tác giả, nhà báo.', 'Nhã Nam', 'NXB Hội Nhà Văn', '2023-04-19 21:00:42'),
 ('EPHBjxBoy1', 'Muôn Kiếp Nhân Sinh - Many Times, Many Lives', 'Nguyên Phong', 117600, 'https://cdn0.fahasa.com/media/catalog/product/m/u/muonkiepnhansinh.jpg', 'Muôn Kiếp Nhân Sinh - Many Times, Many Lives\r\n\r\nGiáo sư John Vũ – Nguyên Phong và những câu chuyện chưa từng có về tiền kiếp, khám phá luật Nhân quả, Luân hồi.\r\n\r\n“Muôn kiếp nhân sinh” là tác phẩm do Giáo sư John Vũ - Nguyên Phong viết từ năm 2017 và hoàn tất đầu năm 2020 ghi lại những câu chuyện, trải nghiệm tiền kiếp kỳ lạ từ nhiều kiếp sống của người bạn tâm giao lâu năm, ông Thomas – một nhà kinh doanh tài chính nổi tiếng ở New York. Những câu chuyện chưa từng tiết lộ này sẽ giúp mọi người trên thế giới chiêm nghiệm, khám phá các quy luật về luật Nhân quả và Luân hồi của vũ trụ giữa lúc trái đất đang gặp nhiều tai ương, biến động, khủng hoảng từng ngày.\r\n\r\n“Muôn kiếp nhân sinh” là một bức tranh lớn với vô vàn mảnh ghép cuộc đời, là một cuốn phim đồ sộ, sống động về những kiếp sống huyền bí, trải dài từ nền văn minh Atlantis hùng mạnh đến vương quốc Ai Cập cổ đại của các Pharaoh quyền uy, đến Hợp Chủng Quốc Hoa Kỳ ngày nay.\r\n\r\n“Muôn kiếp nhân sinh”cung cấp cho bạn đọc kiến thức mới mẻ, vô tận của nhân loại lần đầu được hé mở, cùng những phân tích uyên bác, tiên đoán bất ngờ về hiện tại và tương lai thế giới của những bậc hiền triết thông thái. Đời người tưởng chừng rất dài nhưng lại trôi qua rất nhanh, sinh vượng suy tử, mong manh như sóng nước. Luật nhân quả cực kỳ chính xác, chi tiết, phức tạp được thu thập qua nhiều đời, nhiều kiếp, liên hệ tương hỗ đan xen chặt chữ lẫn nhau, không ai có thể tính được tích đức này có thể trừ được nghiệp kia không, không ai có thể biết được khi nào nhân sẽ trổ quả. Nhưng, một khi đã gây ra nhân thì chắc chắn sẽ gặt quả - luật Nhân quả của vũ trụ trước giờ không bao giờ sai.\r\n\r\nLuật Luân hồi và Nhân quả đã tạo nhân duyên để người này gặp người kia. Gặp nhau có khi là duyên, có khi là nợ; gặp nhau có lúc để trả nợ, có lúc để nối lại duyên xưa. Có biết bao việc diễn ra trong đời, tưởng chừng như là ngẫu nhiên nhưng thật ra đã được sắp đặt từ trước. Luân hồi là một ngôi trường rộng lớn, nơi tất cả con người, tất cả sinh vật đều phải học bài học của riêng mình cho đến khi thật hoàn thiện mới thôi. Nếu không chịu học hay chưa học được trọn vẹn thì buộc phải học lại, chính xác theo quy luật của Nhân quả.\r\n\r\nThomas đã chia sẻ vì sao đã kể những câu chuyện riêng tư huyền bí này với Giáo sư John Vũ để thực hiện tác phẩm “Muôn kiếp nhân sinh”:\r\n\r\n “Hiện nay thế giới đang trải qua giai đoạn hỗn loạn, xáo trộn, mà thật ra thì mọi quốc gia đều đang gánh chịu những nghiệp quả mà họ đã gây ra trong quá khứ. Mỗi quốc gia, cũng như mọi cá nhân, đều có những nghiệp quả riêng do những nhân mà họ đã gây ra. Cá nhân thì có ‘biệt nghiệp‘ riêng của từng người, nhưng quốc gia thì có ‘cộng nghiệp‘ mà tất cả những người sống trong đó đều phải trả.\r\n\r\nThường thì con người, khi hành động, ít ai nghĩ đến hậu quả, nhưng một khi hậu quả xảy đến thì họ nghĩ gì, làm gì? Họ oán hận, trách trời, trách đất, trách những người chung quanh đã gây ra những hậu quả đó? Có mấy ai biết chiêm nghiệm, tự trách mình và thay đổi không?\r\n\r\nTôi mong chúng ta - những cánh bướm bé nhỏ rung động mong manh cũng có thể tạo nên những trận cuồng phong mãnh liệt để thức tỉnh mọi người.\r\n\r\nTương lai của mỗi con người, mỗi tổ chức, mỗi quốc gia và cả hành tinh này sẽ ra sao trong giai đoạn sắp tới là tùy thuộc vào thái độ ứng xử, nhìn nhận và thức tỉnh của từng cá nhân, từng tổ chức, từng quốc gia đó tạo nên. Nếu muốn thay đổi, cần khởi đầu bằng việc nhận thức, chuyển đổi tâm thức, lan tỏa yêu thương và chia sẻ sự hiểu biết từ mỗi người chúng ta trước.\r\n\r\nNhân quả đừng đợi thấy mới tin.\r\n\r\nNhân quả là bảng chỉ đường, giúp con người tìm về thiện lương“\r\n\r\nCuốn sách được xuất bản bằng tiếng Việt trước khi được chuyển nhượng bản quyền cho các quốc gia khác trên thế giới.\r\n\r\nVề tác giả\r\n\r\nTác giả Nguyên Phong (Vũ Văn Du) du học ở Mỹ từ năm 1968, tốt nghiệp cao học Sinh vật học, Điện toán. Ông từng là Kỹ sư trưởng, CIO của Tập đoàn Boeing của Mỹ, Viện trưởng Viện Công nghệ Sinh học Đại học Carnegie Mellon. Ông được mọi người biết tới là Giáo sư John Vu – Nhà khoa học uy tín về công nghệ thông tin. , CMMI và từng giảng dạy ở nhiều trường đại học trên thế giới.\r\n\r\n Nguyên Phong là bút danh của bộ sách văn hóa tâm linh được dịch, viết phóng tác từ trải nghiệm, tiềm thức và quá trình nghiên cứu, khám phá các giá trị tinh thần Đông phương. Ông đã viết phóng tác tác phẩm bất hủ Hành trình về Phương Đông năm 24 tuổi (1974). Các tác phẩm khác của Nguyên Phong được bạn đọc nhiều thế hệ yêu thích: Ngọc sáng trong hoa sen, Bên rặng tuyết sơn, Hoa sen trên tuyết, Hoa trôi trên sóng nước, Huyền thuật và các đạo sĩ Tây Tạng, Trở về từ xứ tuyết, Trở về từ cõi sáng, Minh triết trong đời sống, Đường mây qua xứ tuyết, Dấu chân trên cát, Đường mây trong cõi mộng, Đường mây trên đất hoa… và bộ sách dành cho sinh viên, thầy cô: Khởi hành, Kết nối, Bước ra thế giới, Kiến tạo thế hệ Việt Nam ưu việt, GS John Vu và lời khuyên dành cho thầy cô, GS John Vu và lời khuyên dành cho các bậc cha mẹ.', 'FIRST NEWS', 'NXB Tổng Hợp TPHCM', '2023-04-19 21:21:10'),
 ('I1VXO8uwI8', 'Không Phải Sói Nhưng Cũng Đừng Là Cừu', 'Lê Bảo Ngọc', 96000, 'https://cdn0.fahasa.com/media/catalog/product/_/k/_khong-phai-soi-nhung-cung-dung-la-cuu.jpg', 'Không Phải Sói Nhưng Cũng Đừng Là Cừu\r\n\r\nSÓI VÀ CỪU - BẠN KHÔNG TỐT NHƯ BẠN NGHĨ ĐÂU!\r\n\r\nLàn ranh của việc ngây thơ hay xấu xa đôi khi mỏng manh hơn bạn nghĩ.\r\n\r\nBạn làm một việc mà mình cho là đúng, kết quả lại bị mọi người khiển trách.\r\n\r\nBạn ủng hộ một quan điểm của ai đó, và số đông khác lại ủng hộ một quan điểm trái chiều.\r\n\r\nRốt cuộc thì bạn sai hay họ sai?\r\n\r\nCuốn sách “Không phải sói nhưng cũng đừng là cừu” đến từ tác giả Lê Bảo Ngọc sẽ giúp bạn hiểu rõ hơn những khía cạnh sắc sảo phía sau những nhận định đúng, sai đơn thuần của mỗi người.\r\n\r\nNhững câu hỏi đầy tính tranh cãi như “Cứu người hay cứu chó?”, “Một kẻ thô lỗ trong lớp vỏ “thẳng tính” khác với người EQ thấp như thế nào?”, “Vì sao một bộ phận nữ giới lại victim blaming đối với nạn nhân bị xâm hại?”,... được tác giả đưa ra trong “Không phải sói nhưng cũng đừng là cừu”. Bằng từng chương sách của mình, tác giả vạch rõ cho bạn rằng “thật sự thế nào mới là người tốt”, ngây thơ và xấu xa có ranh giới rõ ràng như thế không, rốt cuộc bạn có là người tốt như mình vẫn luôn nghĩ?\r\n\r\nTrong thời đại mà mọi thứ đều rất chóng vánh này, ranh giới giữa tốt và xấu, đúng và sai đôi lúc là không tồn tại.\r\n\r\nCái tốt mà chúng ta nghĩ, hóa ra lại là xấu trong mắt kẻ khác.\r\n\r\nCái đúng ở thời điểm này, đến một thời điểm khác lại trở thành sai.\r\n\r\nTốt đẹp hay xấu xa, thật khó phân định.\r\n\r\nCuốn sách “Không phải sói nhưng cũng đừng là cừu” của tác giả Lê Bảo Ngọc - admin Tâm Lý Học Tổ Kén đồng thời là Giám đốc Trung tâm Pháp Luật và Văn hóa sẽ là câu trả lời thấu suốt và khiến bạn phải đặt ra câu hỏi cho lối tư duy bấy lâu bạn luôn nghĩ là đúng. Bạn sẽ là người giải phóng chính mình, khỏi gông xiềng của định kiến, quy chuẩn cũ kĩ vốn được thiết lập lên để mang lại lợi ích cho kẻ khác. Và bạn sẽ không còn phải lăn tăn giữa tốt và xấu, sói hay cừu, vì điều đó là không quan trọng. Bạn sẽ tìm được chính mình và muốn là chính mình sau từng trang sách của “Không phải sói mà cũng đừng là cừu\"\r\n\r\nKhông phải sói, cũng đừng là cừu - Cuốn sách đập tan những định kiến cũ kỹ, kiến tạo tư duy và giúp bạn xây dựng lại chính mình!', 'Skybooks', 'Thế Giới', '2023-04-19 20:59:45'),
@@ -208,8 +233,6 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `product_id`, `combo_id`, `user_id`, `rating`, `title`, `description`, `date`) VALUES
-(7, '85glwWSTrg', NULL, 'nHwusQXym3', '5', 'Bố già mãi đỉnh', 'Nội dung của tác phẩm \"Bố già\" – The Godfather là câu chuyện kể về một gia đình Mafia gốc Ý, hoạt động trên đất Mỹ , được cai quản bởi một ông trùm Mafia to lớn, có thực lực mạnh nhất trong đội ngũ Mafia ở New York có tên là Vito Corleone. Vito Corleone  được sinh ra và lớn lên trong một gia đình có truyền thống là Mafia, tuy nhiên anh luôn cảm thấy bản thân mình không phù hợp với truyền thống xã hội đen của gia đình nữa vì đã mang trên mình sâu sắc tinh thần mỹ. Thay vì cuộc sống gian ác, bạo lực của xã hội đen thì Vito Corleone lại chọn một cách sống khác, vì vậy ông được mọi người kính trọng và mang ơn rất nhiều. Với những hành động bất hợp pháp của gia đình, anh luôn tìm mọi cach để trốn tránh và bỏ qua. Tuy nhiên về sau, khi sự việc mình chính bị hãm hại, anh mới tỉnh ngộ trước những pháp luật, công lý mà anh vẫn thường coi trọng.\r\n\r\nThường là khi nhắc đến Mafia, xã hội đen thì nhiều người nghĩ ngay đến những người độc ác, xấu xa cùng sự đến chém giết, giết người, phi pháp. Nhưng không, đối với “Bố già” thì lại khác, cách tiếp cận của tác giả ở tiểu thuyết Bố Già lại theo một hướng tích cực hơn rât nhiều. Vì \"Bố Già\" hiểu được rằng, thực ra nhà nước lúc bấy giờ ban hành các luật lệ với mục đích là bảo vệ chính kẻ tạo ra nhà nước và tạo ra luật lệ đó chư không phải để bảo vệ những kẻ yếu, dân thường. Bố Già đã không chấp nhận đươc sự thật đó và không muốn sống trong một đất nước mà nhà nước đưa ra luật lệ là không bảo vệ nhân dân. Với bản lĩnh của một người đàn ông,  “Bố già “ đã tự tạo ra một thế giới khác để bản thân được làm những việc mình cho là đúng.', '2023-04-19'),
-(18, 'Qg9kfupYAu', NULL, 'nHwusQXym3', '5', 'Thành Công Nguyễn', 'Thành Công Nguyễn', '2023-04-19'),
 (21, '85glwWSTrg', NULL, 'jBSM7nyWJV', '5', 'Làm tất cả mọi thứ vì gia đình', 'Xuyên suốt hành trình của Bố Già, Mario Puzo khiến nó nổi tiếng không phải bởi vì có những mưu sâu kế hiểm trong một thế giới mafia đầy rẫy chết chóc, càng không phải tiền bạc & quyền lực. Bởi những thứ đó, Holywood và những dòng phim điện ảnh thời bấy giờ thừa sức thể hiện xuất sắc.\r\n\r\nVà cũng không thiếu những tiểu thuyết kinh điển đã làm mưa làm gió trước khi Bố già ra đời.\r\n\r\nBởi vậy cái làm Bố già trở nên tiểu thuyết kinh điển & huyền thoại, cái đã thực sự làm nên thương hiệu của loạt series Bố già, chính là xuất phát, mục tiêu từ đáy của mỗi hành động: tất cả là vì gia đình.\r\n\r\nDù phải làm tất cả, phải “đưa ra một lời đề nghị hắn không thể chối từ”, không phải để thể hiện quyền lực, mà là nâng tầm sự quan trọng của những người thân trong gia đình.\r\n\r\nRõ ràng ông trùm không rảnh để quan tâm tới những điều nhỏ nhặt, nhưng một khi ai đó là người trong gia đình Corleone khẩn cầu, thì dù nhỏ bé hay lớn lao tới đâu, tất cả đều phải được giải quyết.', '2023-04-20'),
 (22, 'Qg9kfupYAu', NULL, 'zAYghE9NNZ', '5', 'Người khen, kẻ chê', 'Trước giờ bản thân tôi vẫn tin rằng mỗi người đều có một vận mệnh riêng, một số phận với những hướng đi và sự lựa chọn không hề giống nhau. Dù rằng cả gia đình không hề theo bất cứ tôn giáo nào nhưng việc tiếp xúc với phật giáo và thiên chúa giáo từ nhỏ đến lớn do môi trường học tập đã khiến tôi ít nhiều bị ảnh hưởng tới nhận thức cùng suy nghĩ. Loanh quanh với những câu hỏi “ mười vạn vì sao” và tôi đã tiêu tốn một cách hào phóng thời gian cũng như tuổi trẻ của mình trong vòng luẩn quẩn không lối ra đó. Vì sao tôi tồn tại? Vì sao tôi được sinh ra? Vì sao tôi luôn cảm thấy mình khác với những người xung quanh? Mục đích hay ý nghĩa của sự tồn tại của tôi là gì? …Cho tới khi tôi gia nhập “hội những người thích sách” và được bạn bè chia sẻ cho những cuốn sách hay và đặc biệt trong số đó có hai cuốn sách đã trở thành một phần “ cứu rỗi” trong tôi. Ba người thầy và nhà giả kim thuật.', '2023-04-20'),
 (23, '85glwWSTrg', NULL, 'zAYghE9NNZ', '3', 'Biết cách kiềm chế bản thân', 'Ông trùm Vito luôn biết cách kiềm chế cảm xúc của bản thân, bình tĩnh trước mọi sóng gió ập đến gia đình ông. Vì vậy, việc để lộ ra cảm xúc của mình không khác nào việc mình đưa cổ cho kẻ thù kết liễu.', '2023-04-20');
@@ -239,7 +262,6 @@ INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phonenumber`, 
 ('F96Eqi8HzJ', 'Thanh Cong Nguyen', 'adminTCN', 'thanhcongnguyenadmin@gmail.com', '0847476547', '$2y$10$6thasqV/.qV55wEx8trKX.Q8/gq6TSj2QmLFKuiDncIvSaH1CRqQG', 'user', ''),
 ('jBSM7nyWJV', 'Đỗ Trần Ngọc Linh', 'ngoc_linh1703', 'ngoclinh1703@gmail.com', '0847476547', '$2y$10$WC73B6jWVLF1vafboUX.Hu77//XuTONHCWTw0rSktJoUOgko7O4Qm', 'user', 'fzyd3C0MA3.png'),
 ('m27C3SOvfb', 'Tuấn Anh', 'tuananh123', 'tuananh@gmail.com', '0847476547', '$2y$10$jeDkBHgk4VeTOh2kYclvt.Q/fVoL4DjJHsorIGbkstmaaPgM9hcgu', 'admin', ''),
-('nHwusQXym3', 'Thanh Cong Nguyen', 'thanh_luon29', 'thanhcongnguyen0602@gmail.com', '0847476547', '$2y$10$5sEJSebEIWhvcpkSKDDjc.fErJER8Jcmkzs1supEg8JoDL0mni3Rq', 'user', 'RORBB0jp1B.jpg'),
 ('zAYghE9NNZ', 'Trần Thị Thu H&agrave;', 'H&agrave; M&atilde; @1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$a4DP15UJNvPlnrsDgVTORuW6BLTJWkesZz2un9wv8QuWSChfat3.2', 'user', 'ajE7DtDSr5.jpg');
 
 --
@@ -257,6 +279,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `combo_products`
   ADD PRIMARY KEY (`combo_id`);
+
+--
+-- Indexes for table `database_bai3`
+--
+ALTER TABLE `database_bai3`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `message`
@@ -297,10 +325,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `database_bai3`
+--
+ALTER TABLE `database_bai3`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reviews`

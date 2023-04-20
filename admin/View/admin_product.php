@@ -11,24 +11,7 @@ session_start();
 // }
 // ;
 
-if (isset($_POST['add_product'])) {
 
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $price = $_POST['price'];
-    $author = $_POST['author'];
-    $image = $_POST['image'];
-    $description = $_POST['description'];
-    $supplier = $_POST['supplier'];
-    $publiser = $_POST['publiser'];
-    $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
-    if (mysqli_num_rows($select_product_name) > 0) {
-        $message[] = 'Sách đã tồn tại';
-    } else {
-        $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author, price, image, description, supplier, publiser) VALUES('$product_id', '$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
-        $message[] = 'Sách đã được thêm vào danh mục';
-    }
-}
 
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
@@ -75,7 +58,7 @@ if (isset($_POST['update_product'])) {
 
         <h1 class="title">TẤT CẢ SÁCH</h1>
 
-        <form action="" method="post">
+        <form action="../Controllers/adminProductController.php" method="post">
             <h3>Thêm sách</h3>
             <input type="text" name="name" class="box" placeholder="Nhập tên sách" required>
             <input type="text" min="0" name="author" class="box" placeholder="Nhập tên tác giả" required>
@@ -157,7 +140,8 @@ if (isset($_POST['update_product'])) {
     </section>
     <!-- custom admin js file link  -->
     <!-- <script src="js/admin_script.js"></script> -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
 </body>
