@@ -1,4 +1,5 @@
 <?php
+// session_start();
 if (isset($message)) {
     foreach ($message as $message) {
         echo '
@@ -37,8 +38,9 @@ if (isset($message)) {
             <p>email : <span>
                     <?php echo $_SESSION['admin_email']; ?>
                 </span></p>
-            <a href="logout.php" class="delete-btn">logout</a>
-            <div>new <a href="login.php">login</a> | <a href="register.php">register</a></div>
+            <a href="../../app/View/logout.php" class="delete-btn">logout</a>
+            <div>new <a href="../../app/View/loginForm.php">login</a> | <a
+                    href="../../app/View/registerForm.php">register</a></div>
         </div>
 
     </div>
