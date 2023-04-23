@@ -262,17 +262,19 @@ section {
   border-radius: 0.5rem;
   border: var(--border);
 }
+
 /* ========================= */
 /* product */
 /* ========================= */
 .add-products form {
-  background-color: var(--white); 
+  /* width: 60%; */
+  background-color: var(--white);
   border-radius: 1rem;
   padding: 3rem;
   text-align: center;
   box-shadow: var(--box-shadow);
   border: var(--border);
-  max-width: 50rem;
+  max-width: 60rem;
   margin: 0 auto;
 }
 
@@ -322,7 +324,6 @@ section {
   height: 30rem;
   width: 100%;
   border-radius: 0.5rem;
-
 }
 .show-products .box-container .box img:hover {
   opacity: 0.7;
@@ -334,7 +335,7 @@ section {
 .show-products .box-container .box .name {
   padding: 1rem 0;
   font-size: 2.5rem;
-  height: 8rem;
+  height: 10rem;
   color: var(--black);
   font-weight: 600;
 }
@@ -353,19 +354,18 @@ section {
   font-size: 2rem;
   color: var(--black);
   font-style: italic;
-
 }
 .show-products .box-container .box .detail_book:hover {
   opacity: 0.5;
 }
 .edit-product-form {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow: scroll;
   position: fixed;
   top: 0;
   left: 0;
@@ -374,11 +374,16 @@ section {
 }
 
 .edit-product-form form {
-  width: 50rem;
+  width: 80%;
   padding: 2rem;
   text-align: center;
   border-radius: 0.5rem;
   background-color: var(--white);
+  height: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  /* position: relative; */
+  
 }
 
 .edit-product-form form img {
@@ -397,63 +402,157 @@ section {
   width: 100%;
 }
 
-.info-book {
-  background-color: #fffa5faf;
+.detail-book, .detail-combo {
+  background-color: #fffca278;
   width: 60%;
   margin: 2rem auto;
   padding: 5rem;
+  border-radius: 0.5rem;
+  font-weight: 400;
+}
+
+.info-book, .info-combo {
   display: flex;
   justify-content: space-between;
   /* border: var(--border); */
-  border-radius: 0.5rem;
-
 }
-.info-book-img {
+
+.info-book-img, .combo-img {
   width: 40%;
   border-radius: 30px;
-  height: 70rem;
-  margin: 5rem;
-  /* margin: auto; */
+  height: 60rem;
+  /* margin: 5rem; */
+  margin: auto;
 }
-.info-book-detail {
+.info-book-detail, .info-combo-detail {
   width: 60%;
-  text-align: center;
+  text-align: justify;
+  margin: 7rem;
 }
 
-.info-book-detail-name {
+.info-book-detail-name, .combo-name {
   font-size: 3.5rem;
-  margin: 2rem;
+  text-align: center;
+  font-style: italic;
 }
-.info-book-detail-price {
+.info-book-detail-price, .price-combo {
   font-size: 2.75rem;
   margin: 2rem;
   font-style: oblique;
+  text-align: center;
   /* text-align: start; */
-  color: var(--red)
+  margin: 2rem auto;
+  color: var(--red);
 }
-.info-book-detail-author, .info-book-detail-publisher, .info-book-detail-supplier {
+.info-book-detail-author,
+.info-book-detail-publisher,
+.info-book-detail-supplier {
   font-size: 2rem;
   margin: 1.5rem auto;
-  
 }
 .info-book-detail-description {
+  width: 90%;
+  margin: auto;
   font-size: 1.5rem;
-  text-align: start;
+  text-align: justify;
   margin: 2rem;
   line-height: 1.5;
-  font-style: oblique;
-
+  /* font-style: oblique; */
 }
 .admin-return-product {
+  width: 15%;
   background-color: var(--red);
   padding: 1rem;
   color: #fff;
+  display: block;
+  margin: 3rem auto;
+  text-align: center;
 }
 .admin-return-product:hover {
   opacity: 0.7;
 }
 /* THE END PRODUCT */
 /* ######################## */
+/* COMBO SÁCH */
+/* ######################## */
+.description-combo {
+  line-height: 1.25;
+}
+.book-in-combo {
+  display: flex;
+}
+.name-book-combo {
+  font-size: 2.5rem;
+  text-align: center;
+  font-style: italic;
+}
+.description-book-combo {
+  width: 95%;
+  margin: auto;
+  font-size: 1.25rem;
+  text-align: justify;
+  margin: 2rem;
+  line-height: 1.25;
+  /* font-style: oblique; */
+}
+.book-in-combo {
+  margin: 2rem 5rem;
+}
+.combo-book-img {
+  width: 40%;
+  border-radius: 30px;
+  height: 50rem;
+  margin: auto;
+}
+/* author */
+.slogan {
+    min-height: 13vh;
+    font-size: 1.5rem;
+    text-align: justify;
+    margin: 0.5rem;
+    /* background-color: #666; */
+}
+.information-author {
+  min-height: 3vh;
+  color: var(--red);
+  font-size: 1.75rem;
+  
+}
+/* review */
+.table-review {
+  width: 95%;
+  margin: auto;
+  text-align: justify;
+  background-color: #fffca21b;
+  border-radius: 2rem;
+
+}
+
+.btn-review a {
+  width: 50%;
+  background-color: var(--red);
+  padding: 1rem 2rem;
+  color: #fff;
+  cursor: pointer;
+  display: table-cell;
+  vertical-align: middle;
+  /* margin-top: 2rem; */
+  border-radius: 3rem;
+}
+.btn-review a:hover {
+  opacity: 0.6;
+  background-color: var(--red);
+  padding: 1rem 2rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* ######################## */
+/* ######################## */
+/* ######################## */
+
+
 
 .orders .box-container {
   display: grid;
@@ -630,9 +729,8 @@ section {
   .title {
     font-size: 3rem;
   }
-<<<<<<< HEAD
+
 
 }
-=======
-}
->>>>>>> 44be77e35b37149f736e2af09ff828d22f340c18
+
+
