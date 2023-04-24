@@ -10,8 +10,8 @@ if (isset($_POST['add_product'])) {
     if (mysqli_num_rows($select_author) > 0) {
         $message[] = 'Tác giả đã tồn tại';
     } else {
-        $id = create_unique_id();
-        $add_author = mysqli_query($conn, "INSERT INTO `authors`(id ,name, image, slogan, information ) VALUES('$id' ,'$name', '$image', '$slogan', '$information')") or die('query failed');
+        // $id = create_unique_id();
+        $add_author = mysqli_query($conn, "INSERT INTO `authors`(name, image, slogan, information ) VALUES('$name', '$image', '$slogan', '$information')") or die('query failed');
         $message[] = 'Tác giả đã được thêm vào';
     }
 }
