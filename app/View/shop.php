@@ -47,9 +47,9 @@ session_start();
     <div class="box-container shop">
     <?php  
          $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY `date` ASC") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
+        if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
-      ?>
+    ?>
                 <form method="post" action="../Controllers/cartController.php"> 
                     <div class="box" data-aos="fade-up" data-aos-delay="300">
                         <div class="image"> 
