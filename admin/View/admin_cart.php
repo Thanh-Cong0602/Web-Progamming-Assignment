@@ -16,12 +16,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
+    <link rel="stylesheet" href="../../public/css/admin_cart.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
     <!-- custom js file link  -->
-    <script src="../../public/js/script.js" defer></script>
+    <script src="../../public/js/admin_script.js" defer></script>
 
 
 
@@ -33,19 +34,19 @@ session_start();
     <!-- List product section starts  -->
     <section class="listcart" id="listcart" data-aos="zoom-in-up" data-aos-delay="600">
         <h1>Danh sách sản phẩm</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th style="padding-left:2rem;">Tên sản phẩm</th>
-                    <th style="padding-left:2rem;">Đơn giá</th>
-                    <th style="width: 12rem;">Số lượng</th>
-                </tr>
-            </thead>
-            <tbody>
                 <?php
                 $grand_total = 0;
                 $select_cart = mysqli_query($conn, "SELECT * FROM `cart` ") or die('query failed');
                 if (mysqli_num_rows($select_cart) > 0) {
+                    echo'<table>
+                    <thead>
+                        <tr>
+                            <th style="padding-left:2rem;">Tên sản phẩm</th>
+                            <th style="padding-left:2rem;">Đơn giá</th>
+                            <th style="width: 12rem;">Số lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
                     while ($fetch_cart = mysqli_fetch_assoc($select_cart)) {
                         $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
                         $grand_total += $total_price;
@@ -58,6 +59,8 @@ session_start();
                 ";
                         ?>
                     <?php }
+                }else {
+                    echo '<p class="empty">Hiện tại không có yêu cầu nào!</p>';
                 }
                 ?>
             </tbody>

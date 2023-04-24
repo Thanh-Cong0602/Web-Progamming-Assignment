@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+
+.feedback {
+    font-family: Mukta, sans-serif;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: #e1e5ee;
+    font-size: 2rem;
+    background-color: 111;
+  }
+  
+  .feedback h1 {
+    text-align: center;
+    color: red;
+    margin-bottom: 3rem;
+  }
+  
+  .feedback table {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px hsl(222, 28%, 91%);
+    background-color: #213131;;
+    text-align: left;
+    overflow: hidden;
+  }
+  
+  .feedback table thead {
+    box-shadow: 0 5px 10px #e1e5ee;
+  }
+  
+  ;
+  
+  .feedback table th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+  }
+  
+  .feedback table td {
+    padding: 1rem 2rem;
+  }
+  
+  .feedback .grand-total {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: white;
+  }
+  
+  .feedback  .grand-total span {
+    color: red;
+  }

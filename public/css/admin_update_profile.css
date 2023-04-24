@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+.updateInfo-form form {
+    background: #2b291a73;
+    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border: 3px solid #bacfcf;
+    border-radius: 2rem;
+    max-width: 50rem;
+    margin: 1rem auto;
+    display: block;
+  }
+  
+  .updateInfo-form form h3 {
+    padding-bottom: 1rem;
+    font-size: 2.5rem;
+    color: aqua;
+    text-align: center;
+  }
+  
+  .updateInfo-form form p {
+    padding-top: 1rem;
+    font-size: 1.6rem;
+    color: aqua;
+  }
+  
+  .updateInfo-form form p span {
+    color: var(--red);
+  }
+  
+  .updateInfo-form form .box {
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    background-color: white;
+    margin: 1rem 0;
+  }
+  
+  .updateInfo-form form textarea {
+    height: 15rem;
+    resize: none;
+  }
+  
+  .updateInfo-form form .image {
+    height: 20rem;
+    width: 100%;
+    object-fit: contain;
+    margin-top: .5rem;
+  }
+  
+  .updateInfo-form form .delete-btn,
+  .updateInfo-form form .btn {
+    text-transform: capitalize;
+    width: 100%;
+  }
+  
+  .updateInfo-form form .link {
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--light-color);
+  }
+  
+  .updateInfo-form form .link a {
+    color: var(--red);
+  }
+  
+  .updateInfo-form form .link a:hover {
+    text-decoration: underline;
+  }
+  
+  .updateInfo-form form .submit-btn {
+    width: 100%;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    border: 1px solid aqua;
+    background: #222;
+    color: aqua;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+  
+  .updateInfo-form form .submit-btn:hover,
+  .updateInfo-form form a:hover {
+    background-color: #16a085;
+    color: white;
+  }
+  
+  .updateInfo-form form a {
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+  }
+  .updateInfo-form .error {
+    color: red;
+    font-size: 1.5rem;
+  }

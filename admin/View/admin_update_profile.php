@@ -17,6 +17,7 @@ session_start();
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../../public/css/admin.css">
+   <link rel="stylesheet" href="../../public/css/admin_update_profile.css">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 

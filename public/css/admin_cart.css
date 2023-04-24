@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+
+.listcart {
+    font-family: Mukta, sans-serif;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: #e1e5ee;
+    font-size: 2rem;
+    background-color: 111;
+  }
+  
+  .listcart h1 {
+    text-align: center;
+    color: red;
+    margin-bottom: 3rem;
+  }
+  
+  .listcart table {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px hsl(222, 28%, 91%);
+    background-color: #213131;;
+    text-align: left;
+    overflow: hidden;
+  }
+  
+  .listcart table thead {
+    box-shadow: 0 5px 10px #e1e5ee;
+  }
+  
+  ;
+  
+  .listcart table th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+  }
+  
+  .listcart table td {
+    padding: 1rem 2rem;
+  }
+  
+  .listcart .grand-total {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: white;
+  }
+  
+  .listcart .grand-total span {
+    color: red;
+  }
