@@ -231,11 +231,11 @@ section {
 }
 
 .updateInfo-form form {
-  background: #2f2b2b;
+  background: #2b291a73;
   box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
   padding: 2rem;
-  border: 3px solid aqua;
+  border: 3px solid #bacfcf;
   border-radius: 2rem;
   max-width: 50rem;
   margin: 1rem auto;
