@@ -4,7 +4,7 @@ include '../../config/config.php';
 session_start();
 $cartModel = new CartModel($conn);
 if (isset($_POST['add_to_cart'])) {
-   if($user_id == ''){
+   if ($user_id == '') {
       $_SESSION['warning_msg'] = 'Vui lòng đăng nhập trước tiên!';
       header('Location: ../View/home.php');
    }
@@ -36,16 +36,16 @@ if (isset($_POST['add_to_cart'])) {
    if ($previous_page == 'http://localhost:3000/app/View/home.php') {
       header('Location: http://localhost:3000/app/View/home.php#product');
       exit;
-   } elseif($previous_page == 'http://localhost:3000/app/View/shop.php'){
+   } elseif ($previous_page == 'http://localhost:3000/app/View/shop.php') {
       header('Location: http://localhost:3000/app/View/shop.php#product');
       exit;
-   } elseif($previous_page == 'http://localhost:3000/app/View/products_combo.php'){
+   } elseif ($previous_page == 'http://localhost:3000/app/View/products_combo.php') {
       header("Location: http://localhost:3000/app/View/products_combo.php");
       exit;
    }
 }
 
-if(isset($_POST['update_cart'])){
+if (isset($_POST['update_cart'])) {
    $cart_id = $_POST['cart_id'];
    $cart_quantity = $_POST['cart_quantity'];
    $message = $cartModel->updateCart($cart_id, $cart_quantity);
@@ -54,18 +54,17 @@ if(isset($_POST['update_cart'])){
    exit;
 }
 
-if(isset($_POST['delete_cart'])){
+if (isset($_POST['delete_cart'])) {
    $delete_cart_id = $_POST['delete_cart_id'];
    $message = $cartModel->deleteCart($delete_cart_id);
    $_SESSION['success_msg'] = $message;
    header('Location: ../View/shopping_cart.php#shopping-cart');
    exit;
 }
-if(isset($_POST['delete_all_cart'])){
+if (isset($_POST['delete_all_cart'])) {
    $user_id = $_COOKIE['user_id'];
    $message = $cartModel->deleteAllCart($user_id);
    $_SESSION['success_msg'] = $message;
    header('Location: ../View/shopping_cart.php#shopping-cart');
    exit;
 }
-?>

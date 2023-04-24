@@ -220,6 +220,12 @@ if (isset($_GET['delete'])) {
                     <img src="../../public/images/avatar_user.png" alt="">
                     <?php } ?>
                 </div>
+                <div class="fullname-type">
+                    <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
+                    <p> user type : <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+                                                                echo 'var(--orange)';
+                                                            } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
+                </div>
                 <div class="detail">
                     <p> user id : <span><?php echo $fetch_users['user_id']; ?></span> </p>
                     <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
