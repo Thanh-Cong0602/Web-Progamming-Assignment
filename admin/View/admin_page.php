@@ -2,7 +2,7 @@
 
 include '../../config/config.php';
 
-session_start();
+// session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
@@ -45,6 +45,7 @@ if(!isset($admin_id)){
 
         <h1 class="title">dashboard</h1>
 
+<<<<<<< HEAD
         <div class="box-container">
 
             <div class="box">
@@ -61,6 +62,37 @@ if(!isset($admin_id)){
                 <h3><?php echo $total_pendings; ?> Đ</h3>
                 <p>total pendings</p>
             </div>
+=======
+      <div class="box">
+         <?php
+            $total_pendings = 0;
+            $select_pending = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'pending'") or die('query failed');
+            if(mysqli_num_rows($select_pending) > 0){
+               while($fetch_pendings = mysqli_fetch_assoc($select_pending)){
+                  $total_price = $fetch_pendings['total_price'];
+                  $total_pendings += $total_price;
+               };
+            };
+         ?>
+         <h3><?php echo $total_pendings; ?> Đ</h3>
+         <p>total pendings</p>
+      </div>
+
+      <div class="box">
+         <?php
+            $total_completed = 0;
+            $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
+            if(mysqli_num_rows($select_completed) > 0){
+               while($fetch_completed = mysqli_fetch_assoc($select_completed)){
+                  $total_price = $fetch_completed['total_price'];
+                  $total_completed += $total_price;
+               };
+            };
+         ?>
+         <h3><?php echo $total_completed; ?> Đ</h3>
+         <p>completed payments</p>
+      </div>
+>>>>>>> c4bc9aa7509994e95c183db698bc99c359e6e7e1
 
             <div class="box">
                 <?php
