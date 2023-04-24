@@ -127,9 +127,9 @@ class User {
 
     public function userUpdateReview($rating, $title, $description, $review_id) {
         $title = $_POST['title'];
-        // $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $description = $_POST['description'];
-        // $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $rating = $_POST['rating'];
         $rating = filter_var($rating, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         mysqli_query($this->conn, "UPDATE `reviews` SET rating = $rating, title = '$title', description = '$description' WHERE id = '$review_id'") or die('query failed');

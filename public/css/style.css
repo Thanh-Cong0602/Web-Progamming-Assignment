@@ -70,12 +70,9 @@ section {
   color: #fff;
 }
 
-
-
-/* .btn:hover {
-  background: #29d9d5;
-  color: #111;
-} */
+a:hover {
+  text-decoration: none;
+}
 
 .header {
   position: fixed;
@@ -480,8 +477,8 @@ section {
 .product .search-book {
   display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 35rem);
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, 30rem);
+  gap: 5rem;
   justify-content: center;
   align-items: center;
 }
@@ -494,11 +491,14 @@ section {
   overflow: hidden;
   background: #222;
   height: 500px;
+  margin-bottom: 2rem;
 }
-
-.product .box-container .box {
+.product.combo_product .box-container .box {
   height: 525px;
 }
+/* .product .box-container .box {
+  height: 525px;
+} */
 
 .product .box-container .box:hover img {
   -webkit-transform: scale(1.1);
@@ -589,16 +589,34 @@ section {
   width: 100%;
   font-size: 1.5rem;
   padding: 2rem 0;
+  border: none;
+}
+.page-item.disabled {
+  background-color: #222 !important;
+  pointer-events: none; 
+  opacity: 0.3;
+}
+.page-item .page-link {
+  font-size: 1.6rem;
+}
+.page-item.disabled .page-link {
+  color:red;
 }
 .toolbar .pagination {
   border-radius: 2rem;
 }
 .toolbar .page-link {
-  padding: 1rem 2rem;
-  /* background: #222; */
+  padding: 1rem 1rem;
+  background: #222;
+}
+.page-item .page-link {
+  color: white;
+  border: none;
 }
 .page-item.active .page-link {
-  color: black;
+  color: aqua;
+  background: #222;
+  border: none;
 }
 @media only screen and (max-width: 576px) {
   .pagination {
@@ -1517,7 +1535,7 @@ information-detail.credit {
 }
 
 .reviews-container .box-container .box .description {
-  font-size: 2rem;
+  font-size: 1.7rem;
   white-space: pre-line;
   color: #222;
   line-height: 1.5;
@@ -2296,10 +2314,9 @@ information-detail.credit {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
-
   .header .navbar.active {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); 
   }
 
   .header .navbar a {
@@ -2307,7 +2324,6 @@ information-detail.credit {
     font-size: 2rem;
     display: block;
   }
-
   .home {
     margin-top: 10rem;
   }

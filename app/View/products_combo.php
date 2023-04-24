@@ -47,7 +47,7 @@ session_start();
 
     <!-- products section starts  -->
 
-    <section class="product" id="product" data-aos="fade-up" data-aos-delay="500">
+    <section class="product combo_product" id="product" data-aos="fade-up" data-aos-delay="500">
         <div class="box-container ">
             <?php
              $per_page = 8;
@@ -65,7 +65,7 @@ session_start();
             // Xác định trang hiện tại
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
             // Tạo URL cho các trang
-            $url = "http://localhost:3000/app/View/shop.php?page=";
+            $url = "http://localhost:3000/app/View/products_combo.php?page=";
             // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
                 $offset = ($current_page - 1) * $per_page;
               // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
@@ -89,6 +89,7 @@ session_start();
                                 <input type="hidden" name="product_name" value="<?php echo $fetch_combo_products['combo_name']; ?>">
                                 <input type="hidden" name="product_price" value="<?php echo $fetch_combo_products['price']; ?>">
                                 <input type="hidden" name="product_image" value="<?php echo $fetch_combo_products['image_combo']; ?>">
+                                <input type="hidden" name="current_page" value="<?php echo $current_page; ?>">
                                 <button type="submit" name="add_to_cart">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
@@ -100,22 +101,48 @@ session_start();
                 }
             }
             ?>
-            <nav aria-label="Page navigation example" class="toolbar toolbar_combo">
-            <ul class="pagination justify-content-center d-flex flex-wrap">
-                <li class="page-item <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="<?php echo $url . ($current_page - 1); ?>" tabindex="-1">Previous</a>
-                </li>
-                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-                <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-                <a class="page-link" href="<?php echo $url . $i; ?>"><?php echo $i; ?></a>
-                </li>
-                <?php endfor; ?>
-                <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
-                <a class="page-link" href="<?php echo $url . ($current_page + 1); ?>">Next</a>
-                </li>
-            </ul>
-            </nav>
-            ?>
+            <nav aria-label="Page navigation example" class="toolbar">
+                        <ul class="pagination justify-content-center d-flex flex-wrap">
+                            <li class="page-item <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>">
+                                <a class="page-link" href="<?php echo $url . ($current_page - 1); ?>" tabindex="-1">Previous</a>
+                            </li>
+                            <?php
+                            $start_page = ($current_page <= 3) ? 1 : $current_page - 2;
+                            $end_page = ($total_pages - $current_page >= 2) ? $current_page + 2 : $total_pages;
+                            if ($start_page > 1) {
+                                echo '<li class="page-item"><a class="page-link" href="' . $url . '1">1</a></li>';
+                                if ($start_page > 2) {
+                                    echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                                }
+                            }
+                            $num_displayed_pages = $end_page - $start_page + 1;
+                            $display_ellipsis = ($num_displayed_pages >= 7);
+                            for ($i = $start_page; $i <= $end_page; $i++) {
+                                if ($num_displayed_pages >= 7) {
+                                    if ($i == $start_page + 3 || $i == $end_page - 3) {
+                                        if (!$display_ellipsis) {
+                                            echo '<li class="page-item"><a class="page-link" href="#">' . $i . '</a></li>';
+                                        }
+                                        continue;
+                                    }
+                                }
+                                if ($num_displayed_pages <= 5 || ($i >= $current_page - 2 && $i <= $current_page + 2)) {
+                                    echo '<li class="page-item ' . (($i == $current_page) ? 'active' : '') . '"><a class="page-link" href="' . $url . $i . '">' . $i . '</a></li>';
+                                }
+                            }
+                            if ($end_page < $total_pages) {
+                                if ($end_page < $total_pages - 1) {
+                                    echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                                }
+                                echo '<li class="page-item"><a class="page-link" href="' . $url . $total_pages . '">' . $total_pages . '</a></li>';
+                            }
+                            ?>
+                            <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
+                                <a class="page-link" href="<?php echo $url . ($current_page + 1); ?>">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    ?>
             <?php
             }
         }

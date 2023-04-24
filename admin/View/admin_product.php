@@ -17,14 +17,17 @@ if (isset($_POST['add_product'])) {
     $author = $_POST['author'];
     $image = $_POST['image'];
     $description = $_POST['description'];
+    // $description = mysqli_real_escape_string($conn, $description);
+    $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $supplier = $_POST['supplier'];
     $publiser = $_POST['publiser'];
+    $product_id = create_unique_id();
     $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
     if (mysqli_num_rows($select_product_name) > 0) {
         $message[] = 'Sách đã tồn tại';
     } else {
         $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, image, description, supplier, publiser) VALUES('$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
+        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(product_id, name, author, price, image, description, supplier, publiser) VALUES( '$product_id', '$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
         $message[] = 'Sách đã được thêm vào danh mục';
     }
 }

@@ -45,7 +45,7 @@ session_start();
             height: 100%;
             background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
             border: #2c2c2c solid 2px;
-            content: "Search Products";
+            content: "Tìm kiếm sản phẩm";
             font-family: 'Permanent Marker', cursive;
             font-size: 2.2em;
             color: rgba(238, 238, 238, 0.7);
@@ -171,7 +171,7 @@ session_start();
                 <div class="form">
                     <hr>
                     <p>
-                        <label for="searchby">Tìm kiếm sản phẩm&emsp;</label>
+                        <label for="searchby">Tìm kiếm theo&emsp;</label>
                         <select name="searchby">
                             <option value="products.name">Tên sách</option>
                             <option value="products.author">Tên tác giả</option>
@@ -184,6 +184,14 @@ session_start();
                         <label for="name">Tìm kiếm&emsp;&emsp;&ensp;</label>
                         <input type="text" name="name" placeholder="Nhập nội dung tìm kiếm" />
                     </p><br>
+                    <hr style="width:45%; float: left"><span style="text-align:center">&ensp;or&nbsp;</span>
+                    <hr style="width:49%; float: right"><br><br>
+                    <p>
+                        <label for="pricebelow">Khoảng giá: </label>&emsp;
+                        <input type="number" placeholder="Dưới" name="pricebelow" style="width:20%">&emsp;&emsp;&emsp;
+                        <input type="number" placeholder="Trên" name="priceabove" style="width:20%">
+                    </p>
+                    <br><br>
                     <p class="wipeout">
                         <span style="float: left; margin-left: 10%">
                             <input type="submit" name="search" value="Tìm kiếm:-" />
