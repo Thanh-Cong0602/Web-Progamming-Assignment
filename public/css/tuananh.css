@@ -1,3 +1,69 @@
+.title1 {
+  text-align: left;
+  align-items: center;
+  text-transform: uppercase;
+  color: var(--black);
+  font-size: 3.5rem;
+}
+/* product */
+/* ========================= */
+.add-products {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  width: 100%;
+}
+.add-products form {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.add-products form h3 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 2rem;
+}
+
+.add-products form .box,
+.add-products form .description {
+  width: 100%;
+  background-color: var(--light-bg);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 1.2rem 1.4rem;
+  color: var(--black);
+  font-size: 1.8rem;
+  border: var(--border);
+}
+
+.show-products .list-add-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 51rem);
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.show-products .list-add-products .add-products-button {
+  text-align: right;
+}
 .orders .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 36rem);
@@ -185,4 +251,74 @@
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 10px;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 55%;
+  }
+  .show-products .list-add-products .add-products-button {
+    text-align: center;
+  }
+  .title1 {
+    text-align: center;
+  }
+}
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+  .show-products .list-add-products .add-products-button {
+    text-align: center;
+  }
+  .title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+
+  .header .flex .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border-top: var(--border);
+    border-bottom: var(--border);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .flex .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .header .flex .navbar a {
+    margin: 2rem;
+    display: block;
+  }
+  .show-products .list-add-products .add-products-button {
+    text-align: center;
+  }
+  .title1 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+
+  .title1,
+  .title {
+    text-align: center;
+    font-size: 3rem;
+  }
+  .show-products .list-add-products .add-products-button {
+    text-align: center;
+  }
 }

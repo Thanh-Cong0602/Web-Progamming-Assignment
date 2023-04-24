@@ -90,7 +90,7 @@ function truncate_text($text)
 
         <h1 class="title">Đơn hàng đã đặt</h1>
 
-        <div class="box-container">
+        <div class="box-container" style="margin-top:40px;">
             <?php
             $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
             if (mysqli_num_rows($select_orders) > 0) {
