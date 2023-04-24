@@ -38,11 +38,12 @@ if (isset($_GET['delete'])) {
                             <th style='width: 8%'>Tên khách</th>
                             <th style='width: 10%'>Tiêu đề</th>
                             <th style='width: 55%'>Nhận xét</th>
-                            <th style='width: 4%'>Tỉ lệ</th>
+                            <th style='width: 5%'>Đánh giá</th>
                             <th style='width: 8%'>Thời gian</th>
-                            <th style='width: 5%'></th>
+                            <th style='width: 4%'></th>
                         </tr>
                     </thead>
+                    <tbody>
                     <?php
                     while ($fetch_review = mysqli_fetch_assoc($select_review)) {
                         $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
@@ -52,7 +53,7 @@ if (isset($_GET['delete'])) {
                         $row_combo = mysqli_fetch_assoc($sql_combo_product);
                         $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
                         $row_user = mysqli_fetch_assoc($sql_user);
-                        echo "<tr>";
+                        echo "<tr class='set-height'>";
                         echo "<td>" . $fetch_review['id'] . "</td>";
                         if ($row_product['name']) {
                             echo "<td>" . $row_product['name'] . "</td>";
@@ -61,13 +62,10 @@ if (isset($_GET['delete'])) {
                         }
                         echo "<td>" . $row_user['fullname'] . "</td>";
                         echo "<td>" . $fetch_review['title'] . "</td>";
-                        echo "<td>" . $fetch_review['description'] . "</td>";
+                        echo "<td style='text-align: justify;'>" . $fetch_review['description'] . "</td>";
                         echo "<td>" . $fetch_review['rating'] . "</td>";
                         echo "<td>" . $fetch_review['date'] . "</td>";
-                        // <!-- echo "<td class='btn-review'>
-                        //    <a href='admin_review.php?delete=".$fetch_products['combo_id']."' onclick='return confirm(\"Xóa đánh giá này???\");'>Xóa</a>
-                        //   </td>"; -->
-                
+                        
                         echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
                         echo "</tr>";
 
@@ -76,6 +74,7 @@ if (isset($_GET['delete'])) {
                 echo '<p class="empty">Không có review nào tại đây</p>';
             }
             ?>
+            </tbody>
             </table>
         </div>
     </section>
