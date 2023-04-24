@@ -18,6 +18,16 @@ if (isset($_GET['delete'])) {
 
 ?>
 
+<?php
+function truncate_text($text)
+{
+    if (strlen($text) > 40) {
+        $text = substr($text, 0, 30) . '...';
+        $text = trim($text);
+    }
+    return $text;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +42,33 @@ if (isset($_GET['delete'])) {
 
     <!-- custom admin css file link  -->
     <link rel="stylesheet" href="../../public/css/admin.css">
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
 
+        .content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+    </style>
 </head>
 
 <body>
@@ -50,15 +86,18 @@ if (isset($_GET['delete'])) {
                 while ($fetch_message = mysqli_fetch_assoc($select_message)) {
 
             ?>
-            <div class="box">
-                <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
-                <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
-                <p> number : <span><?php echo $fetch_message['number']; ?></span> </p>
-                <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
-                <p> message : <span><?php echo $fetch_message['message']; ?></span> </p>
-                <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>"
-                    onclick="return confirm('delete this request?');" class="delete-btn">delete request</a>
-            </div>
+                    <div class="box">
+                        <p> user id : <span><?php echo $fetch_message['user_id']; ?></span> </p>
+                        <p> name : <span><?php echo $fetch_message['name']; ?></span> </p>
+                        <p> number : <span><?php echo $fetch_message['phonenumber']; ?></span> </p>
+                        <p> email : <span><?php echo $fetch_message['email']; ?></span> </p>
+                        <p> message : <span><?php echo nl2br(truncate_text(strip_tags($fetch_message['message']))); ?></span>
+                            <?php if (strlen(truncate_text($fetch_message['message'])) < strlen($fetch_message['message'])) { ?>
+                                <a href="#" onclick="expandmessage('<?php echo nl2br($fetch_message['message']); ?>');">chi tiết</a>
+                            <?php } ?>
+                        </p>
+                        <a href="admin_request.php?delete=<?php echo $fetch_message['user_id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">delete request</a>
+                    </div>
             <?php
                 };
             } else {
@@ -71,7 +110,27 @@ if (isset($_GET['delete'])) {
 
 
 
+    <script>
+        function expandmessage(fullmessage) {
 
+            var overlaymessage = document.createElement('div');
+            overlaymessage.classList.add('overlay');
+            document.body.appendChild(overlaymessage);
+
+            var contentmessage = document.createElement('div');
+            contentmessage.classList.add('content');
+            contentmessage.textContent = fullmessage;
+            overlaymessage.appendChild(contentmessage);
+
+            overlaymessage.style.display = 'block';
+            contentmessage.style.display = 'block';
+
+            overlaymessage.addEventListener('click', function() {
+                overlaymessage.style.display = 'none';
+                contentmessage.style.display = 'none';
+            });
+        }
+    </script>
 
 
 
