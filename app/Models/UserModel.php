@@ -219,8 +219,9 @@ class User {
 
     public function userSendMessage($name, $email, $username, $phonenumber, $message){
         $user_id = $_COOKIE['user_id'];
+        $id = create_unique_number_id();
         if($user_id != ''){
-            mysqli_query($this->conn, "INSERT INTO `message`(user_id, name, username, email, phonenumber, message) VALUES('$user_id', '$name', '$email', '$username','$phonenumber', '$message')") or die('query failed');
+            mysqli_query($this->conn, "INSERT INTO `message`(id, user_id, name, username, email, phonenumber, message) VALUES( '$id' ,'$user_id', '$name', '$email', '$username','$phonenumber', '$message')") or die('query failed');
             return 'Yêu cầu hỗ trợ thành công!';
         }
         else {
