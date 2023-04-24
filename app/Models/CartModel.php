@@ -8,12 +8,13 @@ class CartModel {
     }
  
     public function addToCart($user_id, $product_name, $product_price, $product_image, $product_quantity) {
+        $id = create_unique_number_id();
         $user_id = $_COOKIE['user_id'];
         $check_cart_numbers = mysqli_query($this->conn, "SELECT * FROM `cart` WHERE product_name = '$product_name' AND user_id = '$user_id'") or die('query failed');
         if(mysqli_num_rows($check_cart_numbers) > 0){
             return 'Sản phẩm đã có trong giỏ hàng!';
         }else{
-            mysqli_query($this->conn, "INSERT INTO `cart`(user_id, product_name, price, quantity, image) VALUES('$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
+            mysqli_query($this->conn, "INSERT INTO `cart`(id, user_id, product_name, price, quantity, image) VALUES('$id', '$user_id', '$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
             return 'Sản phẩm đã được thêm vào giỏ hàng!';
         }
     }   

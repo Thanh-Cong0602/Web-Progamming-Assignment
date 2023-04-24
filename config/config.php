@@ -10,6 +10,15 @@ function create_unique_id(){
     }
     return $random_string;
  }
+ function create_unique_number_id(){
+   $characters = '0123456789';
+ $characters_lenght = strlen($characters);
+ $random_string = '';
+ for($i = 0; $i < 5; $i++){
+    $random_string .= $characters[mt_rand(0, $characters_lenght - 1)];
+ }
+ return $random_string;
+}
 if(isset($_COOKIE['user_id'])){
     $user_id = $_COOKIE['user_id'];
  }else{
