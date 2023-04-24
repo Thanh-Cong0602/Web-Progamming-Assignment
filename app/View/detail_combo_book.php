@@ -69,6 +69,7 @@ if(isset($_POST['delete_review'])){
     </div>
     <div class="information-detail" data-aos="fade-left" data-aos-delay="600">
         <h3><?php echo $product['combo_name']?></h3>
+        <p><?php echo $product['description']?></p>
     <div class="evaluate-average">
     <?php
         $average = 0;

@@ -19,10 +19,10 @@ if(isset($_POST['submit'])){
    elseif ($result == 'Error uploading file'){ 
       $_SESSION['error_msg'] = $result;
    }
-   elseif ($result == 'Người dùng đã tồn tại') {
-      $_SESSION['warning_msg'] = 'Người dùng đã tồn tại';
+   elseif ($result == 'Người dùng đã tồn tại!') {
+      $_SESSION['warning_msg'] = 'Người dùng đã tồn tại!';
    }
-   elseif ($result == 'Mật khẩu xác nhận không khớp'){
+   elseif ($result == 'Mật khẩu xác nhận không khớp!'){
       $_SESSION['warning_msg'] = 'Mật khẩu xác nhận không khớp';
    }
    else {

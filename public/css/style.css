@@ -477,7 +477,14 @@ section {
   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
   gap: 3rem;
 }
-
+.product .search-book {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 35rem);
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
 .product .shop {
   margin-top: 10rem;
 }
@@ -2235,7 +2242,28 @@ information-detail.credit {
     margin-top: 2rem;
   }
 }
+@media (max-width: 1145px){
+  .detailBook .option-cart {
+    gap:5rem;
+  }
+}
+@media (max-width: 900px){
+  .detailBook .option-cart {
+    display: block;
+  }
+  .detailBook .option-cart .add_to_cart {
+      margin-bottom: 2rem;
+  }
+}
 @media (max-width: 768px) {
+  .detailBook .option-cart {
+    cursor: pointer;
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15rem;
+  }
   #menu-btn {
     display: inline-block;
   }

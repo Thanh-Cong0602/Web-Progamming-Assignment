@@ -21,8 +21,8 @@
         <a data-aos="zoom-in-left" data-aos-delay="900" href="support.php">Hỗ trợ</a>
     </nav>
     <div class = "icons btn">
-    <a data-aos="zoom-in-left" data-aos-delay="1100" href="#book-form">
-             <i class="fas fa-search"></i>
+    <a data-aos="zoom-in-left" data-aos-delay="1100" href="../View/searchBook.php">
+       <i class="fas fa-search"></i>
     </a>
     <a data-aos="zoom-in-left" data-aos-delay="1250" class ="tcn">
         <i id="fa-user" class="fas fa-user users"></i>

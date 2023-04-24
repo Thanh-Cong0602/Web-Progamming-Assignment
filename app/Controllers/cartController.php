@@ -13,13 +13,17 @@ if (isset($_POST['add_to_cart'])) {
    $product_price = $_POST['product_price'];
    $product_image = $_POST['product_image'];
    $product_quantity = $_POST['product_quantity'];
-   $product_id = $_POST['product_id'];
    $message = $cartModel->addToCart($user_id, $product_name, $product_price, $product_image, $product_quantity);
    if ($message == 'Sản phẩm đã có trong giỏ hàng!') {
       $_SESSION['warning_msg'] = $message;
    } else {
       $_SESSION['success_msg'] = $message;
    }
+   if ($_POST['add_to_cart'] == 'Tìm kiếm') {
+      header('Location: ../View/searchBook.php');
+      exit;
+   }
+   $product_id = $_POST['product_id'];
    if ($_POST['add_to_cart'] == 'Mua ngay') {
       header('Location: ../View/shopping_cart.php');
       exit;

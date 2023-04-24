@@ -43,12 +43,10 @@ class User {
 
     public function registerUser($fullname, $username, $email, $phonenumber, $password, $user_type) {
         $user_id = create_unique_id();
-        // $fullname = mysqli_real_escape_string($this->conn, $fullname);
-        // $username = mysqli_real_escape_string($this->conn, $username);
-        // $phonenumber = mysqli_real_escape_string($this->conn, $phonenumber);
-        // $email = mysqli_real_escape_string($this->conn, $email);
-        $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $fullname = $_POST['fullname'];
+        // $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $username = $_POST['username'];
         $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -76,7 +74,7 @@ class User {
             return 'Người dùng đã tồn tại!';
          }else{
             if(!password_verify($confirmpassword, $password)){
-               return 'Mật khẩu xác nhận không khớp';
+               return 'Mật khẩu xác nhận không khớp!';
             }else{
                mysqli_query($this->conn, "INSERT INTO `users`(user_id, fullname, username, phonenumber, email, password, user_type, image) VALUES('$user_id',  '$fullname', '$username', '$phonenumber', '$email' ,'$password', '$user_type', '$rename')") or die('query failed');
                return 'Successfully!';
@@ -141,8 +139,10 @@ class User {
         $user_id = $_COOKIE['user_id'];
         $select_user = mysqli_query($this->conn, "SELECT * FROM `users` WHERE user_id = '$user_id' LIMIT 1") or die('query failed');
         $fetch_user = mysqli_fetch_assoc($select_user);
-        $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $fullname = $_POST['fullname'];
+        $username = $_POST['username'];
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
         if(!empty($fullname)) {

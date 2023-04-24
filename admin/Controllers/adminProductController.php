@@ -15,10 +15,13 @@ if (isset($_POST['add_product'])) {
     $message = $cartModel->AddToProducts($name,  $price,  $author, $image,  $description, $supplier, $publiser);
     if ($message == 'Sách đã tồn tại'){
         $_SESSION['success_msg'] = $message;
+        header('Location: ../View/admin_product.php');
+        exit;
     }
     else {
         $_SESSION['success_msg'] = $message;
+        header('Location: ../View/admin_product.php');
+        exit;
     }
-    header('Location: ../View/admin_product.php');
     }
 ?>
