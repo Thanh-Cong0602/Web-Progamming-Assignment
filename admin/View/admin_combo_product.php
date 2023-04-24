@@ -48,7 +48,7 @@ if (isset($_POST['update_product'])) {
     $update_image_3 = $_POST['update_image_3'];
     $update_name_3 = $_POST['update_name_3'];
     $update_description_3 = $_POST['update_description_3'];
-    mysqli_query($conn, "UPDATE `combo_products` SET combo_name = '$update_combo_name', price = '$update_price', image_combo = '$update_image_combo', description = '$update_description', description_detail = '$update_description_detail',image_1 = '$image_1', name_1 = '$update_name_1', description_1 = '$update_description_1', image_2 = '$image_2', name_2 = '$update_name_2', description_2 = '$update_description_2', image_3 = '$image_3', name_3 = '$update_name_3', description_3 = '$update_description_3'  WHERE combo_id = '$update_combo_id'") or die('query failed');
+    mysqli_query($conn, "UPDATE `combo_products` SET combo_name = '$update_combo_name', price = '$update_price', image_combo = '$update_image_combo', description = '$update_description', description_detail = '$update_description_detail',image_1 = '$update_image_1', name_1 = '$update_name_1', description_1 = '$update_description_1', image_2 = '$update_image_2', name_2 = '$update_name_2', description_2 = '$update_description_2', image_3 = '$update_image_3', name_3 = '$update_name_3', description_3 = '$update_description_3'  WHERE combo_id = '$update_combo_id'") or die('query failed');
     header('location:admin_combo_product.php');
 }
 
@@ -62,6 +62,7 @@ if (isset($_POST['update_product'])) {
     <title>Quản lý combo sách</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
+    <link rel="stylesheet" href="../../public/css/hung.css">
 
 </head>
 <body>

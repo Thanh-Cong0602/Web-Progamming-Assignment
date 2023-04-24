@@ -47,6 +47,7 @@ if (isset($_POST['update_product'])) {
     <title>Quản lý thêm, sửa, xóa sách</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
+    <link rel="stylesheet" href="../../public/css/hung.css">
 
 </head>
 

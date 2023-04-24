@@ -18,6 +18,7 @@ if (isset($_GET['delete'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../public/css/hung.css">
 
 </head>
 
@@ -54,17 +55,17 @@ if (isset($_GET['delete'])) {
                         $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
                         $row_user = mysqli_fetch_assoc($sql_user);
                         echo "<tr class='set-height'>";
-                        echo "<td>" . $fetch_review['id'] . "</td>";
+                        echo "<td data-label='ID'>" . $fetch_review['id'] . "</td>";
                         if ($row_product['name']) {
-                            echo "<td>" . $row_product['name'] . "</td>";
+                            echo "<td data-label='Tên sản phẩm'>" . $row_product['name'] . "</td>";
                         } else if ($row_combo['combo_name']) {
-                            echo "<td>" . $row_combo['combo_name'] . "</td>";
+                            echo "<td data-label='Tên khách'>" . $row_combo['combo_name'] . "</td>";
                         }
-                        echo "<td>" . $row_user['fullname'] . "</td>";
-                        echo "<td>" . $fetch_review['title'] . "</td>";
-                        echo "<td style='text-align: justify;'>" . $fetch_review['description'] . "</td>";
-                        echo "<td>" . $fetch_review['rating'] . "</td>";
-                        echo "<td>" . $fetch_review['date'] . "</td>";
+                        echo "<td data-label='Tên khách'>" . $row_user['fullname'] . "</td>";
+                        echo "<td data-label='Tiêu đề'>" . $fetch_review['title'] . "</td>";
+                        echo "<td data-label='Nhận xét' style='text-align: justify;'>" . $fetch_review['description'] . "</td>";
+                        echo "<td data-label='Đánh giá'>" . $fetch_review['rating'] . "</td>";
+                        echo " <td data-label='Thời gian'>" . $fetch_review['date'] . "</td>";
                         
                         echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
                         echo "</tr>";

@@ -32,7 +32,7 @@ if (isset($_GET['delete'])) {
 
     <!-- custom admin css file link  -->
     <link rel="stylesheet" href="../../public/css/admin.css">
-
+    
 </head>
 
 <body>
