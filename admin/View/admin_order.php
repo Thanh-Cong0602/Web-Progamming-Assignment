@@ -93,20 +93,22 @@ function truncate_text($text)
                 while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
             ?>
                     <div class="box">
-                        <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-                        <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
-                        <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
-                        <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
-                        <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-                        <p> address : <span><?php echo truncate_text($fetch_orders['address']); ?></span> </p>
-                        <p class="total-products"> total products :
+                        <p> User id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
+                        <p> Ngày đặt hàng : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+                        <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
+                        <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
+                        <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+                        <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span> </p>
+                        <p class="total-products"> Tổng sản phẩm :
                             <span><?php echo truncate_text($fetch_orders['total_products']); ?></span>
                             <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
                                 <a href="#" onclick="expandText('<?php echo $fetch_orders['total_products']; ?>');">chi tiết</a>
                             <?php } ?>
                         </p>
-                        <p> total price : <span>$<?php echo $fetch_orders['total_price']; ?></span> </p>
-                        <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
+                        <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
+                            <span class="rate">₫</span></h3>
+                        </p>
+                        <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
                         <div class="select-button">
                             <form action="" method="post">
                                 <input type="hidden" name="order_id" value="<?php echo $fetch_orders['user_id']; ?>">
@@ -115,8 +117,8 @@ function truncate_text($text)
                                     <option value="pending">pending</option>
                                     <option value="completed">completed</option>
                                 </select>
-                                <input type="submit" value="update" name="update_order" class="option-btn">
-                                <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">delete</a>
+                                <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
+                                <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">Xóa</a>
                             </form>
                         </div>
                     </div>

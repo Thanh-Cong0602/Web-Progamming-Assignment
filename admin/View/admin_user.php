@@ -54,7 +54,7 @@ if (isset($_GET['delete'])) {
         height: 100%;
         background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
         border: #2c2c2c solid 2px;
-        content: "Search User";
+        content: "Tìm Kiếm Người Dùng";
         font-family: 'Permanent Marker', cursive;
         font-size: 2.2em;
         color: rgba(238, 238, 238, 0.7);
@@ -142,17 +142,17 @@ if (isset($_GET['delete'])) {
                     <div class="form">
                         <hr><br>
                         <p>
-                            <label for="name"><b>Name&emsp;</b></label>
-                            <input type="text" placeholder="Name" name="fullname">
+                            <label for="name"><b>Tên&emsp;</b></label>
+                            <input type="text" placeholder="Nhập tên" name="fullname">
                             <br>
                         </p>
                         <p><br>
                         <p class="wipeout">
                             <span style="float: left; margin-left: 10%">
-                                <input type="submit" name="search" value="Search:-" />
+                                <input type="submit" name="search" value="Tìm Kiếm" />
                             </span>
                             <span style="float: right; margin-right: 10%">
-                                <input type="submit" value="Clear:-" />
+                                <input type="submit" value="Xóa" />
                             </span><br>
                         </p>
                     </div>
@@ -181,18 +181,18 @@ if (isset($_GET['delete'])) {
                     <?php } ?>
                 </div>
                 <div class="detail">
-                    <p> user id : <span><?php echo $fetch_users_sql['user_id']; ?></span> </p>
-                    <p> fullname : <span><?php echo $fetch_users_sql['fullname']; ?></span> </p>
-                    <p> username : <span><?php echo $fetch_users_sql['username']; ?></span> </p>
-                    <p> email : <span><?php echo $fetch_users_sql['email']; ?></span> </p>
-                    <p> user type : <span
+                    <p> User id : <span><?php echo $fetch_users_sql['user_id']; ?></span> </p>
+                    <p> Họ và Tên : <span><?php echo $fetch_users_sql['fullname']; ?></span> </p>
+                    <p> Username : <span><?php echo $fetch_users_sql['username']; ?></span> </p>
+                    <p> Email : <span><?php echo $fetch_users_sql['email']; ?></span> </p>
+                    <p> Loại người dùng : <span
                             style="color:<?php if ($fetch_users_sql['user_type'] == 'admin') {
-                                                                        echo 'var(--orange)';
-                                                                    } ?>"><?php echo $fetch_users_sql['user_type']; ?></span>
+                                                                                echo 'var(--orange)';
+                                                                            } ?>"><?php echo $fetch_users_sql['user_type']; ?></span>
                     </p>
                     <br><br>
                     <a href="admin_user.php?delete=<?php echo $fetch_users_sql['user_id']; ?>"
-                        onclick="return confirm('delete this user?');" class="delete-btn">delete user</a>
+                        onclick="return confirm('delete this user?');" class="delete-btn">Xóa</a>
                 </div>
             </div>
             <?php
@@ -221,22 +221,24 @@ if (isset($_GET['delete'])) {
                     <?php } ?>
                 </div>
                 <div class="fullname-type">
-                    <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
-                    <p> user type : <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
-                                                                echo 'var(--orange)';
-                                                            } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
+                    <p> Họ và Tên : <span><?php echo $fetch_users['fullname']; ?></span> </p>
+                    <p> Loại người dùng : <span
+                            style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+                                                                        echo 'var(--orange)';
+                                                                    } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
                 </div>
                 <div class="detail">
-                    <p> user id : <span><?php echo $fetch_users['user_id']; ?></span> </p>
-                    <p> fullname : <span><?php echo $fetch_users['fullname']; ?></span> </p>
+                    <p> User id : <span><?php echo $fetch_users['user_id']; ?></span> </p>
+                    <p> Họ và Tên : <span><?php echo $fetch_users['fullname']; ?></span> </p>
                     <p> username : <span><?php echo $fetch_users['username']; ?></span> </p>
-                    <p> email : <span><?php echo $fetch_users['email']; ?></span> </p>
-                    <p> user type : <span style="color:<?php if ($fetch_users['user_type'] == 'admin') {
-                                                                echo 'var(--orange)';
-                                                            } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
+                    <p> Email : <span><?php echo $fetch_users['email']; ?></span> </p>
+                    <p> Loại người dùng : <span
+                            style="color:<?php if ($fetch_users['user_type'] == 'admin') {
+                                                                        echo 'var(--orange)';
+                                                                    } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
                     <br><br>
                     <a href="admin_user.php?delete=<?php echo $fetch_users['user_id']; ?>"
-                        onclick="return confirm('delete this user?');" class="delete-btn">delete user</a>
+                        onclick="return confirm('delete this user?');" class="delete-btn">Xóa</a>
                 </div>
             </div>
             <?php
