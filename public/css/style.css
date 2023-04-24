@@ -581,12 +581,31 @@ section {
 .product .box-container .box .purchase button:hover i {
   color: whitesmoke;
 }
-
-/* .product .box-container .box .purchase a i {
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 100%;
   font-size: 1.5rem;
-  padding: 3px;
-} */
-
+  padding: 2rem 0;
+}
+.toolbar .pagination {
+  border-radius: 2rem;
+}
+.toolbar .page-link {
+  padding: 1rem 2rem;
+  /* background: #222; */
+}
+.page-item.active .page-link {
+  color: black;
+}
+@media only screen and (max-width: 576px) {
+  .pagination {
+      display: flex !important;
+      flex-wrap: wrap !important;
+  }
+}
 
 .services .box-container {
   display: -ms-grid;
