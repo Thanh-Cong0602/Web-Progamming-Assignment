@@ -37,7 +37,7 @@ if (isset($_GET['delete'])) {
     <style>
         .blackboard {
             position: relative;
-            width: 640px;
+            width: 44%;
             margin: 5% auto;
             border: tan solid 12px;
             border-top: #bda27e solid 12px;

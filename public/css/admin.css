@@ -39,12 +39,18 @@ section {
 
 .title {
   text-align: center;
-  margin-bottom: 2rem;
+  align-items: center;
   text-transform: uppercase;
   color: var(--black);
-  font-size: 4rem;
+  font-size: 3.5rem;
 }
-
+.title1 {
+  text-align: left;
+  align-items: center;
+  text-transform: uppercase;
+  color: var(--black);
+  font-size: 3.5rem;
+}
 .empty {
   padding: 1.5rem;
   text-align: center;
@@ -265,6 +271,20 @@ section {
 /* ========================= */
 /* product */
 /* ========================= */
+.add-products{
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  width: 100%;
+}
 .add-products form {
   background-color: var(--white); 
   border-radius: 1rem;
@@ -274,6 +294,7 @@ section {
   border: var(--border);
   max-width: 50rem;
   margin: 0 auto;
+  
 }
 
 .add-products form h3 {
@@ -295,6 +316,45 @@ section {
   border: var(--border);
 }
 
+.edit-product-form {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  width: 100%;
+}
+
+.edit-product-form form {
+  width: 50rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: var(--white);
+}
+
+.edit-product-form form img {
+  height: 25rem;
+  margin-bottom: 1rem;
+}
+
+.edit-product-form form .box {
+  margin: 1rem 0;
+  padding: 1.2rem 1.4rem;
+  border: var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--light-bg);
+  font-size: 1.8rem;
+  color: var(--black);
+  width: 100%;
+}
+
 .show-products .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 32rem);
@@ -304,7 +364,19 @@ section {
   margin: 0 auto;
   align-items: flex-start;
 }
+.show-products .list-add-products{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 51rem);
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
 
+.show-products .list-add-products .add-products-button{
+  text-align: right;
+}
 .show-products {
   padding-top: 0;
 }
@@ -358,45 +430,6 @@ section {
 .show-products .box-container .box .detail_book:hover {
   opacity: 0.5;
 }
-.edit-product-form {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  overflow-y: scroll;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1200;
-  width: 100%;
-}
-
-.edit-product-form form {
-  width: 50rem;
-  padding: 2rem;
-  text-align: center;
-  border-radius: 0.5rem;
-  background-color: var(--white);
-}
-
-.edit-product-form form img {
-  height: 25rem;
-  margin-bottom: 1rem;
-}
-
-.edit-product-form form .box {
-  margin: 1rem 0;
-  padding: 1.2rem 1.4rem;
-  border: var(--border);
-  border-radius: 0.5rem;
-  background-color: var(--light-bg);
-  font-size: 1.8rem;
-  color: var(--black);
-  width: 100%;
-}
-
 .info-book {
   background-color: #fffa5faf;
   width: 60%;
@@ -457,9 +490,26 @@ section {
 
 /* media queries  */
 
+@media (max-width: 1024px) {
+  html {
+    font-size: 55%;
+  }
+  .show-products .list-add-products .add-products-button{
+    text-align: center;
+  }
+  .title1{
+    text-align: center;
+  }
+}
 @media (max-width: 991px) {
   html {
     font-size: 55%;
+  }
+  .show-products .list-add-products .add-products-button{
+    text-align: center;
+  }
+  .title{
+    text-align: center;
   }
 }
 
@@ -487,6 +537,12 @@ section {
     margin: 2rem;
     display: block;
   }
+  .show-products .list-add-products .add-products-button{
+    text-align: center;
+  }
+  .title1{
+    text-align: center;
+  }
 }
 
 @media (max-width: 450px) {
@@ -494,8 +550,12 @@ section {
     font-size: 50%;
   }
 
-  .title {
+  .title1,.title {
+    text-align: center;
     font-size: 3rem;
+  }
+  .show-products .list-add-products .add-products-button{
+    text-align: center;
   }
 <<<<<<< HEAD
 
