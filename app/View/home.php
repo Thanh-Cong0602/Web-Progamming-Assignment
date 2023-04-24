@@ -75,7 +75,7 @@ session_start();
     </div>
     <div class="box-container">
     <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY product_id DESC LIMIT 8") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT * FROM `products` ORDER BY `date` DESC LIMIT 8") or die('query failed');
 
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){

@@ -39,7 +39,7 @@ if (isset($_POST['add_to_cart'])) {
    $previous_page = $_SERVER['HTTP_REFERER'];
    if ($previous_page == 'http://localhost:3000/app/View/home.php') {
       header('Location: http://localhost:3000/app/View/home.php#product');
-      exit;
+      exit; 
    } elseif($previous_page == 'http://localhost:3000/app/View/shop.php'){
       header('Location: http://localhost:3000/app/View/shop.php#product');
       exit;

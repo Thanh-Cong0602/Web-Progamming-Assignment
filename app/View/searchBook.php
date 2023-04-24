@@ -213,7 +213,7 @@ session_start();
                     while ($fetch_products_sql = mysqli_fetch_assoc($sql_products)) {
             ?>
                  <form method="post" action="../Controllers/cartController.php"> 
-                    <div class="box" data-aos="fade-up" data-aos-delay="300">
+                    <div class="box" data-aos="fade-up" data-aos-delay="200">
                         <div class="image"> 
                             <img src="<?php echo $fetch_products_sql['image']; ?>" alt="">
                         </div>
