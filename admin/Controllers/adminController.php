@@ -49,6 +49,7 @@ if (isset($_POST['update_product'])) {
         exit;
     }
 }
+
 if (isset($_POST['update_order'])) {
     $order_update_id = $_POST['order_id'];
     $update_payment = $_POST['update_payment'];
