@@ -2,6 +2,16 @@
 include '../../config/config.php';
 session_start();
 ?>
+<?php
+function truncate_text($text)
+{
+    if (strlen($text) > 70) {
+        $text = substr($text, 0, 52) . '...';
+        $text = trim($text);
+    }
+    return $text;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,120 +21,148 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý combo sách</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../public/css/admin.css">
+
     <style>
-        .blackboard {
-            position: relative;
-            width: 45%;
-            margin: 5% auto;
-            border: tan solid 12px;
-            border-top: #bda27e solid 12px;
-            border-left: #b19876 solid 12px;
-            border-bottom: #c9ad86 solid 12px;
-            box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782, 0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
-            background-image: radial-gradient(circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient(215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
-            background-color: #333;
-        }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
 
-        .blackboard:before {
-            box-sizing: border-box;
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
-            border: #2c2c2c solid 2px;
-            content: "Tìm Kiếm Sản Phẩm";
-            font-family: 'Permanent Marker', cursive;
-            font-size: 2.2em;
-            color: rgba(238, 238, 238, 0.7);
-            text-align: center;
-            padding-top: 20px;
-        }
+    .content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 700px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: none;
+        white-space: pre-wrap;
+        border-radius: 10px;
+        line-height: 1.5;
+        font-size: 2rem;
+    }
 
-        .form {
-            padding: 70px 20px 20px;
-        }
+    .blackboard {
+        position: relative;
+        width: 45%;
+        margin: 5% auto;
+        border: tan solid 12px;
+        border-top: #bda27e solid 12px;
+        border-left: #b19876 solid 12px;
+        border-bottom: #c9ad86 solid 12px;
+        box-shadow: 0px 0px 6px 5px rgba(58, 18, 13, 0), 0px 0px 0px 2px #c2a782, 0px 0px 0px 4px #a58e6f, 3px 4px 8px 5px rgba(0, 0, 0, 0.5);
+        background-image: radial-gradient(circle at left 30%, rgba(34, 34, 34, 0.3), rgba(34, 34, 34, 0.3) 80px, rgba(34, 34, 34, 0.5) 100px, rgba(51, 51, 51, 0.5) 160px, rgba(51, 51, 51, 0.5)), linear-gradient(215deg, transparent, transparent 100px, #222 260px, #222 320px, transparent), radial-gradient(circle at right, #111, rgba(51, 51, 51, 1));
+        background-color: #333;
+    }
 
-        p {
-            position: relative;
-            margin-bottom: 1em;
-        }
+    .blackboard:before {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(175deg, transparent, transparent 40px, rgba(120, 120, 120, 0.1) 100px, rgba(120, 120, 120, 0.1) 110px, transparent 220px, transparent), linear-gradient(200deg, transparent 80%, rgba(50, 50, 50, 0.3)), radial-gradient(ellipse at right bottom, transparent, transparent 200px, rgba(80, 80, 80, 0.1) 260px, rgba(80, 80, 80, 0.1) 320px, transparent 400px, transparent);
+        border: #2c2c2c solid 2px;
+        content: "Tìm Kiếm Sản Phẩm";
+        font-family: 'Permanent Marker', cursive;
+        font-size: 2.2rem;
+        color: rgba(238, 238, 238, 0.7);
+        text-align: center;
+        padding-top: 20px;
+    }
 
-        label {
-            vertical-align: middle;
-            font-size: 1.6em;
-            color: rgba(238, 238, 238, 0.7);
-        }
+    .form {
+        padding: 70px 20px 20px;
+    }
 
-        p:nth-of-type(5)>label {
-            vertical-align: top;
-        }
+    p {
+        position: relative;
+        margin-bottom: 1em;
+    }
 
-        input,
-        textarea {
-            vertical-align: middle;
-            padding-left: 10px;
-            background: none;
-            border: none;
+    label {
+        vertical-align: middle;
+        font-size: 1.6em;
+        color: rgba(238, 238, 238, 0.7);
+    }
 
-            font-size: 1.6em;
-            color: rgba(238, 238, 238, 0.8);
-            line-height: .6em;
-            outline: none;
-        }
+    p:nth-of-type(5)>label {
+        vertical-align: top;
+    }
 
-        select {
-            vertical-align: middle;
-            padding-left: 10px;
-            background: transparent;
-            border: none;
-            width: 40%;
+    input,
+    textarea {
+        vertical-align: middle;
+        padding-left: 10px;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        color: rgba(238, 238, 238, 0.8);
+        line-height: .6em;
+        outline: none;
+    }
 
-            font-size: 1.6em;
-            color: rgba(238, 238, 238, 0.8);
-            line-height: .6em;
-            outline: none;
-        }
+    select {
+        vertical-align: middle;
+        padding-left: 10px;
+        background: transparent;
+        border: none;
+        width: 40%;
 
-        option {
-            vertical-align: middle;
-            padding-left: 10px;
-            background: rgb(63, 62, 70);
-            border: none;
+        font-size: 1.6em;
+        color: rgba(238, 238, 238, 0.8);
+        line-height: .6em;
+        outline: none;
+    }
 
-            font-size: 1.0em;
-            color: rgba(238, 238, 238, 0.8);
-            line-height: .6em;
-            outline: none;
-        }
+    option {
+        vertical-align: middle;
+        padding-left: 10px;
+        background: rgb(63, 62, 70);
+        border: none;
 
-        textarea {
-            margin-top: 1%;
-            height: 120px;
-            font-size: 1.4em;
-            line-height: 1em;
-            resize: none;
-        }
+        font-size: 1.0em;
+        color: rgba(238, 238, 238, 0.8);
+        line-height: .6em;
+        outline: none;
+    }
 
-        .searchandclear {
-            cursor: pointer;
-            color: rgba(238, 238, 238, 0.7);
-            line-height: 1em;
-            padding: 0;
-        }
+    textarea {
+        margin-top: 1%;
+        height: 120px;
+        font-size: 1.4em;
+        line-height: 1em;
+        resize: none;
+    }
 
-        input[type="submit"]:focus {
-            background: rgba(238, 238, 238, 0.2);
-            color: rgba(238, 238, 238, 0.2);
-        }
+    .searchandclear {
+        cursor: pointer;
+        color: rgba(238, 238, 238, 0.7);
+        line-height: 1em;
+        padding: 0;
+    }
 
-        ::-moz-selection {
-            background: rgba(238, 238, 238, 0.2);
-            color: rgba(238, 238, 238, 0.2);
-            text-shadow: none;
-        }
+    input[type="submit"]:focus {
+        background: rgba(238, 238, 238, 0.2);
+        color: rgba(238, 238, 238, 0.2);
+    }
+
+    ::-moz-selection {
+        background: rgba(238, 238, 238, 0.2);
+        color: rgba(238, 238, 238, 0.2);
+        text-shadow: none;
+    }
     </style>
+    <link rel="stylesheet" href="../../public/css/admin.css">
 </head>
 
 <body>
@@ -133,27 +171,32 @@ session_start();
         <?php
         if (isset($_GET['add-product-book'])) {
         ?>
-            <form action="../Controllers/adminProductController.php" method="post">
-                <h3>Thêm combo</h3>
-                <input type="text" name="combo_name" class="box" placeholder="Nhập tên Combo" required>
-                <input type="number" min="0" name="price" class="box" placeholder="Nhập giá" required>
-                <input type="text" name="image_combo" class="box" placeholder="Nhập ảnh của combo" required>
-                <textarea name="description" class="description" placeholder="Nhập mô tả về combo" cols="30" rows="5"></textarea>
-                <textarea name="description_detail" class="description" placeholder="Nhập mô tả chi tiết cho combo" cols="30" rows="5"></textarea>
-                <input type="text" name="name_1" class="box" placeholder="Nhập tên sách 1" required>
-                <input type="text" name="image_1" class="box" placeholder="Nhập url cho sách 1" required>
-                <textarea name="description_1" class="description" placeholder="Nhập mô tả về sách 1" cols="30" rows="5"></textarea>
-                <input type="text" name="name_2" class="box" placeholder="Nhập tên sách 2" required>
-                <input type="text" name="image_2" class="box" placeholder="Nhập url cho sách 2" required>
-                <textarea name="description_2" class="description" placeholder="Nhập mô tả về sách 2" cols="30" rows="5"></textarea>
-                <input type="text" name="name_3" class="box" placeholder="Nhập tên sách 3">
-                <input type="text" name="image_3" class="box" placeholder="Nhập url cho sách 3">
-                <textarea name="description_3" class="description" placeholder="Nhập mô tả về sách 3" cols="30" rows="5"></textarea>
-                <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                    <input type="submit" value="Thêm Combo" name="add_product_combo" class="btn">
-                    <a href="admin_combo_product.php" class="delete-btn">Đóng</a>
-                </div>
-            </form>
+        <form action="../Controllers/adminProductController.php" method="post">
+            <h3>Thêm combo</h3>
+            <input type="text" name="combo_name" class="box" placeholder="Nhập tên Combo" required>
+            <input type="number" min="0" name="price" class="box" placeholder="Nhập giá" required>
+            <input type="text" name="image_combo" class="box" placeholder="Nhập ảnh của combo" required>
+            <textarea name="description" class="description" placeholder="Nhập mô tả về combo" cols="30"
+                rows="5"></textarea>
+            <textarea name="description_detail" class="description" placeholder="Nhập mô tả chi tiết cho combo"
+                cols="30" rows="5"></textarea>
+            <input type="text" name="name_1" class="box" placeholder="Nhập tên sách 1" required>
+            <input type="text" name="image_1" class="box" placeholder="Nhập url cho sách 1" required>
+            <textarea name="description_1" class="description" placeholder="Nhập mô tả về sách 1" cols="30"
+                rows="5"></textarea>
+            <input type="text" name="name_2" class="box" placeholder="Nhập tên sách 2" required>
+            <input type="text" name="image_2" class="box" placeholder="Nhập url cho sách 2" required>
+            <textarea name="description_2" class="description" placeholder="Nhập mô tả về sách 2" cols="30"
+                rows="5"></textarea>
+            <input type="text" name="name_3" class="box" placeholder="Nhập tên sách 3">
+            <input type="text" name="image_3" class="box" placeholder="Nhập url cho sách 3">
+            <textarea name="description_3" class="description" placeholder="Nhập mô tả về sách 3" cols="30"
+                rows="5"></textarea>
+            <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                <input type="submit" value="Thêm Combo" name="add_product_combo" class="btn">
+                <a href="admin_combo_product.php" class="delete-btn">Đóng</a>
+            </div>
+        </form>
         <?php
         } else {
             echo '<script>document.querySelector(".add-products-combo").style.display = "none";</script>';
@@ -174,9 +217,10 @@ session_start();
                     </p>
                     <br>
                     <p>
-                        <label for="pricebelow">Khoảng giá:</label>&emsp;
-                        <input type="number" placeholder="Dưới" name="pricebelow" style="width:20%">&emsp;&emsp;&emsp;
-                        <input type="number" placeholder="Trên" name="priceabove" style="width:20%">
+                        <label for="pricebelow">Khoảng giá:&emsp;&emsp;</label><br><br>
+                        <input type="number" placeholder="Dưới" name="pricebelow" style="width:30%">&emsp;&emsp;&emsp;
+                        <input type="number" placeholder="Trên" name="priceabove" style="width:30%">
+
                     </p>
                     <br><br>
                     <p class="wipeout">
@@ -217,27 +261,34 @@ session_start();
                 if ($select_products && mysqli_num_rows($select_products) > 0) {
                     while ($fetch_products = mysqli_fetch_assoc($select_products)) {
             ?>
-                        <div class="box">
-                            <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
-                            <div class="name" style="height: 15vh;">
-                                <?php echo $fetch_products['combo_name']; ?>
-                            </div>
-                            <div class="price">
-                                <?php echo $fetch_products['price']; ?> ₫
-                            </div>
-                            <form action="../Controllers/adminProductController.php" method="post">
-                                <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>" class="detail_book">Xem
-                                    thêm <i class="fas fa-angle-right"></i></a> <br>
-                                <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                                    <a href="admin_combo_product.php?update=<?php echo $fetch_products['combo_id']; ?>" class="option-btn">Cập nhật</a>
-                                    <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_combo_product">
-                                    <input type="hidden" value="<?php echo $fetch_products['combo_id'] ?>" name="combo_id">
-                                </div>
+            <div class="box">
+                <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
+                <div class="name" style="height: 15vh;">
+                    <?php echo truncate_text($fetch_products['combo_name']); ?>
+                    <?php if (strlen(truncate_text($fetch_products['combo_name'])) < strlen($fetch_products['combo_name'])) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandText(`<?php echo $fetch_products['combo_name']; ?>`);">chi tiết</a>
+                    <?php } ?>
+                </div>
+                <div class="price">
+                    <?php echo $fetch_products['price']; ?> ₫
+                </div>
+                <form action="../Controllers/adminProductController.php" method="post">
+                    <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>"
+                        class="detail_book">Xem
+                        thêm <i class="fas fa-angle-right"></i></a> <br>
+                    <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                        <a href="admin_combo_product.php?update=<?php echo $fetch_products['combo_id']; ?>"
+                            class="option-btn">Cập nhật</a>
+                        <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');"
+                            class="delete-btn" name="delete_combo_product">
+                        <input type="hidden" value="<?php echo $fetch_products['combo_id'] ?>" name="combo_id">
+                    </div>
 
-                            </form>
-                            <!-- <a href="admin_combo_product.php?delete=<?php echo $fetch_products['combo_id']; ?>" class="delete-btn"
+                </form>
+                <!-- <a href="admin_combo_product.php?delete=<?php echo $fetch_products['combo_id']; ?>" class="delete-btn"
                         onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
-                        </div>
+            </div>
             <?php
                     }
                 } else {
@@ -265,27 +316,34 @@ session_start();
             if (mysqli_num_rows($select_products) > 0) {
                 while ($fetch_products = mysqli_fetch_assoc($select_products)) {
             ?>
-                    <div class="box">
-                        <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
-                        <div class="name" style="height: 15vh;">
-                            <?php echo $fetch_products['combo_name']; ?>
-                        </div>
-                        <div class="price">
-                            <?php echo $fetch_products['price']; ?> ₫
-                        </div>
-                        <form action="../Controllers/adminProductController.php" method="post">
-                            <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>" class="detail_book">Xem
-                                thêm <i class="fas fa-angle-right"></i></a> <br>
-                            <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                                <a href="admin_combo_product.php?update=<?php echo $fetch_products['combo_id']; ?>" class="option-btn">Cập nhật</a>
-                                <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_combo_product">
-                                <input type="hidden" value="<?php echo $fetch_products['combo_id'] ?>" name="combo_id">
-                            </div>
-
-                        </form>
-                        <!-- <a href="admin_combo_product.php?delete=<?php echo $fetch_products['combo_id']; ?>" class="delete-btn"
-                    onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
+            <div class="box">
+                <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
+                <div class="name" style="height: 15vh;">
+                    <?php echo truncate_text($fetch_products['combo_name']); ?>
+                    <?php if (strlen(truncate_text($fetch_products['combo_name'])) < strlen($fetch_products['combo_name'])) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandText(`<?php echo $fetch_products['combo_name']; ?>`);">chi tiết</a>
+                    <?php } ?>
+                </div>
+                <div class="price">
+                    <?php echo $fetch_products['price']; ?> ₫
+                </div>
+                <form action="../Controllers/adminProductController.php" method="post">
+                    <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>"
+                        class="detail_book">Xem
+                        thêm <i class="fas fa-angle-right"></i></a> <br>
+                    <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                        <a href="admin_combo_product.php?update=<?php echo $fetch_products['combo_id']; ?>"
+                            class="option-btn">Cập nhật</a>
+                        <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');"
+                            class="delete-btn" name="delete_combo_product">
+                        <input type="hidden" value="<?php echo $fetch_products['combo_id'] ?>" name="combo_id">
                     </div>
+
+                </form>
+                <!-- <a href="admin_combo_product.php?delete=<?php echo $fetch_products['combo_id']; ?>" class="delete-btn"
+                    onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
+            </div>
 
             <?php
                 }
@@ -304,26 +362,40 @@ session_start();
             if (mysqli_num_rows($update_query) > 0) {
                 while ($fetch_update = mysqli_fetch_assoc($update_query)) {
         ?>
-                    <form action="../Controllers/adminProductController.php" method="post" enctype="multipart/form-data">
-                        <h1 class="title">Cập nhật combo sách</h1>
-                        <input type="hidden" name="update_combo_id" value="<?php echo $fetch_update['combo_id']; ?>">
-                        <input type="text" name="update_combo_name" value="<?php echo $fetch_update['combo_name']; ?>" class="box" required placeholder="Nhập tên combo sách cần cập nhật">
-                        <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="Nhập giá combo sách cần cập nhật">
-                        <input type="text" class="box" name="update_image_combo" value="<?php echo $fetch_update['image_combo']; ?>" placeholder="Nhập url ảnh sách cần cập nhật">
-                        <textarea name="update_description" class="box" cols="30" rows="3" style="width: 100%"><?php echo $fetch_update['description']; ?></textarea>
-                        <textarea name="update_description_detail" class="box" cols="30" rows="5" style="width: 100%"><?php echo $fetch_update['description_detail']; ?></textarea>
-                        <input type="text" name="update_name_1" value="<?php echo $fetch_update['name_1']; ?>" class="box" required placeholder="Nhập tên sách 1 cần cập nhật">
-                        <input type="text" class="box" name="update_image_1" value="<?php echo $fetch_update['image_1']; ?>" placeholder="Nhập url ảnh sách 1 cần cập nhật">
-                        <textarea name="update_description_1" class="box" cols="30" rows="3" style="width: 100%"><?php echo $fetch_update['description_1']; ?></textarea>
-                        <input type="text" name="update_name_2" value="<?php echo $fetch_update['name_2']; ?>" class="box" placeholder="Nhập tên sách 1 cần cập nhật">
-                        <input type="text" class="box" name="update_image_2" value="<?php echo $fetch_update['image_2']; ?>" placeholder="Nhập url ảnh sách 1 cần cập nhật">
-                        <textarea name="update_description_2" class="box" cols="30" rows="3" style="width: 100%"><?php echo $fetch_update['description_2']; ?></textarea>
-                        <input type="text" name="update_name_3" value="<?php echo $fetch_update['name_3']; ?>" class="box" placeholder="Nhập tên sách 1 cần cập nhật">
-                        <input type="text" class="box" name="update_image_3" value="<?php echo $fetch_update['image_3']; ?>" placeholder="Nhập url ảnh sách 1 cần cập nhật">
-                        <textarea name="update_description_3" class="box" cols="30" rows="3" style="width: 100%"><?php echo $fetch_update['description_3']; ?></textarea>
-                        <input type="submit" value="Lưu" name="update_product_combo" class="btn">
-                        <input type="submit" value="Reset" name="reset_combo" id="close-update" class="delete-btn">
-                    </form>
+        <form action="../Controllers/adminProductController.php" method="post" enctype="multipart/form-data">
+            <h1 class="title">Cập nhật combo sách</h1>
+            <input type="hidden" name="update_combo_id" value="<?php echo $fetch_update['combo_id']; ?>">
+            <input type="text" name="update_combo_name" value="<?php echo $fetch_update['combo_name']; ?>" class="box"
+                required placeholder="Nhập tên combo sách cần cập nhật">
+            <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box"
+                required placeholder="Nhập giá combo sách cần cập nhật">
+            <input type="text" class="box" name="update_image_combo" value="<?php echo $fetch_update['image_combo']; ?>"
+                placeholder="Nhập url ảnh sách cần cập nhật">
+            <textarea name="update_description" class="box" cols="30" rows="3"
+                style="width: 100%"><?php echo $fetch_update['description']; ?></textarea>
+            <textarea name="update_description_detail" class="box" cols="30" rows="5"
+                style="width: 100%"><?php echo $fetch_update['description_detail']; ?></textarea>
+            <input type="text" name="update_name_1" value="<?php echo $fetch_update['name_1']; ?>" class="box" required
+                placeholder="Nhập tên sách 1 cần cập nhật">
+            <input type="text" class="box" name="update_image_1" value="<?php echo $fetch_update['image_1']; ?>"
+                placeholder="Nhập url ảnh sách 1 cần cập nhật">
+            <textarea name="update_description_1" class="box" cols="30" rows="3"
+                style="width: 100%"><?php echo $fetch_update['description_1']; ?></textarea>
+            <input type="text" name="update_name_2" value="<?php echo $fetch_update['name_2']; ?>" class="box"
+                placeholder="Nhập tên sách 1 cần cập nhật">
+            <input type="text" class="box" name="update_image_2" value="<?php echo $fetch_update['image_2']; ?>"
+                placeholder="Nhập url ảnh sách 1 cần cập nhật">
+            <textarea name="update_description_2" class="box" cols="30" rows="3"
+                style="width: 100%"><?php echo $fetch_update['description_2']; ?></textarea>
+            <input type="text" name="update_name_3" value="<?php echo $fetch_update['name_3']; ?>" class="box"
+                placeholder="Nhập tên sách 1 cần cập nhật">
+            <input type="text" class="box" name="update_image_3" value="<?php echo $fetch_update['image_3']; ?>"
+                placeholder="Nhập url ảnh sách 1 cần cập nhật">
+            <textarea name="update_description_3" class="box" cols="30" rows="3"
+                style="width: 100%"><?php echo $fetch_update['description_3']; ?></textarea>
+            <input type="submit" value="Lưu" name="update_product_combo" class="btn">
+            <input type="submit" value="Reset" name="reset_combo" id="close-update" class="delete-btn">
+        </form>
         <?php
                 }
             }
@@ -338,6 +410,28 @@ session_start();
     <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
+    <script>
+    function expandText(fullText) {
+
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+
+        var content = document.createElement('div');
+        content.classList.add('content');
+        // fullText = fullText.replace(",", "");
+        content.textContent = fullText;
+        overlay.appendChild(content);
+
+        overlay.style.display = 'block';
+        content.style.display = 'block';
+
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            content.style.display = 'none';
+        });
+    }
+    </script>
 </body>
 
 </html>

@@ -1238,7 +1238,10 @@ a:hover {
   html {
     font-size: 50%;
   }
-
+  .blackboard {
+    width: 70%;
+    z-index: 111;
+  }
   .title1,
   .title {
     text-align: center;
