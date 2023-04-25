@@ -73,8 +73,8 @@ session_start();
                         <td>$fetch_cart[quantity]</td>
                     </tr>
                 ";
-                        ?>
-                    <?php }
+                ?>
+                <?php }
                 }
                 ?>
             </tbody>
@@ -104,10 +104,9 @@ session_start();
                 <div class="inputBox">
                     <span>Phương thức thanh toán:</span>
                     <select name="method">
-                        <option value="cash on delivery">Thanh toán khi nhận hàng</option>
-                        <option value="credit card">Thẻ tín dụng</option>
-                        <option value="e-wallet">Ví điện tử</option>
-                        <option value="paytm">Paytm</option>
+                        <option value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</option>
+                        <option value="Thẻ tín dụng">Thẻ tín dụng</option>
+                        <option value="Ví điện tử">Ví điện tử</option>
                     </select>
                 </div>
                 <div class="inputBox">
@@ -130,10 +129,10 @@ session_start();
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            offset: 150,
-        });
+    AOS.init({
+        duration: 800,
+        offset: 150,
+    });
     </script>
 </body>
 

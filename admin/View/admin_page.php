@@ -153,7 +153,7 @@ function truncate_text($text)
                 $number_of_admins = mysqli_num_rows($select_admins);
                 ?>
                 <h3><?php echo $number_of_admins; ?></h3>
-                <p>admin</p>
+                <p>Admin</p>
             </div>
 
             <div class="box">
@@ -201,7 +201,7 @@ function truncate_text($text)
 
         var content = document.createElement('div');
         content.classList.add('content');
-        content.textContent = fullText;
+        content.textContent = fullText + " VNĐ";
         overlay.appendChild(content);
 
         overlay.style.display = 'block';

@@ -23,12 +23,12 @@ if (isset($_POST['add_product'])) {
         exit;
     }
 }
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
+if (isset($_POST['delete_product'])) {
+    $product_id = $_POST['product_id'];
     $adminModel = new AdminModel($conn);
-    $message = $adminModel->adminDeleteProducts($delete_id);
+    $message = $adminModel->adminDeleteProducts($product_id);
     $_SESSION['success_msg'] = $message;
-    header('location:admin_product.php');
+    header('location:../View/admin_product.php');
     exit;
 }
 

@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+session_start();
 $id = $_GET['id'];
 $get_product = mysqli_query($conn, "SELECT * FROM `combo_products` WHERE combo_id = '$id'") or die('query failed');
 $detail_product = mysqli_fetch_array($get_product);
@@ -16,7 +17,7 @@ $detail_product = mysqli_fetch_array($get_product);
         <?php echo $detail_product['combo_name']; ?>
     </title>
     <link rel="stylesheet" href="../../public/css/admin.css">
-    <link rel="stylesheet" href="../../public/css/hung.css">
+    <!-- <link rel="stylesheet" href="../../public/css/hung.css"> -->
 
 </head>
 
@@ -95,6 +96,7 @@ $detail_product = mysqli_fetch_array($get_product);
             <?php endif; ?>
         </div>
     </div>
+    <script src="../../public/js/admin_script.js"></script>
 </body>
 
 </html>

@@ -24,6 +24,22 @@
   transition: all 0.2s linear;
 }
 
+.page-item .page-link {
+  font-size: 1.5rem;
+}
+.toolbar {
+  display: flex;
+  /* width: 100%; */
+  font-size: 1.5rem;
+  padding: 2rem 0;
+  border: none;
+}
+.toolbar .pagination {
+  margin: 0 auto;
+}
+.toolbar .page-link {
+  padding: 1rem 1rem;
+}
 html {
   font-size: 62.5%;
   overflow-x: hidden;

@@ -1,6 +1,6 @@
 <?php
 include '../../config/config.php';
-
+session_start();
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');

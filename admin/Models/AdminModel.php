@@ -133,7 +133,7 @@ class AdminModel
     }
     public function OrderToUpdate($order_update_id, $update_payment)
     {
-        mysqli_query($this->conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE user_id = '$order_update_id'") or die('query failed');
+        mysqli_query($this->conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE id = '$order_update_id'") or die('query failed');
         return "Cập nhật thành công";
     }
 }

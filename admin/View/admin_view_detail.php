@@ -1,5 +1,6 @@
 <?php
 include '../../config/config.php';
+session_start();
 $id = $_GET['id'];
 $get_product = mysqli_query($conn, "SELECT * FROM `products` WHERE product_id = '$id'") or die('query failed');
 $detail_product = mysqli_fetch_array($get_product);
@@ -12,6 +13,8 @@ $detail_product = mysqli_fetch_array($get_product);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <title>
         <?php echo $detail_product['name']; ?>
     </title>
@@ -49,7 +52,7 @@ $detail_product = mysqli_fetch_array($get_product);
 
     </div>
 
-
+    <script src="../../public/js/admin_script.js"></script>
 </body>
 
 </html>

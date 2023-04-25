@@ -45,33 +45,33 @@ function truncate_text($text)
     <link rel="stylesheet" href="../../public/css/tuananh.css">
 
     <style>
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
 
-        .content {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 700px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 10000;
-            display: none;
-            white-space: pre-wrap;
-            border-radius: 10px;
-            line-height: 1.5;
-            font-size: 2rem;
-        }
+    .content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 700px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: none;
+        white-space: pre-wrap;
+        border-radius: 10px;
+        line-height: 1.5;
+        font-size: 2rem;
+    }
     </style>
 </head>
 
@@ -89,40 +89,43 @@ function truncate_text($text)
             if (mysqli_num_rows($select_orders) > 0) {
                 while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
             ?>
-                    <div class="box">
-                        <p> User id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-                        <p> Ngày đặt hàng : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
-                        <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
-                        <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
-                        <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-                        <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span>
-                            <?php if (strlen(truncate_text($fetch_orders['address'])) < strlen($fetch_orders['address'])) { ?>
-                                <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandaddress(`<?php echo $fetch_orders['address']; ?>`);">chi tiết</a>
-                            <?php } ?>
-                        </p>
-                        <p class="total-products"> Tổng sản phẩm :
-                            <span><?php echo preg_replace('/,/', '', truncate_text($fetch_orders['total_products']), 1); ?></span>
-                            <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
-                                <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandText(`<?php echo $fetch_orders['total_products']; ?>`);">chi tiết</a>
-                            <?php } ?>
-                        </p>
-                        <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
-                            <span class="rate">₫</span></h3>
-                        </p>
-                        <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
-                        <div class="select-button">
-                            <form action="../Controllers/adminProductController.php" method="post">
-                                <input type="hidden" name="order_id" value="<?php echo $fetch_orders['user_id']; ?>">
-                                <select name="update_payment">
-                                    <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
-                                    <option value="pending">pending</option>
-                                    <option value="completed">completed</option>
-                                </select>
-                                <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
-                                <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>" onclick="return confirm('delete this order?');" class="delete-btn">Xóa</a>
-                            </form>
-                        </div>
-                    </div>
+            <div class="box">
+                <p> User id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
+                <p> Ngày đặt hàng : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+                <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
+                <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
+                <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+                <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span>
+                    <?php if (strlen(truncate_text($fetch_orders['address'])) < strlen($fetch_orders['address'])) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandaddress(`<?php echo $fetch_orders['address']; ?>`);">chi tiết</a>
+                    <?php } ?>
+                </p>
+                <p class="total-products"> Tổng sản phẩm :
+                    <span><?php echo preg_replace('/,/', '', truncate_text($fetch_orders['total_products']), 1); ?></span>
+                    <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandText(`<?php echo $fetch_orders['total_products']; ?>`);">chi tiết</a>
+                    <?php } ?>
+                </p>
+                <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
+                    <span class="rate">₫</span></h3>
+                </p>
+                <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
+                <div class="select-button">
+                    <form action="../Controllers/adminProductController.php" method="post">
+                        <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
+                        <select name="update_payment">
+                            <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
+                            <option value="pending">pending</option>
+                            <option value="completed">completed</option>
+                        </select>
+                        <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
+                        <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>"
+                            onclick="return confirm('delete this order?');" class="delete-btn">Xóa</a>
+                    </form>
+                </div>
+            </div>
             <?php
                 }
             } else {
@@ -134,46 +137,46 @@ function truncate_text($text)
     </section>
 
     <script>
-        function expandText(fullText) {
+    function expandText(fullText) {
 
-            var overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            document.body.appendChild(overlay);
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
 
-            var content = document.createElement('div');
-            content.classList.add('content');
-            fullText = fullText.replace(",", "");
-            content.textContent = fullText.replaceAll(",", "\n");
-            overlay.appendChild(content);
+        var content = document.createElement('div');
+        content.classList.add('content');
+        fullText = fullText.replace(",", "");
+        content.textContent = fullText.replaceAll(",", "\n");
+        overlay.appendChild(content);
 
-            overlay.style.display = 'block';
-            content.style.display = 'block';
+        overlay.style.display = 'block';
+        content.style.display = 'block';
 
-            overlay.addEventListener('click', function() {
-                overlay.style.display = 'none';
-                content.style.display = 'none';
-            });
-        }
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            content.style.display = 'none';
+        });
+    }
 
-        function expandaddress(fullText) {
-            var overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            document.body.appendChild(overlay);
+    function expandaddress(fullText) {
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
 
-            var content = document.createElement('div');
-            content.classList.add('content');
-            // fullText = fullText.replace(",", "");
-            content.textContent = fullText;
-            overlay.appendChild(content);
+        var content = document.createElement('div');
+        content.classList.add('content');
+        // fullText = fullText.replace(",", "");
+        content.textContent = fullText;
+        overlay.appendChild(content);
 
-            overlay.style.display = 'block';
-            content.style.display = 'block';
+        overlay.style.display = 'block';
+        content.style.display = 'block';
 
-            overlay.addEventListener('click', function() {
-                overlay.style.display = 'none';
-                content.style.display = 'none';
-            });
-        }
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            content.style.display = 'none';
+        });
+    }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <?php include '../View/alert.php'; ?>

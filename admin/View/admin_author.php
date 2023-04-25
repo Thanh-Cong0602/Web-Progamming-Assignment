@@ -1,6 +1,7 @@
 <?php
 include '../../config/config.php';
 // $get_author = mysqli_query($conn, "SELECT * FROM `authors` WHERE ")
+session_start();
 if (isset($_POST['add_author'])) {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $image = $_POST['image'];
@@ -50,17 +51,17 @@ if (isset($_POST['update_author'])) {
         <?php
         if (isset($_GET['add-product-book'])) {
         ?>
-        <form action="" method="post">
-            <h3>Thêm tác giả</h3>
-            <input type="text" name="name" class="box" placeholder="Nhập tên tác giả" required>
-            <input type="text" name="image" class="box" placeholder="Nhập ảnh của tác giả" required>
-            <input type="text" name="slogan" class="box" placeholder="Nhập slogan" required>
-            <input type="text" name="information" class="box" placeholder="Nhập link thông tin của tác giả" required>
-            <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                <input type="submit" value="Thêm" name="add_author" class="btn">
-                <a href="admin_author.php" class="delete-btn">Đóng</a>
-            </div>
-        </form>
+            <form action="" method="post">
+                <h3>Thêm tác giả</h3>
+                <input type="text" name="name" class="box" placeholder="Nhập tên tác giả" required>
+                <input type="text" name="image" class="box" placeholder="Nhập ảnh của tác giả" required>
+                <input type="text" name="slogan" class="box" placeholder="Nhập slogan" required>
+                <input type="text" name="information" class="box" placeholder="Nhập link thông tin của tác giả" required>
+                <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                    <input type="submit" value="Thêm" name="add_author" class="btn">
+                    <a href="admin_author.php" class="delete-btn">Đóng</a>
+                </div>
+            </form>
         <?php
         } else {
             echo '<script>document.querySelector(".add-products").style.display = "none";</script>';
@@ -83,18 +84,16 @@ if (isset($_POST['update_author'])) {
             if ($author->num_rows > 0) {
                 while ($row = $author->fetch_assoc()) {
             ?>
-            <div class="box">
-                <img src="<?php echo $row['image']; ?>" alt="">
-                <div class="info-author">
-                    <h3 class="name"><?php echo $row['name']; ?></h3>
-                    <p class="slogan"><?php echo $row['slogan']; ?></p>
-                    <a href="<?php echo $row['information']; ?>" class="detail_book">Xem thêm về tác giả <i
-                            class="fas fa-angle-right"></i> </a>
-                    <a href="admin_author.php?update=<?php echo $row['id']; ?>" class="option-btn">Cập nhật</a>
-                    <a href="admin_author.php?delete=<?php echo $row['id']; ?>" class="delete-btn"
-                        onclick="return confirm('Xóa tác giả này???');">Xóa</a>
-                </div>
-            </div>
+                    <div class="box">
+                        <img src="<?php echo $row['image']; ?>" alt="">
+                        <div class="info-author">
+                            <h3 class="name"><?php echo $row['name']; ?></h3>
+                            <p class="slogan"><?php echo $row['slogan']; ?></p>
+                            <a href="<?php echo $row['information']; ?>" class="detail_book">Xem thêm về tác giả <i class="fas fa-angle-right"></i> </a>
+                            <a href="admin_author.php?update=<?php echo $row['id']; ?>" class="option-btn">Cập nhật</a>
+                            <a href="admin_author.php?delete=<?php echo $row['id']; ?>" class="delete-btn" onclick="return confirm('Xóa tác giả này???');">Xóa</a>
+                        </div>
+                    </div>
             <?php
                 }
             } else {
@@ -137,19 +136,15 @@ if (isset($_POST['update_author'])) {
             if (mysqli_num_rows($update_query) > 0) {
                 while ($fetch_update = mysqli_fetch_assoc($update_query)) {
         ?>
-        <form action="" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="update_id" value="<?php echo $fetch_update['id']; ?>">
-            <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required
-                placeholder="Nhập tên tác giả cần cập nhật">
-            <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>"
-                placeholder="Nhập url ảnh tác giả cần cập nhật">
-            <input type="text" class="box" name="update_slogan" value="<?php echo $fetch_update['slogan']; ?>"
-                placeholder="Nhập slogan cần cập nhật">
-            <input type="text" class="box" name="update_information" value="<?php echo $fetch_update['information']; ?>"
-                placeholder="Nhập link thông tin tác giả cập nhật">
-            <input type="submit" value="Lưu" name="update_author" class="btn">
-            <input type="submit" value="Reset" name="reset" id="close-update" class="delete-btn">
-        </form>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="update_id" value="<?php echo $fetch_update['id']; ?>">
+                        <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="Nhập tên tác giả cần cập nhật">
+                        <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>" placeholder="Nhập url ảnh tác giả cần cập nhật">
+                        <input type="text" class="box" name="update_slogan" value="<?php echo $fetch_update['slogan']; ?>" placeholder="Nhập slogan cần cập nhật">
+                        <input type="text" class="box" name="update_information" value="<?php echo $fetch_update['information']; ?>" placeholder="Nhập link thông tin tác giả cập nhật">
+                        <input type="submit" value="Lưu" name="update_author" class="btn">
+                        <input type="submit" value="Reset" name="reset" id="close-update" class="delete-btn">
+                    </form>
         <?php
                 }
             }
@@ -159,7 +154,8 @@ if (isset($_POST['update_author'])) {
         ?>
 
     </section>
-    <script src="js/admin_script.js"></script>
+    <script src="../../public/js/admin_script.js"></script>
+
 
 </body>
 
