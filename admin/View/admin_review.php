@@ -1,11 +1,11 @@
 <?php
 include '../../config/config.php';
 session_start();
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
-    header('location:admin_review.php');
-}
+// if (isset($_GET['delete'])) {
+//     $delete_id = $_GET['delete'];
+//     mysqli_query($conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
+//     header('location:admin_review.php');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,43 +45,55 @@ if (isset($_GET['delete'])) {
                     </tr>
                 </thead>
                 <?php
-                while ($fetch_review = mysqli_fetch_assoc($select_review)) {
-                    $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
+                    while ($fetch_review = mysqli_fetch_assoc($select_review)) {
+                    ?>
+                <form action="../Controllers/adminProductController.php" method="post">
+                    <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
 
-                    $sql_combo_product = mysqli_query($conn, "SELECT combo_name FROM `combo_products` WHERE `combo_id` = '" . $fetch_review['combo_id'] . "'");
-                    $row_product = mysqli_fetch_array($sql_product);
-                    $row_combo = mysqli_fetch_assoc($sql_combo_product);
-                    $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
-                    $row_user = mysqli_fetch_assoc($sql_user);
-                    echo "<tr>";
-                    echo "<td>" . $fetch_review['id'] . "</td>";
-                    if ($row_product['name']) {
-                        echo "<td>" . $row_product['name'] . "</td>";
-                    } else if ($row_combo['combo_name']) {
-                        echo "<td>" . $row_combo['combo_name'] . "</td>";
+
+                    <?php
+                        $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
+
+                        $sql_combo_product = mysqli_query($conn, "SELECT combo_name FROM `combo_products` WHERE `combo_id` = '" . $fetch_review['combo_id'] . "'");
+                        $row_product = mysqli_fetch_array($sql_product);
+                        $row_combo = mysqli_fetch_assoc($sql_combo_product);
+                        $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
+                        $row_user = mysqli_fetch_assoc($sql_user);
+                        echo "<tr>";
+                        echo "<td>" . $fetch_review['id'] . "</td>";
+                        if ($row_product['name']) {
+                            echo "<td>" . $row_product['name'] . "</td>";
+                        } else if ($row_combo['combo_name']) {
+                            echo "<td>" . $row_combo['combo_name'] . "</td>";
+                        }
+                        echo "<td>" . $row_user['fullname'] . "</td>";
+                        echo "<td>" . $fetch_review['title'] . "</td>";
+                        echo "<td>" . $fetch_review['description'] . "</td>";
+                        echo "<td>" . $fetch_review['rating'] . "</td>";
+                        echo "<td>" . $fetch_review['date'] . "</td>";
+                        // <!-- echo "<td class='btn-review'>
+                        //    <a href='admin_review.php?delete=".$fetch_products['combo_id']."' onclick='return confirm(\"Xóa đánh giá này???\");'>Xóa</a>
+                        //   </td>"; -->
+
+                        // echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
+                        echo "<td class='btn-review'><input type='submit' value='Xóa'  onclick='return confirm(\"Bạn chắc chắn muốn xóa?\");'
+                        class='delete-btn' name='delete_review'>" . "</td>";
+
+                        echo "</tr>";
                     }
-                    echo "<td>" . $row_user['fullname'] . "</td>";
-                    echo "<td>" . $fetch_review['title'] . "</td>";
-                    echo "<td>" . $fetch_review['description'] . "</td>";
-                    echo "<td>" . $fetch_review['rating'] . "</td>";
-                    echo "<td>" . $fetch_review['date'] . "</td>";
-                    // <!-- echo "<td class='btn-review'>
-                    //    <a href='admin_review.php?delete=".$fetch_products['combo_id']."' onclick='return confirm(\"Xóa đánh giá này???\");'>Xóa</a>
-                    //   </td>"; -->
-
-                    echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
-                    echo "</tr>";
+                } else {
+                    echo '<p class="empty">Không có review nào tại đây</p>';
                 }
-            } else {
-                echo '<p class="empty">Không có review nào tại đây</p>';
-            }
-                ?>
+                    ?>
+                </form>
             </table>
         </div>
     </section>
 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<?php include '../View/alert.php'; ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
