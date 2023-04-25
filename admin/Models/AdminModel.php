@@ -225,4 +225,26 @@ class AdminModel
         mysqli_query($this->conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
         return 'Đã xóa đơn hàng thành công!';
     }
+    public function AddToAuthor($name, $image, $slogan, $information)
+    {
+        $name = mysqli_real_escape_string($this->conn, $_POST['name']);
+        $select_author = mysqli_query($this->conn, "SELECT name FROM `authors` WHERE name = '$name'") or die('query failed');
+        if (mysqli_num_rows($select_author) > 0) {
+            return 'Tác giả đã tồn tại';
+        } else {
+            $id = create_unique_number_id();
+            $add_author = mysqli_query($this->conn, "INSERT INTO `authors`(id,name, image, slogan, information ) VALUES('$id','$name', '$image', '$slogan', '$information')") or die('query failed');
+            return 'Tác giả đã được thêm vào';
+        }
+    }
+    public function UpdateToAuthor($update_id, $update_name, $update_image, $update_slogan, $update_information)
+    {
+        mysqli_query($this->conn, "UPDATE `authors` SET name = '$update_name', image = '$update_image' , slogan = '$update_slogan', information = '$update_information' WHERE id = '$update_id'") or die('query failed');
+        return 'Cập nhật tác giả thành công';
+    }
+    public function adminDeleteAuthor($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `authors` WHERE id = '$delete_id'") or die('query failed');
+        return 'Xóa tác giả khỏi danh mục thành công!';
+    }
 }

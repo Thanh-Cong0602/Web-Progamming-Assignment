@@ -47,7 +47,7 @@ session_start();
                 <?php
                     while ($fetch_review = mysqli_fetch_assoc($select_review)) {
                     ?>
-                <form action="../Controllers/adminProductController.php" method="post">
+                <form action="../Controllers/adminController.php" method="post">
                     <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
 
 

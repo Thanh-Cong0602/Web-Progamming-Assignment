@@ -174,7 +174,7 @@ if (!isset($admin_id)) {
                                                                             } ?>"><?php echo $fetch_users_sql['user_type']; ?></span>
                                 </p>
                                 <br><br>
-                                <form action="../Controllers/adminProductController.php" method="post">
+                                <form action="../Controllers/adminController.php" method="post">
                                     <input type="hidden" value="<?php echo $fetch_users_sql['user_id'] ?>" name="user_id">
                                     <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_user">
                                 </form>

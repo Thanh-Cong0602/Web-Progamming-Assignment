@@ -104,7 +104,7 @@ function truncate_text($text)
                         </p>
                         <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
                         <div class="select-button">
-                            <form action="../Controllers/adminProductController.php" method="post">
+                            <form action="../Controllers/adminOrderController.php" method="post">
                                 <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
                                 <select name="update_payment">
                                     <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
