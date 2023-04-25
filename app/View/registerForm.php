@@ -17,18 +17,6 @@ session_start();
 </head>
 
 <body>
-  <?php
-  if (isset($message)) {
-    foreach ($message as $message) {
-      echo '
-            <div class="message">
-                <span>' . $message . '</span>
-                <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-            </div>
-            ';
-    }
-  }
-  ?>
   <div class="container">
     <h1 class="form-title">Đăng ký tài khoản</h1>
     <form method="POST" onsubmit="return validateForm()" action="../Controllers/registerController.php" enctype="multipart/form-data">

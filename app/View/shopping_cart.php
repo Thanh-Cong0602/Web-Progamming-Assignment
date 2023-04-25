@@ -122,15 +122,14 @@ session_start();
       btn.addEventListener('click', function() {
         const input = btn.previousElementSibling;
         let value = parseInt(input.value);
-
         value++;
         input.value = value;
       });
     });
     document.querySelectorAll('.cart-btn').forEach(button => {
       button.addEventListener('click', event => {
-        const id = event.target.dataset.id; // lấy id sản phẩm
-        const action = event.target.dataset.action; // lấy hành động (tăng hoặc giảm)
+        const id = event.target.dataset.id; // get id of product
+        const action = event.target.dataset.action; // get action (increase hoặc descrease)
         const input = document.querySelector(`.cart-quantity-input[data-id="${id}"]`);
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // lấy CSRF token
 
@@ -153,6 +152,7 @@ session_start();
       });
     });
   </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <?php include '../View/alert.php'; ?>
 

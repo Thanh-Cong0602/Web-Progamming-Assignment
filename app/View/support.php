@@ -25,8 +25,8 @@ session_start();
 </head>
 <body>
 <?php include 'header.php'; ?>
-<!-- home section starts  -->
 
+<!-- message section starts  -->
 
 <section class="contact">
 
@@ -42,6 +42,9 @@ session_start();
 
 </section>
 
+<!-- message section ends  -->
+
+<!-- footer section starts -->
 
 <section class="footer">
 <div class="box-container">

@@ -14,7 +14,6 @@ class User {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
         $select_users = mysqli_query($this->conn, "SELECT * FROM `users` WHERE email = '$email'") or die('query failed');
-
         if(mysqli_num_rows($select_users) > 0){
             $row = mysqli_fetch_assoc($select_users);
             if(password_verify($password, $row['password'])){
@@ -43,10 +42,10 @@ class User {
 
     public function registerUser($fullname, $username, $email, $phonenumber, $password, $user_type) {
         $user_id = create_unique_id();
-        // $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $fullname = $_POST['fullname'];
-        // $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $username = $_POST['username'];
+        $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -125,6 +124,17 @@ class User {
         }
     }
 
+    public function userDeleteReview($delete_id){
+        $delete_id = $_POST['delete_id'];
+        $verify_delete = mysqli_query($this->conn, "SELECT * FROM `reviews` WHERE id = '$delete_id'") or die('query failed');
+        if(mysqli_num_rows($verify_delete) > 0){
+            $delete_review = mysqli_query($this->conn, "DELETE FROM  `reviews` WHERE id = '$delete_id'") or die('query failed');
+            return 'Xóa bài đánh giá thành công!';
+        }
+        else{  
+            $_SESSION['$warning_msg'] = 'Bài đánh giá đã được xóa!';
+        }
+    }
     public function userUpdateReview($rating, $title, $description, $review_id) {
         $title = $_POST['title'];
         $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -139,11 +149,13 @@ class User {
         $user_id = $_COOKIE['user_id'];
         $select_user = mysqli_query($this->conn, "SELECT * FROM `users` WHERE user_id = '$user_id' LIMIT 1") or die('query failed');
         $fetch_user = mysqli_fetch_assoc($select_user);
-        // $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        // $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $fullname = $_POST['fullname'];
+        $fullname = filter_var($fullname, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $username = $_POST['username'];
+        $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = $_POST['email'];
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $phonenumber = $_POST['phonenumber'];
         $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
         if(!empty($fullname)) {
             mysqli_query($this->conn, "UPDATE `users` SET fullname = '$fullname' WHERE user_id = '$user_id'");
@@ -171,7 +183,6 @@ class User {
         }
         $image = $_FILES['image']['name'];
         $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $image = mysqli_real_escape_string($this->conn, $image);
         $ext = pathinfo($image, PATHINFO_EXTENSION);
         $rename = create_unique_id().'.'.$ext;
         $image_size = $_FILES['image']['size'];
@@ -219,9 +230,18 @@ class User {
 
     public function userSendMessage($name, $email, $username, $phonenumber, $message){
         $user_id = $_COOKIE['user_id'];
+        $name = $_POST['name'];
+        $image = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $image = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $phonenumber = $_POST['number'];
+        $phonenumber = filter_var($phonenumber, FILTER_SANITIZE_NUMBER_INT);
+        $msg = $_POST['message'];
+        $msg = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $id = create_unique_number_id();
         if($user_id != ''){
-            mysqli_query($this->conn, "INSERT INTO `message`(id, user_id, name, username, email, phonenumber, message) VALUES( '$id' ,'$user_id', '$name', '$email', '$username','$phonenumber', '$message')") or die('query failed');
+            mysqli_query($this->conn, "INSERT INTO `message`(id, user_id, name, username, email, phonenumber, message) VALUES( '$id' ,'$user_id', '$name', '$username', '$email', '$phonenumber', '$message')") or die('query failed');
             return 'Yêu cầu hỗ trợ thành công!';
         }
         else {

@@ -21,15 +21,15 @@ class CartModel {
     
     public function updateCart($cart_id, $cart_quantity){
         mysqli_query($this->conn, "UPDATE `cart` SET quantity = '$cart_quantity' WHERE id = '$cart_id'") or die('query failed');
-        return 'Cart quantity updated!';
+        return 'Cập nhật giỏ hàng thành công!';
     }
     public function deleteCart($delete_cart_id){
         mysqli_query($this->conn, "DELETE FROM `cart` WHERE id = '$delete_cart_id'") or die('query failed');
-        return 'Deleted cart successfully!';
+        return 'Xóa giỏ hàng thành công!';
     }
     public function deleteAllCart($user_id){
         mysqli_query($this->conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-        return 'Deleted all cart successfully!';
+        return 'Xóa tất cả giỏ hàng thành công!';
     }
  }
 ?>

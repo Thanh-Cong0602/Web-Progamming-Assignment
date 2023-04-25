@@ -68,7 +68,6 @@ session_start();
 <!-- Latest release Products section starts  -->
 
 <section class="product" id="product">
-
     <div class="heading">
         <h1>Những quyển sách mới nhất</h1>
         <span> Hãy chọn quyển sách yêu thích của bạn</span>
@@ -112,12 +111,9 @@ session_start();
         }
       ?>
     </div>
-  
-   
 </section>
 
 <section class="product" id="product">
-
     <div class="heading">
         <h1>Combo sách hay mới nhất</h1>
     </div>

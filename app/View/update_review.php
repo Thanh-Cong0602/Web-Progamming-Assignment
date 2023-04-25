@@ -36,7 +36,7 @@ if(isset($_GET['get_id'])){
 <?php include '../View/header.php'; ?>
 <!-- header section ends -->
 
-<!-- add review section starts  -->
+<!-- update review section starts  -->
 <section class="account-form">
 
    <form action="../Controllers/userReviewControler.php?get_id=<?= $get_id; ?>" method="post">
@@ -77,6 +77,7 @@ if(isset($_GET['get_id'])){
 </section>
 
 <!-- update review section ends -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <?php include '../View/alert.php'; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

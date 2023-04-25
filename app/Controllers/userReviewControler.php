@@ -29,7 +29,19 @@
         }
         header('Location: ../View/add_review.php?get_id=' . $get_id);
     }
-    
+    if(isset($_POST['delete_review'])){
+        $product_id = $_POST['product_id'];
+        $delete_id = $_POST['delete_id'];
+        $user = new User($conn);
+        $message = $user->userDeleteReview($delete_id);
+        if ($message == 'Xóa bài đánh giá thành công!'){
+            $_SESSION['success_msg'] = 'Xóa bài đánh giá thành công!';  
+        }
+        else{
+            $_SESSION['warning_msg'] = 'Bài đánh giá đã được xóa!';  
+        }
+        header('Location: ../View/detail_book.php?get_id=' . $product_id);
+    }
     if(isset($_POST['submit_update'])){
         if(isset($_GET['get_id'])){
             $get_id = $_GET['get_id'];

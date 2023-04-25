@@ -7,23 +7,6 @@ if(isset($_GET['get_id'])){
    $get_id = '';
    header('location:home.php');
 }
-
-if(isset($_POST['delete_review'])){
-
-    $delete_id = $_POST['delete_id'];
-    $delete_id = filter_var($delete_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $verify_delete = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id = '$delete_id'") or die('query failed');
-    if(mysqli_num_rows($verify_delete) > 0){
-        $delete_review = mysqli_query($conn, "DELETE FROM  `reviews` WHERE id = '$delete_id'") or die('query failed');
-        $_SESSION['success_msg'] = 'Review deleted!';
-    }
-    else{  
-        $_SESSION['$warning_msg'] = 'Review already deleted!';
-    }
- 
- }
- 
-
 ?>
 
 <!DOCTYPE html>
@@ -317,10 +300,11 @@ if(isset($_POST['delete_review'])){
          <p class="description"><?= $fetch_review['description']; ?></p>
       <?php }; ?>  
       <?php if($fetch_review['user_id'] == $user_id){ ?>
-         <form action="" method="post" class="flex-btn">
+         <form action="../Controllers/userReviewControler.php" method="post" class="flex-btn">
             <input type="hidden" name="delete_id" value="<?= $fetch_review['id']; ?>">
             <a href="update_review.php?get_id=<?= $fetch_review['id']; ?>" class="update">Chỉnh sửa</a>
             <input type="submit" value="Xóa đánh giá" class="delete-review" name="delete_review" >
+            <input type="hidden" name="product_id" value="<?=$fetch_review['product_id']?>">
          </form>
       <?php }; ?>   
    </div>

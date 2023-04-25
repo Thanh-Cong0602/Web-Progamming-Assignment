@@ -25,7 +25,7 @@ session_start();
 </head>
 <body>
     <?php include 'header.php'; ?>
-<!-- home section starts  -->
+
 
 <!-- banner section starts  -->
 <div class="cart_banner">
@@ -100,6 +100,9 @@ session_start();
     </div>
     
 </section>
+
+<!-- authors section ends -->
+
 
 <!-- review section starts -->
 

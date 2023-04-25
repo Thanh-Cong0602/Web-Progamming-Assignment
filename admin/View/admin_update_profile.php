@@ -8,7 +8,7 @@ session_start();
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Update User Information</title>
+   <title>Update Admin Information</title>
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
@@ -16,7 +16,8 @@ session_start();
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="../../public/css/style.css">
+   <link rel="stylesheet" href="../../public/css/admin.css">
+   <link rel="stylesheet" href="../../public/css/admin_update_profile.css">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
@@ -24,19 +25,18 @@ session_start();
    <script src="../../public/js/script.js" defer></script>
 </head>
 <body>
-
 <!-- header section starts  -->
-<?php include '../View/header.php'; ?>
+<?php include '../View/admin_header.php'; ?>
 <!-- header section ends --> 
 
 <!-- update section starts  -->
 
 <section class="updateInfo-form">
 
-   <form onsubmit="return validateForm()" action="../Controllers/userUpdateProfileCTRL.php" method="post" enctype="multipart/form-data">
+   <form onsubmit="return validateForm()" action="../Controllers/adminUpdateProfileCTRL.php" method="post" enctype="multipart/form-data">
       <h3>Cập nhật thông tin cá nhân!</h3>
       <?php
-         $user_id = $_COOKIE['user_id'];
+         $user_id = $_SESSION['admin_id'];
          $select_profile = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id' LIMIT 1") or die('query failed');
          $fetch_profile = mysqli_fetch_assoc($select_profile);
       ?>
@@ -110,10 +110,8 @@ session_start();
     }
   </script>
 </section>
-
-<!-- update section ends  -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="../../public/js/admin_script.js"></script>
 <?php include '../View/alert.php'; ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

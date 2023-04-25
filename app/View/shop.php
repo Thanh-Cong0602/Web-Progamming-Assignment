@@ -107,7 +107,7 @@ session_start();
                         }
                     }
                     ?>
-                    <!-- // Tạo thanh  pagination -->
+                    <!-- Tạo thanh  pagination -->
 
                     <nav aria-label="Page navigation example" class="toolbar">
                         <ul class="pagination justify-content-center d-flex flex-wrap">
