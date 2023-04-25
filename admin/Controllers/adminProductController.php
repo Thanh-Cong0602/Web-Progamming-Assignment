@@ -67,41 +67,8 @@ if (isset($_POST['delete_combo_product'])) {
     header('location:../View/admin_combo_product.php');
     exit;
 }
-// DELETE USER
-if (isset($_POST['delete_user'])) {
-    $user_id = $_POST['user_id'];
-    $message = $adminmodel->adminDeleteUser($user_id);
-    $_SESSION['success_msg'] = $message;
-    header('location:../View/admin_user.php');
-    exit;
-}
-// DELETE REQUEST
-if (isset($_POST['delete_request'])) {
-    $request_id = $_POST['request_id'];
-    $message = $adminmodel->adminDeleteRequest($request_id);
-    $_SESSION['success_msg'] = $message;
-    header('location:../View/admin_request.php');
-    exit;
-}
 
 
-// DELETE ORDER 
-if (isset($_POST['delete_order'])) {
-    $order_id = $_POST['order_id'];
-    $message = $adminmodel->deleteOrder($order_id);
-    $_SESSION['success_msg'] = $message;
-    header('location:../View/admin_order.php');
-    exit;
-}
-
-// DELETE REVIEW
-if (isset($_POST['delete_review'])) {
-    $review_id = $_POST['review_id'];
-    $message = $adminmodel->admindeleteReview($review_id);
-    $_SESSION['success_msg'] = $message;
-    header('location:../View/admin_review.php');
-    exit;
-}
 
 
 // UPDATE PRODUCT
@@ -131,17 +98,7 @@ if (isset($_POST['update_product'])) {
     }
 }
 
-// UPDATE ORDER 
-if (isset($_POST['update_order'])) {
-    $order_update_id = $_POST['order_id'];
-    $update_payment = $_POST['update_payment'];
-    $message = $adminmodel->OrderToUpdate($order_update_id, $update_payment);
-    if ($message == 'Cập nhật thành công') {
-        $_SESSION['success_msg'] = $message;
-        header('Location:../View/admin_order.php');
-        exit;
-    }
-}
+
 
 // UPDATE COMBO
 if (isset($_POST['update_product_combo'])) {

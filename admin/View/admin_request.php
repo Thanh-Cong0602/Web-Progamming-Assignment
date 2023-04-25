@@ -97,7 +97,7 @@ function truncate_text($text)
                             <?php } ?>
                         </p>
                         <!-- <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">Xóa</a> -->
-                        <form action="../Controllers/adminProductController.php" method="post">
+                        <form action="../Controllers/adminController.php" method="post">
                             <input type="hidden" value="<?php echo $fetch_message['id'] ?>" name="request_id">
                             <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_request">
                         </form>

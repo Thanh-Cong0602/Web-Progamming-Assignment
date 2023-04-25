@@ -116,7 +116,12 @@ function truncate_text($text)
                     };
                 };
                 ?>
-                <h3><?php echo $total_completed; ?> <span class="rate">₫</span></h3>
+                <h3><?php echo truncate_text($total_completed); ?>
+                    <?php if (strlen(truncate_text($total_completed)) < strlen($total_completed)) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandaddress(`<?php echo $total_completed; ?>`);">chi tiết</a>
+                    <?php } ?><span class="rate">₫</span>
+                </h3>
                 <p>Số tiền đã thanh toán</p>
             </div>
 
