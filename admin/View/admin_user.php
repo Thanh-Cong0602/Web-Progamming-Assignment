@@ -26,8 +26,6 @@ if (!isset($admin_id)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- custom admin css file link  -->
-    <link rel="stylesheet" href="../../public/css/tuananh.css">
-    <link rel="stylesheet" href="../../public/css/admin.css">
     <style>
         .blackboard {
             position: relative;
@@ -110,6 +108,7 @@ if (!isset($admin_id)) {
             text-shadow: none;
         }
     </style>
+    <link rel="stylesheet" href="../../public/css/admin.css">
 </head>
 
 <body>
@@ -237,7 +236,7 @@ if (!isset($admin_id)) {
                                                                         echo 'var(--orange)';
                                                                     } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
                         <br><br>
-                        <form action="../Controllers/adminProductController.php" method="post">
+                        <form action="../Controllers/adminController.php" method="post">
                             <input type="hidden" value="<?php echo $fetch_users['user_id']; ?>" name="user_id">
                             <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_user">
                         </form>

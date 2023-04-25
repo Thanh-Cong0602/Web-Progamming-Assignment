@@ -114,7 +114,17 @@ a:hover {
   align-items: center;
   gap: 1.5rem;
 }
-
+.toolbar_cart {
+  bottom: 5rem;
+  margin-top: 3rem;
+}
+.toolbar_cart  .pagination {
+  border-radius: 2rem;
+}
+.toolbar_cart  .page-link {
+  padding: 1rem 1rem;
+  background: #222;
+}
 .header .icons i {
   color: #fff;
 }
@@ -2394,6 +2404,9 @@ information-detail.credit {
     overflow: hidden;
     width: 100%;
     height: 100%;
+}
+.blackboard {
+  width: 70%;
 }
 }
 @media (max-width: 450px) {

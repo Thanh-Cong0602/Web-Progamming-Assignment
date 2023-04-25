@@ -124,16 +124,18 @@ function truncate_text($text)
                 <p> Phương thức thanh toán : <br> 
                 <span><?php echo $fetch_orders['method']; ?></span> </p>
                 <div class="select-button">
-                    <form action="../Controllers/adminProductController.php" method="post">
+                    <form action="../Controllers/adminOrderController.php" method="post">
                         <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
                         <select name="update_payment">
                             <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
                             <option value="pending">pending</option>
                             <option value="completed">completed</option>
                         </select>
-                        <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
-                        <a href="admin_order.php?delete=<?php echo $fetch_orders['id']; ?>"
-                            onclick="return confirm('delete this order?');" class="delete-btn">Xóa</a>
+                        <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                                    <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
+                                    <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_order">
+
+                        </div>
                     </form>
                 </div>
             </div>

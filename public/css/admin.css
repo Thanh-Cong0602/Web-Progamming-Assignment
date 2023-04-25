@@ -920,7 +920,7 @@ a:hover {
   overflow-x: hidden;
 }
 .btn-review a {
-  /* width: 50%; */
+  width: 50%;
   background-color: var(--red);
   padding: 1rem 2rem;
   color: #fff;
@@ -1148,6 +1148,11 @@ a:hover {
   font-size: 1.5rem;
 }
 
+
+.edit-product-form .btn  {
+  line-height: 1rem;
+}
+
 /* Admin UpdateProfile Ends */
 
 @media (max-width: 1024px) {
@@ -1293,13 +1298,16 @@ a:hover {
     padding: 1rem;
     font-size: 1.5rem;
   }
+  .blackboard {
+    width: 70%;
+  }
 }
   
 @media (max-width: 450px) {
   html {
     font-size: 50%;
   }
-
+  
   .title1,
   .title {
     text-align: center;

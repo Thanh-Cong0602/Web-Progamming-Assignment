@@ -65,8 +65,6 @@ session_start();
                     ?>
                 <form action="../Controllers/adminController.php" method="post">
                     <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
-
-
                     <?php
                         $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
 
@@ -90,8 +88,10 @@ session_start();
                     echo "<td data-label='Đánh giá'>" . $fetch_review['rating'] . "</td>";
                     echo " <td data-label='Thời gian'>" . $fetch_review['date'] . "</td>";
                     
-                    echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
+                    echo "<td class='btn-review'><input type='submit' value='Xóa'  onclick='return confirm(\"Bạn chắc chắn muốn xóa?\");'
+                        class='delete-btn' name='delete_review'>" . "</td>";
                     echo "</tr>";
+                    
             } 
         }
         }
@@ -100,6 +100,7 @@ session_start();
                 echo '<p class="empty">Không có review nào tại đây</p>';
             }
                 ?>
+            </form>
             </table>
         </div>
         <nav aria-label="Page navigation example" class="toolbar">

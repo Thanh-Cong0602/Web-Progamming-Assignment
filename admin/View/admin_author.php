@@ -63,7 +63,7 @@ session_start();
                 while ($row = mysqli_fetch_assoc($select_authors)) {
             ?>
              <?php
-                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `orders`") or die('query failed');
+                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `authors`") or die('query failed');
                 $total_products = mysqli_fetch_assoc($total_products)['total'];
                 $total_pages = ceil($total_products / $per_page);
                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -157,8 +157,11 @@ session_start();
                         <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>" placeholder="Nhập url ảnh tác giả cần cập nhật">
                         <input type="text" class="box" name="update_slogan" value="<?php echo $fetch_update['slogan']; ?>" placeholder="Nhập slogan cần cập nhật">
                         <input type="text" class="box" name="update_information" value="<?php echo $fetch_update['information']; ?>" placeholder="Nhập link thông tin tác giả cập nhật">
+                        <div style="display:flex;justify-content:center;gap:0.5rem; ">
                         <input type="submit" value="Lưu" name="update_author" class="btn">
                         <input type="submit" value="Reset" name="reset_author" id="close-update" class="delete-btn">
+                </div>
+                       
                     </form>
         <?php
                 }

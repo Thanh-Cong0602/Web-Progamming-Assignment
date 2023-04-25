@@ -2,6 +2,16 @@
 include '../../config/config.php';
 session_start();
 ?>
+<?php
+function truncate_text($text)
+{
+    if (strlen($text) > 70) {
+        $text = substr($text, 0, 52) . '...';
+        $text = trim($text);
+    }
+    return $text;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,8 +23,35 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../public/css/admin.css">
     <style>
+         .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 700px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: none;
+        white-space: pre-wrap;
+        border-radius: 10px;
+        line-height: 1.5;
+        font-size: 2rem;
+    }
+
         .blackboard {
             position: relative;
             width: 45%;
@@ -127,6 +164,7 @@ session_start();
             text-shadow: none;
         }
     </style>
+    <link rel="stylesheet" href="../../public/css/admin.css">
 </head>
 
 <body>
@@ -222,7 +260,11 @@ session_start();
                         <div class="box">
                             <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
                             <div class="name" style="height: 15vh;">
-                                <?php echo $fetch_products['combo_name']; ?>
+                                 <?php echo truncate_text($fetch_products['combo_name']); ?>
+                                <?php if (strlen(truncate_text($fetch_products['combo_name'])) < strlen($fetch_products['combo_name'])) { ?>
+                                <a style="font-size: 1.5rem;font-style:italic;" href="admin_combo_product.php#product"
+                                    onclick="expandText(`<?php echo $fetch_products['combo_name']; ?>`);">chi tiết</a>
+                                <?php } ?>
                             </div>
                             <div class="price">
                                 <?php echo $fetch_products['price']; ?> ₫
@@ -263,7 +305,7 @@ session_start();
                 <a href="admin_combo_product.php?add-product-book" class="option-btn">Thêm Combo</a>
             </div>
         </div>
-        <div class="box-container" style="margin-top:40px;">
+        <div class="box-container" style="margin-top:40px;" id="product">
             <?php
             $per_page = 9;
             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -288,17 +330,25 @@ session_start();
             <div class="box">
                 <img src="<?php echo $fetch_products['image_combo']; ?>" alt="">
                 <div class="name" style="height: 15vh;">
-                    <?php echo $fetch_products['combo_name']; ?>
+                <?php echo truncate_text($fetch_products['combo_name']); ?>
+                    <?php if (strlen(truncate_text($fetch_products['combo_name'])) < strlen($fetch_products['combo_name'])) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="admin_combo_product.php#product"
+                        onclick="expandText(`<?php echo $fetch_products['combo_name']; ?>`);">chi tiết</a>
+                    <?php } ?>
                 </div>
                 <div class="price">
                     <?php echo $fetch_products['price']; ?> ₫
                 </div>
-                <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>" class="detail_book">Xem
-                    thêm <i class="fas fa-angle-right"></i></a> <br>
+                <form action="../Controllers/adminProductController.php" method="post">
+                            <a href="./admin_detail_combo.php?id=<?php echo $fetch_products['combo_id'] ?>" class="detail_book">Xem
+                                thêm <i class="fas fa-angle-right"></i></a> <br>
+                            <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                                <a href="admin_combo_product.php?update=<?php echo $fetch_products['combo_id']; ?>" class="option-btn">Cập nhật</a>
+                                <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_combo_product">
+                                <input type="hidden" value="<?php echo $fetch_products['combo_id'] ?>" name="combo_id">
+                            </div>
 
-                        </form>
-                        <!-- <a href="admin_combo_product.php?delete=<?php echo $fetch_products['combo_id']; ?>" class="delete-btn"
-                    onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
+                </form>
             </div>
             <?php
                 }
@@ -396,6 +446,28 @@ session_start();
     <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
+    <script>
+    function expandText(fullText) {
+
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+
+        var content = document.createElement('div');
+        content.classList.add('content');
+        // fullText = fullText.replace(",", "");
+        content.textContent = fullText;
+        overlay.appendChild(content);
+
+        overlay.style.display = 'block';
+        content.style.display = 'block';
+
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            content.style.display = 'none';
+        });
+    }
+    </script>
 </body>
 
 </html>
