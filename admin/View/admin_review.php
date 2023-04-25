@@ -28,9 +28,25 @@ if (isset($_GET['delete'])) {
         <h1 class="title" style="margin-top: 2rem;">Tất cả review</h1>
         <div class="table-review">
             <?php
+             $per_page = 6;
+             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+             $start = ($page - 1) * $per_page;
             $select_review = mysqli_query($conn, "SELECT * FROM `reviews`") or die('query fail');
             if (mysqli_num_rows($select_review) > 0) {
+                while ($fetch_review = mysqli_fetch_assoc($select_review)) {
             ?>
+             <?php
+                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `reviews`") or die('query failed');
+                $total_products = mysqli_fetch_assoc($total_products)['total'];
+                $total_pages = ceil($total_products / $per_page);
+                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $url = "http://localhost:3000/admin/View/admin_review.php?page=";
+                // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
+                $offset = ($current_page - 1) * $per_page;
+                // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
+                $select_review = mysqli_query($conn, "SELECT * FROM reviews LIMIT $per_page OFFSET $offset") or die('query failed');
+                if (mysqli_num_rows($select_review) > 0) {
+                    ?>
             <table class="table table-striped table-hover">
                 <thead class="thead-light">
                     <tr>
@@ -54,30 +70,73 @@ if (isset($_GET['delete'])) {
                     $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
                     $row_user = mysqli_fetch_assoc($sql_user);
                     echo "<tr>";
-                    echo "<td>" . $fetch_review['id'] . "</td>";
+                    echo "<td data-label='ID'>" . $fetch_review['id'] . "</td>";
                     if ($row_product['name']) {
-                        echo "<td>" . $row_product['name'] . "</td>";
+                        echo "<td data-label='Tên sản phẩm'>" . $row_product['name'] . "</td>";
                     } else if ($row_combo['combo_name']) {
-                        echo "<td>" . $row_combo['combo_name'] . "</td>";
+                        echo "<td data-label='Tên khách'>" . $row_combo['combo_name'] . "</td>";
                     }
-                    echo "<td>" . $row_user['fullname'] . "</td>";
-                    echo "<td>" . $fetch_review['title'] . "</td>";
-                    echo "<td>" . $fetch_review['description'] . "</td>";
-                    echo "<td>" . $fetch_review['rating'] . "</td>";
-                    echo "<td>" . $fetch_review['date'] . "</td>";
-                    // <!-- echo "<td class='btn-review'>
-                    //    <a href='admin_review.php?delete=".$fetch_products['combo_id']."' onclick='return confirm(\"Xóa đánh giá này???\");'>Xóa</a>
-                    //   </td>"; -->
-
+                    echo "<td data-label='Tên khách'>" . $row_user['fullname'] . "</td>";
+                    echo "<td data-label='Tiêu đề'>" . $fetch_review['title'] . "</td>";
+                    echo "<td data-label='Nhận xét' style='text-align: justify;'>
+                    <p class = 'scroll'> " . $fetch_review['description'] . "</p>
+                    </td>";
+                    echo "<td data-label='Đánh giá'>" . $fetch_review['rating'] . "</td>";
+                    echo " <td data-label='Thời gian'>" . $fetch_review['date'] . "</td>";
+                    
                     echo "<td class='btn-review'><a href='admin_review.php?delete=" . $fetch_review['id'] . "'onclick='return confirm(\"Xóa đánh giá này???\")'>Xóa</a>" . "</td>";
                     echo "</tr>";
-                }
-            } else {
+            } 
+        }
+        }
+    }
+    else {
                 echo '<p class="empty">Không có review nào tại đây</p>';
             }
                 ?>
             </table>
         </div>
+        <nav aria-label="Page navigation example" class="toolbar">
+            <ul class="pagination justify-content-center d-flex flex-wrap">
+                <li class="page-item <?php echo ($current_page <= 1) ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="<?php echo $url . ($current_page - 1); ?>" tabindex="-1">Previous</a>
+                </li>
+                <?php
+                $start_page = ($current_page <= 3) ? 1 : $current_page - 2;
+                $end_page = ($total_pages - $current_page >= 2) ? $current_page + 2 : $total_pages;
+                if ($start_page > 1) {
+                    echo '<li class="page-item"><a class="page-link" href="' . $url . '1">1</a></li>';
+                    if ($start_page > 2) {
+                        echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                    }
+                }
+                $num_displayed_pages = $end_page - $start_page + 1;
+                $display_ellipsis = ($num_displayed_pages >= 7);
+                for ($i = $start_page; $i <= $end_page; $i++) {
+                    if ($num_displayed_pages >= 7) {
+                        if ($i == $start_page + 3 || $i == $end_page - 3) {
+                            if (!$display_ellipsis) {
+                                echo '<li class="page-item"><a class="page-link" href="#">' . $i . '</a></li>';
+                            }
+                            continue;
+                        }
+                    }
+                    if ($num_displayed_pages <= 5 || ($i >= $current_page - 2 && $i <= $current_page + 2)) {
+                        echo '<li class="page-item ' . (($i == $current_page) ? 'active' : '') . '"><a class="page-link" href="' . $url . $i . '">' . $i . '</a></li>';
+                    }
+                }
+                if ($end_page < $total_pages) {
+                    if ($end_page < $total_pages - 1) {
+                        echo '<li class="page-item disabled"><a class="page-link">...</a></li>';
+                    }
+                    echo '<li class="page-item"><a class="page-link" href="' . $url . $total_pages . '">' . $total_pages . '</a></li>';
+                }
+                ?>
+                <li class="page-item <?php echo ($current_page >= $total_pages) ? 'disabled' : ''; ?>">
+                    <a class="page-link" href="<?php echo $url . ($current_page + 1); ?>">Next</a>
+                </li>
+            </ul>
+        </nav>
     </section>
 
 

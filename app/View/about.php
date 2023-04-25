@@ -112,7 +112,7 @@ session_start();
 
    <div class="box-container">
     <?php
-         $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id IN (7, 21,22,23) LIMIT 6") or die('query failed');
+         $select_reviews = mysqli_query($conn, "SELECT * FROM `reviews` WHERE id IN (7, 21,22,34,35,37, 43) LIMIT 6") or die('query failed');
          if(mysqli_num_rows($select_reviews) > 0){
             while($fetch_reviews = mysqli_fetch_assoc($select_reviews)){
             $user_identifier = $fetch_reviews['user_id'];

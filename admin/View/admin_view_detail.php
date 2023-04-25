@@ -44,10 +44,10 @@ $detail_product = mysqli_fetch_array($get_product);
                 </p>
             </div>
         </div>
-        <p class="info-book-detail-description">
+        <div class="info-book-detail-description">
             <b>Mô tả về sách:</b> <br />
-            <?php echo $detail_product['description']; ?>
-        </p>
+            <p><?php echo $detail_product['description']; ?></p>
+</div>
         <a href="./admin_product.php" class="admin-return-product">Quay lại</a>
 
     </div>

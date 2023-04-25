@@ -59,6 +59,21 @@ class User {
         $image_size = $_FILES['image']['size'];
         $image_tmp_name = $_FILES['image']['tmp_name'];
         $image_folder = '../../public/images/'.$rename;
+        if(strlen($username) < 6) {
+            return 'Tên người dùng phải có ít nhất 6 ký tự';
+        }
+        if (strlen($phonenumber) != 10) {
+            return 'Số điện thoại phải là 10 chữ số';
+        }
+        if (strlen($password) < 8) {
+            return 'Mật khẩu phải có ít nhất 8 ký tự';
+        }
+        if (strlen($confirmpassword) < 8) {
+            return 'Mật khẩu xác nhận phải có ít nhất 8 ký tự';
+        }
+        if (!preg_match("/\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email)) {
+            return 'Email không hợp lệ';
+        }
         if(!empty($image)){
             if($image_size > 2000000){
                 return 'Kích thước ảnh quá lớn!';

@@ -130,7 +130,9 @@ if(isset($_GET['get_id'])){
     <div class="heading">
         <h1>Mô tả sản phẩm</h1>
         <p><?php echo $product['name']?></p>
-        <div class="description"><?php echo nl2br($product['description'])?></div>
+        <div class="description">
+            <?php echo nl2br($product['description'])?>
+        </div>
         <button class="btn-toggle">Xem thêm</button>
     </div>
 </section>

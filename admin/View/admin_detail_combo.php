@@ -17,8 +17,7 @@ $detail_product = mysqli_fetch_array($get_product);
         <?php echo $detail_product['combo_name']; ?>
     </title>
     <link rel="stylesheet" href="../../public/css/admin.css">
-    <!-- <link rel="stylesheet" href="../../public/css/hung.css"> -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -34,9 +33,9 @@ $detail_product = mysqli_fetch_array($get_product);
                 <p class="price-combo">
                     Giá: <?php echo $detail_product['price']; ?> ₫
                 </p>
-                <p class="description-combo">
-                    <?php echo $detail_product['description']; ?>
-                </p>
+                <div class="description-combo">
+                   <p> <?php echo $detail_product['description']; ?></p>
+                </div>
 
 
             </div>
@@ -57,9 +56,9 @@ $detail_product = mysqli_fetch_array($get_product);
                         <p class="name-book-combo">
                             <?php echo $detail_product['name_1']; ?>
                         </p>
-                        <p class="description-book-combo">
-                            <?php echo $detail_product['description_1']; ?>
-                        </p>
+                        <div class="description-book-combo">
+                          <p>  <?php echo $detail_product['description_1']; ?></p>
+                        </div>
                     </div>
                     <img class="combo-book-img" src="<?php echo $detail_product['image_1']; ?>">
 
@@ -72,9 +71,9 @@ $detail_product = mysqli_fetch_array($get_product);
                         <p class="name-book-combo">
                             <?php echo $detail_product['name_2']; ?>
                         </p>
-                        <p class="description-book-combo">
-                            <?php echo $detail_product['description_2']; ?>
-                        </p>
+                        <div class="description-book-combo">
+                          <p>  <?php echo $detail_product['description_2']; ?></p>
+                    </div>
                     </div>
                     <img class="combo-book-img" src="<?php echo $detail_product['image_2']; ?>">
 
@@ -86,9 +85,9 @@ $detail_product = mysqli_fetch_array($get_product);
                         <p class="name-book-combo">
                             <?php echo $detail_product['name_3']; ?>
                         </p>
-                        <p class="description-book-combo">
-                            <?php echo $detail_product['description_3']; ?>
-                        </p>
+                        <div class="description-book-combo">
+                          <p>  <?php echo $detail_product['description_3']; ?></p>
+                        </div>
                     </div>
                     <img class="combo-book-img" src="<?php echo $detail_product['image_3']; ?>">
 

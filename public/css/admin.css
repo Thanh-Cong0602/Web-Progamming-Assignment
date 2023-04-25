@@ -69,6 +69,8 @@ section {
   color: var(--red);
   font-size: 2rem;
 }
+
+
 /* 
 .message {
   position: sticky;
@@ -516,7 +518,9 @@ a:hover {
   margin: 0 auto;
   align-items: flex-start;
 }
-
+.toolbar.user_tool .pagination {
+  margin-top: 40px;
+}
 .orders .box-container .box {
   background-color: var(--white);
   padding: 2rem;
@@ -530,7 +534,6 @@ a:hover {
 }
 
 .orders .box-container .box p {
-  padding-bottom: 1rem;
   font-size: 2rem;
   color: var(--light-color);
 }
@@ -806,6 +809,9 @@ a:hover {
   line-height: 1.5;
   /* font-style: oblique; */
 }
+.info-book-detail-description p {
+  font-size: 1.5rem;
+}
 .admin-return-product {
   /* border-top: 2px solid #000; */
   width: 20%;
@@ -827,7 +833,7 @@ a:hover {
 .description-combo {
   line-height: 1.25;
   text-align: justify;
-  /* margin: 2rem; */
+  font-size: 1.5rem;
 }
 .books-combo {
   width: 90%;
@@ -880,8 +886,26 @@ a:hover {
   color: var(--red);
   font-size: 1.75rem;
 }
+.table .scroll {
+  height: 15rem;
+  text-overflow: ellipsis;
+    overflow-x: hidden;
+    padding: 0 5px;
+}
+.table .scroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f2f2f2;
+}
+.table .scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
 /* review */
-
+.table td,
+.table th {
+  font-size: 1.5rem;
+  max-height: 15rem;
+}
 .table-review {
   width: 90%;
   margin: auto;
@@ -895,7 +919,7 @@ a:hover {
   overflow-x: hidden;
 }
 .btn-review a {
-  width: 50%;
+  /* width: 50%; */
   background-color: var(--red);
   padding: 1rem 2rem;
   color: #fff;
@@ -939,7 +963,9 @@ a:hover {
   text-align: left;
   overflow: hidden;
 }
-
+.orders .box-container .box p span {
+  color: purple;
+}
 .listcart table thead {
   box-shadow: 0 5px 10px #e1e5ee;
 }
@@ -948,7 +974,7 @@ a:hover {
   padding: 1rem 2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   font-weight: 900;
 }
 
@@ -1150,7 +1176,9 @@ a:hover {
   #menu-btn {
     display: inline-block;
   }
-
+  .btn-review a {
+    width: none;
+  }
   .header .flex .navbar {
     position: absolute;
     top: 99%;
@@ -1161,7 +1189,9 @@ a:hover {
     border-bottom: var(--border);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
-
+  .table .scroll {
+    height: 12rem;
+  }
   .header .flex .navbar.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     display: block;
@@ -1179,7 +1209,7 @@ a:hover {
   }
   .detail-book,
   .detail-combo {
-    max-width: 80%;
+    max-width: 95%;
     /* margin-bottom: 2rem; */
   }
   .info-book,
@@ -1233,6 +1263,37 @@ a:hover {
     text-align: start;
   }
 }
+@media (max-width: 460px) {
+  .info-book-detail-description {
+    width: 100%;
+  }
+  .info-book-detail-description p {
+    height: 25rem;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem;
+  }
+  .info-book-detail-description p::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f2f2f2;
+  }
+  .info-book-detail-description p::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+  }
+  .admin-return-product {
+    font-size: 1.5rem;
+  }
+
+  .description-book-combo p{
+    height: 15rem;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+}
+  
 @media (max-width: 450px) {
   html {
     font-size: 50%;

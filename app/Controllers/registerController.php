@@ -13,7 +13,12 @@ if(isset($_POST['submit'])){
    $user_type = $_POST['user_type'];
    $user = new User($conn);
    $result = $user->registerUser($fullname, $username, $email, $phonenumber, $confirmpassword, $user_type);
-   if ($result == 'Kích thước ảnh quá lớn!'){
+   if ($result == 'Tên người dùng phải có ít nhất 6 ký tự'
+            || $result == 'Số điện thoại phải là 10 chữ số'
+            || $result == 'Mật khẩu phải có ít nhất 8 ký tự'
+            || $result == 'Mật khẩu xác nhận phải có ít nhất 8 ký tự'
+            || $result == 'Email không hợp lệ'
+            || $result == 'Kích thước ảnh quá lớn!') {
       $_SESSION['warning_msg'] = $result;
    }
    elseif ($result == 'Error uploading file'){ 

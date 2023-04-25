@@ -36,7 +36,7 @@ session_start();
    <form onsubmit="return validateForm()" action="../Controllers/adminUpdateProfileCTRL.php" method="post" enctype="multipart/form-data">
       <h3>Cập nhật thông tin cá nhân!</h3>
       <?php
-         $user_id = $_SESSION['admin_id'];
+         $user_id = $_SESSION['user_id'];
          $select_profile = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id' LIMIT 1") or die('query failed');
          $fetch_profile = mysqli_fetch_assoc($select_profile);
       ?>

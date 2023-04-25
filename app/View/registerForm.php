@@ -23,7 +23,7 @@ session_start();
       <div class="main-user-info">
         <div class="user-input-box">
           <label for="fullName">Họ và tên</label>
-          <input type="text" id="fullName" name="fullName" placeholder="Nhập họ và tên" />
+          <input type="text" id="fullName" name="fullName" placeholder="Nhập họ và tên" required/>
         </div>
         <div class="user-input-box">
           <label for="username">Username</label>
@@ -32,22 +32,22 @@ session_start();
         </div>
         <div class="user-input-box">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Nhập Email" required />
+          <input type="email" id="email" name="email" placeholder="Nhập Email"  />
           <span class="error" id="emailError"></span>
         </div>
         <div class="user-input-box">
           <label for="phoneNumber">Số điện thoại</label>
-          <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Nhập số điện thoại" />
+          <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Nhập số điện thoại" required />
           <span class="error" id="numberError"></span>
         </div>
         <div class="user-input-box">
           <label for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+          <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required/>
           <span class="error" id="passwordError"></span>
         </div>
         <div class="user-input-box">
           <label for="confirmPassword">Nhập lại mật khẩu</label>
-          <input type="password" id="confirmPassword" name="cpassword" placeholder="Nhập lại mật khẩu" required />
+          <input type="password" id="confirmPassword" name="cpassword" placeholder="Nhập lại mật khẩu" required/>
         </div>
       </div>
       <div class="info-img">

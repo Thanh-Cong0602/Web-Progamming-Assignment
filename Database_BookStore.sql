@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 09:11 PM
+-- Generation Time: Apr 25, 2023 at 03:06 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,7 +69,9 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`id`, `user_id`, `product_name`, `price`, `quantity`, `image`) VALUES
 (0, 'jBSM7nyWJV', 'Không Phải Sói Nhưng Cũng Đừng Là Cừu', 96000, 1, 'https://cdn0.fahasa.com/media/catalog/product/_/k/_khong-phai-soi-nhung-cung-dung-la-cuu.jpg'),
 (0, 'jBSM7nyWJV', 'Nhà Giả Kim', 65500, 1, 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_195509_1_36793.jpg'),
-(0, 'jBSM7nyWJV', 'Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023', 515000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/combo-sa%CC%81ch-chu%CC%9B%CC%81ng-khoa%CC%81n-cho-ngu%CC%9Bo%CC%9B%CC%80i-mo%CC%9B%CC%81i-768x768.jpg.webp');
+(0, 'jBSM7nyWJV', 'Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023', 515000, 1, 'https://vnibooks.com/wp-content/uploads/2021/09/combo-sa%CC%81ch-chu%CC%9B%CC%81ng-khoa%CC%81n-cho-ngu%CC%9Bo%CC%9B%CC%80i-mo%CC%9B%CC%81i-768x768.jpg.webp'),
+(49431, 'eo6zKcgzbU', 'Thao Túng Tâm Lý', 126750, 1, 'https://cdn0.fahasa.com/media/catalog/product/8/9/8936066692298-1.jpg'),
+(60292, 'eo6zKcgzbU', 'Nhà Giả Kim', 65500, 1, 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_195509_1_36793.jpg');
 
 -- --------------------------------------------------------
 
@@ -181,7 +183,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
 (0, 'jBSM7nyWJV', 'Thanh Cong Nguyen', '0847476547', 'thanhcongnguyen0602@gmail.com', 'credit card', 'Ho Chi Minh', ', Combo 3 cuốn sách Chứng Khoán dành cho người mới 2023 (1) ', 515000, '20-Apr-2023', 'pending'),
-(0, 'jBSM7nyWJV', 'Thanh Cong Nguyen', '1231243', 'thanhcongnguyen0602@gmail.com', 'cash on delivery', 'Ho Chi Minh', ', Không Phải Sói Nhưng Cũng Đừng Là Cừu (1) , Nhà Giả Kim (1) , Trí Tuệ Do Thái (1) ', 303250, '20-Apr-2023', 'pending');
+(0, 'jBSM7nyWJV', 'Thanh Cong Nguyen', '1231243', 'thanhcongnguyen0602@gmail.com', 'cash on delivery', 'Ho Chi Minh', ', Không Phải Sói Nhưng Cũng Đừng Là Cừu (1) , Nhà Giả Kim (1) , Trí Tuệ Do Thái (1) ', 303250, '20-Apr-2023', 'pending'),
+(68447, 'eo6zKcgzbU', 'Le Van Ha', '0987654321', 'hale@gmt.com', 'credit card', 'Di An, Bình Dương', ', Bố già (10) , Không Phải Sói Nhưng Cũng Đừng Là Cừu (5) , Nhà Giả Kim (5) , Combo Sách Tâm Lý Kẻ Phạm Tội: 8 Vụ Án Hoàn Hảo + Tâm Lý Học Tội Phạm (1) , Combo Sách Rừng Na Uy + Điều Kỳ Diệu Của Tiệm Tạp Hóa Namiya (Bộ 2 Cuốn) (1) ', 3365500, '25-Apr-2023', 'pending');
 
 -- --------------------------------------------------------
 
@@ -361,10 +364,22 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `fullname`, `username`, `email`, `phonenumber`, `password`, `user_type`, `image`) VALUES
+('4OmZMhGZVb', 'Trân Tuấn Anh', 'van123', 'vana123@gmail.com', '0987654321', '$2y$10$tJ9dutxx8nHfgfEy10kO1.HyDmC8xtIM5W/Kae/KiA6ntj8Fk9ILa', 'user', ''),
+('68ByEZVtOQ', 'Lưu Vũ Hà', 'luuvuha', 'ha@gmail.com', '0987897789', '$2y$10$N3M7w4wo8H59kaGIUHPVOe/B01DoWIRkCNDrR1mndPI4GtKO.niGK', 'admin', 'hEuLieqpCG.jpg'),
+('88E1XbR2VH', 'Trấn Robot', 'robot234', 'robot@gmail.com', '09876543332', '$2y$10$A202qfPXAb5MK79e28xHkOe2hD5Z8jNeRB/TBmQFxKhLa5yap/Chy', 'user', 'PlRrDjNKTk.jpg'),
+('AmLf30Fbwt', 'Nguyễn Tuấn Anh', 'thanhcong', 'cong@gmail.com', '0987654321', '$2y$10$WwZM/s3qPUcMNi2nY5ak2.kJOI1bKE1jt10MojdQU/1suA0O6XCKG', 'admin', ''),
+('B6liRXOhsz', 'Nguyễn Thành Công', 'tuanb123', 'tuanb@gmail.com', '0987654321', '$2y$10$p56ykn17GtC8E8ZEz0qC4OoZtQsRMliMzzU89QAVsUTHRMCUfmBSu', 'admin', ''),
+('eo6zKcgzbU', 'Le Van Ha', 'havanlee', 'hale@gmt.com', '0987654321', '$2y$10$pGKWdjJEp6qCM/3FbLqLfOZvjDe6FKAeLU.vTOS75IDSKl6uHE0Ke', 'user', ''),
 ('F96Eqi8HzJ', 'Thanh Cong Nguyen', 'adminTCN', 'thanhcongnguyenadmin@gmail.com', '0847476547', '$2y$10$6thasqV/.qV55wEx8trKX.Q8/gq6TSj2QmLFKuiDncIvSaH1CRqQG', 'user', ''),
+('fA3utqrr2G', 'Nguyễn Tuấn Anh', 'tuananhmnb', 'tuananh1@gmail.com', '0987654321', '$2y$10$jwA718pZ4Lzo8qrUPcW85OCK8fAbFYoWqu.ZRZkUbDVUwSTRADbja', 'admin', '75zNYBwKt3.jpg'),
+('HF4hpnsHcA', 'Lưu Vũ Hà', 'luuha123', 'haluu@gmail.com', '0987897789', '$2y$10$r49y84XNmWiTJXceYTlQAO2dn2/njLu7O4rarnAhGNndv15HeZPpu', 'user', 'iC3YLeLD0G.jpg'),
 ('jBSM7nyWJV', 'Đỗ Trần Ngọc Linh', 'ngoc_linh1703', 'ngoclinh1703@gmail.com', '0847476547', '$2y$10$WC73B6jWVLF1vafboUX.Hu77//XuTONHCWTw0rSktJoUOgko7O4Qm', 'user', 'fzyd3C0MA3.png'),
 ('m27C3SOvfb', 'Tuấn Anh', 'tuananh123', 'tuananh@gmail.com', '0847476547', '$2y$10$jeDkBHgk4VeTOh2kYclvt.Q/fVoL4DjJHsorIGbkstmaaPgM9hcgu', 'admin', ''),
-('zAYghE9NNZ', 'Trần Thị Thu H&agrave;', 'H&agrave; M&atilde; @1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$a4DP15UJNvPlnrsDgVTORuW6BLTJWkesZz2un9wv8QuWSChfat3.2', 'user', 'ajE7DtDSr5.jpg');
+('OlX7n0bZMt', 'Nguyễn Hùng', 'hung123', 'hung@gmail.com', '0987897789', '$2y$10$ddaUsCTJNCj6dGOk2TecF.iI/6TI4ThhsQwCRq.n.QxHHhvzp6gF2', 'admin', ''),
+('qDoDmIrb1V', 'Le Van A', 'vanle123', 'vanle123@gmail.com', '0987654321', '$2y$10$7W.fDo9hgG2.WoKKvp8Nd.GUvpO9kwz5cGo.Kyw0rsJjihbgV4KKC', 'user', ''),
+('TjK3AedcYR', 'Trấn Van Anh', 'anh12222', 'user1@gmail.com', '0987654321', '$2y$10$KlMhebVBduFK2YjxfPQSW.37ZzDO.xzYiQfXiGCb0dFl7glP46xAa', 'user', '8ObJ3hJvM1.PNG'),
+('uzxkZ442qN', 'Nguyen Van Si', 'messis', 'mesis@gmail.com', '0987654321', '$2y$10$HnYP/E4vHcRHz1VVZQracOxxbmiGVBIbCxgskp1SA8jMCHGfodINy', 'user', ''),
+('zAYghE9NNZ', 'Trần Thị Thu Hà', 'H&agrave; M&atilde; @1209', 'thuha1209@gmail.com', '0847476547', '$2y$10$a4DP15UJNvPlnrsDgVTORuW6BLTJWkesZz2un9wv8QuWSChfat3.2', 'user', 'ajE7DtDSr5.jpg');
 
 --
 -- Indexes for dumped tables
