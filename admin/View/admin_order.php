@@ -10,13 +10,6 @@ if (!isset($admin_id)) {
     header('location:../../app/View/loginForm.php');
 }
 
-if (isset($_POST['update_order'])) {
-    $order_update_id = $_POST['order_id'];
-    $update_payment = $_POST['update_payment'];
-    mysqli_query($conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE user_id = '$order_update_id'") or die('query failed');
-    $message[] = 'Updated!!!';
-}
-
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
@@ -49,6 +42,8 @@ function truncate_text($text)
 
     <!-- custom admin css file link  -->
     <link rel="stylesheet" href="../../public/css/admin.css">
+    <link rel="stylesheet" href="../../public/css/tuananh.css">
+
     <style>
         .overlay {
             position: fixed;
@@ -66,14 +61,16 @@ function truncate_text($text)
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80%;
-            max-width: 600px;
+            max-width: 700px;
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 10000;
             display: none;
-            word-wrap: break-word;
-            word-break: break-all;
+            white-space: pre-wrap;
+            border-radius: 10px;
+            line-height: 1.5;
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -86,7 +83,7 @@ function truncate_text($text)
 
         <h1 class="title">Đơn hàng đã đặt</h1>
 
-        <div class="box-container">
+        <div class="box-container" style="margin-top:40px;">
             <?php
             $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
             if (mysqli_num_rows($select_orders) > 0) {
@@ -98,11 +95,15 @@ function truncate_text($text)
                         <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
                         <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
                         <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-                        <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span> </p>
+                        <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span>
+                            <?php if (strlen(truncate_text($fetch_orders['address'])) < strlen($fetch_orders['address'])) { ?>
+                                <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandaddress(`<?php echo $fetch_orders['address']; ?>`);">chi tiết</a>
+                            <?php } ?>
+                        </p>
                         <p class="total-products"> Tổng sản phẩm :
-                            <span><?php echo truncate_text($fetch_orders['total_products']); ?></span>
+                            <span><?php echo preg_replace('/,/', '', truncate_text($fetch_orders['total_products']), 1); ?></span>
                             <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
-                                <a href="#" onclick="expandText('<?php echo $fetch_orders['total_products']; ?>');">chi tiết</a>
+                                <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandText(`<?php echo $fetch_orders['total_products']; ?>`);">chi tiết</a>
                             <?php } ?>
                         </p>
                         <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
@@ -110,7 +111,7 @@ function truncate_text($text)
                         </p>
                         <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
                         <div class="select-button">
-                            <form action="" method="post">
+                            <form action="../Controllers/adminProductController.php" method="post">
                                 <input type="hidden" name="order_id" value="<?php echo $fetch_orders['user_id']; ?>">
                                 <select name="update_payment">
                                     <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
@@ -141,6 +142,27 @@ function truncate_text($text)
 
             var content = document.createElement('div');
             content.classList.add('content');
+            fullText = fullText.replace(",", "");
+            content.textContent = fullText.replaceAll(",", "\n");
+            overlay.appendChild(content);
+
+            overlay.style.display = 'block';
+            content.style.display = 'block';
+
+            overlay.addEventListener('click', function() {
+                overlay.style.display = 'none';
+                content.style.display = 'none';
+            });
+        }
+
+        function expandaddress(fullText) {
+            var overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            document.body.appendChild(overlay);
+
+            var content = document.createElement('div');
+            content.classList.add('content');
+            // fullText = fullText.replace(",", "");
             content.textContent = fullText;
             overlay.appendChild(content);
 
@@ -153,7 +175,8 @@ function truncate_text($text)
             });
         }
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
 </body>

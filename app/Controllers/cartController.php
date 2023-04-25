@@ -24,20 +24,16 @@ if (isset($_POST['add_to_cart'])) {
    if ($previous_page == 'http://localhost:3000/app/View/home.php') {
       header('Location: http://localhost:3000/app/View/home.php#product');
       exit;
-   }
-   elseif ($previous_page == 'http://localhost:3000/app/View/shop.php') {
+   } elseif ($previous_page == 'http://localhost:3000/app/View/shop.php') {
       header('Location: http://localhost:3000/app/View/shop.php#product');
       exit;
-   }
-   elseif ($previous_page == 'http://localhost:3000/app/View/shop.php?page='.$current_page) {
+   } elseif ($previous_page == 'http://localhost:3000/app/View/shop.php?page=' . $current_page) {
       header("Location: ../View/shop.php?page=$current_page");
       exit;
-   }
-   elseif ($previous_page == 'http://localhost:3000/app/View/products_combo.php') {
+   } elseif ($previous_page == 'http://localhost:3000/app/View/products_combo.php') {
       header("Location: http://localhost:3000/app/View/products_combo.php");
       exit;
-   }
-   elseif ($previous_page == 'http://localhost:3000/app/View/products_combo.php?page='.$current_page) {
+   } elseif ($previous_page == 'http://localhost:3000/app/View/products_combo.php?page=' . $current_page) {
       header("Location: ../View/products_combo.php?page=$current_page");
       exit;
    }

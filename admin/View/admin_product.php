@@ -25,7 +25,7 @@ if (isset($_GET['delete'])) {
     <title>Quản lý thêm, sửa, xóa sách</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../../public/css/admin.css">
-    <link rel="stylesheet" href="../../public/css/tuananh.css">
+    <!-- <link rel="stylesheet" href="../../public/css/tuananh.css"> -->
     <style>
         .blackboard {
             position: relative;
@@ -159,8 +159,8 @@ if (isset($_GET['delete'])) {
                 <input type="text" name="publiser" class="box" placeholder="Nhập nhà xuất bản" required>
                 <textarea name="description" class="description" placeholder="Nhập mô tả về sách" cols="30" rows="5"></textarea>
                 <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                    <input style="width:180px;height:50px;font-size:23px;" type="submit" value="Thêm Sản Phẩm" name="add_product" class="btn">
-                    <a href="admin_product.php" class="btn" style="color:rgba(238, 238, 238, 0.7);height:50px;font-size:23px;">Đóng</a>
+                    <input type="submit" value="Thêm Sản Phẩm" name="add_product" class="btn">
+                    <a href="admin_product.php" class="delete-btn">Đóng</a>
                 </div>
             </form>
         <?php
@@ -216,18 +216,19 @@ if (isset($_GET['delete'])) {
         <div class="box-container" style="border-bottom: 1px solid #111;padding-bottom:40px">
             <?php
             $sql_products = null;
+
             if (isset($_POST['search'])) {
                 $_POST['name'] = addslashes($_POST['name']);
-                if (!empty($_POST['name'])) {
-                    $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE {$_POST['searchby']} LIKE '%{$_POST['name']}%'") or die('query failed');
+                if (!empty($_POST['name']) && $_POST['pricebelow'] && $_POST['priceabove']) {
+                    $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE {$_POST['searchby']} LIKE '%{$_POST['name']}%' AND products.price BETWEEN {$_POST['pricebelow']} and {$_POST['priceabove']}") or die('query failed');
                 } elseif ($_POST['pricebelow'] && $_POST['priceabove']) {
                     $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE products.price BETWEEN {$_POST['pricebelow']} and {$_POST['priceabove']}") or die('query failed');
                 } elseif ($_POST['pricebelow']) {
                     $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE products.price > {$_POST['pricebelow']} ") or die('query failed');
                 } elseif ($_POST['priceabove']) {
                     $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE products.price < {$_POST['priceabove']}") or die('query failed');
-                } elseif (!empty($_POST['name']) && $_POST['pricebelow'] && $_POST['priceabove']) {
-                    $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE {$_POST['searchby']} LIKE '%{$_POST['name']}%' AND products.price BETWEEN {$_POST['pricebelow']} and {$_POST['priceabove']}") or die('query failed');
+                } elseif (!empty($_POST['name'])) {
+                    $sql_products = mysqli_query($conn, "SELECT products.* FROM `products` WHERE {$_POST['searchby']} LIKE '%{$_POST['name']}%'") or die('query failed');
                 }
                 if ($sql_products && $sql_products->num_rows > 0) {
                     while ($fetch_products_sql = mysqli_fetch_assoc($sql_products)) {
@@ -261,9 +262,9 @@ if (isset($_GET['delete'])) {
         </div>
 
     </section>
-        <!--  SHOW PRODUCTs FROM SEARCH BEGINS -->
+    <!--  SHOW PRODUCTs FROM SEARCH BEGINS -->
 
-    
+
     <section class="show-products">
         <div class="list-add-products">
             <div class="list-products">
@@ -292,14 +293,14 @@ if (isset($_GET['delete'])) {
                             <?php echo $fetch_products['price']; ?>
                             <span class="rate">₫</span></h3>
                         </div>
-                <form action="../Controllers/adminProductController.php" method="post" >
-                    <a href="./admin_view_detail.php?id=<?php echo $fetch_products['product_id'] ?>" class="detail_book">
-                    Xem thêm <i class="fas fa-angle-right"></i></a> <br>
-                    <a href="admin_product.php?update=<?php echo $fetch_products['product_id']; ?>" class="option-btn">Cập nhật</a>
-                    <input type="submit" value="Xóa đánh giá" class="delete-btn" name="delete_review" >
-                    <!-- <a href="admin_product.php?delete=<?php echo $fetch_products['product_id']; ?>" class="delete-btn" onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
+                        <form action="../Controllers/adminProductController.php" method="post">
+                            <a href="./admin_view_detail.php?id=<?php echo $fetch_products['product_id'] ?>" class="detail_book">
+                                Xem thêm <i class="fas fa-angle-right"></i></a> <br>
+                            <a href="admin_product.php?update=<?php echo $fetch_products['product_id']; ?>" class="option-btn">Cập nhật</a>
+                            <input type="submit" value="Xóa đánh giá" class="delete-btn" name="delete_review">
+                            <!-- <a href="admin_product.php?delete=<?php echo $fetch_products['product_id']; ?>" class="delete-btn" onclick="return confirm('Xóa quyển sách này?');">Xóa</a> -->
                     </div>
-                </form>
+                    </form>
             <?php
                 }
             } else {
@@ -318,7 +319,7 @@ if (isset($_GET['delete'])) {
             if (mysqli_num_rows($update_query) > 0) {
                 while ($fetch_update = mysqli_fetch_assoc($update_query)) {
         ?>
-                    <form action="../Controllers/adminController.php" method="post" enctype="multipart/form-data">
+                    <form action="../Controllers/adminProductController.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['product_id']; ?>">
                         <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="Nhập tên sách cần cập nhật">
                         <input type="text" name="update_author" value="<?php echo $fetch_update['author']; ?>" class="box" required placeholder="Nhập tên tác gải cần cập nhật">
@@ -329,7 +330,7 @@ if (isset($_GET['delete'])) {
                         <input type="text" class="box" name="update_supplier" value="<?php echo $fetch_update['supplier']; ?>" placeholder="Nhập nhà cung cấp sách cần cập nhật">
                         <input type="text" class="box" name="update_publiser" value="<?php echo $fetch_update['publiser']; ?>" placeholder="Nhập nhà cung cấp sách cần cập nhật">
                         <input type="submit" value="Lưu" name="update_product" class="option-btn">
-                        <input type="reset" value="Reset" id="close-update" class="option-btn">
+                        <input type="submit" value="Reset" name="reset" id="close-update" class="option-btn">
                     </form>
         <?php
                 }

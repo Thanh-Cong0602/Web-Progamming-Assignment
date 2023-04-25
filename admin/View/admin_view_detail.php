@@ -20,13 +20,13 @@ $detail_product = mysqli_fetch_array($get_product);
 <body>
     <?php include 'admin_header.php'; ?>
     <div class="detail-book">
-        <h1 class="info-book-detail-name">
-            <?php echo $detail_product['name']; ?>
-        </h1>
+
         <div class="info-book">
             <img src="<?php echo $detail_product['image']; ?>" alt="" class="info-book-img">
             <div class="info-book-detail">
-
+                <h1 class="info-book-detail-name">
+                    <?php echo $detail_product['name']; ?>
+                </h1>
                 <p class="info-book-detail-author">Tác giả:
                     <?php echo $detail_product['author']; ?>
                 </p>
@@ -42,10 +42,11 @@ $detail_product = mysqli_fetch_array($get_product);
             </div>
         </div>
         <p class="info-book-detail-description">
-            <b>Mô tả về sách:</b> <br/>
+            <b>Mô tả về sách:</b> <br />
             <?php echo $detail_product['description']; ?>
         </p>
         <a href="./admin_product.php" class="admin-return-product">Quay lại</a>
+
     </div>
 
 

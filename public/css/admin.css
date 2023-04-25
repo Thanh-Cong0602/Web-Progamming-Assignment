@@ -92,7 +92,7 @@ section {
   padding: 1rem 3rem;
   cursor: pointer;
   color: var(--white);
-  font-size: 1.8rem;
+  font-size: 2rem;
   border-radius: 0.5rem;
   text-transform: capitalize;
 }
@@ -363,66 +363,14 @@ section {
 .show-products .box-container .box .detail_book:hover {
   opacity: 0.5;
 }
-.info-book {
-  background-color: #fffa5faf;
-  width: 60%;
-  margin: 2rem auto;
-  padding: 5rem;
-  display: flex;
-  justify-content: space-between;
-  /* border: var(--border); */
-  border-radius: 0.5rem;
-}
-.info-book-img {
-  width: 40%;
-  border-radius: 30px;
-  height: 70rem;
-  margin: 5rem;
-  /* margin: auto; */
-}
-.info-book-detail {
-  width: 60%;
-  text-align: center;
-}
 
-.info-book-detail-name {
-  font-size: 3.5rem;
-  margin: 2rem;
-}
-.info-book-detail-price {
-  font-size: 2.75rem;
-  margin: 2rem;
-  font-style: oblique;
-  /* text-align: start; */
-  color: var(--red);
-}
-.info-book-detail-author,
-.info-book-detail-publisher,
-.info-book-detail-supplier {
-  font-size: 2rem;
-  margin: 1.5rem auto;
-}
-.info-book-detail-description {
-  font-size: 1.5rem;
-  text-align: start;
-  margin: 2rem;
-  line-height: 1.5;
-  font-style: oblique;
-}
-.admin-return-product {
-  background-color: var(--red);
-  padding: 1rem;
-  color: #fff;
-}
-.admin-return-product:hover {
-  opacity: 0.7;
-}
 /* THE END PRODUCT */
 /* ######################## */
 
 /* media queries  */
-
-
+a:hover {
+  text-decoration: none;
+}
 .title1 {
   text-align: left;
   align-items: center;
@@ -433,13 +381,13 @@ section {
 /* product */
 /* ========================= */
 .add-products {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow: scroll;
   position: fixed;
   top: 0;
   left: 0;
@@ -447,16 +395,15 @@ section {
   width: 100%;
 }
 .add-products form {
-  background-color: var(--white);
-  border-radius: 1rem;
-  padding: 3rem;
+  width: 70%;
+  padding: 2rem;
   text-align: center;
-  box-shadow: var(--box-shadow);
-  border: var(--border);
-  max-width: 50rem;
-  margin: 0 auto;
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  height: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
-
 .add-products form h3 {
   font-size: 3rem;
   text-transform: uppercase;
@@ -475,6 +422,60 @@ section {
   font-size: 1.8rem;
   border: var(--border);
 }
+
+/* ######## COMBO */
+.add-products-combo {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+  width: 100%;
+}
+.add-products-combo form {
+  /* background-color: var(--white);
+  border-radius: 1rem;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+  max-width: 50rem;
+  margin: 0 auto; */
+  width: 80%;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  height: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+.add-products-combo form h3 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 2rem;
+}
+
+.add-products-combo form .box,
+.add-products-combo form .description {
+  width: 100%;
+  background-color: var(--light-bg);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 1.2rem 1.4rem;
+  color: var(--black);
+  font-size: 1.8rem;
+  border: var(--border);
+}
+
+/* ##### het combo */
 
 .show-products .list-add-products {
   display: grid;
@@ -810,7 +811,6 @@ section {
   line-height: 1.25;
   text-align: justify;
   /* margin: 2rem; */
-
 }
 .books-combo {
   width: 90%;
@@ -897,8 +897,6 @@ section {
 }
 /* responsive */
 
-
-
 /* Admin Cart Starts */
 
 .listcart {
@@ -920,7 +918,7 @@ section {
 .listcart table {
   border-collapse: collapse;
   box-shadow: 0 5px 10px hsl(222, 28%, 91%);
-  background-color: #213131;;
+  background-color: #213131;
   text-align: left;
   overflow: hidden;
 }
@@ -928,8 +926,6 @@ section {
 .listcart table thead {
   box-shadow: 0 5px 10px #e1e5ee;
 }
-
-;
 
 .listcart table th {
   padding: 1rem 2rem;
@@ -975,7 +971,7 @@ section {
 .feedback table {
   border-collapse: collapse;
   box-shadow: 0 5px 10px hsl(222, 28%, 91%);
-  background-color: #213131;;
+  background-color: #213131;
   text-align: left;
   overflow: hidden;
 }
@@ -983,8 +979,6 @@ section {
 .feedback table thead {
   box-shadow: 0 5px 10px #e1e5ee;
 }
-
-;
 
 .feedback table th {
   padding: 1rem 2rem;
@@ -1004,7 +998,7 @@ section {
   color: white;
 }
 
-.feedback  .grand-total span {
+.feedback .grand-total span {
   color: red;
 }
 /* Admin Feedback Ends */
@@ -1059,7 +1053,7 @@ section {
   height: 20rem;
   width: 100%;
   object-fit: contain;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
 .updateInfo-form form .delete-btn,
@@ -1111,8 +1105,6 @@ section {
 }
 
 /* Admin UpdateProfile Ends */
-
-
 
 @media (max-width: 1024px) {
   html {
@@ -1167,8 +1159,62 @@ section {
   .title1 {
     text-align: center;
   }
-}
+  .detail-book,
+  .detail-combo {
+    max-width: 80%;
+    /* margin-bottom: 2rem; */
+  }
+  .info-book,
+  .info-combo {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+  .info-book-img,
+  .combo-img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  .info-book-detail,
+  .info-combo-detail {
+    width: 90%;
+    /* text-align: justify; */
+    /* margin: 7rem; */
+    margin-top: 1.5rem;
+  }
 
+  .combo-book-img {
+    width: 100%;
+  }
+  .table-review thead {
+    display: none;
+  }
+
+  .table-review td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+  }
+
+  .table-review table {
+    width: 100%;
+  }
+  .table-review table thead {
+    display: none;
+  }
+  .table-review table tbody {
+    display: block;
+    width: 100%;
+  }
+  .table-review table tbody tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .table-review table tbody td {
+    display: block;
+    text-align: start;
+  }
+}
 @media (max-width: 450px) {
   html {
     font-size: 50%;
@@ -1181,5 +1227,12 @@ section {
   }
   .show-products .list-add-products .add-products-button {
     text-align: center;
+  }
+  .table-review {
+    width: 100%;
+    margin: auto;
+    text-align: justify;
+    /* background-color: #fcfbd41b; */
+    border-radius: 5rem;
   }
 }
