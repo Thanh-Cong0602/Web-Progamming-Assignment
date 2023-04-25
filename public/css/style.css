@@ -493,11 +493,12 @@ a:hover {
   height: 500px;
   margin-bottom: 2rem;
 }
-.product.combo_product .box-container .box {
+
+.product .box-container .box.combo_box {
   height: 525px;
 }
 /* .product .box-container .box {
-  height: 525px;
+  height: 520px;
 } */
 
 .product .box-container .box:hover img {
