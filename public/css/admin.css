@@ -233,7 +233,7 @@ section {
 .dashboard .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   align-items: flex-start;
@@ -246,10 +246,11 @@ section {
   box-shadow: var(--box-shadow);
   border: var(--border);
   text-align: center;
+  height: 170px;
 }
 
 .dashboard .box-container .box h3 {
-  font-size: 5rem;
+  font-size: 4rem;
   color: var(--black);
 }
 

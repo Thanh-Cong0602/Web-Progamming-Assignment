@@ -12,6 +12,16 @@ if (!isset($admin_id)) {
 
 ?>
 
+<?php
+function truncate_text($text)
+{
+    if (strlen($text) > 7) {
+        $text = substr($text, 0, 3) . '..';
+        $text = trim($text);
+    }
+    return $text;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +42,35 @@ if (!isset($admin_id)) {
     <!-- custom js file link  -->
     <script src="../../public/js/script.js" defer></script>
 
+    <style>
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
 
+    .content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 700px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 10000;
+        display: none;
+        white-space: pre-wrap;
+        border-radius: 10px;
+        line-height: 1.5;
+        font-size: 2rem;
+    }
+    </style>
 </head>
 
 <body>
@@ -45,7 +83,7 @@ if (!isset($admin_id)) {
 
         <h1 class="title">dashboard</h1>
 
-        <div class="box-container">
+        <div class="box-container" style="margin-top:40px;">
 
             <div class="box">
                 <?php
@@ -58,8 +96,13 @@ if (!isset($admin_id)) {
                     };
                 };
                 ?>
-                <h3><?php echo $total_pendings; ?> Đ</h3>
-                <p>total pendings</p>
+                <h3><?php echo truncate_text($total_pendings); ?>
+                    <?php if (strlen(truncate_text($total_pendings)) < strlen($total_pendings)) { ?>
+                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
+                        onclick="expandaddress(`<?php echo $total_pendings; ?>`);">chi tiết</a>
+                    <?php } ?><span class="rate">₫</span>
+                </h3>
+                <p>Tổng số tiền đơn hàng</p>
             </div>
 
             <div class="box">
@@ -73,8 +116,8 @@ if (!isset($admin_id)) {
                     };
                 };
                 ?>
-                <h3><?php echo $total_completed; ?> Đ</h3>
-                <p>completed payments</p>
+                <h3><?php echo $total_completed; ?> <span class="rate">₫</span></h3>
+                <p>Số tiền đã thanh toán</p>
             </div>
 
             <div class="box">
@@ -83,7 +126,7 @@ if (!isset($admin_id)) {
                 $number_of_orders = mysqli_num_rows($select_orders);
                 ?>
                 <h3><?php echo $number_of_orders; ?></h3>
-                <p>order placed</p>
+                <p>Số lượng đơn hàng</p>
             </div>
 
             <div class="box">
@@ -92,7 +135,7 @@ if (!isset($admin_id)) {
                 $number_of_products = mysqli_num_rows($select_products);
                 ?>
                 <h3><?php echo $number_of_products; ?></h3>
-                <p>products added</p>
+                <p>Số lượng sản phẩm</p>
             </div>
 
             <div class="box">
@@ -101,7 +144,7 @@ if (!isset($admin_id)) {
                 $number_of_users = mysqli_num_rows($select_users);
                 ?>
                 <h3><?php echo $number_of_users; ?></h3>
-                <p>normal users</p>
+                <p>Người dùng</p>
             </div>
 
             <div class="box">
@@ -110,7 +153,7 @@ if (!isset($admin_id)) {
                 $number_of_admins = mysqli_num_rows($select_admins);
                 ?>
                 <h3><?php echo $number_of_admins; ?></h3>
-                <p>admin users</p>
+                <p>admin</p>
             </div>
 
             <div class="box">
@@ -119,7 +162,7 @@ if (!isset($admin_id)) {
                 $number_of_account = mysqli_num_rows($select_account);
                 ?>
                 <h3><?php echo $number_of_account; ?></h3>
-                <p>total accounts</p>
+                <p>Tổng tài khoản</p>
             </div>
 
             <div class="box">
@@ -128,14 +171,15 @@ if (!isset($admin_id)) {
                 $number_of_messages = mysqli_num_rows($select_messages);
                 ?>
                 <h3><?php echo $number_of_messages; ?></h3>
-                <p>new messages</p>
+                <p>Yêu cầu mới</p>
             </div>
 
         </div>
 
     </section>
 
-    <!-- admin dashboard section ends -->
+
+    <!--admin dashboard section ends-- >
 
 
 
@@ -144,11 +188,34 @@ if (!isset($admin_id)) {
 
 
 
-    <script src="../../public/js/admin_script.js"></script>
+    
 
-    <!-- custom admin js file link  -->
+        <-- custom admin js file link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+    function expandaddress(fullText) {
 
+        var overlay = document.createElement('div');
+        overlay.classList.add('overlay');
+        document.body.appendChild(overlay);
+
+        var content = document.createElement('div');
+        content.classList.add('content');
+        content.textContent = fullText;
+        overlay.appendChild(content);
+
+        overlay.style.display = 'block';
+        content.style.display = 'block';
+
+        overlay.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            content.style.display = 'none';
+        });
+    }
+    </script>
+
+    <script src="../../public/js/admin_script.js">
+    </script>
 </body>
 
 </html>
