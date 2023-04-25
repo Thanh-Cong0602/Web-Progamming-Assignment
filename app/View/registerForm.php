@@ -49,14 +49,15 @@ session_start();
           <label for="confirmPassword">Nhập lại mật khẩu</label>
           <input type="password" id="confirmPassword" name="cpassword" placeholder="Nhập lại mật khẩu" required/>
         </div>
-      </div>
-      <div class="info-img">
+        <div class="info-img">
         <div class="box">
           <select name="user_type" class="select">
             <option value="user">Người dùng</option>
             <option value="admin">Quản trị viên</option>
           </select>
         </div>
+      </div>
+     
         <div class="user-input-box">
           <label for="image">Hình đại diện</label>
           <input type="file" name="image" id="image" class="pic" accept="image/*">
