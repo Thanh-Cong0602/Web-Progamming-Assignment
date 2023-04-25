@@ -8,13 +8,6 @@ $admin_id = $_SESSION['admin_id'];
 if (!isset($admin_id)) {
     header('location:../../app/View/loginForm.php');
 }
-
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
-    header('location:admin_order.php');
-}
-
 ?>
 
 <?php
@@ -56,23 +49,23 @@ function truncate_text($text)
         z-index: 9999;
     }
 
-    .content {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 80%;
-        max-width: 700px;
-        background-color: #fff;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        z-index: 10000;
-        display: none;
-        white-space: pre-wrap;
-        border-radius: 10px;
-        line-height: 1.5;
-        font-size: 2rem;
-    }
+        .content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            white-space: pre-wrap;
+            border-radius: 10px;
+            line-height: 1.5;
+            font-size: 2rem;
+        }
     </style>
 </head>
 
@@ -197,46 +190,46 @@ function truncate_text($text)
     </section>
 
     <script>
-    function expandText(fullText) {
+        function expandText(fullText) {
 
-        var overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-        document.body.appendChild(overlay);
+            var overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            document.body.appendChild(overlay);
 
-        var content = document.createElement('div');
-        content.classList.add('content');
-        fullText = fullText.replace(",", "");
-        content.textContent = fullText.replaceAll(",", "\n");
-        overlay.appendChild(content);
+            var content = document.createElement('div');
+            content.classList.add('content');
+            fullText = fullText.replace(",", "");
+            content.textContent = fullText.replaceAll(",", "\n");
+            overlay.appendChild(content);
 
-        overlay.style.display = 'block';
-        content.style.display = 'block';
+            overlay.style.display = 'block';
+            content.style.display = 'block';
 
-        overlay.addEventListener('click', function() {
-            overlay.style.display = 'none';
-            content.style.display = 'none';
-        });
-    }
+            overlay.addEventListener('click', function() {
+                overlay.style.display = 'none';
+                content.style.display = 'none';
+            });
+        }
 
-    function expandaddress(fullText) {
-        var overlay = document.createElement('div');
-        overlay.classList.add('overlay');
-        document.body.appendChild(overlay);
+        function expandaddress(fullText) {
+            var overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            document.body.appendChild(overlay);
 
-        var content = document.createElement('div');
-        content.classList.add('content');
-        // fullText = fullText.replace(",", "");
-        content.textContent = fullText;
-        overlay.appendChild(content);
+            var content = document.createElement('div');
+            content.classList.add('content');
+            // fullText = fullText.replace(",", "");
+            content.textContent = fullText;
+            overlay.appendChild(content);
 
-        overlay.style.display = 'block';
-        content.style.display = 'block';
+            overlay.style.display = 'block';
+            content.style.display = 'block';
 
-        overlay.addEventListener('click', function() {
-            overlay.style.display = 'none';
-            content.style.display = 'none';
-        });
-    }
+            overlay.addEventListener('click', function() {
+                overlay.style.display = 'none';
+                content.style.display = 'none';
+            });
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <?php include '../View/alert.php'; ?>

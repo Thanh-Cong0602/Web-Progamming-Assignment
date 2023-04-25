@@ -10,12 +10,6 @@ if (!isset($admin_id)) {
     header('location: ../../app/View/loginForm.php');
 }
 
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM `users` WHERE user_id = '$delete_id'") or die('query failed');
-    header('location:admin_user.php');
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +27,6 @@ if (isset($_GET['delete'])) {
 
     <!-- custom admin css file link  -->
     <link rel="stylesheet" href="../../public/css/tuananh.css">
-
     <link rel="stylesheet" href="../../public/css/admin.css">
     <style>
         .blackboard {
@@ -99,7 +92,7 @@ if (isset($_GET['delete'])) {
         }
 
 
-        input[type="submit"] {
+        .searchandclear {
             cursor: pointer;
             color: rgba(238, 238, 238, 0.7);
             line-height: 1em;
@@ -141,10 +134,10 @@ if (isset($_GET['delete'])) {
                         <p><br>
                         <p class="wipeout">
                             <span style="float: left; margin-left: 10%">
-                                <input type="submit" name="search" value="Tìm Kiếm" />
+                                <input type="submit" class="searchandclear" name="search" value="Tìm Kiếm" />
                             </span>
                             <span style="float: right; margin-right: 10%">
-                                <input type="submit" value="Xóa" />
+                                <input type="submit" class="searchandclear" value="Xóa" />
                             </span><br>
                         </p>
                     </div>
@@ -182,7 +175,10 @@ if (isset($_GET['delete'])) {
                                                                             } ?>"><?php echo $fetch_users_sql['user_type']; ?></span>
                                 </p>
                                 <br><br>
-                                <a href="admin_user.php?delete=<?php echo $fetch_users_sql['user_id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">Xóa</a>
+                                <form action="../Controllers/adminProductController.php" method="post">
+                                    <input type="hidden" value="<?php echo $fetch_users_sql['user_id'] ?>" name="user_id">
+                                    <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_user">
+                                </form>
                             </div>
                         </div>
                     <?php
@@ -241,7 +237,10 @@ if (isset($_GET['delete'])) {
                                                                         echo 'var(--orange)';
                                                                     } ?>"><?php echo $fetch_users['user_type']; ?></span> </p>
                         <br><br>
-                        <a href="admin_user.php?delete=<?php echo $fetch_users['user_id']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">Xóa</a>
+                        <form action="../Controllers/adminProductController.php" method="post">
+                            <input type="hidden" value="<?php echo $fetch_users['user_id']; ?>" name="user_id">
+                            <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_user">
+                        </form>
                     </div>
                 </div>
             <?php

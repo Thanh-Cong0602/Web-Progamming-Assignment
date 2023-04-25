@@ -549,6 +549,7 @@ a:hover {
 }
 
 .orders .box-container .box .select-button {
+  width: 90%;
   position: absolute;
   bottom: 20px;
   margin-right: 22px;
@@ -650,7 +651,7 @@ a:hover {
   color: var(--black);
 }
 
-.users .box-container .box .detail .delete-btn {
+.users .box-container .box .detail form .delete-btn {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);

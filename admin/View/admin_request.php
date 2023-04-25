@@ -10,12 +10,6 @@ if (!isset($admin_id)) {
     header('location:../../app/View/loginForm.php');
 };
 
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM `message` WHERE id = '$delete_id'") or die('query failed');
-    header('location:admin_request.php');
-}
-
 ?>
 
 <?php
@@ -102,7 +96,11 @@ function truncate_text($text)
                                     tiết</a>
                             <?php } ?>
                         </p>
-                        <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">Xóa</a>
+                        <!-- <a href="admin_request.php?delete=<?php echo $fetch_message['id']; ?>" onclick="return confirm('delete this request?');" class="delete-btn">Xóa</a> -->
+                        <form action="../Controllers/adminProductController.php" method="post">
+                            <input type="hidden" value="<?php echo $fetch_message['id'] ?>" name="request_id">
+                            <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_request">
+                        </form>
                     </div>
             <?php
                 };

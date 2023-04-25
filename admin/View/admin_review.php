@@ -1,11 +1,11 @@
 <?php
 include '../../config/config.php';
 session_start();
-if (isset($_GET['delete'])) {
-    $delete_id = $_GET['delete'];
-    mysqli_query($conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
-    header('location:admin_review.php');
-}
+// if (isset($_GET['delete'])) {
+//     $delete_id = $_GET['delete'];
+//     mysqli_query($conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
+//     header('location:admin_review.php');
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,8 +61,14 @@ if (isset($_GET['delete'])) {
                     </tr>
                 </thead>
                 <?php
-                while ($fetch_review = mysqli_fetch_assoc($select_review)) {
-                    $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
+                    while ($fetch_review = mysqli_fetch_assoc($select_review)) {
+                    ?>
+                <form action="../Controllers/adminProductController.php" method="post">
+                    <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
+
+
+                    <?php
+                        $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
 
                     $sql_combo_product = mysqli_query($conn, "SELECT combo_name FROM `combo_products` WHERE `combo_id` = '" . $fetch_review['combo_id'] . "'");
                     $row_product = mysqli_fetch_array($sql_product);
@@ -141,6 +147,8 @@ if (isset($_GET['delete'])) {
 
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<?php include '../View/alert.php'; ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

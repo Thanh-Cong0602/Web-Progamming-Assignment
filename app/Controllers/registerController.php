@@ -4,7 +4,7 @@ include '../Models/UserModel.php';
 include '../../config/config.php';
 session_start();
 if(isset($_POST['submit'])){
-   $fullname = $_POST['fullName'];
+   $fullname = $_POST['fullname'];
    $email = $_POST['email'];
    $username = $_POST['username'];
    $phonenumber = $_POST['phoneNumber'];
@@ -35,5 +35,3 @@ if(isset($_POST['submit'])){
       }
    header("Location: ../View/registerForm.php");
 }
-
-?>

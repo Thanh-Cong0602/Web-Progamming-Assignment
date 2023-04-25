@@ -10,6 +10,13 @@ class AdminModel
 
     public function adminAddToProducts($name,  $price,  $author, $image,  $description, $supplier, $publiser)
     {
+        $name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $author = filter_var($author, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $supplier = filter_var($supplier, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $publiser = filter_var($publiser, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $price = filter_var($price, FILTER_SANITIZE_NUMBER_INT);
+
         $select_product_name = mysqli_query($this->conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
         if (mysqli_num_rows($select_product_name) > 0) {
             return 'Sách đã tồn tại';
@@ -19,13 +26,51 @@ class AdminModel
             return 'Sách đã được thêm vào danh mục';
         }
     }
-
+    public function adminAddToComboProducts($combo_name, $price, $image_combo, $description, $description_detail, $image_1, $name_1, $description_1, $image_2, $name_2, $description_2, $image_3, $name_3, $description_3)
+    {
+        $combo_name = filter_var($combo_name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $name_1 = filter_var($name_1, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $name_2 = filter_var($name_2, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $name_3 = filter_var($name_3, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description = filter_var($description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description_1 = filter_var($description_1, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description_2 = filter_var($description_2, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description_3 = filter_var($description_3, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $price = filter_var($price, FILTER_SANITIZE_NUMBER_INT);
+        $select_product_name = mysqli_query($this->conn, "SELECT combo_name FROM `combo_products` WHERE combo_name = '$combo_name'") or die('query failed');
+        if (mysqli_num_rows($select_product_name) > 0) {
+            return 'Combo sách đã tồn tại';
+        } else {
+            $combo_id = create_unique_number_id();
+            $add_product_query = mysqli_query($this->conn, "INSERT INTO `combo_products`(combo_id,combo_name, price, image_combo , description, description_detail, image_1, name_1, description_1, image_2, name_2, description_2, image_3, name_3, description_3) VALUES('$combo_id','$combo_name', '$price', '$image_combo' , '$description', '$description_detail', '$image_1', '$name_1', '$description_1', '$image_2', '$name_2', '$description_2', '$image_3', '$name_3', '$description_3')") or die('query failed');
+            return 'Combo sách đã được thêm vào';
+        }
+    }
     public function adminDeleteProducts($delete_id)
     {
         mysqli_query($this->conn, "DELETE FROM `products` WHERE product_id = '$delete_id'") or die('query failed');
         return 'Xóa sách khỏi danh mục thành công!';
     }
-
+    public function adminDeleteUser($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `users` WHERE user_id = '$delete_id'") or die('query failed');
+        return 'Xóa người dùng khỏi danh mục thành công!';
+    }
+    public function adminDeleteRequest($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `message` WHERE id = '$delete_id'") or die('query failed');
+        return 'Xóa yêu cầu khỏi danh mục thành công!';
+    }
+    public function adminDeleteReview($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
+        return 'Xóa đánh giá khỏi danh mục thành công!';
+    }
+    public function adminDeleteComboProducts($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `combo_products` WHERE combo_id = '$delete_id'") or die('query failed');
+        return 'Xóa combo sách khỏi danh mục thành công!';
+    }
     public function adminUpdateProfile($fullname, $username, $email, $phonenumber, $oldpass, $newpass, $confirmpass)
     {
         $user_id = $_SESSION['admin_id'];
@@ -128,12 +173,56 @@ class AdminModel
         $update_supplier,
         $update_publiser
     ) {
+        $update_name = filter_var($update_name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_author = filter_var($update_author, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $update_image = filter_var($update_image, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_price = filter_var($update_price, FILTER_SANITIZE_NUMBER_INT);
+        $update_description = filter_var($update_description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_supplier = filter_var($update_supplier, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_publiser = filter_var($update_publiser, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
         mysqli_query($this->conn, "UPDATE `products` SET name = '$update_name', author = '$update_author' , price = '$update_price', image = '$update_image', description = '$update_description', supplier = '$update_supplier', publiser = '$update_publiser'  WHERE product_id = '$update_p_id'") or die('query failed');
-        return 'Cập nhật thành công';
+        return 'Cập nhật sách thành công';
+    }
+    public function UpdateToComboProducts(
+        $update_combo_id,
+        $update_combo_name,
+        $update_price,
+        $update_image_combo,
+        $update_description,
+        $update_description_detail,
+        $update_image_1,
+        $update_name_1,
+        $update_description_1,
+        $update_image_2,
+        $update_name_2,
+        $update_description_2,
+        $update_image_3,
+        $update_name_3,
+        $update_description_3
+    ) {
+        $update_combo_name = filter_var($update_combo_name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // $update_image_combo = filter_var($update_image_combo, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_description = filter_var($update_description, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_description_1 = filter_var($update_description_1, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_description_2 = filter_var($update_description_2, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_description_3 = filter_var($update_description_3, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_name_1 = filter_var($update_name_1, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_name_2 = filter_var($update_name_2, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $update_name_3 = filter_var($update_name_3, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        $update_price = filter_var($update_price, FILTER_SANITIZE_NUMBER_INT);
+        mysqli_query($this->conn, "UPDATE `combo_products` SET combo_name = '$update_combo_name', price = '$update_price', image_combo = '$update_image_combo', description = '$update_description', description_detail = '$update_description_detail',image_1 = '$update_image_1', name_1 = '$update_name_1', description_1 = '$update_description_1', image_2 = '$update_image_2', name_2 = '$update_name_2', description_2 = '$update_description_2', image_3 = '$update_image_3', name_3 = '$update_name_3', description_3 = '$update_description_3'  WHERE combo_id = '$update_combo_id'") or die('query failed');
+        return 'Cập nhật combo sách thành công';
     }
     public function OrderToUpdate($order_update_id, $update_payment)
     {
         mysqli_query($this->conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE id = '$order_update_id'") or die('query failed');
         return "Cập nhật thành công";
+    }
+    public function deleteOrder($delete_id)
+    {
+        mysqli_query($this->conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
+        return 'Đã xóa đơn hàng thành công!';
     }
 }

@@ -23,7 +23,9 @@
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <div id="user-btn" class="fas fa-user"></div>
-            <a href="admin_cart.php"><div id="order-btn" class="fas fa-shopping-bag"></div></a>
+            <a href="admin_cart.php">
+                <div id="order-btn" class="fas fa-shopping-bag"></div>
+            </a>
         </div>
 
         <div class="account-box">
@@ -33,9 +35,10 @@
             <p>email : <span>
                     <?php echo $_SESSION['admin_email']; ?>
                 </span></p>
-                <a href="admin_update_profile.php" class="btn" style="margin-bottom:10px">Cập nhập thông tin</a>
-            <a href="logout.php" class="delete-btn">logout</a>
-            <div>new <a href="login.php">login</a> | <a href="register.php">register</a></div>
+            <a href="admin_update_profile.php" class="btn" style="margin-bottom:10px">Cập nhập thông tin</a>
+            <a href="../../app/View/logout.php" class="delete-btn">logout</a>
+            <div>new <a href="../../app/View/loginForm.php">login</a> | <a
+                    href="../../app/View/registerForm.php">register</a></div>
         </div>
 
     </div>

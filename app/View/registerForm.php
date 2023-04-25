@@ -5,14 +5,14 @@ session_start();
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <!-- font awesome cdn link  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-  <link rel="stylesheet" href="../../public/css/register.css" />
+    <link rel="stylesheet" href="../../public/css/register.css" />
 
 </head>
 
@@ -75,48 +75,48 @@ session_start();
   <script>
     // Client-side validation using JavaScript
     function validateForm() {
-      let username = document.getElementById("username").value;
-      let phoneNumber = document.getElementById("phoneNumber").value;
-      let password = document.getElementById("password").value;
-      let email = document.getElementById("email").value;
+        let username = document.getElementById("username").value;
+        let phoneNumber = document.getElementById("phoneNumber").value;
+        let password = document.getElementById("password").value;
+        let email = document.getElementById("email").value;
 
-      let usernameError = document.getElementById("usernameError");
-      let numberError = document.getElementById("numberError");
-      let passwordError = document.getElementById("passwordError");
-      let emailError = document.getElementById("emailError");
+        let usernameError = document.getElementById("usernameError");
+        let numberError = document.getElementById("numberError");
+        let passwordError = document.getElementById("passwordError");
+        let emailError = document.getElementById("emailError");
 
-      let isValid = true;
+        let isValid = true;
 
-      if (username.length < 6) {
-        usernameError.innerHTML = "Tên người dùng phải có ít nhất 6 ký tự";
-        isValid = false;
-      } else {
-        usernameError.innerHTML = "";
-      }
-      if (phoneNumber.length < 10) {
-        numberError.innerHTML = "Số điện thoại phải có ít nhất 10 chữ số";
-        isValid = false;
-      } else {
-        numberError.innerHTML = "";
-      }
-      if (password.length < 8) {
-        passwordError.innerHTML = "Mật khẩu phải có ít nhất 8 ký tự";
-        isValid = false;
-      } else {
-        passwordError.innerHTML = "";
-      }
-      let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if (!emailRegex.test(email)) {
-        emailError.innerHTML = "Email không hợp lệ. Vui lòng nhập lại";
-        isValid = false;
-      } else {
-        emailError.innerHTML = "";
-      }
-      return isValid;
+        if (username.length < 6) {
+            usernameError.innerHTML = "Tên người dùng phải có ít nhất 6 ký tự";
+            isValid = false;
+        } else {
+            usernameError.innerHTML = "";
+        }
+        if (phoneNumber.length < 10) {
+            numberError.innerHTML = "Số điện thoại phải có ít nhất 10 chữ số";
+            isValid = false;
+        } else {
+            numberError.innerHTML = "";
+        }
+        if (password.length < 8) {
+            passwordError.innerHTML = "Mật khẩu phải có ít nhất 8 ký tự";
+            isValid = false;
+        } else {
+            passwordError.innerHTML = "";
+        }
+        let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!emailRegex.test(email)) {
+            emailError.innerHTML = "Email không hợp lệ. Vui lòng nhập lại";
+            isValid = false;
+        } else {
+            emailError.innerHTML = "";
+        }
+        return isValid;
     }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-  <?php include '../View/alert.php'; ?>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
 </body>
 
 </html>
