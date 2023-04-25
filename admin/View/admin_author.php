@@ -12,8 +12,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý tác giả</title>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -62,39 +61,39 @@ session_start();
             if (mysqli_num_rows($select_authors) > 0) {
                 while ($row = mysqli_fetch_assoc($select_authors)) {
             ?>
-             <?php
-                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `authors`") or die('query failed');
-                $total_products = mysqli_fetch_assoc($total_products)['total'];
-                $total_pages = ceil($total_products / $per_page);
-                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $url = "http://localhost:3000/admin/View/admin_author.php?page=";
-                // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
-                $offset = ($current_page - 1) * $per_page;
-                // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
-                $select_authors = mysqli_query($conn, "SELECT * FROM authors LIMIT $per_page OFFSET $offset") or die('query failed');
-                if (mysqli_num_rows($select_authors) > 0) {
-                    while ($row = mysqli_fetch_assoc($select_authors)) {
+                    <?php
+                    $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `authors`") or die('query failed');
+                    $total_products = mysqli_fetch_assoc($total_products)['total'];
+                    $total_pages = ceil($total_products / $per_page);
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $url = "http://localhost:3000/admin/View/admin_author.php?page=";
+                    // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
+                    $offset = ($current_page - 1) * $per_page;
+                    // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
+                    $select_authors = mysqli_query($conn, "SELECT * FROM authors LIMIT $per_page OFFSET $offset") or die('query failed');
+                    if (mysqli_num_rows($select_authors) > 0) {
+                        while ($row = mysqli_fetch_assoc($select_authors)) {
                     ?>
-                    <div class="box">
-                        <img src="<?php echo $row['image']; ?>" alt="">
-                        <div class="info-author">
-                            <h3 class="name"><?php echo $row['name']; ?></h3>
-                            <p class="slogan"><?php echo $row['slogan']; ?></p>
-                            <form action="../Controllers/adminAuthorController.php" method="post">
-                                <a href="<?php echo $row['information']; ?>" class="detail_book">Xem thêm về tác giả <i class="fas fa-angle-right"></i> </a>
-                                <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                                    <a href="admin_author.php?update=<?php echo $row['id']; ?>" class="option-btn">Cập nhật</a>
-                                    <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_author">
-                                    <input type="hidden" value="<?php echo $row['id'] ?>" name="author_id">
-                                </div>
-                            </form>
+                            <div class="box">
+                                <img src="<?php echo $row['image']; ?>" alt="">
+                                <div class="info-author">
+                                    <h3 class="name"><?php echo $row['name']; ?></h3>
+                                    <p class="slogan"><?php echo $row['slogan']; ?></p>
+                                    <form action="../Controllers/adminAuthorController.php" method="post">
+                                        <a href="<?php echo $row['information']; ?>" class="detail_book">Xem thêm về tác giả <i class="fas fa-angle-right"></i> </a>
+                                        <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                                            <a href="admin_author.php?update=<?php echo $row['id']; ?>" class="option-btn">Cập nhật</a>
+                                            <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_author">
+                                            <input type="hidden" value="<?php echo $row['id'] ?>" name="author_id">
+                                        </div>
+                                    </form>
 
-                        </div>
-                    </div>
+                                </div>
+                            </div>
             <?php
+                        }
+                    }
                 }
-            }
-        }
             } else {
                 echo '<p class="empty">Không có tác giả nào tại đây</p>';
             }
@@ -158,10 +157,10 @@ session_start();
                         <input type="text" class="box" name="update_slogan" value="<?php echo $fetch_update['slogan']; ?>" placeholder="Nhập slogan cần cập nhật">
                         <input type="text" class="box" name="update_information" value="<?php echo $fetch_update['information']; ?>" placeholder="Nhập link thông tin tác giả cập nhật">
                         <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                        <input type="submit" value="Lưu" name="update_author" class="btn">
-                        <input type="submit" value="Reset" name="reset_author" id="close-update" class="delete-btn">
-                </div>
-                       
+                            <input type="submit" value="Lưu" name="update_author" class="btn">
+                            <input type="submit" value="Reset" name="reset_author" id="close-update" class="delete-btn">
+                        </div>
+
                     </form>
         <?php
                 }

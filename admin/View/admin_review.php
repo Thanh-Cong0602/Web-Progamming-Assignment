@@ -26,26 +26,26 @@ session_start();
     <?php include 'admin_header.php'; ?>
     <section class="admin_review">
         <h1 class="title" style="margin-top: 2rem;">Tất cả review</h1>
-        <div class="table-review">
+        <div class="table-review" style="margin-top:30px;">
             <?php
-             $per_page = 6;
-             $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-             $start = ($page - 1) * $per_page;
+            $per_page = 6;
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $start = ($page - 1) * $per_page;
             $select_review = mysqli_query($conn, "SELECT * FROM `reviews`") or die('query fail');
             if (mysqli_num_rows($select_review) > 0) {
                 while ($fetch_review = mysqli_fetch_assoc($select_review)) {
             ?>
-             <?php
-                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `reviews`") or die('query failed');
-                $total_products = mysqli_fetch_assoc($total_products)['total'];
-                $total_pages = ceil($total_products / $per_page);
-                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $url = "http://localhost:3000/admin/View/admin_review.php?page=";
-                // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
-                $offset = ($current_page - 1) * $per_page;
-                // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
-                $select_review = mysqli_query($conn, "SELECT * FROM reviews LIMIT $per_page OFFSET $offset") or die('query failed');
-                if (mysqli_num_rows($select_review) > 0) {
+            <?php
+                    $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `reviews`") or die('query failed');
+                    $total_products = mysqli_fetch_assoc($total_products)['total'];
+                    $total_pages = ceil($total_products / $per_page);
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $url = "http://localhost:3000/admin/View/admin_review.php?page=";
+                    // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
+                    $offset = ($current_page - 1) * $per_page;
+                    // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
+                    $select_review = mysqli_query($conn, "SELECT * FROM reviews LIMIT $per_page OFFSET $offset") or die('query failed');
+                    if (mysqli_num_rows($select_review) > 0) {
                     ?>
             <table class="table table-striped table-hover">
                 <thead class="thead-light">
@@ -60,47 +60,48 @@ session_start();
                         <th style='width: 5%'></th>
                     </tr>
                 </thead>
-                <?php
-                    while ($fetch_review = mysqli_fetch_assoc($select_review)) {
-                    ?>
-                <form action="../Controllers/adminController.php" method="post">
-                    <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
-                    <?php
-                        $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
 
-                    $sql_combo_product = mysqli_query($conn, "SELECT combo_name FROM `combo_products` WHERE `combo_id` = '" . $fetch_review['combo_id'] . "'");
-                    $row_product = mysqli_fetch_array($sql_product);
-                    $row_combo = mysqli_fetch_assoc($sql_combo_product);
-                    $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
-                    $row_user = mysqli_fetch_assoc($sql_user);
-                    echo "<tr>";
-                    echo "<td data-label='ID'>" . $fetch_review['id'] . "</td>";
-                    if ($row_product['name']) {
-                        echo "<td data-label='Tên sản phẩm'>" . $row_product['name'] . "</td>";
-                    } else if ($row_combo['combo_name']) {
-                        echo "<td data-label='Tên khách'>" . $row_combo['combo_name'] . "</td>";
-                    }
-                    echo "<td data-label='Tên khách'>" . $row_user['fullname'] . "</td>";
-                    echo "<td data-label='Tiêu đề'>" . $fetch_review['title'] . "</td>";
-                    echo "<td data-label='Nhận xét' style='text-align: justify;'>
+                <?php
+                            while ($fetch_review = mysqli_fetch_assoc($select_review)) {
+                            ?>
+                <?php
+                                $sql_product = mysqli_query($conn, "SELECT name FROM `products` WHERE `product_id` = '" . $fetch_review['product_id'] . "'");
+
+                                $sql_combo_product = mysqli_query($conn, "SELECT combo_name FROM `combo_products` WHERE `combo_id` = '" . $fetch_review['combo_id'] . "'");
+                                $row_product = mysqli_fetch_array($sql_product);
+                                $row_combo = mysqli_fetch_assoc($sql_combo_product);
+                                $sql_user = mysqli_query($conn, "SELECT * FROM `users` WHERE `user_id` = '" . $fetch_review['user_id'] . "'");
+                                $row_user = mysqli_fetch_assoc($sql_user);
+                                echo "<tr>";
+                                echo "<td data-label='ID'>" . $fetch_review['id'] . "</td>";
+                                if ($row_product['name']) {
+                                    echo "<td data-label='Tên sản phẩm'>" . $row_product['name'] . "</td>";
+                                } else if ($row_combo['combo_name']) {
+                                    echo "<td data-label='Tên khách'>" . $row_combo['combo_name'] . "</td>";
+                                }
+                                echo "<td data-label='Tên khách'>" . $row_user['fullname'] . "</td>";
+                                echo "<td data-label='Tiêu đề'>" . $fetch_review['title'] . "</td>";
+                                echo "<td data-label='Nhận xét' style='text-align: justify;'>
                     <p class = 'scroll'> " . $fetch_review['description'] . "</p>
                     </td>";
-                    echo "<td data-label='Đánh giá'>" . $fetch_review['rating'] . "</td>";
-                    echo " <td data-label='Thời gian'>" . $fetch_review['date'] . "</td>";
-                    
-                    echo "<td class='btn-review'><input type='submit' value='Xóa'  onclick='return confirm(\"Bạn chắc chắn muốn xóa?\");'
-                        class='delete-btn' name='delete_review'>" . "</td>";
-                    echo "</tr>";
-                    
-            } 
-        }
-        }
-    }
-    else {
-                echo '<p class="empty">Không có review nào tại đây</p>';
-            }
+                                echo "<td data-label='Đánh giá'>" . $fetch_review['rating'] . "</td>";
+                                echo " <td data-label='Thời gian'>" . $fetch_review['date'] . "</td>";
+                                ?>
+                <form action="../Controllers/adminController.php" method="post">
+                    <input type="hidden" value="<?php echo $fetch_review['id'] ?>" name="review_id">
+                    <td class='btn-review'><input type='submit' value='Xóa'
+                            onclick='return confirm("Bạn chắc chắn muốn xóa?");' class='delete-btn'
+                            name='delete_review'></td>
+                </form>
+                <?php echo "</tr>";
+                            }
+                        }
+                    }
+                } else {
+                    echo '<p class="empty">Không có review nào tại đây</p>';
+                }
                 ?>
-            </form>
+
             </table>
         </div>
         <nav aria-label="Page navigation example" class="toolbar">

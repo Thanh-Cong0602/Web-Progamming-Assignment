@@ -63,7 +63,7 @@ class AdminModel
     }
     public function adminDeleteReview($delete_id)
     {
-        mysqli_query($this->conn, "DELETE FROM `reviews` WHERE id = $delete_id") or die('query failed');
+        mysqli_query($this->conn, "DELETE FROM `reviews` WHERE id = '$delete_id'") or die('query failed');
         return 'Xóa đánh giá khỏi danh mục thành công!';
     }
     public function adminDeleteComboProducts($delete_id)
