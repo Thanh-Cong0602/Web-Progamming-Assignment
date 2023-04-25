@@ -10,44 +10,9 @@ if (!isset($admin_id)) {
     header('location:../../app/View/loginForm.php');
 };
 
-if (isset($_POST['add_product'])) {
-
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $price = $_POST['price'];
-    $author = $_POST['author'];
-    $image = $_POST['image'];
-    $description = $_POST['description'];
-    $supplier = $_POST['supplier'];
-    $publiser = $_POST['publiser'];
-    $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$name'") or die('query failed');
-    if (mysqli_num_rows($select_product_name) > 0) {
-        $message[] = 'Sách đã tồn tại';
-    } else {
-        $product_id = create_unique_id();
-        $add_product_query = mysqli_query($conn, "INSERT INTO `products`(name, author, price, image, description, supplier, publiser) VALUES('$name', '$author' ,'$price', '$image', '$description', '$supplier', '$publiser')") or die('query failed');
-        $message[] = 'Sách đã được thêm vào danh mục';
-    }
-}
-
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM `products` WHERE product_id = '$delete_id'") or die('query failed');
-    header('location:admin_product.php');
-}
-
-if (isset($_POST['update_product'])) {
-    $update_p_id = $_POST['update_p_id'];
-    $update_name = $_POST['update_name'];
-    $update_author = $_POST['update_author'];
-    $update_price = $_POST['update_price'];
-    $update_image = $_POST['update_image'];
-    $update_description = $_POST['update_description'];
-    $update_supplier = $_POST['update_supplier'];
-    $update_publiser = $_POST['update_publiser'];
-
-
-
-    mysqli_query($conn, "UPDATE `products` SET name = '$update_name', author = '$update_author' , price = '$update_price', image = '$update_image', description = '$update_description', supplier = '$update_supplier', publiser = '$update_publiser'  WHERE product_id = '$update_p_id'") or die('query failed');
     header('location:admin_product.php');
 }
 
@@ -193,7 +158,7 @@ if (isset($_POST['update_product'])) {
         <?php
         if (isset($_GET['add-product-book'])) {
         ?>
-        <form action="" method="post">
+        <form action="../Controllers/adminController.php" method="post">
             <h3>Thêm sách</h3>
             <input type="text" name="name" class="box" placeholder="Nhập tên sách" required>
             <input type="text" min="0" name="author" class="box" placeholder="Nhập tên tác giả" required>
@@ -364,7 +329,7 @@ if (isset($_POST['update_product'])) {
             if (mysqli_num_rows($update_query) > 0) {
                 while ($fetch_update = mysqli_fetch_assoc($update_query)) {
         ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="../Controllers/adminController.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['product_id']; ?>">
             <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required
                 placeholder="Nhập tên sách cần cập nhật">
@@ -375,7 +340,7 @@ if (isset($_POST['update_product'])) {
             <input type="text" class="box" name="update_image" value="<?php echo $fetch_update['image']; ?>"
                 placeholder="Nhập url ảnh sách cần cập nhật">
             <!-- <input type="text" class="box" name="update_description" value="" placeholder="Nhập mô tả sách cần cập nhật"> -->
-            <textarea name="update_description" class="box" c ols="30" rows="10"
+            <textarea name="update_description" class="box" cols="30" rows="10"
                 style="width: 100%"><?php echo $fetch_update['description']; ?></textarea>
             <input type="text" class="box" name="update_supplier" value="<?php echo $fetch_update['supplier']; ?>"
                 placeholder="Nhập nhà cung cấp sách cần cập nhật">
@@ -393,9 +358,8 @@ if (isset($_POST['update_product'])) {
         ?>
 
     </section>
-    <!-- custom admin js file link  -->
-    <!-- <script src="js/admin_script.js"></script> -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
 </body>

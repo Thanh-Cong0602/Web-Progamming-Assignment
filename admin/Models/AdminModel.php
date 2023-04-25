@@ -1,8 +1,10 @@
 <?php
-class AdminModel {
+class AdminModel
+{
     private $conn;
 
-    public function __construct($conn) {
+    public function __construct($conn)
+    {
         $this->conn = $conn;
     }
     public function AddToProducts($name,  $price,  $author, $image,  $description, $supplier, $publiser)
@@ -16,6 +18,22 @@ class AdminModel {
             return 'Sách đã được thêm vào danh mục';
         }
     }
-
+    public function UpdateToProduct(
+        $update_p_id,
+        $update_name,
+        $update_author,
+        $update_price,
+        $update_image,
+        $update_description,
+        $update_supplier,
+        $update_publiser
+    ) {
+        mysqli_query($this->conn, "UPDATE `products` SET name = '$update_name', author = '$update_author' , price = '$update_price', image = '$update_image', description = '$update_description', supplier = '$update_supplier', publiser = '$update_publiser'  WHERE product_id = '$update_p_id'") or die('query failed');
+        return 'Cập nhật thành công';
+    }
+    public function OrderToUpdate($order_update_id, $update_payment)
+    {
+        mysqli_query($this->conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE user_id = '$order_update_id'") or die('query failed');
+        return "Cập nhật thành công";
+    }
 }
-?>

@@ -245,7 +245,8 @@ if (isset($_GET['delete'])) {
 
     </section>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
 </body>

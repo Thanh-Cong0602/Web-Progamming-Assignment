@@ -10,13 +10,6 @@ if (!isset($admin_id)) {
     header('location:../../app/View/loginForm.php');
 }
 
-if (isset($_POST['update_order'])) {
-    $order_update_id = $_POST['order_id'];
-    $update_payment = $_POST['update_payment'];
-    mysqli_query($conn, "UPDATE `orders` SET payment_status = '$update_payment' WHERE user_id = '$order_update_id'") or die('query failed');
-    $message[] = 'Updated!!!';
-}
-
 if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM `orders` WHERE id = '$delete_id'") or die('query failed');
@@ -118,7 +111,7 @@ function truncate_text($text)
                         </p>
                         <p> Phương thức thanh toán : <span><?php echo $fetch_orders['method']; ?></span> </p>
                         <div class="select-button">
-                            <form action="" method="post">
+                            <form action="../Controllers/adminController.php" method="post">
                                 <input type="hidden" name="order_id" value="<?php echo $fetch_orders['user_id']; ?>">
                                 <select name="update_payment">
                                     <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
@@ -182,7 +175,8 @@ function truncate_text($text)
             });
         }
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <?php include '../View/alert.php'; ?>
     <!-- custom admin js file link  -->
     <script src="../../public/js/admin_script.js"></script>
 </body>

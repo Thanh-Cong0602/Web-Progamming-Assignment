@@ -18,4 +18,3 @@ if(isset($_SESSION['info_msg'])){
    echo '<script>swal("'.$_SESSION['info_msg'].'", "", "info");</script>';
    unset($_SESSION['info_msg']);
 }
-?>
