@@ -28,8 +28,7 @@ function truncate_text($text)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orders</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- custom admin css file link  -->
@@ -38,16 +37,17 @@ function truncate_text($text)
     <style>
         .orders .box-container .box p {
             margin-bottom: 0rem;
-            }
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-    }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
 
         .content {
             position: fixed;
@@ -86,64 +86,63 @@ function truncate_text($text)
             if (mysqli_num_rows($select_orders) > 0) {
                 while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
             ?>
-         <?php
-                $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `orders`") or die('query failed');
-                $total_products = mysqli_fetch_assoc($total_products)['total'];
-                $total_pages = ceil($total_products / $per_page);
-                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $url = "http://localhost:3000/admin/View/admin_product.php?page=";
-                // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
-                $offset = ($current_page - 1) * $per_page;
-                // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
-                $select_orders = mysqli_query($conn, "SELECT * FROM orders LIMIT $per_page OFFSET $offset") or die('query failed');
-                if (mysqli_num_rows($select_orders) > 0) {
-                    while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
+                    <?php
+                    $total_products = mysqli_query($conn, "SELECT COUNT(*) AS total FROM `orders`") or die('query failed');
+                    $total_products = mysqli_fetch_assoc($total_products)['total'];
+                    $total_pages = ceil($total_products / $per_page);
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $url = "http://localhost:3000/admin/View/admin_product.php?page=";
+                    // Tính toán giới hạn của LIMIT trong câu truy vấn SQL
+                    $offset = ($current_page - 1) * $per_page;
+                    // Truy vấn sản phẩm trong cơ sở dữ liệu với LIMIT và OFFSET
+                    $select_orders = mysqli_query($conn, "SELECT * FROM orders LIMIT $per_page OFFSET $offset") or die('query failed');
+                    if (mysqli_num_rows($select_orders) > 0) {
+                        while ($fetch_orders = mysqli_fetch_assoc($select_orders)) {
                     ?>
-            <div class="box">
-                <p> User id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-                <p> Ngày đặt hàng : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
-                <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
-                <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
-                <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
-                <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span>
-                    <?php if (strlen(truncate_text($fetch_orders['address'])) < strlen($fetch_orders['address'])) { ?>
-                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
-                        onclick="expandaddress(`<?php echo $fetch_orders['address']; ?>`);">chi tiết</a>
-                    <?php } ?>
-                </p>
-                <p class="total-products"> Tổng sản phẩm :
-                    <span><?php echo preg_replace('/,/', '', truncate_text($fetch_orders['total_products']), 1); ?></span>
-                    <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
-                    <a style="font-size: 1.5rem;font-style:italic;" href="#"
-                        onclick="expandText(`<?php echo $fetch_orders['total_products']; ?>`);">chi tiết</a>
-                    <?php } ?>
-                </p>
-                <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
-                    <span class="rate">₫</span></h3>
-                </p>
-                <p> Phương thức thanh toán : <br> 
-                <span><?php echo $fetch_orders['method']; ?></span> </p>
-                <div class="select-button">
-                    <form action="../Controllers/adminOrderController.php" method="post">
-                        <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
-                        <select name="update_payment">
-                            <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
-                            <option value="pending">pending</option>
-                            <option value="completed">completed</option>
-                        </select>
-                        <div style="display:flex;justify-content:center;gap:0.5rem; ">
-                                    <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
-                                    <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_order">
+                            <div class="box">
+                                <p> User id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
+                                <p> Ngày đặt hàng : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+                                <p> Họ và Tên : <span><?php echo $fetch_orders['name']; ?></span> </p>
+                                <p> Sđt : <span><?php echo $fetch_orders['number']; ?></span> </p>
+                                <p> Email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+                                <p> Địa chỉ : <span><?php echo truncate_text($fetch_orders['address']); ?></span>
+                                    <?php if (strlen(truncate_text($fetch_orders['address'])) < strlen($fetch_orders['address'])) { ?>
+                                        <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandaddress(`<?php echo $fetch_orders['address']; ?>`);">chi tiết</a>
+                                    <?php } ?>
+                                </p>
+                                <p class="total-products"> Tổng sản phẩm :
+                                    <span><?php echo preg_replace('/,/', '', truncate_text($fetch_orders['total_products']), 1); ?></span>
+                                    <?php if (strlen(truncate_text($fetch_orders['total_products'])) < strlen($fetch_orders['total_products'])) { ?>
+                                        <a style="font-size: 1.5rem;font-style:italic;" href="#" onclick="expandText(`<?php echo $fetch_orders['total_products']; ?>`);">chi tiết</a>
+                                    <?php } ?>
+                                </p>
+                                <p> Tổng giá : <span><?php echo $fetch_orders['total_price']; ?></span>
+                                    <span class="rate">₫</span></h3>
+                                </p>
+                                <p> Phương thức thanh toán : <br>
+                                    <span><?php echo $fetch_orders['method']; ?></span>
+                                </p>
+                                <div class="select-button">
+                                    <form action="../Controllers/adminOrderController.php" method="post">
+                                        <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
+                                        <select name="update_payment">
+                                            <option value="" selected disabled><?php echo $fetch_orders['payment_status']; ?></option>
+                                            <option value="pending">pending</option>
+                                            <option value="completed">completed</option>
+                                        </select>
+                                        <div style="display:flex;justify-content:center;gap:0.5rem; ">
+                                            <input type="submit" value="Cập Nhật" name="update_order" class="option-btn">
+                                            <input type="submit" value="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?');" class="delete-btn" name="delete_order">
 
-                        </div>
-                    </form>
-                </div>
-            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
             <?php
-                  }
+                        }
+                    }
                 }
-            }
-         } else {
+            } else {
                 echo '<p class="empty">Chưa có đơn hàng nào được đặt!</p>';
             }
             ?>
