@@ -629,11 +629,11 @@ a:hover {
   top: 0;
   left: 0;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px;
   z-index: -1;
 }
 .users .box-container .box .detail p {
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   font-size: 2rem;
   color: var(--light-color);
 }

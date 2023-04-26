@@ -24,6 +24,10 @@ if(isset($_COOKIE['user_id'])){
  }else{
     $user_id = '';
  }
+ $check_id = mysqli_query($conn, "SELECT * FROM `users` WHERE user_id = '$user_id'") or die('query failed');
+  if(mysqli_num_rows($check_id) == 0) {
+    $user_id = '';
+  }
 ?>
 <!-- ALTER TABLE `reviews` ADD CONSTRAINT `fk_reviews_users` 
 FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;

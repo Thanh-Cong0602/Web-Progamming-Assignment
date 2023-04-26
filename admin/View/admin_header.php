@@ -37,9 +37,6 @@
                 </span></p>
             <a href="admin_update_profile.php" class="btn" style="margin-bottom:10px">Cập nhập thông tin</a>
             <a href="../../app/View/logout.php" class="delete-btn">logout</a>
-            <div>new <a href="../../app/View/loginForm.php">login</a> | <a
-                    href="../../app/View/registerForm.php">register</a></div>
-        </div>
 
     </div>
 
