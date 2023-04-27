@@ -29,7 +29,6 @@
 }
 .toolbar {
   display: flex;
-  /* width: 100%; */
   font-size: 1.5rem;
   padding: 2rem 0;
   border: none;
@@ -69,37 +68,6 @@ section {
   color: var(--red);
   font-size: 2rem;
 }
-
-
-/* 
-.message {
-  position: sticky;
-  top: 0;
-  margin: 0 auto;
-  max-width: 100%;
-  background-color: var(--orange);
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 10000;
-  gap: 1.5rem;
-}
-
-.message span {
-  font-size: 2rem;
-  color: var(--black);
-}
-
-.message i {
-  cursor: pointer;
-  color: var(--red);
-  font-size: 2.5rem;
-}
-
-.message i:hover {
-  transform: rotate(90deg);
-} */
 
 .btn,
 .option-btn,
@@ -540,8 +508,6 @@ a:hover {
 
 .orders .box-container .box p span {
   color: var(--black);
-  /* word-wrap: break-word;
-    word-break: break-all; */
 }
 
 .orders .box-container .box form {
@@ -624,6 +590,7 @@ a:hover {
 .users .box-container .box .fullname-type {
   pointer-events: none;
 }
+
 .users .box-container .box .detail {
   position: absolute;
   top: 0;

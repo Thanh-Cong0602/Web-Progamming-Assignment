@@ -1,6 +1,5 @@
 <?php
 include '../../config/config.php';
-// $get_author = mysqli_query($conn, "SELECT * FROM `authors` WHERE ")
 session_start();
 
 ?>
