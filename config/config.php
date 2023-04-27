@@ -29,6 +29,9 @@ if(isset($_COOKIE['user_id'])){
     $user_id = '';
   }
 ?>
+
+
+
 <!-- ALTER TABLE `reviews` ADD CONSTRAINT `fk_reviews_users` 
 FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
  -->
